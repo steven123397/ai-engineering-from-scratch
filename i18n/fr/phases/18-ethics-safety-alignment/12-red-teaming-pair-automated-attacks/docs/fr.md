@@ -3,7 +3,7 @@
 > Chao, Robey, Dobriban, Hassani, Pappas, Wong (NeurIPS 2023, arXiv:2310.08419). PAIR  Rapid Automatic Iterative Refinement  est le jailbreak automatique de boîte noire canonique. Un LLM attaquant avec un système de red-team prompt propose à plusieurs reprises des jailbreaks pour un LLM cible, en accumulant des tentatives et des réponses dans son propre historique de chat comme rétroaction dans le contexte. PAIR réussit généralement dans les 20 requêtes, des ordres de magnitude plus efficaces que GCG (la recherche de gradients au niveau des jetons de Zou et coll.), et sans avoir besoin d'accès à la boîte blanche. PAIR est maintenant une ligne de base standard dans JailbreakBench (arXiv:2404.01318) et HarmBench, aux côtés de GCG, AutoDAN, TAP et Persuasive Adversarial Prompt.
 
 **Type:** Build
-**Languages:** Python (stdlib, mock PAIR loop against a toy target)
+**Languages:** Python, TypeScript (stdlib, mock PAIR loop against a toy target)
 **Prerequisites:** Phase 18 · 01 (instruction-following), Phase 14 (agent engineering)
 **Time:** ~75 minutes
 
@@ -31,11 +31,11 @@ Les entrées:
 
 Boucle, pour k en 1..K:
 1. A est incité par l'objectif G et l'historique des paires (prompte, réponse) jusqu'à présent.
-2. Un émet une nouvelle demande de p_k.
-3. Envoyer p_k à T; recevoir une réponse r_k.
-4. J marque (p_k, r_k) sur le but.
+2. Un émet une nouvelle demande $p_k$- Je suis désolé .
+3. Envoyez $p_k$à T; recevoir une réponse $r_k$- Je suis désolé .
+4. J score $(p_k, r_k)$sur le but.
 5. Si le score >= seuil, arrêtez  jailbreak trouvé.
-6. Sinon, ajoutez (p_k, r_k) à l'historique de A; continuez.
+6. Autrement, ajouter $(p_k, r_k)$à l'histoire de A; continuez.
 
 Résultat empirique (NeurIPS 2023): > 50% taux de réussite des attaques contre GPT-3.5-turbo, Llama-2-7B-chat; requêtes moyennes à succès dans la plage 10 à 20.
 

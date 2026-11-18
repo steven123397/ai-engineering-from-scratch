@@ -3,7 +3,7 @@
 > Il est également possible de faire appel à des services de communication et de communication de manière à ce que les données soient disponibles. Enquête fondatrice de 2024 distinguant les dommages représentatifs (stéréotypes, suppression) des dommages alloués (distribution inégale des ressources) et catégorisant les mesures d'évaluation en tant que métriques basées sur l'intégration, la probabilité ou le texte généré. 2024-2025 empirique: An et al. (PNAS Nexus, mars 2025) mesure le biais intersectionnel de genre x race sur GPT-3.5 Turbo, GPT-4o, Gemini 1.5 Flash, Claude 3.5 Sonnet, Llama 3-70B sur l'évaluation automatisée du CV pour 20 emplois de niveau d'entrée. WinoIdentity (COLM 2025, arXiv:2508.07111) introduit une évaluation de l'équité fondée sur l'incertitude pour les identités intersectionnelles. Yu & Ananiadou 2025 identifient les neurones de genre dans les couches de PLM; Ahsan & Wallace 2025 utilisent les SAE pour révéler les préjugés raciaux cliniques; Zhou et coll. 2024 (UniBias) manipule les têtes d'attention pour débiasing. Meta-critique (arXiv:2508.11067): La littérature de 10 ans se concentre de manière disproportionnée sur le biais binaire de genre.
 
 **Type:** Build
-**Languages:** Python (stdlib, toy embedding-based bias probe)
+**Languages:** Python, TypeScript (stdlib, toy embedding-based bias probe)
 **Prerequisites:** Phase 05 (word embeddings), Phase 18 · 01 (instruction following)
 **Time:** ~60 minutes
 
@@ -12,7 +12,7 @@
 - Définir les dommages représentatifs par rapport aux dommages alloués et donner un exemple de chacun dans un déploiement de MLL.
 - Nombre des trois catégories d'évaluation-métrie de Gallegos et coll. 2024 et décrivez une métrique de chacune.
 - Décrivez l'intersectionnalité et pourquoi la mesure de l'équité basée sur l'incertitude de WinoIdentity aborde les lacunes dans l'évaluation du biais à un seul axe.
-- Décrire deux approches mécanistes-interprétables du biais (néurones de genre, caractéristiques de l'ESA, manipulation de la tête d'attention).
+- Décrivez trois approches mécanistes-interprétables du biais (néurones de genre, caractéristiques de l'ESA, manipulation de la tête d'attention).
 
 ## Le problème
 

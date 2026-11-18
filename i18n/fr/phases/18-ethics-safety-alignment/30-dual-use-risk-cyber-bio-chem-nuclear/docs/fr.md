@@ -3,7 +3,7 @@
 > L'image à double usage de 2026, domaine par domaine. Bio/chimique: Leçon 17 couvre le WMDP; l'essai d'acquisition d'armes biologiques d'Anthropic (2,53 fois plus) et l'avertissement du Cadre de préparation d'OpenAI d'avril 2025 v2 ("sur le point d'aider significativement les novices à créer des menaces biologiques connues") marquent le point de basculement. Cyber (rapport Anthropic de novembre 2025): Les acteurs étatiques liés à la Chine ont utilisé l'outil de codage agent de Claude pour automatiser jusqu'à 90% d'une campagne de cyberattaque, avec une intervention humaine seulement en 4-6 étapes; OpenAI "accès fiable" pilote donne aux organisations de sécurité vérifiées l'accès aux capacités de travail de double usage défensif. Erosion de la lacune d'exécution chimique/biologique: la défense classique était "l'accès à l'information seul est insuffisant". Les modèles frontaliers à vision (GPT-5.2, Gemini 3 Pro, Claude Opus 4.5, Grok 4.1) peuvent observer la vidéo wet-lab et fournir une correction en temps réel. Décembre 2025: OpenAI a démontré que GPT-5 faisait l'itération sur des expériences de laboratoire humide, atteignant une amélioration de l'efficacité de 79 fois grâce à l'optimisation du protocole axée sur l'IA. Modèle novice versus expert: L'IA offre une amélioration relative plus grande aux novices mais une plus grande capacité absolue aux experts.
 
 **Type:** Learn
-**Languages:** none
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 18 · 17 (WMDP), Phase 18 · 18 (safety frameworks), Phase 18 · 28 (ecosystem)
 **Time:** ~75 minutes
 
@@ -16,7 +16,7 @@
 
 ## Le problème
 
-La leçon 17 est la méthodologie de mesure. La leçon 30 est l'état de la mesure de 2026. La situation a changé de manière significative entre 2024 et la fin de 2025: chaque domaine a franchi un seuil que les cadres de 2024 n'ont pas anticipé.
+La leçon 17 est la méthodologie de mesure. La leçon 30 est l'état de la mesure de 2026. La situation a considérablement changé entre 2024 et la fin de 2025: trois des quatre domaines ont franchi un seuil que les cadres de 2024 n'ont pas prévu.
 
 ## Le concept
 
@@ -47,6 +47,8 @@ Les conséquences:
 - Le codage agentique est le primitif de l'automatisation des attaques. L'aide cybernétique antérieure à l'IA était limitée au niveau des extraits de code; les flux de travail agentiques intègrent la reconnaissance, l'exploitation, la post-exploitation et l'exfiltration.
 - Les 4 à 6 étapes humaines sont le goulot d'étranglement; les gains de capacité futurs réduiraient ce nombre.
 - Deuxième utilisation défensive: le pilote d'accès fiable d'OpenAI fournit aux organisations de sécurité vérifiées (entreprises de réaction aux incidents établies, gouvernement) un accès aux capacités de défense.
+
+Le côté défensif de ce travail commence par la lecture du code compilé que vous êtes autorisé à analyser.[Lesson 13.32](../../../13-tools-and-protocols/32-program-anatomy-elf-from-scratch/docs/en.md), démantèlement en [Lesson 13.33](../../../13-tools-and-protocols/33-disassembly-and-control-flow/docs/en.md), en lelevant à un pseudocode en [Lesson 13.34](../../../13-tools-and-protocols/34-lifting-to-pseudocode/docs/en.md), et un registre de preuves qui garde les faits observés séparés de ceux déduits dans[Lesson 13.35](../../../13-tools-and-protocols/35-evidence-confidence-and-unknowns/docs/en.md)- Le .[Inside a Decompiler](https://aiengineeringfromscratch.com/inside-a-decompiler)Une machine montre le pipeline complet sur une fonction. un agent qui fait ce travail a besoin du même registre, parce qu'une décompilation confiante peut encore reposer sur une devinette.
 
 ### Le nucléaire
 
