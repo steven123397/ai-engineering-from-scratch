@@ -3,7 +3,7 @@
 > Un modelo que funciona bien en una tarea que no se puede definir es un modelo que funciona bien por accidente. El arnés es la definición de tarea, la métrica, el corredor y el tablero de clasificación, en una forma corta, intercambiable.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 19 lessons 42 to 45
 **Time:** ~90 minutes
 
@@ -20,7 +20,7 @@ El modelo de lenguaje nuevo llega cada semana. La afirmación de marketing es qu
 
 Sin un arnés en su repo se comparan dos modelos por vibraciones. con un arnés se comparan por puntaje en un conjunto de tareas fijas con una métrica fija, en una salida JSON se puede diferir. El arnés es el contrato entre la carrera de ayer y la carrera de hoy. sin él, las regresiones envían.
 
-La trampa es sobreconectar el arnés a un solo modelo. La solución es la misma trampa inversa: el arnés es lo suficientemente pequeño como para leerlo en quince minutos, las tareas son lo suficientemente pequeñas como para enviarse en el repo, las métricas se escriben desde cero para que un colega pueda auditarlas, y el adaptador es el único lugar donde el código específico del modelo vive. Cambiar el adaptador, el tablero se mueve; cambiar las tareas, el tablero se mueve. Nada más debe moverse.
+La trampa es sobreconectar el arnés a un solo modelo. La solución es mantener todas las opciones específicas del modelo fuera del arnés: el arnés es lo suficientemente pequeño como para leerlo en quince minutos, las tareas son lo suficientemente pequeñas como para enviarse en el repo, las métricas se escriben desde cero para que un colega pueda auditarlas, y el adaptador es el único lugar donde el código específico del modelo vive. Cambiar el adaptador, el tablero se mueve; cambiar las tareas, el tablero se mueve. Nada más debe moverse.
 
 ## El concepto
 
@@ -135,6 +135,7 @@ Cada métrica es una pequeña función con una prueba unitaria. La serie de prue
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 El guión seembra los accesorios en la primera carrera, los califica con el adaptador de juguetes (que consigue cada accesorio correcto), y escribe `outputs/leaderboard.json`. La puntuación general es de 1,0 con el adaptador de juguete; la prueba de adaptador de estufas en `test_main.py`muestra el mismo arnés produce 0,0 cuando el adaptador no puede responder.

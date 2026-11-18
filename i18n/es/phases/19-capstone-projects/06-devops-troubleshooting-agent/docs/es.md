@@ -3,7 +3,7 @@
 > El agente DevOps de AWS fue GA, Resolve AI publicó sus libros de jugadas K8s, NeuBird demostró el monitoreo semántico y Metoro vinculó AI SRE a SLOs por servicio. La forma de producción está establecida: un aviso webhook se dispara, un agente lee la telemetría, camina un gráfico de objetos K8, clasifica las hipótesis de causa raíz y publica un breve Slack con botones de aprobación. Solo para lectura por defecto. Cada remedio cerrado por un humano. Esta piedra angular es ese agente, evaluado en 20 incidentes sintéticos y comparado con el agente de AWS en tres casos compartidos.
 
 **Type:** Capstone
-**Languages:** Python (agent), TypeScript (Slack integration)
+**Languages:** Python (agent), TypeScript (Slack integration, agent scaffold)
 **Prerequisites:** Phase 11 (LLM engineering), Phase 13 (tools and MCP), Phase 14 (agents), Phase 15 (autonomous), Phase 17 (infrastructure), Phase 18 (safety)
 **Phases exercised:**P11 · P13 · P14 · P15 · P17 · P18
 **Time:** 30 hours
@@ -141,7 +141,7 @@ webhook: alert.pagerduty.com -> checkout-api SLO breach, error rate 14%
 
 ## Leer más
 
-- [AWS DevOps Agent GA](https://aws.amazon.com/blogs/aws/aws-devops-agent-helps-you-accelerate-incident-response-and-improve-system-reliability-preview/) la referencia canónica 2026
+- [AWS DevOps Agent GA](https://aws.amazon.com/blogs/mt/announcing-general-availability-of-aws-devops-agent/): la referencia canónica 2026
 - [Resolve AI K8s troubleshooting](https://resolve.ai/blog/kubernetes-troubleshooting-in-resolve-ai) la referencia del competidor
 - [NeuBird semantic monitoring](https://www.neubird.ai) Abordaje semántico-grafico
 - [Metoro AI SRE](https://metoro.io) Enmarcado de producción SLO-first

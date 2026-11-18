@@ -3,7 +3,7 @@
 > Un agente de codificación es tan bueno como el conjunto de tareas con las que lo mide. Esta lección construye un arnés de evaluación que toma una carpeta de tareas fijas, ejecuta cada una a través de un agente candidato, las puntuaciones pasan o fallan a través de un verificador determinístico, y agrega los resultados en pass@1, pass@k, latencia media y costo medio. El arnés es la fuente de la verdad que permite saber una regresión de un refactor.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox runner), Phase 14 · 30 (eval-driven agent development), Phase 14 · 19 (SWE-bench and GAIA benchmarks)
 **Time:** ~90 minutes
 
@@ -47,7 +47,7 @@ El segundo es`regex_match`. El contenido del archivo nombrado se combina con un 
 
 El tercero es`shell_exit_zero`El arnés ejecuta un comando de captura (a través de la caja de arena de la lección 26) y pasa la tarea solo si el comando sale de cero.
 
-El arnés hace cada tarea .`k`veces. Pass@k es `1 - (1 - p)^k`donde p es la tasa de paso empírica; el arnés también informa los recuentos en bruto para que pueda detectar la variación. La latencia es el reloj de pared por muestra. El costo es lo que sea que el agente auto-reporte (conto de tokens, USD o ambos); el arnés lo suma a través de las muestras y presenta los números por tarea y agregados.
+El arnés hace cada tarea .`k`veces. Pass@k es `1 - (1 - p)^k`donde p es la tasa de paso empírica; el arnés también informa los recuentos en bruto para que pueda detectar la variación. Esta es la estimación de plug-in: utiliza la tasa medida p como si fuera la tasa verdadera.`1 - C(n - c, k) / C(n, k)`por`n`muestras con `c`La estimación de los plug-ins es parcialmente baja.`n = k`En el caso de las muestras, como en este arnés, el estimador imparcial es 1 cuando pasa una muestra y 0 cuando no pasa ninguna, por lo que sólo muestra si alguna muestra pasó.`n > k`Las muestras de los datos de la muestra son de un tamaño muy similar a la de la muestra de un objeto de la muestra y se utiliza el estimador de la lección 72. La latencia es el reloj de pared por muestra. El costo es cualquiera que sea el auto-reporte del agente (conto de tokens, USD, o ambos); el arnés suma las muestras y presenta los números por tarea y agregados.
 
 ```figure
 pass-at-k
@@ -100,6 +100,7 @@ La lección 25 produjo la cadena de la puerta. La lección 26 produjo la caja de
 ```bash
 cd phases/19-capstone-projects/27-eval-harness-fixture-tasks
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

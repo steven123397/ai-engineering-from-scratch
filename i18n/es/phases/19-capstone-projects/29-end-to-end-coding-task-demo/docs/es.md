@@ -3,7 +3,7 @@
 > La recompensa de la pista A. Esta lección cose la cadena de puertas, la caja de arena, el arnés de eval y el OTel se extiende en un agente de codificación que arregla un error real (pequeño, a escala fija) en un proyecto de Python multi-archivo. El agente es una política determinista, no un LLM; la sustitución hace que la lección sea reproducible y muestra que el arnés fue la parte interesante todo el tiempo. El contrato es idéntico: un modelo real se conecta a la costura de la política.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox), Phase 19 · 27 (eval harness), Phase 19 · 28 (observability), Phase 14 · 38 (verification gates), Phase 14 · 41 (workbench for real repos), Phase 14 · 42 (agent workbench capstone)
 **Time:** ~90 minutes
 
@@ -21,7 +21,7 @@ La mayoría de las demostraciones de agentes funcionan aisladas: una caja de are
 
 La cadena de puertas dice ALLOVE pero la caja de arena se niega por una razón que la cadena no anticipó. El arnés de evaluación registra un pase pero los espacios de OTel dicen que la puerta rechazó una herramienta que el agente afirma que usó. El contador Prometheus se incrementa dos veces cuando debe incrementarse una vez. El presupuesto de observación se ha superado pero el agente siguió adelante porque el presupuesto estaba rastreado en la cadena y la caja de arena no lo sabía.
 
-Esta lección es la prueba de integración para toda la pista. El agente tiene que hacer cuatro cosas para orden: leer el proyecto, ejecutar las pruebas, identificar el error del fallo de la prueba, escribir la corrección, volver a ejecutar las pruebas y detener. Cada operación pasa a través de la cadena de puertas. Cada ejecución de herramientas pasa a través de la caja de arena. Cada paso se envuelve en un lapso. El arnés de evaluación marca todo al final.
+Esta lección es la prueba de integración para toda la pista. El agente tiene que hacer seis cosas para orden: leer el proyecto, ejecutar las pruebas, identificar el error del fallo de la prueba, escribir la corrección, volver a ejecutar las pruebas y detener. Cada operación pasa a través de la cadena de puertas. Cada ejecución de herramientas pasa a través de la caja de arena. Cada paso se envuelve en un lapso. El arnés de evaluación marca todo al final.
 
 ## El concepto
 
@@ -113,6 +113,7 @@ Esta lección es la integración. La lección 25 escribió la cadena de puertas.
 ```bash
 cd phases/19-capstone-projects/29-end-to-end-coding-task-demo
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

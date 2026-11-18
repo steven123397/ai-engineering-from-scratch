@@ -3,7 +3,7 @@
 > Un arnés de agente sin una capa de verificación es un deseo en un abrigo. Esta lección construye la cadena de puertas determinista que decide si se permite disparar una llamada de herramienta, cuánto de su salida se permite a la agencia ver, y cuando el bucle tiene que parar porque la agencia ha leído demasiado. La cadena es una función de puertas pequeñas y nombradas más un libro mayor de observaciones que rastrea cada token que se ha mostrado el modelo.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 20-24 (Track A1: agent loop, tool registry, message store, prompt builder, model router), Phase 14 · 33 (instructions as constraints), Phase 14 · 36 (scope contracts), Phase 14 · 38 (verification gates)
 **Time:** ~90 minutes
 
@@ -82,7 +82,7 @@ El contador de tokens es intencionalmente un estúpido .`len(text) // 4`El punto
 
 ## Por qué importa el orden de la cadena
 
-Una negación es más barata que una autorización.`WhitelistGate`se ejecuta en O(1) búsqueda de hash. `RegexGate`se ejecuta en O(patrón * argv). `RecencyGate`lee una pequeña rebanada de la tienda de mensajes. `BudgetGate`Los pedimos al subir el costo, así que una llamada rechazada corta el circuito antes de hacer el trabajo caro.
+Una negación es más barata que una autorización.`WhitelistGate`Se ejecuta en$O(1)$Buscar el hash.`RegexGate`Se ejecuta en$O(\text{pattern} \cdot \text{argv})$- ¿ Qué ?`RecencyGate`lee una pequeña rebanada de la tienda de mensajes. `BudgetGate`Los pedimos al subir el costo, así que una llamada rechazada corta el circuito antes de hacer el trabajo caro.
 
 El proyecto de ley de la Unión Europea, que se aplica a las empresas de la industria de la construcción, se ha convertido en un proyecto de ley de la Unión Europea, que se ha desarrollado en el ámbito de la industria de la construcción, y que se ha desarrollado en el ámbito de la industria de la construcción.
 
@@ -95,6 +95,7 @@ Las lecciones anteriores te dieron el bucle, el registro de herramientas, el alm
 ```bash
 cd phases/19-capstone-projects/25-verification-gates-observation-budget
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 
