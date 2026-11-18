@@ -3,7 +3,7 @@
 > Le coût mensuel de la formation en droit d'un agent de commerce électronique de taille moyenne a augmenté de $1,200 to $L'agent a trouvé une nouvelle boucle et a continué à dépenser à l'intérieur. Microsoft's Agent Governance Toolkit (April 2, 2026) codifie la défense contre cette classe: par demande `max_tokens`Les commandes de téléphonie mobile, les commandes de téléphonie mobile, les commandes de téléphonie mobile, les commandes de téléphonie mobile, les commandes de téléphonie mobile, les commandes de téléphonie mobile, les commandes de téléphonie mobile, les commandes de téléphonie mobile, les commandes de téléphonie mobile, les commandes téléphoniques, les commandes téléphoniques, les commandes téléphoniques, les commandes téléphoniques, les commandes téléphoniques, les commandes téléphoniques, les commandes téléphoniques, les commandes téléphoniques, les téléphonies, les téléphones portables, les téléphonies, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphones portables, les téléphonies portables, les téléphonies et les téléphonies.
 
 **Type:** Learn
-**Languages:** Python (stdlib, layered cost-governor simulator)
+**Languages:** Python (stdlib, layered cost-governor simulator), TypeScript
 **Prerequisites:** Phase 15 · 10 (Permission modes), Phase 15 · 12 (Durable execution)
 **Time:** ~60 minutes
 
@@ -58,7 +58,7 @@ Le Kit d'outils de gouvernance des agents de Microsoft couvre les exigences du T
 
 ### Les observations $1,200 → $4 800 cas
 
-Le cas réel dans les documents de Microsoft: un agent de commerce électronique dont le coût mensuel a triplé après l'ajout d'un nouvel outil. L'outil permettait à l'agent de passer un sondage sur l'état des commandes pendant chaque séance. Aucune détection de boucle. Pas de capuche par outil. Aucune alerte sur la croissance hebdomadaire. La fixation était une limite par outil plus une alerte de croissance quotidienne. Il s'agit d'un modèle: chaque nouvelle surface d'outil est une nouvelle boucle potentielle; chaque nouvel outil a besoin de son propre plafond et de son propre alerte.
+Le cas réel dans les documents de Microsoft: un agent de commerce électronique dont le coût mensuel a quadruplé après l'ajout d'un nouvel outil. L'outil permettait à l'agent de passer un sondage sur l'état des commandes pendant chaque séance. Aucune détection de boucle. Pas de capuche par outil. Aucune alerte sur la croissance hebdomadaire. La fixation était une limite par outil plus une alerte de croissance quotidienne. Il s'agit d'un modèle: chaque nouvelle surface d'outil est une nouvelle boucle potentielle; chaque nouvel outil a besoin de son propre plafond et de son propre alerte.
 
 ```figure
 cost-governor-stack

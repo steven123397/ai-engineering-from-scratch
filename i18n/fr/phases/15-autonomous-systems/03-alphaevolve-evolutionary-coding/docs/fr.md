@@ -3,7 +3,7 @@
 > Associer un modèle de codage frontalier avec une boucle évolutionnaire et un évaluateur vérifiable par machine. Laissez la boucle fonctionner assez longtemps. Il découvre une procédure de multiplication de matrice complexe 4x4 qui utilise 48 multiplication escalare  la première amélioration sur Strassen en 56 ans. Il trouve également une heuristique de planification Borg à l'échelle de Google qui récupère ~ 0,7% du calcul de cluster en production. L'architecture est ennuyeuse à dessein. Les gains viennent de la rigueur de l'évaluateur.
 
 **Type:** Learn
-**Languages:** Python (stdlib, evolutionary-loop toy)
+**Languages:** Python, TypeScript (stdlib, evolutionary-loop toy)
 **Prerequisites:** Phase 15 · 01 (long-horizon framing), Phase 15 · 02 (self-taught reasoning)
 **Time:** ~60 minutes
 
@@ -58,7 +58,7 @@ La solution dans AlphaEvolve: envoyer un évaluateur qui a été retenu par le L
 
 Le LLM peut produire des modifications comptables et sémantiquement plausibles. Une mutation aléatoire GA sur un fichier Python de 2000 lignes produit presque toujours des erreurs de syntaxe. Le LLM concentre également la recherche sur des quartiers plausibles (changer une fonction, pas des octets aléatoires) ce qui réduit considérablement les appels d'évaluateurs gaspillés.
 
-L'évaluateur, à son tour, prend les confabulations du LLM. Les LLM affirmeront avec confiance qu'une fonction "est O(n log n) dans la limite" alors qu'elle est en fait O(n^2); une référence de l'horloge de mur rend la question résolue.
+L'évaluateur, à son tour, capture les confabulations du LLM.$O(n \log n)$Dans la limite " quand c'est vraiment $O(n^2)$; une référence de l'horloge murale permet de résoudre la question.
 
 ### Où AlphaEvolve s' inscrit dans la pile de frontière
 
