@@ -3,7 +3,7 @@
 > Neural ağlar çiğ dalga biçimlerini iyi tüketmezler. Spektrogramları tüketirler. Mel spektrogramlarını daha iyi tüketirler. 2026'da her ASR, TTS ve ses sınıflandırıcısı bu tek önceden işleme seçeneğiyle yaşar veya ölür.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 01 (Audio Fundamentals)
 **Time:** ~45 minutes
 
@@ -23,7 +23,7 @@ Mel spektrogramları daha da ileriye doğru ilerler. İnsanlar yüksek sesleri l
 
 **Log-magnitude.**Çömlek büyüklükleri 5-6 büyüklük sırası arasında değişir.`log(|X| + 1e-6)`veya `20 * log10(|X|)`Her üretim borusunda çiğ büyüklük değil, log büyüklüğü kullanılır.
 
-**Mel scale.**Sıklık`f`Hz haritelerinde mel `m`- ...`m = 2595 * log10(1 + f / 700)`. Haritalama yaklaşık olarak 1 kHz'nin altında lineer ve yukarıda yaklaşık olarak logaritmiktir.
+**Mel scale.**Sıklık`f`Hz haritelerinde mel `m`- ...$m = 2595 \cdot \log_{10}(1 + f / 700)$. Haritalama yaklaşık olarak 1 kHz'nin altında lineer ve yukarıda yaklaşık olarak logaritmiktir.
 
 **Mel filterbank.**Mel ölçeğinde eşit derecede uzanan üçgenli filtrelerin bir kümesi. Her filtreler, bitişik FFT kutularının ağırlıklı toplamıdır. STFT büyüklüğünü filtrebank matrisine çarpırsak, bir matmul'de mel spektrogramını verir.
 
