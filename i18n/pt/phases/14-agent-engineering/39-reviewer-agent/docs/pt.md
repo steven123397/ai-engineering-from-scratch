@@ -3,7 +3,7 @@
 > O agente que escreveu o código não pode classificá-lo. Um revisor é um segundo ciclo com um sistema diferente, um objetivo diferente e acesso apenas para leitura a tudo o que o construtor produziu.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 38 (Verification Gate)
 **Time:** ~55 minutes
 
@@ -43,7 +43,7 @@ Cinco dimensões, cada uma com pontuação de 0 a 2.
 | Verification quality | Does the acceptance command actually prove the goal, or did it prove a weaker version? |
 | Handoff readiness | Could the next session pick up cleanly from the current state? |
 
-Um run abaixo de 7 é um soft fail; um run abaixo de 5 é um hard fail.
+Uma corrida abaixo de 7 é uma falha leve; uma corrida abaixo de 5, ou qualquer dimensão em 0, é uma falha dura.
 
 ### O revisor é um papel separado, não um modelo separado
 
@@ -74,6 +74,7 @@ wb-builder-marker
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado: dois relatórios de revisão escritos no disco e uma tabela de pontuação em dimensões.

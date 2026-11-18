@@ -3,7 +3,7 @@
 > Instruções escritas como prosa são desejos. Instruções escritas como restrições são testes. O banco de trabalho transforma cada regra em algo que um agente pode verificar no tempo de execução e um revisor pode verificar depois do fato.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~50 minutes
 
@@ -96,6 +96,7 @@ wb-rule-checkoff
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado: conjunto de regras analisadas, rastreamento de execução, pass/fail por regra, e um `rule_report.json`Salvou-se ao lado do roteiro.
@@ -108,7 +109,7 @@ Três padrões separam um conjunto de regras que dura um quarto de um que se dec
 
 **Rule expiry as a forcing function.**Cada regra tem um .`expires_at`O verificador emite um aviso quando uma regra não expirada tiver tido violações zero durante 60 dias consecutivos; a próxima revisão trimestral justifica a sua manutenção, enfraquece-a para `info`Os dados da Cloudflare AI Code Review (abril de 2026, 131.246 revisões executadas em 5.169 repos em 30 dias) mostraram que os conjuntos de regras com expiração explícita permaneceram sob 30 regras por repo; conjuntos sem cresceram para 80 + com a maioria nunca disparando.
 
-**Markdown-as-source, JSON-as-cache.** `agent-rules.md`é o arquivo de autor; `agent-rules.lock.json`O bloqueio é regenerado por um gancho pré-comit. as diferenças de marcação são revisaveis; a análise JSON permanece fora de cada virada. A mesma forma que`package.json`- Não .`package-lock.json`E ...`Cargo.toml`- Não .`Cargo.lock`- Não .
+**Markdown-as-source, JSON-as-cache.** `agent-rules.md`é o arquivo de autor; `agent-rules.lock.json`O bloqueio é regenerado por um gancho pré-comit. As diferenças de marcação são revisaveis; a análise de marcação permanece fora de cada virada, porque o verificador carrega apenas o pequeno JSON pré-construído. A mesma forma que `package.json`- Não .`package-lock.json`E ...`Cargo.toml`- Não .`Cargo.lock`- Não .
 
 ## Usá-lo
 

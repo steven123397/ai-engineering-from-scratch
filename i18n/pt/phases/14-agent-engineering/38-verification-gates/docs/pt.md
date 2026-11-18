@@ -3,7 +3,7 @@
 > O agente não consegue marcar seu próprio trabalho como feito. Um portal de verificação lê o contrato de alcance, o registro de feedback, o relatório de regras e o diferencial, e responde a uma única pergunta: esta tarefa está realmente concluída?
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 33 (Rules), Phase 14 · 36 (Scope), Phase 14 · 37 (Feedback)
 **Time:** ~55 minutes
 
@@ -81,13 +81,14 @@ wb-gate-sequence
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado: três relatórios de veredicto, cada um guardado ao lado do roteiro.
 
 ## Padrões de produção em silêncio
 
-Quatro padrões elevam o portão de "outro trabalho de linho" para "a borda decisiva".
+Cinco padrões elevam o portão de "outro trabalho de linho" para "a borda decisiva".
 
 **Defense-in-depth, not single gate.**O gancho pré-comit → verificação do estado do CI → gancho pré-ferramenta authz → gate pré-merger. Cada camada é determinista, de modo que uma falha em uma camada é capturada pela próxima. o manual de jogo de março de 2026 da microservices.io é explícito: o gancho pré-comit é impossível de passar porque, ao contrário de uma habilidade do lado do modelo, não depende do agente que segue instruções.
 

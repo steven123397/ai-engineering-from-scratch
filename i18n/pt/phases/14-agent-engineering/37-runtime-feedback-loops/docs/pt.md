@@ -3,7 +3,7 @@
 > Agentes que não veem a saída de comando real adivinham. Um runner de feedback capta stdout, stderr, código de saída e tempo em um registro estruturado que a próxima vez pode ler. Então o agente reage aos fatos em vez de sua própria previsão de fatos.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench), Phase 14 · 35 (Init Script)
 **Time:** ~50 minutes
 
@@ -72,6 +72,7 @@ wb-feedback-loop
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado: três registos de feedback anexados `feedback_record.jsonl`A seguir, o arquivo passa por todas as re-exerções para ver o ciclo se acumular.
@@ -106,7 +107,7 @@ O corredor é uma fina envolvente que sobrevive a cada migração de quadro porq
 2. Adicionar um`redaction`passo que desliza linhas correspondentes `^Bearer `ou `password=`Teste num registro de fixação.
 3. Total de limite`feedback_record.jsonl`tamanho de 1 MB rotando para `.1`- Não .`.2`Defenda a política de rotação.
 4. Adicionar um`parent_command_id`Então, as cadeias de retest são visíveis: qual comando produziu a entrada que o comando seguinte consumiu.
-5. Entra o JSONL em um pequeno TUI que destaca a última saída não zero.
+5. Enviar o JSONL em um pequeno TUI que destaca a última saída não zero.
 
 ## Termos-chave
 

@@ -3,7 +3,7 @@
 > A memória híbrida executa três lojas em paralelo  vetor para semântica semelhança, KV para rápida pesquisa de fatos, gráfico para raciocínio de relação entre entidades  com uma camada de pontuação que as funde na recuperação. Este é um padrão de produção amplamente usado para memória externa; Mem0 (Chhikara et al., 2025) é uma implementação de referência.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 07 (MemGPT), Phase 14 · 08 (Letta Blocks)
 **Time:** ~75 minutes
 
@@ -16,7 +16,7 @@
 
 ## O problema
 
-Uma loja é errada para uma das três classes de consulta:
+Cada loja é adequada para apenas uma das três classes de consulta:
 
 - **Semantic similarity**"O que discutimos sobre o agente drift na semana passada?" Vence o Vector, KV e grafico.
 - **Fact lookup** "Qual é o número de telefone do usuário?" KV ganha; vetor é desperdício, gráfico é exagerado.
@@ -32,7 +32,7 @@ Mem0 (arXiv:2504.19413, Abril 2025) em `add(text, user_id, metadata)`- Não .
 
 1. Extrair os factos candidatos do texto (um passo orientado pelo Mestrado em Direito Jurídico).
 2. Escreva cada fato no armazenamento vetorial (embedding) para pesquisa semântica.
-3. Escreva cada fato para o armazém KV teclado em (user_id, fact_type, entity) para pesquisa O(1).
+3. Escrever cada fato para o armazém KV com teclado (user_id, fact_type, entity) para $O(1)$- Não.
 4. Escreva cada fato no gráfico de armazenamento (Mem0g) como bordas digitalizadas para consultas de relacionamento.
 
 - Sim .`search(query, user_id)`- Não .
@@ -106,6 +106,7 @@ ae-memory-fusion
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 A saída mostra três caminhos de recall separados mais o top-k fundido.`main()`e ver a mudança de classificação.
