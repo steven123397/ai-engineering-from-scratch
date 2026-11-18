@@ -3,7 +3,7 @@
 > وكيل كتابة الرمز لا يمكن تصنيفه. المراجع هو حلقة ثانية مع طلب نظام مختلف، هدف مختلف، والوصول فقط القراءة إلى كل شيء قام البنّاء بإنتاجه. الفجوة بين البنّاء والمراجع هي حيث يعيش أكثر موثوقية.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 38 (Verification Gate)
 **Time:** ~55 minutes
 
@@ -43,7 +43,7 @@ flowchart LR
 | Verification quality | Does the acceptance command actually prove the goal, or did it prove a weaker version? |
 | Handoff readiness | Could the next session pick up cleanly from the current state? |
 
-إجمالي من 10، فان ركض أقل من 7 هو فشل ناعم، و ركض أقل من 5 هو فشل صعب.
+إجمالي من 10، فان ركض أقل من 7 هو فشل ناعم؛ ركض أقل من 5، أو أي بعد في 0 هو فشل صعب.
 
 ### المراجعة هي دور منفصل، وليس نموذج منفصل
 
@@ -74,6 +74,7 @@ wb-builder-marker
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 الناتج: تقارير مراجعة مكتوبة على القرص و جدول من أجهزة التحكم من النتائج الأبعادية.

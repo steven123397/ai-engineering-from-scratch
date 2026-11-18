@@ -3,7 +3,7 @@
 > دو وآخرون (ICML 2024, "Society of Minds") يديرون محاكمات نموذج N التي تقدم إجابات مستقلة ، ثم تنتقد بعضها البعض بشكل متكرر على مدار R للتقارب. يحسن الواقعية ، ويتبع القواعد ، والحكمة. تطبيق أوضاع التخلص يضرب الشبكة الكاملة على تكلفة الرمز.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 12 (Workflow Patterns), Phase 14 · 05 (Self-Refine and CRITIC)
 **Time:** ~60 minutes
 
@@ -82,6 +82,7 @@ debate-converge
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 الناتج: دقة وتكلفة لكل بروتوكول؛ تطابقات نادرة كاملة على 2/3 من الأسئلة بتكلفة أقل.
@@ -117,7 +118,7 @@ python3 code/main.py
 
 ## المزيد من القراءة
 
-- [Du et al., Society of Minds (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) النقاش القنوني متعدد الوكلاء
+- [Du et al., Improving Factuality and Reasoning in Language Models through Multiagent Debate (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) النقاش القنوني متعدد الوكلاء
 - [Sparse Communication Topology (arXiv:2406.11776)](https://arxiv.org/abs/2406.11776) نتائج توبولوجي نادرة
 - [Anthropic, Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) العمال الموسيقيين كنوع من النقاش
 - [Madaan et al., Self-Refine (arXiv:2303.17651)](https://arxiv.org/abs/2303.17651) نظير النموذج الواحد للنقد الذاتي

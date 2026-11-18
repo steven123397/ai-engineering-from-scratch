@@ -3,7 +3,7 @@
 > تاريخ الدردشة متقلبة. الردود الدائم. مكتب العمل المخازن وكيل بيان في الملفات النسخة حتى الجلسة التالية، وكيل التالي، والمراجع التالي جميع قراءة من نفس مصدر الحقيقة.
 
 **Type:** Build
-**Languages:** Python (stdlib + `jsonschema` optional)
+**Languages:** Python (stdlib + `jsonschema` optional), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~60 minutes
 
@@ -81,6 +81,7 @@ wb-state-persist
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 النص يكتب`workdir/agent_state.json`و`workdir/task_board.json`، يتغيرها عبر جولتين، ويقوم بطبع الحالة المعتمدة في كل خطوة.
@@ -95,7 +96,7 @@ python3 code/main.py
 
 **Separate large artifacts from state.**لا تخزين CSVs، النصوص الطويلة، أو الملفات التي تم إنشاؤها في `agent_state.json`. حفظ الفن كملف منفصل (أو تحميل إلى تخزين الكائن) والحفاظ فقط على المسار في حالة. نقاط التفتيش تبقى صغيرة وسريعة؛ وتتنمو الفن بشكل مستقل.
 
-**Event sourcing for audit, snapshots for resume.**إضافة إلى سجل الأحداث (`state.events.jsonl`) على كل طفرة ، بصورة دورية لـ`state.json`. يستأنف يقرأ اللقطة ، ثم يعيد إعادة تشغيل أي أحداث بعد طابع الوقت للوقطة. هذا يكلف المزيد من القرص ولكن يسمح لك بإعادة تشغيل قرارات الوكيل حرفيا  ضرورية عند إزالة تشغيلات الأفق الطويل. نفس الشكل الذي يستخدمه Postgres داخلياً لـ WAL.
+**Event sourcing for audit, snapshots for resume.**إضافة إلى سجل الأحداث (`state.events.jsonl`) على كل طفرة ، بصورة دورية لـ`state.json`. يستأنف يقرأ اللقطة ، ثم يعيد إعادة تشغيل أي أحداث بعد طابع الوقت للوقطة. هذا يكلف المزيد من القرص ولكن يسمح لك بإعادة تشغيل قرارات الوكيل حرفيا  ضرورية عند إزالة الأفق الطويل. يستخدم Postgres نفس فكرة السجل بالإضافة إلى نقطة التفتيش في طبقة التخزين مع WAL ، على الرغم من أنه على مستوى أقل بكثير من الأحداث التطبيقية.
 
 **Schema migrations or refuse to load.**- نعم`schema_version`عدد كامل هو العقد. عندما يقوم المدير بتحميل ملف في نسخة مجهولة، فإنه يرفض قراءته. أرسل نص هجرة إلى جانب عجلة النظام؛ `tools/migrate_state.py`يدير بشكل غير قوي على كل شركة ناشئة
 

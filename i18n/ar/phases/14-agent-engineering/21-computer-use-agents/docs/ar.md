@@ -3,14 +3,14 @@
 > ثلاث نماذج إنتاجية لاستخدام الحاسوب في عام 2026 . جميعها ثلاثية تستند إلى الرؤية. جميعها ثلاث تصور شاشة ، نص DOM ، ومخرجات الأداة تعتبر إدخالًا غير موثوق بها. تعتبر تعليمات المستخدم المباشرة فقط إذنًا. خدمات السلامة لكل خطوة هي القاعدة.
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 20 (WebArena, OSWorld), Phase 14 · 27 (Prompt Injection)
 **Time:** ~60 minutes
 
 ## أهداف التعلم
 
 - وصف استخدام الكمبيوتر كلود: تصوير الشاشة داخل، أوامر لوحة المفاتيح / الماوس خارج، لا توجد API الوصول.
-- أسمي أرقام المراجع الثلاثة على OSWorld / WebArena / Online-Mind2Web.
+- تذكر أرقام المقياس الإطلاق التي يقتبسها هذا الدروس: OpenAI CUA على OSWorld / WebArena / WebVoyager ، و Gemini 2.5 Computer Use على Online-Mind2Web.
 - شرح نمط السلامة لكل خطوة من وثائق استخدام الكمبيوتر Gemini 2.5
 - واصير لنحو العقد الذي لا يثق به كل النماذج الثلاثة
 
@@ -92,6 +92,7 @@ computer-use-cursor
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 يظهر الناتج تصنيف السلامة يلتقط توجيهًا مدفوعًا في نص DOM ويمنع شراء غير مؤكد.
