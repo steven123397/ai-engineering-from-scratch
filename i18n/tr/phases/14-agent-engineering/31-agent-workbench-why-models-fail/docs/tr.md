@@ -3,7 +3,7 @@
 > Güvenilir bir model yeterli değildir. Güvenilir ajanlar bir çalışma tabanına ihtiyaç duyarlar: talimatlar, durum, kapsam, geri bildirim, doğrulama, inceleme ve teslimat. Bunları uzaklaştırın ve hatta sınır modeli, gönderilmeye güvenli olmayan bir iş üretir.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 01 (Agent Loop), Phase 14 · 26 (Failure Modes)
 **Time:** ~45 minutes
 
@@ -124,7 +124,7 @@ Bu yüzden, modeller zamanla harness oyunlarını yansıtır. Bu gün yük taş�
 
 Bu konuda kibar olmana gerek yok.
 
-- LangChain'in *Anatomy of an Agent Harness* on bir bileşen listeler  istekler, araçlar, kancalar, kum kutuları, orkestrasyon, hafıza, beceriler, alt kısımlar ve bir çalıştırma süresi "sahte döngüsü".
+- LangChain'in *Anatomy of an Agent Harness* çekirdek harness bileşenlerini geçirir: istekler, araçlar, kancalar, kum kutuları, orkestralama, hafıza, beceriler, alt-başlar ve bir çalıştırma zamanında "sahte döngü". Harness'i, yapılandırdığınız bir nesne olarak değerlendirir, uyguladığınız bir sistem olarak değil.
 - Addy Osmani'nin *Agent Harness Mühendisliği* çerçeveyi yerleştirir.`Agent = Model + Harness`Bu bir takımın nasıl yapıldığını söylemedi.
 - Antropic ve OpenAI yüzeylerde en derinlere giderler ancak kendi çalıştırma zamanlarında kalırlar. Nisan 2026 ajanlar SDK'sindeki "harness-compute ayrımı" duyuru, kontrol düzeni / veri düzeni bölünmesini açıkça onaylayan ilk satıcı parçasıdır. Bu bir ilkel fikir, yeni bir fikir değil.
 - Agentc_harness kitabı harness'i bir konfigörleme nesnesi olarak değerlendirir (Jaymin West'in *Agentic Engineering*, bölüm 6) ve en güçlü satır "agentc sistemindeki ilk güvenlik sınırı harness"dir.
@@ -148,6 +148,7 @@ Repo görevi amaçlı olarak küçüktür: bir dosya FastAPI tarzı işletimine 
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Çıkış: iki koşunun yan yana bir kayıt, bir `failure_modes.json`Sadece hızlı bir şekilde çalışmayı ve iş masası için tek satırlık bir kararı özetliyor.
@@ -193,7 +194,7 @@ Bu bilgiyi yetkililer olarak değil, veri noktaları olarak okuyun. Her biri kı
 Satıcı çerçeveleri:
 
 - [Addy Osmani, Agent Harness Engineering](https://addyosmani.com/blog/agent-harness-engineering/) `Agent = Model + Harness`ve rütf kalıpı; altyapıda ince
-- [LangChain, The Anatomy of an Agent Harness](https://blog.langchain.com/the-anatomy-of-an-agent-harness/) On bir bileşen: istekler, araçlar, haklar, orkestrasyon, kum kutuları, hafıza, beceriler, alt kısımlar, çalıştırma zamanı; sırayı, dağıtım, otz atıyor
+- [LangChain, The Anatomy of an Agent Harness](https://blog.langchain.com/the-anatomy-of-an-agent-harness/) çekirdek harness bileşenleri: istekler, araçlar, haklar, orkestrasyon, kum kutuları, hafıza, beceriler, alt kısımlar, çalıştırma zamanı; kuyrukları, dağıtım, otz atıyor
 - [OpenAI, Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/) Codex ekibi, çalışma zamanları etrafındaki yüzeylerin bakış açısını
 - [OpenAI, Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/) ajan döngüsü bir `while`fonksiyon çağrıları
 - [Anthropic, Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) belirli bir çalıştırma süresi içinde uzun ufuk yüzeyleri

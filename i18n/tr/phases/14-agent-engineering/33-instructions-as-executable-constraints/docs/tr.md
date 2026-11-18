@@ -3,7 +3,7 @@
 > Prosa olarak yazılan talimatlar dileklerdir. Zorluklar olarak yazılan talimatlar testlerdir. Çalışma masası her kuralı bir ajanın çalışma sırasında kontrol edebileceği ve bir değerlendirici gerçeğin ardından doğrulayabileceği bir şeye dönüştürür.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~50 minutes
 
@@ -96,6 +96,7 @@ wb-rule-checkoff
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Çıktı: analiz kuralı, çalıştırma izleri, kural başına geçme/başarısızlık ve `rule_report.json`senaryoya yakın kaydedildi.
@@ -104,11 +105,11 @@ python3 code/main.py
 
 Üç örneğe göre, bir haftada bozulan bir kuralın, dörtte bir süre devam eden bir kuralın ayrılığı vardır.
 
-**Severity tagging at write time.**Her kuralın içinde bir şey vardır .`severity`- Evet .`block`- Evet .`warn`veya`info`Kontrolcü üçü de rapor ediyor . Sürüş zamanı sadece reddediyor .`block`. Çoğu ekip ciddiyetini erken aşarken sonuncu baskı altında sessizce zayıflatır; yazma zamanında etiketleme kalibrasyonu önüne zorlar.`block`bir kural olarak `overrides.jsonl`denetim kayıtları.
+**Severity tagging at write time.**Her kuralın içinde bir şey vardır .`severity`- Evet .`block`- Evet .`warn`veya`info`Kontrolcü üçü de rapor ediyor . Sürüş zamanı sadece reddediyor .`block`. Çoğu ekip ciddiyetini erken aşarken sonuncu baskı altında sessizce zayıflatır; yazma zamanında etiketleme kalibrasyonu önüne zorlar.`block`bir kural oluşturmak `overrides.jsonl`denetim kayıtları.
 
 **Rule expiry as a forcing function.**Her kural bir kural içerir .`expires_at`verici, geçersiz bir kuralın 60 gün boyunca sıfır bir ihlal olduğu durumlarda bir uyarı gönderir; sonraki çeyreklik inceleme, onu tutmayı haklı çıkarır veya zayıflatır.`info`Cloudflare'ın üretimi AI Code Review verileri (Epril 2026, 131.246 inceleme 30 günde 5.169 repo üzerinde çalışmaktadır) açık bir şekilde sona ermiş olan kural setlerinin repo başına 30 kural altında kaldığını gösterdi; kullanmayan setlerin çoğu asla ateşlenmediği 80+'e yükseldi.
 
-**Markdown-as-source, JSON-as-cache.** `agent-rules.md`yazar dosyasıdır; `agent-rules.lock.json`Bu, kontrol cihazının sıcak yolda okuduğu bir önbellektir. Kilit, önceden görevlendirilen bir kanca ile yenilenir. Markdown farklılıkları gözden geçirilebilir; JSON analizleri her dönüşten uzak kalır.`package.json`- Ne ?`package-lock.json`ve `Cargo.toml`- Ne ?`Cargo.lock`- Evet .
+**Markdown-as-source, JSON-as-cache.** `agent-rules.md`yazar dosyasıdır; `agent-rules.lock.json`Bu, kontrol cihazının sıcak yolda okuduğu bir önbellektir. Kilit bir önceden görev hok tarafından yenilenir. Markdown farklılıkları gözden geçirilebilir; Markdown analizleme, kontrol cihazının sadece küçük önceden oluşturulmuş JSON yüklediği için her dönüşten uzak kalır.`package.json`- Ne ?`package-lock.json`ve `Cargo.toml`- Ne ?`Cargo.lock`- Evet .
 
 ## Kullan
 

@@ -3,7 +3,7 @@
 > Çat tarihi değişik. repo dayanıklıdır. iş stolunun depolama ajanı versiyon dosyalarında belirtiyor böylece bir sonraki oturum, bir sonraki ajan ve bir sonraki yorumcu hepsi aynı gerçeğin kaynağından okuyor.
 
 **Type:** Build
-**Languages:** Python (stdlib + `jsonschema` optional)
+**Languages:** Python (stdlib + `jsonschema` optional), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~60 minutes
 
@@ -81,6 +81,7 @@ wb-state-persist
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Senaryo yazıyor .`workdir/agent_state.json`ve `workdir/task_board.json`, onları iki dönüşte mutasyonlandırır ve her adımda onaylanmış durumun yazdırılmasını sağlar.
@@ -95,7 +96,7 @@ Dört örnektir ders minimumunu bir çok ajanlı monorepo hayatta kalabilecek bi
 
 **Separate large artifacts from state.**CSV'leri, uzun transkriptleri veya oluşturulan dosyaları saklama `agent_state.json`. Eserleri ayrı bir dosya olarak kaydet (veya nesne depolama alanına yükle) ve sadece yolun durumunda tut. Kontrol noktaları küçük ve hızlı kalır; eserler bağımsız olarak büyür.
 
-**Event sourcing for audit, snapshots for resume.**Bir olay günlüğüne ekle (`state.events.jsonl`) her mutasyonda; düzenli olarak `state.json`Resume anlık görüntüyü okuyor, ardından anlık görüntünün zaman damgasından sonra olan her olayı yeniden oynar. Bu daha fazla disk maliyetini alır, ancak uzun ufuk çalışmalar düzeltirken ajan kararlarını sözcük anlamda tekrar oynamalarını sağlar. Postgres'in WAL için içsel olarak kullandığı aynı şekil.
+**Event sourcing for audit, snapshots for resume.**Bir olay günlüğüne ekle (`state.events.jsonl`) her mutasyonda; düzenli olarak `state.json`Resume anlık görüntüyü okuyor, ardından anlık görüntünün zaman damgasından sonra gerçekleşen olayları yeniden oynatır. Bu daha fazla disk maliyetini alır, ancak uzun ufuklu çalışmalar düzeltirken ajan kararlarını sözcük anlamda tekrar oynamalarını sağlar. Postgres, uygulama olaylarından çok daha düşük seviyede olsa da, depolama katmanında aynı günlük artı kontrol noktası fikrini kullanır.
 
 **Schema migrations or refuse to load.**- Evet .`schema_version`tam sayı sözleşmedir. yöneticisi bir dosyayı bilinmeyen bir sürümde yüklerken, okumaktan kaçınır. Şema yumruğunun yanında bir göç metni gönderin; `tools/migrate_state.py`Her başlangıçta idempotently çalışır.
 

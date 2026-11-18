@@ -3,7 +3,7 @@
 > Du et al. (ICML 2024, "Zihnlerin Topluluğu") bağımsız olarak cevaplar öneren N model örnekleri yürütür, sonra R turları üzerinde birbirlerini iterici olarak eleştirir. Gerçekliği, kural izlemeyi, mantıklamayı geliştirir.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 12 (Workflow Patterns), Phase 14 · 05 (Self-Refine and CRITIC)
 **Time:** ~60 minutes
 
@@ -82,6 +82,7 @@ debate-converge
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Üretim: protokol başına doğru ve maliyet; daha düşük maliyetle 2/3 sorunun tam ağında nadir eşleşmeler.
@@ -117,7 +118,7 @@ python3 code/main.py
 
 ## Daha Fazla Okumak
 
-- [Du et al., Society of Minds (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) Kanonik çoklu ajan tartışması
+- [Du et al., Improving Factuality and Reasoning in Language Models through Multiagent Debate (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) Kanonik çoklu ajan tartışması
 - [Sparse Communication Topology (arXiv:2406.11776)](https://arxiv.org/abs/2406.11776) Nadir topoloji sonuçları
 - [Anthropic, Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) Tartışma variansı olarak orkestrasyoncular
 - [Madaan et al., Self-Refine (arXiv:2303.17651)](https://arxiv.org/abs/2303.17651) Tek model kendi kendini eleştiren karşıt

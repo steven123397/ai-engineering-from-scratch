@@ -3,7 +3,7 @@
 > Gerçek komut çıkışı tahmin görmeyen ajanlar. Bir geri bildirim koşucusu stdout, stderr, çıkış kodu ve zamanlamaları bir yapılandırılmış kayda kaydediyor.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench), Phase 14 · 35 (Init Script)
 **Time:** ~50 minutes
 
@@ -72,6 +72,7 @@ wb-feedback-loop
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Çıktı: üç geri bildirim kaydı eklenmiştir `feedback_record.jsonl`Dosyayı tekrar çalıştırmak için arkaya koyun.
@@ -106,7 +107,7 @@ Koşucu, her çerçeve göçüne hayatta kalan ince bir sarıktır çünkü reko
 2. Bir ekle`redaction`Düzgün çizgiler çizilen adım `^Bearer `veya `password=`- Bir cihaz kaydı üzerinde test.
 3. Toplamlık `feedback_record.jsonl` ile dönerek 1 MB'de büyüklükte`.1`- Evet .`.2`Değişiklik politikasını savun.
 4. Bir ekle`parent_command_id`Bu yüzden tekrar deneyin zincirler görünür: hangi komut, sonraki komut tükettiği giriş üretti.
-5. JSONL'i en son sıfır dışı çıkışı vuran küçük bir TUI'ye sokun.
+5. JSONL'yi en son sıfır dışı çıkışı vurgulayan küçük bir TUI'ye sokun.
 
 ## Anahtar Terimler
 

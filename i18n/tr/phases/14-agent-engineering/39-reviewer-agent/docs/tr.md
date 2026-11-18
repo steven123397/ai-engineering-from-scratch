@@ -3,7 +3,7 @@
 > Bu, bir sistem uyarısı, farklı bir hedef ve inşaatçı tarafından üretilen her şeye sadece okuma erişimi olan ikinci bir döngüdür.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 38 (Verification Gate)
 **Time:** ~55 minutes
 
@@ -43,7 +43,7 @@ Beş boyut, her biri 0-2 puan aldı.
 | Verification quality | Does the acceptance command actually prove the goal, or did it prove a weaker version? |
 | Handoff readiness | Could the next session pick up cleanly from the current state? |
 
-10'dan aşağı bir koşuk yumuşak bir başarısızlık, 5'den aşağı bir koşuk sert bir başarısızlık.
+10'un toplamı. 7'den aşağı bir atış yumuşak bir atıştır. 5'den aşağı bir atış veya 0'daki herhangi bir boyut, sert bir atıştır.
 
 ### Eleştirmen ayrı bir rol, ayrı bir model değil.
 
@@ -74,6 +74,7 @@ wb-builder-marker
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Çıktı: disk'e yazılmış iki inceleme raporu ve boyutlu puanların konsol tablosu.

@@ -3,7 +3,7 @@
 > Ajan kendi işini tamamlanmış olarak işaretlemeye başlamaz. Bir doğrulama kapısı kapsam sözleşmesini, geri bildirim günlüğünü, kural raporunu ve farkı okuyor ve tek bir soruya cevap veriyor: Bu görev gerçekten tamamlandı mı? Kapı hayır diyorsa, görev tamamlanmamıştır, sohbet ne derse olsun.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 33 (Rules), Phase 14 · 36 (Scope), Phase 14 · 37 (Feedback)
 **Time:** ~55 minutes
 
@@ -81,13 +81,14 @@ wb-gate-sequence
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Çıktı: üç yargı raporu, her biri senaryoya yakın kaydedildi.
 
 ## Doğada üretim biçimleri
 
-Dört örnektir kapıyı "başka bir saç işi"nden "başlı kararlı kenara" yükseltir.
+Beş model kapıyı "başka bir saç işi"nden "hüküm verici kenara" yükseltir.
 
 **Defense-in-depth, not single gate.**Pre-commit hook → CI durum kontrolü → pre-tool authz hook → pre-merge gate. Her katman belirleyici olduğundan bir katmandaki bir başarısızlık bir sonraki tarafından yakalanır. microservices.io'nun Mart 2026 oyun kitabı açıkça belirtilmiştir: pre-commit hook geçilebilir değildir çünkü, bir model taraflı beceri aksine, talimatları takip eden ajanın bağımlı değildir. Verifikasyon kapısı CI / pre-merge katmandadır.
 

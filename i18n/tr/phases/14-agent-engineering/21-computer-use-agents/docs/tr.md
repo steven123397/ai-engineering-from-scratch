@@ -3,14 +3,14 @@
 > 2026 yılında üç üretim bilgisayar kullanımı modeli. Üçü de görsel tabanlıdır. Üçü de ekran görüntüleri, DOM metni ve araç çıkışlarını güvenilmeyen giriş olarak değerlendirir. Sadece doğrudan kullanıcı talimatları izin olarak sayılır.
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 20 (WebArena, OSWorld), Phase 14 · 27 (Prompt Injection)
 **Time:** ~60 minutes
 
 ## Öğrenme Hedefleri
 
 - Claude'un bilgisayar kullanımı: Ekran çekimi, klavyada/farklı komutlar çıkartılmalı, erişilebilirlik API yoktur.
-- OSWorld / WebArena / Online-Mind2Web'de üç modelin referans numaralarını isimlendirin.
+- Bu derste alıntılanan başlatma referans numaralarını hatırlayın: OSWorld / WebArena / WebVoyager'da OpenAI CUA ve Online-Mind2Web'de Gemini 2.5 Bilgisayar Kullanımı.
 - Gemini 2.5 Bilgisayar Kullanım belgelerinin her adımlı güvenlik örneğini açıklayın.
 - Üç model de güvenilmeyen giriş sözleşmesini özetleyin.
 
@@ -92,6 +92,7 @@ computer-use-cursor
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Çıktı görüntü güvenlik sınıflandırıcısı, enjekte edilen bir yönergeyi DOM metinde yakalayıp onaylanmamış bir satın almayı engellediğini gösterir.
