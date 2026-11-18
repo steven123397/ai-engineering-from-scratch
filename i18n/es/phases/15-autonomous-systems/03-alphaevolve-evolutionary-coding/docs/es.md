@@ -3,7 +3,7 @@
 > Enpare un modelo de codificación fronteriza con un bucle evolutivo y un evaluador verificable por máquina. Deja que el bucle siga funcionando lo suficiente. Descubre un procedimiento de multiplicación de matriz compleja 4x4 que utiliza 48 multiplicaciones escalares  la primera mejora sobre Strassen en 56 años. También encuentra una heurística de programación Borg a nivel de Google que recupera ~ 0,7% del computación de cluster en producción. La arquitectura es aburrida a propósito. Las victorias provienen del rigor del evaluador.
 
 **Type:** Learn
-**Languages:** Python (stdlib, evolutionary-loop toy)
+**Languages:** Python, TypeScript (stdlib, evolutionary-loop toy)
 **Prerequisites:** Phase 15 · 01 (long-horizon framing), Phase 15 · 02 (self-taught reasoning)
 **Time:** ~60 minutes
 
@@ -58,7 +58,7 @@ La solución en AlphaEvolve: enviar un evaluador que el LLM nunca ha visto, con 
 
 El LLM puede producir modificaciones comptables y semánticamente plausibles. Una mutación aleatoria GA en un archivo Python de 2000 líneas casi siempre produce errores de sintaxis. El LLM también concentra la búsqueda en vecindarios plausibles (cambiar una función, no bytes aleatorios), lo que reduce drásticamente las llamadas de evaluador desperdiciadas.
 
-El evaluador, a su vez, capta las confabulaciones del LLM. Los LLM afirmarán con confianza que una función "es O(n log n) en el límite" cuando en realidad es O(n^2); un indicador de referencia de un reloj de pared resuelve la cuestión.
+El evaluador, a su vez, capta las confabulaciones del LLM.$O(n \log n)$en el límite" cuando en realidad es$O(n^2)$El punto de referencia del reloj de pared resuelve la cuestión.
 
 ### Donde AlphaEvolve encaja en la pila de fronteras
 

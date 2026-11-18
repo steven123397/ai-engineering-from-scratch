@@ -3,7 +3,7 @@
 > El Centro para la Seguridad de la IA (CAIS, San Francisco, fundado en 2022 por Hendrycks y Zhang) publica el marco de cuatro riesgos  uso malicioso, carreras de IA, riesgos organizacionales, IA deshonestas  y la declaración de mayo de 2023 sobre el riesgo de extinción firmada por cientos de profesores y líderes de empresas. 2026 lanzamientos de CAIS: AI Dashboard para la evaluación de modelos fronterizos, Índice de Trabajo Remoto (con IA de escala), Superinteligencia Estrategia de Papel, AI Frontiers boletín de noticias. Una entidad distinta: NIST Center for AI Standards and Innovation (CAISI)  Acuerdos voluntarios dirigidos al gobierno de Estados Unidos y evaluaciones de capacidad no clasificadas enfocadas en riesgos de ciber, bio y armas químicas. El CAIS señala el riesgo organizacional como uno de los cuatro riesgos de alto nivel: la cultura de seguridad, las auditorías rigurosas, las defensas de múltiples capas y la seguridad de la información son fundamentales pero se intercambian rutinariamente contra la velocidad de despliegue. El SB-53 de California, si se firma, sería la primera regulación de riesgo catastrófico a nivel estatal de los Estados Unidos.
 
 **Type:** Learn
-**Languages:** Python (stdlib, four-risk inventory and mitigation matcher)
+**Languages:** Python (stdlib, four-risk inventory and mitigation matcher), TypeScript
 **Prerequisites:** Phase 15 · 19 (RSP), Phase 15 · 20 (PF + FSF)
 **Time:** ~45 minutes
 
@@ -19,7 +19,7 @@ El contenido práctico: el marco de cuatro riesgos del CAIS es la taxonomía de 
 
 ### CAIS  Centro de Seguridad de la IA
 
-- Fundado: 2022 en San Francisco, por Dan Hendrycks y colegas (el nombre "Zhang" se refiere a un colaborador temprano, no a un cofundador actual; vea el sitio web de CAIS para el liderazgo actual).
+- Fundada: 2022 en San Francisco, por Dan Hendrycks y Oliver Zhang. Hendrycks es Director Ejecutivo e Investigación; Zhang es Director Gerente.
 - Estatus: 501 ((c) ((3) sin ánimo de lucro.
 - Resultados notables de 2023: declaración sobre el riesgo de extinción, co-firmada por cientos de investigadores y CEOs.
 - Resultados de 2026: Tabla de control de IA para la evaluación de modelos fronterizos, Índice de trabajo remoto (junto con AI de escala), documento de estrategia de superinteligencia, boletín informativo de AI Frontiers.

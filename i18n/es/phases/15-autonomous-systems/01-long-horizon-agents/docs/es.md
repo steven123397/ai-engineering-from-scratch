@@ -3,7 +3,7 @@
 > En 2023 un chatbot respondió a una pregunta en un solo turno. En 2026 un modelo fronterizo funciona de forma rutinaria de minutos a horas en una sola tarea. El índice de referencia Time Horizon 1.1 de METR (enero 2026) pone a Claude Opus 4.6 en 14 horas de trabajo de expertos y con una fiabilidad del 50%. El horizonte se ha duplicado aproximadamente cada siete meses desde el GPT-2. Cada suposición que construimos en torno al contexto de chat de un solo giro, confianza, modos de falla, costo, observabilidad, se rompe cuando las carreras duran más tiempo que el almuerzo.
 
 **Type:** Learn
-**Languages:** Python (stdlib, horizon-curve simulator)
+**Languages:** Python, TypeScript (stdlib, horizon-curve simulator)
 **Prerequisites:** Phase 14 · 01 (The Agent Loop)
 **Time:** ~45 minutes
 
@@ -50,7 +50,7 @@ El número de horizonte es un límite de capacidad, no un nivel de fiabilidad. L
 | Property | Chatbot (single-turn) | Long-horizon agent |
 |---|---|---|
 | Run length | seconds | minutes to hours |
-| Tokens per run | 10^3 | 10^5 to 10^7 |
+| Tokens per run | $10^3$ | $10^5$ to $10^7$ |
 | State | ephemeral | durable, checkpointed |
 | Failure surface | model capability | capability + drift + loops + hacking |
 | Review unit | final answer | trajectory |

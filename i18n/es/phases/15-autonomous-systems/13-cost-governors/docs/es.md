@@ -3,7 +3,7 @@
 > El coste mensual de un agente de comercio electrónico de tamaño medio se ha disparado de $1,200 to $El equipo de Microsoft habilitó la habilidad de "tracking de pedidos". Eso no es un error de precios. Es un agente que encontró un nuevo bucle y mantuvo el gasto dentro de él.`max_tokens`, tokens por tarea y presupuestos en dólares, límites diarios / mes, límites de iteración, enrutamiento de modelos en niveles, caché de instantes, ventanas de contexto, puntos de control HITL en acciones costosas, interruptores de muerte en violación de presupuesto.
 
 **Type:** Learn
-**Languages:** Python (stdlib, layered cost-governor simulator)
+**Languages:** Python (stdlib, layered cost-governor simulator), TypeScript
 **Prerequisites:** Phase 15 · 10 (Permission modes), Phase 15 · 12 (Durable execution)
 **Time:** ~60 minutes
 
@@ -58,7 +58,7 @@ El conjunto de herramientas de gobernanza de agentes de Microsoft cubre los requ
 
 ### Lo observado .$1,200 → $4.800 casos
 
-El caso real en los documentos de Microsoft: un agente de comercio electrónico cuyo costo mensual se triplicó después de que se agregó una nueva herramienta. La herramienta permitió al agente hacer encuestas sobre el estado de los pedidos durante cada sesión. No detectamos bucles. No hay gorra por herramienta. No hay alerta sobre el crecimiento semana tras semana. La solución era una tapa por herramienta más una alerta diaria de crecimiento. Esta es una plantilla: cada nueva superficie de herramienta es un nuevo bucle potencial; cada nueva herramienta necesita su propio límite y su propia alerta.
+El caso real en los documentos de Microsoft: un agente de comercio electrónico cuyo costo mensual se cuadruplicó después de que se añadió una nueva herramienta. La herramienta permitió al agente hacer encuestas sobre el estado de los pedidos durante cada sesión. No detectamos bucles. No hay gorra por herramienta. No hay alerta sobre el crecimiento semana tras semana. La solución era una tapa por herramienta más una alerta diaria de crecimiento. Esta es una plantilla: cada nueva superficie de herramienta es un nuevo bucle potencial; cada nueva herramienta necesita su propio límite y su propia alerta.
 
 ```figure
 cost-governor-stack
