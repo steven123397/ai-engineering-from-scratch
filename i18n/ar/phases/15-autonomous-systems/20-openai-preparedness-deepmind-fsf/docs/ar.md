@@ -3,7 +3,7 @@
 > إطار إعداد OpenAI v2 (أبريل 2025) يقدم فئات البحث  استقلالية طويلة المدى، رمال التخلف، النسخة الذاتية والتكيف، تقويض الحماية  مختلفة عن الفئات المتتبعة. الفئات المتعقبة تُؤدي إلى تقارير القدرات بالإضافة إلى تقارير الحماية التي استعرضتها مجموعة الاستشارات في مجال السلامة. تطوير FSF v3 من DeepMind (سبتمبر 2025 ، مع إضافة مستويات القدرة المتتبعة في 17 أبريل 2026) الذاتية في مجالات ML R&D و Cyber (ML R&D المستوى الذاتي 1 = أتمتة كاملة لخط الأنابيب R&D AI بتكلفة تنافسية مقابل أدوات الإنسان + AI). يستهدف FSF v3 صراحة التنظيم الخادع عبر مراقبة آلية لمساءلة استخدام الأدوات. ملاحظة صادقة: فئات البحث في PF v2 (بما في ذلك الاستقلال الطويل المدى) لا تؤدي تلقائيا إلى التخفيفات؛ لغة السياسة "محتملة". يقول DeepMind نفسه أن المراقبة الآلية "لن تظل كافية على المدى الطويل" إذا تمكنت التفكير الأدائي من التوصل إلى قوة.
 
 **Type:** Learn
-**Languages:** Python (stdlib, three-framework decision-table diff tool)
+**Languages:** Python (stdlib, three-framework decision-table diff tool), TypeScript
 **Prerequisites:** Phase 15 · 19 (Anthropic RSP)
 **Time:** ~45 minutes
 
@@ -30,7 +30,7 @@
 
 الهيكل:
 
-- **Critical Capability Levels (CCLs)**: حدود القدرة على العمل في خمس مجالات: كيبير، بيولوجي، أبحاث وتطوير المواد المعدنية، CBRN، الذاتية (ملتصقة إلى أبحاث وتطوير المواد المعدنية والكيبير).
+- **Critical Capability Levels (CCLs)**: حدود القدرة في ثلاث مجموعات: سوء الاستخدام (CBRN ، Cyber ، التلاعب الضار) ، ML R&D ، ومسار التخطيط الخاطئ الاستكشافي.
 - **Tracked Capability Levels**: إضافة التفاصيل الضخمة في أبريل 2026. مثال ملموس: ML R&D المستوى 1 = أتمتة كاملة لخط الأنابيب R&D الذكاء الاصطناعي بتكلفة تنافسية مقابل أدوات الإنسان + الذكاء الاصطناعي.
 - **Deceptive alignment monitoring**: التزام صريح بالتحقق الآلي لمراقبة سوء استخدام الأدوات.
 
@@ -94,7 +94,7 @@ a5-tracked-vs-research
 | Tracked Category | "Mandatory mitigation" | Triggers Capabilities + Safeguards Reports; SAG review |
 | Research Category | "Monitored only" | Tracked but no automatic mitigation; includes Long-range Autonomy |
 | Frontier Safety Framework | "DeepMind's scaling policy" | FSF v3 (Sept 2025) + Tracked Capability Levels (Apr 2026) |
-| CCL | "Critical Capability Level" | DeepMind threshold per domain (Cyber, Bio, ML R&D, CBRN) |
+| CCL | "Critical Capability Level" | DeepMind threshold per domain (CBRN, Cyber, Harmful Manipulation, ML R&D) |
 | ML R&D autonomy level 1 | "R&D automation" | Fully automate AI R&D pipeline at competitive cost |
 | Sandbagging | "Strategic underperformance" | Model underperforms on evals; in OpenAI Research Categories |
 | Instrumental reasoning | "Means-ends reasoning" | Reasoning about how to achieve goals; target of DeepMind monitoring |
