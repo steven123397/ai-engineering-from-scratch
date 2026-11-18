@@ -3,7 +3,7 @@
 > 2026 çift kullanımlı resmi, alanı alanı. Bio/kimya: Ders 17 WMDP'yi kapsar; Anthropic'in biyolojik silah edinme denemesi (2.53x yükseltme) ve OpenAI'nin Nisan 2025 Hazırlık Çerçevi v2 uyarısı ("Önce öğrencilere bilinen biyolojik tehditleri yaratmaya anlamlı bir şekilde yardımcı olmak üzere") dönüm noktasını işaretler. Siber (Kasım 2025 Anthropic raporu): Çin'le bağlantılı devlet aktörleri, insan müdahalesi ile yalnızca 4-6 adımda, siber saldırı kampanyasının %90'ına kadar otomatikleştirmek için Claude'un ajanlık kodlama aracından yararlandı. OpenAI "güvenilir erişim" pilot, kontrol edilmiş güvenlik kuruluşlarına savunma ikili kullanımlı çalışmalar için yetenek erişimini sağlar. Kimya/bio yürütme boşluğu erozyonu: klasik savunma "belirli bilgi erişimi yetersiz". Görüşe bağlı sınır modelleri (GPT-5.2, Gemini 3 Pro, Claude Opus 4.5, Grok 4.1) ıslak laboratuvar videosu gözlemleyebilir ve gerçek zamanlı düzeltme sağlayabilir. Aralık 2025: OpenAI, GPT-5'in ıslak laboratuvar deneylerinde tekrarlanmasını gösterdi ve AI yönlendirilmiş protokol optimizasyonu yoluyla 79 kat daha fazla verimlilik elde etti. Yeni başlayan ve uzman örneği: Yapay zeka yeni başlayanlara daha büyük nispeten yükseltme sağlar, ancak uzmanlara daha büyük mutlak kapasite sağlar.
 
 **Type:** Learn
-**Languages:** none
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 18 · 17 (WMDP), Phase 18 · 18 (safety frameworks), Phase 18 · 28 (ecosystem)
 **Time:** ~75 minutes
 
@@ -16,7 +16,7 @@
 
 ## Sorun
 
-Ders 17 ölçüm metodolojisi. Ders 30 ölçümlerin 2026 durumu. 2024 ile 2025 yılının sonları arasında tablo önemli ölçüde değişti: her alan 2024 çerçevelerinin öngörmediği bir eşiği geçti.
+Ders 17 ölçüm metodolojisi. Ders 30 ölçümlerin 2026 durumu. 2024 ile 2025 yılının sonları arasında tablo önemli ölçüde değişti: dört alanın üçü 2024 çerçevelerinin öngörmediği bir eşiği geçti.
 
 ## Anlaşım
 
@@ -47,6 +47,8 @@ Etkileri:
 - Ajantik kodlama saldırı otomasyonu ilkeleridir. Önceki AI siber yardımı kod parçaları düzeyinde sınırlıydı; ajantik iş akışları keşif, sömürü, sömürü sonrası ve sömürü içermektedir.
 - 4-6 insan adımları boğazın boğazıdır; gelecekteki kapasite kazanımları bu sayıyı azaltacaktır.
 - Savunma ikili kullanımı: OpenAI'nin "güvenilir erişim" pilot sistemi, kontrol edilmiş güvenlik kuruluşlarına (tasarımlı olay tepkisi firmaları, hükümet) savunma için kapasite erişimi sağlar.
+
+Bu çalışmanın savunma tarafı, oluşturulan kodun okunması ile başlar. 13'inci aşamada geri mühendislik yolu, sadece statik analizle kendi yapmanızı sağlayan programlarda öğretir:[Lesson 13.32](../../../13-tools-and-protocols/32-program-anatomy-elf-from-scratch/docs/en.md), [Lesson 13.33](../../../13-tools-and-protocols/33-disassembly-and-control-flow/docs/en.md), pseudokod olarak kaldırıldı [Lesson 13.34](../../../13-tools-and-protocols/34-lifting-to-pseudocode/docs/en.md), ve gözlemlenen gerçekleri , bir delil defterinde ,[Lesson 13.35](../../../13-tools-and-protocols/35-evidence-confidence-and-unknowns/docs/en.md)- Ne ?[Inside a Decompiler](https://aiengineeringfromscratch.com/inside-a-decompiler)Bu işi yapan bir ajan aynı başlıklara ihtiyaç duyar çünkü güvenli bir parçalanma hala bir tahmin üzerine dayanır.
 
 ### Nükleer
 

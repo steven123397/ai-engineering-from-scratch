@@ -3,7 +3,7 @@
 > Üç büyük laboratuvar çerçevesinde, 2026 yılına kadar sınır kapasitesinin endüstri yönetimi tanımlanır. Anthropic Responsible Scaling Policy v3.0 (Febrúar 2026) biyolojik güvenlik seviyelerine dayalı dereceli AI Güvenlik Denizeleri (ASL-1'den ASL-5+'ye kadar) tanıttı. OpenAI Hazırlık Çerçevi v2 (Epril 2025) izlenen yetenekler için beş kriter tanımlar ve yetenek raporlarını güvenlik raporlarından ayırır. DeepMind Frontier Güvenlik Çerçeve v3.0 (Eylül 2025) yeni zararlı manipülasyon CCL'yi içeren kritik yetenek seviyelerini tanıttı. Şimdi üçü de rakip düzenleme şartlarını içerir. Eğer eşdeğer laboratuvarlar benzer korumalar almadan gemiyi gönderirse ertelenmeyi sağlar. Laboratuvar çapındaki uyumlama yapısal olarak kalır, terminolojik olarak değil: "Yeteneklilik Eğitimi", "Yüksek Yeteneklilik Eğitimi" ve "Kritik Yeteneklilik Denizi" benzer yapılandırmalar gösterir.
 
 **Type:** Learn
-**Languages:** none
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 18 · 17 (WMDP), Phase 18 · 07-09 (deception failures)
 **Time:** ~75 minutes
 
@@ -75,7 +75,7 @@ V2.0 (Feb. 2025) bir aldatıcı uyum bölümünü ve ML R&D CCL'ler için daha y
 - DeepMind "Kritik yetenek seviyeleri".
 - OpenAI "Yüksek Yeteneklilik Eğitimi".
 
-Endüstri standartları için terminoloji yoktur. Struktörel olarak uyumlu: yayınlanmış değerlendirme kriterleri ile sınır kapasitesinin üç seviyesi.
+Endüstri standart terminoloji yoktur. Struktörel olarak uyumlu: üç çerçevenin her biri yayınlanmış değerlendirme kriterleri ile derecelendirilen kapasite eşiğini tanımlar.
 
 ### Güvenlik kapıları
 

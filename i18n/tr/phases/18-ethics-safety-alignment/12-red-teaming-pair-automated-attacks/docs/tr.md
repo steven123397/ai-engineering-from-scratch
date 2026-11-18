@@ -3,7 +3,7 @@
 > Chao, Robey, Dobriban, Hassani, Pappas, Wong (NeurIPS 2023, arXiv:2310.08419). PAIR  Hızlı Otomatik İteratif Düzeltme , kanonik otomatik kara kutu hapishane kırılmasıdır. Kızıl takım sistemi ile saldırgan bir LLM, hedef bir LLM için tekrar tekrar jailbreaks önerir ve kendi sohbet geçmişinde bağlamda geri bildirim olarak denemeleri ve cevapları biriktirir. PAIR tipik olarak 20 sorgu içinde başarılı olur, büyüklük sıralamaları GCG'den daha verimli (Zou et al.'s token seviyesindeki gradient arama) ve beyaz kutu erişiminin gereksiz. PAIR, şimdi GCG, AutoDAN, TAP ve Yönetici Karşılıklı İndirim ile birlikte JailbreakBench (arXiv:2404.01318) ve HarmBench'de standart bir temel çizgidir.
 
 **Type:** Build
-**Languages:** Python (stdlib, mock PAIR loop against a toy target)
+**Languages:** Python, TypeScript (stdlib, mock PAIR loop against a toy target)
 **Prerequisites:** Phase 18 · 01 (instruction-following), Phase 14 (agent engineering)
 **Time:** ~75 minutes
 
@@ -31,11 +31,11 @@ Girişler:
 
 Çubuk, k için 1..K:
 1. A, G hedefi ve bugüne kadar (sürekli, yanıt) çiftlerin geçmişi ile uyarılır.
-2. A, yeni bir mesaj gönderir.
-3. T'ye p_k gönder; r_k cevabını al.
-4. J gol üzerinde puanlar (p_k, r_k).
+2. Bir yeni uyarı gönderir .$p_k$- Evet .
+3. Gönder .$p_k$T 'ye cevap al $r_k$- Evet .
+4. J puanları $(p_k, r_k)$- Hedef üzerine.
 5. Eğer puan >= eğim varsa, durdur  hapishane kırılması bulunmuştur.
-6. Yoksa, A'nın tarihine ekle; devam et.
+6. Başka bir şey, ekle $(p_k, r_k)$A'nın geçmişine devam et.
 
 Empirik sonuç (NeurIPS 2023): GPT-3.5-turbo, Llama-2-7B-chat karşı saldırı başarısı oranı %50'dir; 10-20 aralığında başarının ortalama sorguları.
 
