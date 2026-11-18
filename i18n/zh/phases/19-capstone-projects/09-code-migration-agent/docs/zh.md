@@ -3,7 +3,7 @@
 > 亚马逊的迁移 (Java 8至17),谷歌的应用引擎Py2至Py3迁移器设定了2026年. 现代的OpenRewrite在尺度上进行了确定性AST重写. 格里特对代码模式式DSL的解决方案也是如此. 生产模式结合了两种:安全重写的确定性基板,以及模糊的案例的代理层,每分支构建的沙盒,以及在公交开幕前变绿的测试带. 终点是迁移50个真实存储器,并发布一个失败类别的通过率.
 
 **Type:** Capstone
-**Languages:** Python (agent), Java / Python (targets), TypeScript (dashboard)
+**Languages:** Python (agent), Java / Python (targets), TypeScript (dashboard, agent scaffold)
 **Prerequisites:** Phase 5 (NLP), Phase 7 (transformers), Phase 11 (LLM engineering), Phase 13 (tools), Phase 14 (agents), Phase 15 (autonomous), Phase 17 (infrastructure)
 **Phases exercised:**子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子
 **Time:** 30 hours
@@ -18,7 +18,7 @@
 
 管道有两个层.**deterministic substrate**通过使用"Java" (OpenRewrite for Java,Python) 运行了大部分机械重写的安全性:进口,方法签名,零安全性修改,尝试资源,过时的API替代. 它是快速的,产生可审核的差异.**agent layer**(OpenAI Agents SDK或LangGraph over Claude Opus 4.7和GPT-5.4-Codex) 处理配方不能的情况:构建文件升级 (Maven/Gradle/pyproject),过渡性依赖冲突,测试片,定制注释.
 
-每个 repo 都得到一个 Daytona 沙盒,预装目标运行时间. 代理反复执行:运行构建,分类故障,应用修复,重启. 硬限制:每次 repo 30 分钟,每次 repo 8 美元,每次 repo 20 个代理转换. 如果所有测试都通过,覆盖率三角形并不是负面,分支将打开 PR. 如果没有,则 repo 被提交在失败类中,有证据.
+每个回复都得到一个戴托纳沙箱,预装目标运行时间.代理反复执行:运行构建,分类故障,应用修复,重启. 硬限制:每次回复30分钟,每次回复8美元,每次回复20个代理.如果所有测试通过,覆盖率下降不超过2个百分点,分支将打开一个 PR.如果没有,则回复将在失败类下提交,有证据.
 
 失败类别是可交付的. 在50个复制中,什么是破产的? 过渡式代码? 定制注释? 构建工具版本? 测试片段与迁移无关? 每个类别都得到了数量和示例差异. 未来的食谱作者可以针对前三.
 
@@ -77,7 +77,7 @@ ce-migration-funnel
 
 4. **Budget caps.**任何违规行为都会停止,并且在"预算_耗尽"下,
 
-5. **Test + coverage gate.**构建绿色后,运行测试套件. 进行覆盖与基 repo 的比较. 如果覆盖下降超过 2%,请在"覆盖_回归"下文件.
+5. **Test + coverage gate.**构建绿色后,运行测试套件. 进行覆盖与基 repo 的比较. 如果覆盖率下降超过2个百分点,请在"覆盖_回归"下文件.
 
 6. **PR open.**通过不同和简要的做法, 执行该经纪人的承诺.
 

@@ -3,7 +3,7 @@
 > 编码代理只能像你测量它的任务一样好. 这一课构建了一个评估链,它采用了一个固定任务文件,通过候选代理运行每个任务,通过确定性验证器通过分数或失败,并将结果汇集成pass@1,pass@k,平均延迟和平均成本. 连接是真理的来源,让你能从一个反因子中辨别回归.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox runner), Phase 14 · 30 (eval-driven agent development), Phase 14 · 19 (SWE-bench and GAIA benchmarks)
 **Time:** ~90 minutes
 
@@ -47,7 +47,7 @@ flowchart LR
 
 第三个是`shell_exit_zero`带运行一个器命令 (从第26课中的沙箱中通过),只有命令出于零时才能通过任务. 这可以捕获"测试必须通过"任务.
 
-连接器可以完成每一个任务`k`通过@k是`1 - (1 - p)^k`在此,p是经验性通过率;harness也报告原始数量,以便您可以发现变异.延迟是每样品的墙钟.成本是代理自报 (代币数量,美元或两者);harness将其汇总在样本中并呈现每任务和总数.
+连接器可以完成每一个任务`k`通过@k是`1 - (1 - p)^k`在此,p是经验性通过率; 带还报告原数,以便您可以发现变异.这是插件估计:它使用测量率p,好像是真实率. 第72课使用无偏见估计器`1 - C(n - c, k) / C(n, k)`为了`n`含有`c`通过. 插件估计偏低.`n = k`通过任何样本,无偏见的估计器是1和0的,所以它只显示任何样本是否通过.`n > k`延迟是每样品的墙钟.成本是代理自报 (代币计数,美元或两者都); 带将其汇总在样本中并呈现每任务和总数.
 
 ```figure
 pass-at-k
@@ -100,6 +100,7 @@ flowchart TD
 ```bash
 cd phases/19-capstone-projects/27-eval-harness-fixture-tasks
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

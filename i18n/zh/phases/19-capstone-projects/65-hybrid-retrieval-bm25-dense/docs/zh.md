@@ -3,7 +3,7 @@
 > 复式检索与相互排列融合的混合检索不交叉,它投票 - 投票赢得每个查询类.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 lessons 04 (embeddings), 06 (RAG); Phase 19 Track B foundations (lessons 20-29); Phase 19 lesson 64 (chunking strategies)
 **Time:** ~90 minutes
 
@@ -38,7 +38,7 @@ flowchart LR
 
 BM25通过在查询条件上总算一个反向文件频率因子乘以一个和术语频率因子,包括长度正常化纠正.`k1`标准的1.5是公布的建议,并且您不应该没有基准值移动它. `b`根据标准的0.75 个标准,长文件会受到惩罚,但不是线性.
 
-据说,以色列国防军使用了罗伯逊和斯帕克·斯的定义,`log((N - df + 0.5) / (df + 0.5) + 1)`总体而言,在一个小组中, 关键词技术上很少存在.
+据说,以色列国防军使用了罗伯逊和斯帕克·斯的定义,`log((N - df + 0.5) / (df + 0.5) + 1)`随着这些数据的出现, IDF 能够在一半以上的文件中找到一个词语,并且在大多数文件中出现的关键词中,
 
 字段权重让你告诉BM25符号名称上的匹配比体内的匹配更重要. 实现是指数过程中的术语数量的乘法,而不是得分时间. 这使得数学保持相同,避免每个字段的分分分分.
 
@@ -81,6 +81,7 @@ rrf-fusion
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 阅读示范输出一边.字面标识查询到BM25排名1,密集排名4,RRF排名1. 抛词查询到BM25排名6,密集排名1,RRF排名1. 模糊查询到BM25排名3,密集排名3,RRF排名1. 融合不是打破;它是每一个查询类中赢得的系统.

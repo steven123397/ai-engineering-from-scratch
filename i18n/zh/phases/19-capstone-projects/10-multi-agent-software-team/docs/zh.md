@@ -3,7 +3,7 @@
 > 许多代理工程团队的2026年形状已经融合:一个建筑师的计划,N编码器在平行工作树中工作,一个审查员的门,一个测试员验证. 斯威-阿夫的工厂架构,MetaGPT的角色驱动,AutoGen 0.4的打字演员图,Cognition的Devin和工厂的Droids都独立地登陆了它. 并行工作树将墙钟转换为吞吐量. 共同状态和传递协议成为失败表面. 目标是建立团队,在SWE-bench Pro上评估,
 
 **Type:** Capstone
-**Languages:** Python / TypeScript (agents), Shell (worktree scripts)
+**Languages:** Python / TypeScript (agents, task board scaffold), Shell (worktree scripts)
 **Prerequisites:** Phase 11 (LLM engineering), Phase 13 (tools), Phase 14 (agents), Phase 15 (autonomous), Phase 16 (multi-agent), Phase 17 (infrastructure)
 **Phases exercised:**子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子
 **Time:** 40 hours
@@ -123,7 +123,7 @@ $ team run --issue https://github.com/acme/widget/issues/842
 
 1. 注入明显的错误到中期差异中 (额外的`return None`检查员的错误批准率. 调整检查员提示,直到错误批准率低于5%.
 
-2. 缩小到两个编码器 (建筑师+编码器+审查器+测试器,编码器连续执行两个子任务).比较墙钟和通过率.
+2. 缩小到两个编码器 (建筑师 +两个编码器 + 审查员 + 测试器,每个编码器都在连续执行两个子任务).
 
 3. 替换合并协调器用单字符限制 (子任务触摸分离的文件集). 测量建筑师的规划负担.
 
