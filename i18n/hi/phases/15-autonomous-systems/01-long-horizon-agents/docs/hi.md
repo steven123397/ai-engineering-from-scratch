@@ -3,7 +3,7 @@
 > 2023 में एक चैटबॉट ने एक बार में एक सवाल का जवाब दिया। 2026 में एक सीमा मॉडल नियमित रूप से एक ही कार्य पर मिनटों से घंटों तक चलता है। METR के टाइम हॉरिज़ॉन्स 1.1 बेंचमार्क (जनवरी 2026) में क्लाउड ओपस 4.6 को 15 घंटे से अधिक विशेषज्ञ कार्य पर 50% विश्वसनीयता पर रखा गया है। जीपीटी-2 के बाद से क्षितिज लगभग हर सात महीने में दोगुना हो रहा है। हर परिकल्पना हमने एक-चोट चैट के संदर्भ, विश्वास, विफलता मोड, लागत, अवलोकनशीलता के आसपास बनाई है जब दौड़ दोपहर के भोजन से अधिक समय तक चली जाती है।
 
 **Type:** Learn
-**Languages:** Python (stdlib, horizon-curve simulator)
+**Languages:** Python, TypeScript (stdlib, horizon-curve simulator)
 **Prerequisites:** Phase 14 · 01 (The Agent Loop)
 **Time:** ~45 minutes
 
@@ -50,7 +50,7 @@ METR (पूर्व-ARC Evals) विशेषज्ञ मानव समा
 | Property | Chatbot (single-turn) | Long-horizon agent |
 |---|---|---|
 | Run length | seconds | minutes to hours |
-| Tokens per run | 10^3 | 10^5 to 10^7 |
+| Tokens per run | $10^3$ | $10^5$ to $10^7$ |
 | State | ephemeral | durable, checkpointed |
 | Failure surface | model capability | capability + drift + loops + hacking |
 | Review unit | final answer | trajectory |

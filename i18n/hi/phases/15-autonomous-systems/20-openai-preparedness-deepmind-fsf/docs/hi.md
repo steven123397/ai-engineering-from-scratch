@@ -3,7 +3,7 @@
 > ओपनएआई तैयारी फ्रेमवर्क v2 (अप्रैल 2025) अनुसंधान श्रेणियों को पेश करता है  लंबी दूरी की स्वायत्तता, सैंडबैगिंग, स्वायत्त प्रतिकृति और अनुकूलन, सुरक्षा उपायों को कमजोर करना  ट्रैक किए गए श्रेणियों से अलग। ट्रैक किए गए श्रेणियों से क्षमता रिपोर्ट और सुरक्षा सलाहकार समूह द्वारा समीक्षा की गई सुरक्षा रिपोर्ट शुरू होती हैं। डीपमांड के एफएसएफ v3 (सितंबर 2025, ट्रैक किए गए क्षमता स्तरों के साथ जोड़ा गया 17 अप्रैल 2026) एमएल आर एंड डी और साइबर डोमेन में स्वायत्तता को मोड़ता है (एमएल आर एंड डी स्वायत्तता स्तर 1 = प्रतिस्पर्धी लागत बनाम मानव + एआई उपकरण पर एआई आर एंड डी पाइपलाइन को पूरी तरह से स्वचालित करें) । FSF v3 स्पष्ट रूप से उपकरण तर्क के दुरुपयोग के लिए स्वचालित निगरानी के माध्यम से भ्रामक संरेखण को संबोधित करता है। ईमानदार नोटः पीएफ v2 में अनुसंधान श्रेणियां (लंबे दूरी की स्वायत्तता सहित) स्वचालित रूप से कम करने को ट्रिगर नहीं करती हैं; नीति भाषा "संभावित" है। डीपमाइंड स्वयं का कहना है कि स्वचालित निगरानी "लंबे समय तक पर्याप्त नहीं रहेगी" यदि साधन तर्क मजबूत हो जाता है।
 
 **Type:** Learn
-**Languages:** Python (stdlib, three-framework decision-table diff tool)
+**Languages:** Python (stdlib, three-framework decision-table diff tool), TypeScript
 **Prerequisites:** Phase 15 · 19 (Anthropic RSP)
 **Time:** ~45 minutes
 
@@ -30,7 +30,7 @@ v2 में कुंजी फ्रेमिंगः अनुसंधा�
 
 संरचनाः
 
-- **Critical Capability Levels (CCLs)**: पांच क्षेत्रों में क्षमता की सीमाएंः साइबर, बायो, एमएल आरएंडडी, सीबीआरएन, स्वायत्तता (एमएल आरएंडडी और साइबर में फंटा हुआ) ।
+- **Critical Capability Levels (CCLs)**: क्षमता सीमाओं तीन समूहों मेंः दुरुपयोग (सीबीआरएन, साइबर, हानिकारक हेरफेर), एमएल अनुसंधान एवं विकास, और एक खोजात्मक गलत संरेखण ट्रैक। स्वायत्तता अपना डोमेन नहीं है; यह एमएल अनुसंधान एवं विकास और साइबर में फटा हुआ है।
 - **Tracked Capability Levels**: अप्रैल 2026 में अतिरिक्त क्षुद्रता जोड़ी गई। ठोस उदाहरणः एमएल आर एंड डी स्वायत्तता स्तर 1 = प्रतिस्पर्धी लागत बनाम मानव + एआई उपकरणों के साथ एआई आर एंड डी पाइपलाइन को पूरी तरह से स्वचालित करें।
 - **Deceptive alignment monitoring**: साधन-कारण के दुरुपयोग के लिए स्वचालित निगरानी के लिए स्पष्ट प्रतिबद्धता।
 
@@ -94,7 +94,7 @@ a5-tracked-vs-research
 | Tracked Category | "Mandatory mitigation" | Triggers Capabilities + Safeguards Reports; SAG review |
 | Research Category | "Monitored only" | Tracked but no automatic mitigation; includes Long-range Autonomy |
 | Frontier Safety Framework | "DeepMind's scaling policy" | FSF v3 (Sept 2025) + Tracked Capability Levels (Apr 2026) |
-| CCL | "Critical Capability Level" | DeepMind threshold per domain (Cyber, Bio, ML R&D, CBRN) |
+| CCL | "Critical Capability Level" | DeepMind threshold per domain (CBRN, Cyber, Harmful Manipulation, ML R&D) |
 | ML R&D autonomy level 1 | "R&D automation" | Fully automate AI R&D pipeline at competitive cost |
 | Sandbagging | "Strategic underperformance" | Model underperforms on evals; in OpenAI Research Categories |
 | Instrumental reasoning | "Means-ends reasoning" | Reasoning about how to achieve goals; target of DeepMind monitoring |
