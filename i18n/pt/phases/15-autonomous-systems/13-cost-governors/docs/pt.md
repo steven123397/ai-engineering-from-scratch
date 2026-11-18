@@ -3,7 +3,7 @@
 > O custo mensal de LLM de um agente de comércio eletrônico de médio porte aumentou de $1,200 to $O software de gestão de dados da Microsoft, que é o software de gestão de dados, é o mais recente e mais recente de todos os sistemas de gestão de dados da Microsoft.`max_tokens`O SDK de código Claude da Anthropic envia os mesmos primitivos sob diferentes nomes. Limites de velocidade financeira , por exemplo, cortar o acesso em > $ 50 em 10 minutos  pegar loops mais rápido do que os limites mensais.
 
 **Type:** Learn
-**Languages:** Python (stdlib, layered cost-governor simulator)
+**Languages:** Python (stdlib, layered cost-governor simulator), TypeScript
 **Prerequisites:** Phase 15 · 10 (Permission modes), Phase 15 · 12 (Durable execution)
 **Time:** ~60 minutes
 
@@ -58,7 +58,7 @@ O Kit de Ferramentas de Governança de Agentes da Microsoft abrange os requisito
 
 ### O observado .$1,200 → $4.800 casos
 
-O caso real nos documentos da Microsoft: um agente de comércio eletrônico cujo custo mensal triplicou após a adição de uma nova ferramenta. A ferramenta permitiu ao agente fazer um sondagem sobre o estado da ordem durante cada sessão. Não há detecção de circuito. Não há gorjeta por ferramenta. Não há alerta sobre crescimento semanal. A correcção era um limite por ferramenta e um alerta de crescimento diário. Esta é uma modelo: cada nova superfície da ferramenta é um novo ciclo potencial; cada nova ferramenta precisa de seu próprio limite e de seu próprio alerta.
+O caso real nos documentos da Microsoft: um agente de comércio eletrônico cujo custo mensal quadruplicou após a adição de uma nova ferramenta. A ferramenta permitiu ao agente fazer um sondagem sobre o estado da ordem durante cada sessão. Não há detecção de circuito. Não há gorjeta por ferramenta. Não há alerta sobre crescimento semanal. A correcção era um limite por ferramenta e um alerta de crescimento diário. Esta é uma modelo: cada nova superfície da ferramenta é um novo ciclo potencial; cada nova ferramenta precisa de seu próprio limite e de seu próprio alerta.
 
 ```figure
 cost-governor-stack

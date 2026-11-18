@@ -3,7 +3,7 @@
 > O Centro de Segurança de IA (CAIS, San Francisco, fundado em 2022 por Hendrycks e Zhang) publica o quadro de quatro riscos  uso malicioso, corridas de IA, riscos organizacionais, IAs desonestas  e a declaração de maio de 2023 sobre risco de extinção assinada por centenas de professores e líderes de empresas. 2026 lançamentos do CAIS: AI Dashboard para avaliação de modelo de fronteira, Índice de Trabalho Remoto (com AI de escala), Superintelligence Strategy Paper, AI Frontiers newsletter. Uma entidade distinta: Centro de NIST para Padrões e Inovações de IA (CAISI)  acordos voluntários dirigidos ao governo dos EUA e avaliações de capacidade não classificadas focadas em riscos de ciber, bio e armas químicas. O CAIS define o risco organizacional como um dos quatro riscos de nível superior: cultura da segurança, auditorias rigorosas, defesas de várias camadas e segurança da informação são fundamentais, mas rotineiramente negociados contra a velocidade de implantação. O SB-53 da Califórnia, se assinado, seria a primeira regulamentação de risco catastrófico a nível estadual dos EUA.
 
 **Type:** Learn
-**Languages:** Python (stdlib, four-risk inventory and mitigation matcher)
+**Languages:** Python (stdlib, four-risk inventory and mitigation matcher), TypeScript
 **Prerequisites:** Phase 15 · 19 (RSP), Phase 15 · 20 (PF + FSF)
 **Time:** ~45 minutes
 
@@ -19,7 +19,7 @@ O conteúdo prático: o quadro de quatro riscos do CAIS é a taxonomia de risco 
 
 ### CAIS  Centro de Segurança da IA
 
-- Fundada: 2022 em San Francisco, por Dan Hendrycks e colegas (o nome "Zhang" refere-se a um colaborador inicial, não um cofundador atual; veja o site do CAIS para a liderança atual).
+- Fundada em 2022 em São Francisco, por Dan Hendrycks e Oliver Zhang. Hendrycks é diretor executivo e de pesquisa; Zhang é diretor gerente.
 - Estatuto: 501 ((c) ((3) organização sem fins lucrativos.
 - Output notável de 2023: declaração sobre o risco de extinção, co-assinada por centenas de pesquisadores e CEOs. Estabeleceu: "A mitigação do risco de extinção da IA deve ser uma prioridade global ao lado de outros riscos em escala social, como pandemias e guerra nuclear".
 - Resultados de 2026: Painel de análise de IA para avaliação de modelos de fronteira, Índice de Trabalho Remoto (junto com AI de escala), Papel de Estratégia de Superinteligência, boletim informativo da AI Frontiers.
