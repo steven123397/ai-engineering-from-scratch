@@ -3,7 +3,7 @@
 > Le décoding spéculatif (phase 10 · 15) parallèle les jetons dans une séquence. Les cadres multi-agents se parallèlementent sur des séquences entières mais forcent une coordination explicite (voting, division des sous-tâches). Il est mort. L'inference (Rodionov et coll., arXiv:2504.06261) fait autre chose: exécute N instances du même LLM en parallèle contre un cache de valeur de clé SHARED. Chaque travailleur voit instantanément les jetons générés par les autres. Les modèles de raisonnement modernes  QwQ, DeepSeek-R1  peuvent s'auto-coordonner à travers ce cache partagé sans aucune mise à jour fine. L'approche est expérimentale mais elle ouvre un tout nouveau axe de parallélisme d'inférence qui se trouve orthogonal au décodeur de spécifications. Cette leçon met en œuvre un Hogwild à deux ouvriers ! C'est un simulateur en stdlib Python et explique pourquoi la collaboration partagée en cache émerge des capacités de raisonnement du modèle existant.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), Rust
 **Prerequisites:** Phase 10 · 12 (inference optimization), Phase 10 · 15 (speculative decoding)
 **Time:** ~60 minutes
 
@@ -55,7 +55,7 @@ Le nom du papier se réfère à Hogwild! SGD (Recht et coll., 2011), un optimisa
 
 ### La RoPE rend cette méthode traitable.
 
-Les emplacements de position rotation (RoPE, Su et al. 2021) codent les informations de position via la rotation dans les vecteurs Q et K. Comme les positions sont des rotations et non des compensations cuites, la position d'un jeton peut changer sans recomputer l'entrée de cache KV. Lorsque le travailleur `i`écrit dans le cache partagé à la position `p`, les autres travailleurs qui lisent cette position peuvent utiliser directement l'entrée en cache  pas besoin de re-rotation.
+Les embellissements de position rotative (RoPE, Su et al. 2021) encode les informations de position par rotation dans les vecteurs Q et K. Parce que le score d'attention entre une requête tournée et une clé tournée dépend uniquement de leur distance relative, un bloc entier d'entrées cachées peut passer à un nouveau décalage sans recompte: tourner la requête au lieu de re-roter chaque clé caché. Il est mort. Inference le fait une fois par bloc de cache: pour une requête à position `i_q`et un bloc qui commence à `i_k`Pour ce travailleur, la requête est rotée par la distance relative `i_q - i_k`C'est ainsi que chaque travailleur voit les blocs de cache partagés dans son propre ordre. Le truc fonctionne pour un déplacement uniforme d'un bloc contigu. déplacer des jetons individuels vers différentes positions changerait leurs rotations et nécessiterait toujours un recomptage.
 
 Dans un modèle de position apprise ou de position absolue, Hogwild! aurait besoin d'invalider le cache sur chaque écriture simultanée.
 
