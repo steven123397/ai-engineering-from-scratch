@@ -3,7 +3,7 @@
 > Các mô hình không gian nhà nước (SSM) và các bộ biến đổi muốn những thứ khác nhau. Các máy biến đổi mua chất lượng thông qua sự chú ý với chi phí bình phương. SSM mua suy luận thời gian tuyến tính và bộ nhớ liên tục thông qua sự tái phát nhưng chất lượng chậm. Jamba (March 2024) và Jamba 1.5 (Tháng 8 2024) của AI21 đặt chúng trong cùng một mô hình: 1 lớp biến thể cho mỗi 7 lớp Mamba, MoE trên mỗi khối khác, và một cửa sổ bối cảnh 256k phù hợp với một GPU 80GB duy nhất. Mamba-3 (ICLR 2026) thắt chặt phía SSM bằng không gian trạng thái có giá trị phức tạp và dự đoán MIMO. Bài học này đọc cả hai kiến trúc cuối cùng và giải thích tại sao công thức lai đã sống sót ba năm quy mô khi Pure-SSM và Pure-Transformer cố gắng ngữ cảnh dài không.
 
 **Type:** Learn
-**Languages:** Python (stdlib, layer-mix calculator)
+**Languages:** Python (stdlib, layer-mix calculator), Rust
 **Prerequisites:** Phase 10 · 14 (open-model architectures), Phase 10 · 17 (native sparse attention)
 **Time:** ~60 minutes
 
@@ -30,12 +30,14 @@ Bài học này đọc cả ba bài báo và tạo ra mô hình tâm lý cho "đ
 
 Một mô hình không gian trạng thái xử lý một chuỗi`x_1, ..., x_N`qua một trạng thái kích thước cố định `h`- Có thể là:
 
-```
-h_t = A h_{t-1} + B x_t
-y_t = C h_t
+```math
+\begin{aligned}
+h_t &= A h_{t-1} + B x_t \\
+y_t &= C h_t
+\end{aligned}
 ```
 
-Ở mỗi bước, trạng thái phát triển qua động lực tuyến tính.`A`, lấy thông tin `B x_t`, và phát ra sản lượng`C h_t`- `A, B, C`Hãy chú ý đến tính chất quan trọng: tính toán`y_t`chỉ cần `h_{t-1}`và `x_t`, không có gì trước đây `x`Khoảnh khắc là không đổi, suy luận là O (x) 1 cho mỗi token.
+Ở mỗi bước, trạng thái phát triển qua động lực tuyến tính.`A`, lấy thông tin `B x_t`, và phát ra sản lượng`C h_t`- `A, B, C`Hãy chú ý đến tính chất quan trọng: tính toán`y_t`chỉ cần `h_{t-1}`và `x_t`, không có gì trước đây `x`Tưởng thức là không đổi, suy đoán là không đổi.$O(1)$mỗi token.
 
 Trùi để mô hình hóa chất lượng là cấu trúc của`A`. S4 (Gu 2021) sử dụng một trạm cấu trúc cao có thể được đánh giá hiệu quả như một sự xoay quanh dài trong quá trình đào tạo. Mamba (Gu, Dao 2023) thay thế các cố định `A, B, C`Mamba-2 (2024) tiếp tục đơn giản hóa cấu trúc. Mamba-3 (2026) thêm sự phức tạp ở các nơi cụ thể.
 
@@ -75,10 +77,10 @@ Các lớp Mamba tự nhận thức vị trí (thông qua sự tái phát). Các
 
 Đối với hình dạng Jamba-1 (32 lớp: 28 Mamba + 4 chú ý, ẩn 4096, 32 đầu chú ý):
 
-- KV cache (chỉ là các lớp chú ý): `2 * 4 * 32 * 128 * 256k * 2 = 8.4 GB`ở 256k BF16. Chỉ có 4 lớp chú ý đóng góp.
+- KV cache (chỉ là các lớp chú ý): `2 * 4 * 32 * 128 * 256k * 2 = 16 GB`Chỉ có 4 lớp chú ý đóng góp. Jamba được phát hành sử dụng GQA với 8 đầu KV trong các lớp đó, đưa điều này lên 4 GB, con số trong giấy Jamba.
 - Tình trạng SSM: `28 * hidden * state_size`cho mỗi dấu tiền, nhưng đây là một kích thước cố định cho mỗi lớp, không quy mô với chiều dài chuỗi. trạng thái Mamba điển hình là 16 cho mỗi tính năng, ẩn 4096: `28 * 4096 * 16 * 2 = 3.7 MB`Toàn bộ.
 
-So sánh với một Transformer tinh khiết ở 32 lớp, cùng một ẩn, đầy đủ MHA ở 32 đầu: `2 * 32 * 32 * 128 * 256k * 2 = 128 GB`Tỷ lệ dự trữ KV giảm 8 lần.`2 * 32 * 8 * 128 * 256k * 2 = 32 GB`), hệ thống hybrid 1:7 của Jamba với 16 GB vẫn nhỏ hơn 2 lần.
+So sánh với một Transformer tinh khiết ở 32 lớp, cùng một ẩn, đầy đủ MHA ở 32 đầu: `2 * 32 * 32 * 128 * 256k * 2 = 128 GB`Tỷ lệ dự trữ KV giảm 8 lần.`2 * 32 * 8 * 128 * 256k * 2 = 32 GB`), một máy hybrid 1:7 với 32 đầu KV ở 16 GB vẫn nhỏ hơn 2 lần.
 
 Đó là điều AI21 có nghĩa là "256k ngữ cảnh trên một GPU 80GB duy nhất". Cache KV của một Transformer tinh khiết đầy đủ MHA sẽ không phù hợp; ngay cả một đường cơ sở GQA không để lại chỗ cho trọng lượng và kích hoạt; Jamba làm vậy.
 

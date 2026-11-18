@@ -197,23 +197,23 @@ try:
     )
 except ImportError:
     GPT2_PATTERN = re.compile(
-        r"""'(?:[sdmt]|ll|ve|re)| ?[a-zA-Z]+| ?[0-9]+| ?[^\s\w]+|\s+(?!\S)|\s+"""
+        r"""'(?:[sdmt]|ll|ve|re)| ?[^\W\d_]+| ?\d+| ?(?:[^\s\w]|_)+|\s+(?!\S)|\s+"""
     )
 
 def pre_tokenize(text):
     return [match.group() for match in GPT2_PATTERN.finditer(text)]
 ```
 
-- `regex`module hỗ trợ Unicode tính năng thoát (`\p{L}`cho thư, `\p{N}`cho các số). Thư viện tiêu chuẩn `re`module không, vì vậy chúng ta rơi lại vào lớp ký tự ASCII. Đối với sản xuất các tokenizers đa ngôn ngữ, cài đặt `regex`- Tôi không biết.
+- `regex`module hỗ trợ Unicode tính năng thoát (`\p{L}`cho thư, `\p{N}`cho các số). Thư viện tiêu chuẩn `re`module không, do đó fallback xây dựng các lớp tương tự từ `\w``[^\W\d_]`phù hợp với bất kỳ chữ cái Unicode nào và `\d`bất kỳ chữ số Unicode nào. Đối với các token sản xuất đa ngôn ngữ, cài đặt `regex`- Tôi không biết.
 
 Hãy thử đi.
 
 ```python
 print(pre_tokenize("Hello, world! Don't stop."))
-# [' Hello', ',', ' world', '!', " Don", "'t", ' stop', '.']
+# ['Hello', ',', ' world', '!', ' Don', "'t", ' stop', '.']
 ```
 
-Không gian dẫn tiếp tục gắn liền với từ. Khác nét chia ở chữ ký. Vị trí trở thành một phần của nó. BPE sẽ không bao giờ hợp nhất các token qua các ranh giới này.
+Không gian dẫn tiếp vẫn gắn liền với từ sau nó.`Hello`BPE sẽ không bao giờ hợp nhất các token qua những ranh giới này.
 
 ### Bước 3: BPE trên các chuỗi byte
 
