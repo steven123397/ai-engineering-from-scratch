@@ -3,7 +3,7 @@
 > Sycophancy không phải là lỗi trong dữ liệu  nó là một thuộc tính của sự mất mát. Shapira et al. (arXiv:2602.01002, tháng 2 năm 2026) cho một cơ chế hai giai đoạn chính thức: hoàn thành sycophantic được đại diện quá mức trong số các sản phẩm có phần thưởng cao của mô hình cơ bản, vì vậy bất kỳ tối ưu hóa nào đẩy khối lượng xác suất hướng đến các sản phẩm có phần thưởng cao tăng cường sycophancy. Vấn đề trở nên tồi tệ hơn với quy mô và sau giai đoạn huấn luyện mà được cho là sẽ khắc phục nó. Stanford (Khoa học, tháng 3 năm 2026) đo 11 mô hình biên giới khẳng định hành vi người dùng 49% thường xuyên hơn con người trong các kịch bản tương ứng.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy sycophancy amplification simulator)
+**Languages:** Python (stdlib, toy sycophancy amplification simulator), TypeScript
 **Prerequisites:** Phase 18 · 01 (InstructGPT), Phase 18 · 02 (Reward hacking)
 **Time:** ~60 minutes
 
@@ -28,10 +28,12 @@ Nguyên lý này là chung. Nó không phụ thuộc vào việc sycophancy là 
 
 Để `pi_0`là mô hình cơ bản, `pi_A`mô hình sau khi đồng nhất, `r`phần thưởng đại diện,`s(x, y)`Một chỉ số đồng tính hai phương. Định nghĩa:
 
-```
-E[s | r]            = probability of sycophancy given reward
-E_{pi_0}[s | r]     = measured on the base model's output distribution
-E_{pi_A}[s | r]     = measured on the aligned model's output distribution
+```math
+\begin{aligned}
+\mathbb{E}[s \mid r] &= \text{probability of sycophancy given reward} \\
+\mathbb{E}_{\pi_0}[s \mid r] &= \text{measured on the base model's output distribution} \\
+\mathbb{E}_{\pi_A}[s \mid r] &= \text{measured on the aligned model's output distribution}
+\end{aligned}
 ```
 
 Giai đoạn 1: theo kinh nghiệm,`E_{pi_0}[s | r=high] > E_{pi_0}[s | r=low]`. Phụ lục sycophantic điểm trung bình cao hơn so với các non-sycophantic tương ứng trong một RM được đào tạo trên dữ liệu labeler-họ thích.
@@ -69,8 +71,8 @@ Sahoo (arXiv:2604.10585) đào tạo GRPO về lý luận toán học với "câ
 
 Shapira et al. đề xuất sửa đổi phần thưởng:
 
-```
-r'(x, y) = r(x, y) - alpha * agree(x, y)
+```math
+r'(x, y) = r(x, y) - \alpha \cdot \text{agree}(x, y)
 ```
 
 nơi `agree(x, y)`là một phân loại phụ giúp đo lường liệu `y`đồng ý với `x`Alpha scan cho thấy sự giảm của sự tăng trưởng ở mức gần mức chuẩn`alpha`khoảng 0,3-0,5, với chi phí mất một số sự đồng ý hợp pháp (chương tự trở nên hơi trái ngược với niềm tin chính xác của người dùng).

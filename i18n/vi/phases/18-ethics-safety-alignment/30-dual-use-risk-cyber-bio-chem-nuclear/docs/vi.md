@@ -3,7 +3,7 @@
 > Hình ảnh sử dụng hai lần năm 2026, miền theo miền. Sinh học / hóa học: Bài học 17 bao gồm WMDP; thử nghiệm mua vũ khí sinh học của Anthropic (2.53 lần nâng cao) và cảnh báo khung chuẩn bị v2 của OpenAI tháng 4 năm 2025 ("trong bờ vực giúp người mới bắt đầu tạo ra những mối đe dọa sinh học được biết đến") đánh dấu điểm xoay. Cyber (Ngày 11 năm 2025 báo cáo Anthropic): Các nhà nước có liên quan đến Trung Quốc đã sử dụng công cụ mã hóa tác nhân của Claude để tự động hóa đến 90% chiến dịch tấn công mạng, với sự can thiệp của con người chỉ trong 4-6 bước; Phi công "trusted access" OpenAI cung cấp cho các tổ chức an ninh được kiểm tra khả năng truy cập cho công việc phòng thủ sử dụng hai lần. Sự xói mòn khoảng cách thực hiện hóa học / sinh học: biện pháp phòng thủ cổ điển là "chỉ có quyền truy cập thông tin là không đủ". Các mô hình biên giới có khả năng nhìn (GPT-5.2, Gemini 3 Pro, Claude Opus 4.5, Grok 4.1) có thể quan sát video trong phòng thí nghiệm ẩm và cung cấp sự sửa chữa thời gian thực. Tháng 12 năm 2025: OpenAI đã chứng minh GPT-5 lặp lại trên các thí nghiệm trong phòng thí nghiệm ẩm ướt, đạt được cải thiện hiệu quả 79 lần thông qua tối ưu hóa giao thức do AI điều khiển. Mô hình người mới vs chuyên gia: AI cung cấp sự nâng cao tương đối lớn hơn cho người mới nhưng khả năng tuyệt đối lớn hơn cho các chuyên gia.
 
 **Type:** Learn
-**Languages:** none
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 18 · 17 (WMDP), Phase 18 · 18 (safety frameworks), Phase 18 · 28 (ecosystem)
 **Time:** ~75 minutes
 
@@ -16,7 +16,7 @@
 
 ## Vấn đề
 
-Bài học 17 là phương pháp đo lường. Bài học 30 là trạng thái đo lường năm 2026. Hình ảnh đã thay đổi đáng kể giữa năm 2024 và cuối năm 2025: mỗi lĩnh vực đã vượt qua ngưỡng mà các khung 2024 không dự đoán.
+Bài học 17 là phương pháp đo lường. Bài học 30 là trạng thái đo lường năm 2026. Hình ảnh đã thay đổi đáng kể giữa năm 2024 và cuối năm 2025: ba trong bốn lĩnh vực đã vượt qua ngưỡng mà các khung 2024 không dự đoán.
 
 ## Khái niệm
 
@@ -47,6 +47,8 @@ Những tác động:
 - Mã hóa đại lý là nguyên thủy tự động tấn công. trợ giúp mạng AI trước đó được giới hạn ở mức đoạn mã; dòng công việc đại lý tích hợp công nhận, khai thác, hậu khai thác và giải phóng.
 - Dấu hiệu là 4-6 bước của con người; tăng khả năng trong tương lai sẽ làm giảm số lượng đó.
 - Sử dụng hai lần phòng thủ: Phi công "luồng truy cập đáng tin cậy" của OpenAI cung cấp cho các tổ chức an ninh được kiểm tra (các công ty phản ứng tình huống đã thành lập, chính phủ) quyền truy cập khả năng cho phòng thủ.
+
+Mặt phòng thủ của công việc này bắt đầu bằng việc đọc mã biên soạn mà bạn được phép phân tích.[Lesson 13.32](../../../13-tools-and-protocols/32-program-anatomy-elf-from-scratch/docs/en.md), phá vỡ trong [Lesson 13.33](../../../13-tools-and-protocols/33-disassembly-and-control-flow/docs/en.md), nâng lên mã giả trong [Lesson 13.34](../../../13-tools-and-protocols/34-lifting-to-pseudocode/docs/en.md), và một sổ cái bằng chứng giữ các sự kiện quan sát được tách biệt với những người suy luận trong[Lesson 13.35](../../../13-tools-and-protocols/35-evidence-confidence-and-unknowns/docs/en.md)- [Inside a Decompiler](https://aiengineeringfromscratch.com/inside-a-decompiler)máy cho thấy toàn bộ đường ống trên một chức năng. một đại lý làm công việc này cần cùng một sổ cái, bởi vì một phân tích tự tin vẫn có thể dựa trên một đoán.
 
 ### Tiêu vũ hạt nhân
 
