@@ -3,7 +3,7 @@
 > Cameleon y Emu3 apostaron todo en tokens discretos. Funcionan, pero el cuello de botella de cuantificación es visible  las mesetas de calidad de imagen debajo de los modelos de difusión en el espacio continuo. La transfusión (Meta, Zhou et al., agosto 2024) toma la apuesta opuesta: mantener las imágenes continuas, dejar caer el VQ-VAE por completo y entrenar a un transformador con dos pérdidas. Los tokens de texto obtienen la predicción de los próximos tokens. Los parches de imagen obtienen una pérdida de flujo de coincidencia / difusión. Ambos objetivos optimizan los mismos pesos. La arquitectura subyacente a la Stable Diffusion 3 (MMDiT) es una prima cercana. Esta lección lee la tesis de Transfusión, construye un entrenador de juguete de dos pérdidas y rastrea la máscara de atención que permite a un transformador hacer ambos trabajos.
 
 **Type:** Build
-**Languages:** Python (stdlib, two-loss trainer on MNIST-scale toy)
+**Languages:** Python, TypeScript (stdlib, two-loss trainer on MNIST-scale toy)
 **Prerequisites:** Phase 12 · 11 (Chameleon), Phase 8 (Generative AI)
 **Time:** ~180 minutes
 
@@ -51,7 +51,7 @@ La máscara:
 M[i, j] = 1 if:
   (i is text and j is text and j <= i)   # causal for text
   OR (i is image and j is image and same_image_block(i, j))   # bidirectional within image
-  OR (i is text and j is image and j < i_image_end)   # text attends to previous images
+  OR (i is text and j is image and j < i)   # text attends to images that closed before it
   OR (i is image and j is text and j < i_image_start)   # image attends to preceding text
 ```
 
@@ -62,9 +62,9 @@ Implementado como una máscara triangular en el entrenamiento y la inferencia.
 La pérdida de difusión es estándar: añadir ruido a un parche de imagen, pedir al modelo que predica el ruido (o el parche limpio, equivalentemente).
 
 Durante la formación:
-1. Para cada parche de imagen x0, muestra un paso de tiempo aleatorio t.
-2. Muestra de ruido ε, calcular xt = (1-t) * x0 + t * ε (interpolación lineal para la coincidencia de flujo).
-3. El transformador predice v_theta(xt, t); pérdida = MSE(v_theta(xt, t), ε - x0).
+1. Para cada parche de imagen $x_0$, muestra un paso de tiempo aleatorio $t$¿ Qué ?
+2. Muestra de ruido$\epsilon$, computación $x_t = (1-t) \cdot x_0 + t \cdot \epsilon$(interpolación lineal para el coincidencia de flujo).
+3. El transformador predice .$v_\theta(x_t, t)$¿ Qué es ?$\text{loss} = \mathop{\mathrm{MSE}}(v_\theta(x_t, t), \epsilon - x_0)$¿ Qué ?
 4. La retroprop junto con el texto NTP pérdidas de la misma secuencia.
 
 En la inferencia, la generación es:
@@ -97,7 +97,7 @@ Desventaja: La transfusión es un modelo de doble pérdida, lo que hace que la d
 
 Janus-Pro (lección 12.15) perfecciona la idea de Transfusion descoplando el codificador de visión para la comprensión y generación  SigLIP para uno, VQ para el otro  mientras comparte el cuerpo del transformador. Show-o (lección 12.14) cambia la difusión por difusión discreta (predicción enmascarada).
 
-Los VLM de producción 2026 que emiten imágenes  Gemini 3 Pro, GPT-5, Claude Opus 4.7's imagen generation path  casi seguramente utilizan algún descendiente de esta familia.
+Los modelos de producción cerrados que emiten imágenes nativamente pueden usar algunos descendientes de esta familia, pero sus arquitecturas no se publican, por lo que trate cualquier afirmación como una suposición.
 
 ```figure
 cfg-guidance-scale
@@ -111,7 +111,7 @@ cfg-guidance-scale
 - Las imágenes son redes de 4x4 bytes.
 - Un par de proyecciones lineales de peso compartido actúa como el reemplazo del transformador; pérdida de NTP en texto, pérdida de MSE en parches ruidosos.
 - El bucle de entrenamiento alterna las dos pérdidas, la máscara de atención es explícita.
-- La generación produce una leyenda de texto y una imagen 4x4 en un pase hacia adelante.
+- Una demostración de máscara imprime el patrón de atención triangular de bloque para un texto, imagen, secuencia de texto. La generación no se ejecuta: un muestreo real decodificaría el token de texto por token, luego denotaba los parches de imagen en muchos pasos, como los ejercicios a continuación cuentan.
 
 El transformador es un juguete, la tubería de dos pérdidas, la construcción de la máscara de atención y el bucle de inferencia son los artefactos reales.
 

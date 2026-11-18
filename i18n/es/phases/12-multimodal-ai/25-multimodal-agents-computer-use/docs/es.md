@@ -3,7 +3,7 @@
 > El producto fronterizo 2026 es un agente multimodal que lee capturas de pantalla, hace clic en botones, navega por las interfaces web, llena formularios y completa flujos de trabajo de extremo a extremo. SeeClick y CogAgent (2024) demostraron que la primera era la de la conexión a tierra. Ferret-UI añadió móvil. ChartAgent introdujo el uso de herramientas visuales para los gráficos. VisualWebArena y AgentVista (2026) son los puntos de referencia de las persecuciones fronterizas  e incluso Gemini 3 Pro y Claude Opus 4.7 puntaje ~30% en las tareas difíciles de AgentVista. Esta piedra angular reúne todos los hilos de la Fase 12: percepción (VLM de alta resolución), razonamiento (LLM con uso de herramientas), conexión a tierra (salida de coordenadas), memoria de horizonte largo y evaluación.
 
 **Type:** Capstone
-**Languages:** Python (stdlib, action schema + agent loop skeleton)
+**Languages:** Python (stdlib, action schema + agent loop skeleton), TypeScript
 **Prerequisites:** Phase 12 · 05 (LLaVA), Phase 12 · 09 (Qwen-VL JSON), Phase 14 (Agent Engineering)
 **Time:** ~240 minutes
 
@@ -128,7 +128,7 @@ mm-agent-loop
 
 `code/main.py`es el andamio de piedra angular:
 
-- Descripción de esquema de acción JSON (10 acciones).
+- Descripción de esquema de acción JSON (10 acciones: las nueve enumeradas anteriormente más `screenshot_region`, una herramienta de cultivo + zoom).
 - Fake estado del navegador como dictado.
 - El esqueleto de bucle del agente: estado de recepción, emisión de acción, aplicación, bucle.
 - 10 mini-marcas de referencia de tareas (páginas sintéticas) para medir la tasa de éxito de extremo a extremo.
@@ -140,7 +140,7 @@ Esta lección produce`outputs/skill-multimodal-agent-designer.md`. Dado un produ
 
 ## Los ejercicios
 
-1. Extenda el esquema de acción con un `screenshot_region`¿Qué tareas son beneficiosas?
+1. El esquema del código añade un `screenshot_region`¿Qué tareas son beneficiosas?
 
 2. Leer AgentVista (arXiv:2602.23166). Describa la categoría de tareas más difíciles y por qué los modelos fronterizos siguen fallando.
 
