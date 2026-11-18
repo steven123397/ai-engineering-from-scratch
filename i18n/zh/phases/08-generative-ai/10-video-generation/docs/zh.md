@@ -3,7 +3,7 @@
 > 图像是2D子.视频是3D子.理论是相同的;计算是10-100倍更难.OpenAI的Sora (2024年2月) 证明这是可能的.到2026年,Veo 2,Kling 1.5,跑道Gen-3,Pika 2.0和WAN 2.2的船产视频从文字在1080p 和开放权重堆 (CogVideoX,HunyuanVideo,Mochi-1,WAN 2.2) 落后了12个月.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 8 · 07 (Latent Diffusion), Phase 7 · 09 (ViT), Phase 8 · 06 (DDPM)
 **Time:** ~45 minutes
 
@@ -152,7 +152,7 @@ def pos_embed(t, dim):
 - [Brooks et al. (2024). Video generation models as world simulators](https://openai.com/index/video-generation-models-as-world-simulators/)索拉技术报告.
 - [Yang et al. (2024). CogVideoX: Text-to-Video Diffusion Models with An Expert Transformer](https://arxiv.org/abs/2408.06072)      
 - [Kong et al. (2024). HunyuanVideo: A Systematic Framework for Large Video Generative Models](https://arxiv.org/abs/2412.03603)    视频
-- [Genmo (2024). Mochi-1 Technical Report](https://www.genmo.ai/blog/mochi)莫奇-1.
+- [Genmo (2024). Mochi 1 preview model card](https://huggingface.co/genmo/mochi-1-preview)莫奇-1.
 - [Alibaba (2025). WAN 2.2](https://wanvideo.io/)2025年中期开放SOTA.
 - [Ho, Salimans, Gritsenko et al. (2022). Video Diffusion Models](https://arxiv.org/abs/2204.03458)视频传播纸.
 - [Blattmann et al. (2023). Align your Latents (Video LDM)](https://arxiv.org/abs/2304.08818) 稳定视频传播的祖先.
