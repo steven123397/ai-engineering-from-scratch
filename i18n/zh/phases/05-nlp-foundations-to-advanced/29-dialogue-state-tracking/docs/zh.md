@@ -3,7 +3,7 @@
 > "我想要一个北方的廉价餐厅... 让它适度... 加入意大利语". 三轮,三次状态更新.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 17 (Chatbots), Phase 5 · 20 (Structured Outputs)
 **Time:** ~75 minutes
 
@@ -147,7 +147,7 @@ def is_correction(utterance):
 
 ## 陷
 
-- **Full-history regeneration cost.**让LLM重建状态每轮成本 O ((n2) 总代币.
+- **Full-history regeneration cost.**让LLM重建状态每轮成本$O(n^2)$总代币. 值历史或总结较早的转折.
 - **Schema drift.**增加新的插槽后,会打破旧的训练数据.
 - **Case sensitivity.**意大利人对意大利人对意大利人,
 - **Implicit inheritance.**如果用户之前指定了"为4人",则新的请求不应该清除人数.

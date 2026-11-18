@@ -3,7 +3,7 @@
 > 词2Vec训练每字一个嵌入. GloVe因数化了共发生矩阵. 快文本嵌入了零件. BPE 与变压器桥梁.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 03 (Word2Vec from Scratch)
 **Time:** ~45 minutes
 
@@ -25,7 +25,7 @@ Word2Vec留下了两个问题.
 
 **FastText.**一个词是其字符n-grams的总和加上单词本身.`where`成为`<wh, whe, her, ere, re>, <where>`作为 Word2Vec,训练:不可见的单词 (`whereupon`) 由已知n-gram组成.
 
-**BPE (Byte-Pair Encoding).**开始使用单个字节 (或字符) 的词汇库. 计算体内每个相邻的对. 将最频繁的对合并成一个新的代币. 重复为 `k`结果:一个词汇库`k + 256`标记,其中频繁的序列 (`ing`现在`tion`现在`the`单个代币,稀有词被分解成熟悉的部分.
+**BPE (Byte-Pair Encoding).**开始使用单个字节 (或字符) 的词汇库. 计算体内每个相邻的对. 将最频繁的对合并成一个新的代币. 重复为 `k`结果:一个基础符号的词汇库加上`k`合并 (`k + 256`在字节开始时,代币 (`ing`现在`tion`现在`the`单个代币,稀有词被分解成熟悉的部分.
 
 ```figure
 n5-subword-merge

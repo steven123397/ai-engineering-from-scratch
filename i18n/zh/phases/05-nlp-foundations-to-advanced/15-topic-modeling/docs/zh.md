@@ -3,7 +3,7 @@
 > 文件是主题的混合物,主题是词汇上的分布.BERTopic:文件集群在嵌入空间中,集群是主题.相同的目标,不同的分解.
 
 **Type:** Learn
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 02 (BoW + TF-IDF), Phase 5 · 03 (Word2Vec)
 **Time:** ~45 minutes
 
@@ -174,7 +174,7 @@ Refuse BERTopic on documents longer than the embedding model's context window wi
 | Mixed membership | Doc is multiple topics | LDA assigns each document a distribution over all topics. |
 | UMAP | Dimensionality reduction | Manifold learning that preserves local structure; used in BERTopic. |
 | HDBSCAN | Density clustering | Finds variable-size clusters; produces "noise" label (-1) for outliers. |
-| c_v coherence | Topic quality metric | Average pointwise mutual information of top topic words within sliding windows. |
+| c_v coherence | Topic quality metric | NPMI of top topic words over sliding windows, turned into context vectors and compared with cosine similarity. |
 
 ## 进一步阅读
 

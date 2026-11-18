@@ -3,7 +3,7 @@
 > 语法一段时间不适用,然后每一个LLM管道都需要验证结构化的提取,
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 01 (Text Processing), Phase 2 · 14 (Naive Bayes)
 **Time:** ~45 minutes
 
@@ -80,8 +80,8 @@ def predict_mft(tokens, word_best, default_tag):
 
 模型对序列的联合概率:
 
-```
-P(tags, words) = prod P(tag_i | tag_{i-1}) * P(word_i | tag_i)
+```math
+P(\text{tags}, \text{words}) = \prod_i P(\text{tag}_i \mid \text{tag}_{i-1}) \cdot P(\text{word}_i \mid \text{tag}_i)
 ```
 
 两个表:过渡概率 (给前一个标签),排放概率 (给一个词标签). 根据拉普莱斯平滑计算来估算两者. 用维特比解码 (在标签网格上动态编程).
