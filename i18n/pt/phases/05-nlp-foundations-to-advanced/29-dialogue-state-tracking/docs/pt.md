@@ -3,7 +3,7 @@
 > "Quero um restaurante barato no norte... que seja moderado... e adicione italiano". Três turnos, três atualizações de estado.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 17 (Chatbots), Phase 5 · 20 (Structured Outputs)
 **Time:** ~75 minutes
 
@@ -147,7 +147,7 @@ Em uma correção detectada, reescrever o último espaço atualizado em vez de a
 
 ## Encurralagens
 
-- **Full-history regeneration cost.**Deixar o MLL regenerar cada turno custa O ((n2) tokens totais.
+- **Full-history regeneration cost.**Deixar o Mestrado em Direito Regenerar-se cada vez mais custa $O(n^2)$- História de cap ou resumo de voltas mais antigas.
 - **Schema drift.**Adicionar novos slots pós-hoc rompe dados antigos do treinamento.
 - **Case sensitivity.**"Itálico" vs. "Itálico" vs. "ITALIANO" normalizam-se em todos os lugares.
 - **Implicit inheritance.**Se o utilizador tiver especificado anteriormente "para 4 pessoas", uma nova solicitação para um tempo diferente não deve eliminar pessoas.

@@ -3,7 +3,7 @@
 > A NER encontrou as entidades. A entidade que liga as ancorou. A extração de relações encontra as bordas entre elas. Um gráfico de conhecimento é a soma de nós, bordas e sua proveniência.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 06 (NER), Phase 5 · 25 (Entity Linking)
 **Time:** ~60 minutes
 
@@ -67,21 +67,21 @@ PATTERNS = [
 
 Veja .`code/main.py`Os padrões Hearst ainda são enviados em canais específicos de domínio porque são depuráveis.
 
-### Passo 2: classificação das relações sob supervisão
+### Passo 2: extracção de relações sequenciais supervisionadas
 
 ```python
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 tok = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
-model = AutoModelForSequenceClassification.from_pretrained("Babelscape/rebel-large")
+model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
 
 text = "Tim Cook was born in Alabama. He later became CEO of Apple."
 encoded = tok(text, return_tensors="pt", truncation=True)
 output = model.generate(**encoded, max_length=200)
-triples = tok.batch_decode(output, skip_special_tokens=False)
+decoded = tok.batch_decode(output, skip_special_tokens=False)
 ```
 
-REBEL é um extractor de relações sequenciais: texto em, triplicação, já em ids propriedades Wikidata.
+O REBEL é um extrator de relações seq2seq baseado em BART: gera triples em vez de classificar pares de entidades.`<triplet>`- Não .`<subj>`E ...`<obj>`marcadores, então dividir-se sobre eles (como o parser do modelo de cartão faz) para obter `(subject, relation, object)`Registros, ajustados a dados de vigilância remota, base de peso aberto padrão.
 
 ### Passo 3: Extração com Mestrado em Direito Jurídico com ancoragem
 
