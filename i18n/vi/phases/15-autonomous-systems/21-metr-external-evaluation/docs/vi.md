@@ -3,7 +3,7 @@
 > METR (ex-ARC Evals) là một tổ chức độc lập 501(c)(3) kể từ tháng 12 năm 2023. Điểm chuẩn Time Horizon 1.1 của họ (từ tháng 1 năm 2026) phù hợp với đường cong logistics để xác suất thành công nhiệm vụ so với log(xác nhân hoàn thành thời gian); giao thông ở 50% xác suất xác định chân trời thời gian của mô hình. Bộ tham gia 20252026 bao gồm GPT-5.1, GPT-5.1-Codex-Max và các đánh giá giám sát nguyên mẫu (có thể giám sát các nhiệm vụ bên cạnh bắt giữ; có thể tránh khỏi tác nhân). Các bộ chuẩn: HCAST (180+ ML, cyber, SWE, nhiệm vụ lý luận; 1 phút đến 8+ giờ), RE-Bench (71 ML nhiệm vụ nghiên cứu kỹ thuật với cơ sở chuyên gia), SWAA. Lưu ý trung thực: Các phép đo METR được lý tưởng hóa  không có con người, không có hậu quả thực sự  và nhóm đã ghi lại khoảng cách hành vi đánh giá so với triển khai (Dạy học 1). Một chân trời thời gian là một giới hạn trên, không phải là dự đoán triển khai.
 
 **Type:** Learn
-**Languages:** Python (stdlib, logistic-fit horizon estimator)
+**Languages:** Python (stdlib, logistic-fit horizon estimator), TypeScript
 **Prerequisites:** Phase 15 · 01 (Long-horizon agents), Phase 15 · 19 (RSP)
 **Time:** ~60 minutes
 
@@ -30,7 +30,7 @@ Phương pháp (từ blog và bài báo của METR):
 
 1. Thu thập một bộ nhiệm vụ trải dài từ thời gian hoàn thành chuyên gia theo quy mô phút đến giờ.
 2. Thực hiện mô hình cho mỗi nhiệm vụ; ghi thành công hoặc thất bại.
-3. Đưa ra một đường cong hậu cần: P(sự thành công) như một hàm của log(người chuyên gia hoàn thành thời gian).
+3. Đưa ra một đường cong hậu cần: $P(\text{success})$như một chức năng của $\log(\text{expert completion time})$- Tôi không biết.
 4. Khía cảnh là thời gian chuyên môn khi P ((success) = 0,5.
 
 Hình thức phù hợp với hậu cần là đúng vì khả năng thường có mối quan hệ tăng lên, tiếp cận cao nguyên với khó khăn nhiệm vụ. Điểm 50% là một sự lựa chọn (có thể là 10%, 90%); METR báo cáo nhiều ngưỡng trong bài báo chi tiết nhưng dẫn đầu với 50% vì nó là trực quan nhất.
@@ -79,7 +79,7 @@ a5-horizon-fit
 
 ## Sử dụng nó
 
-`code/main.py`thực hiện một sự phù hợp hậu cần của nhiệm vụ thành công so với log(thời gian chuyên gia), với một tập kết quả tổng hợp. Nó báo cáo chân trời 50% (tựa của METR), chân trời 10% (tâm lý), và chân trời 90% ( lạc quan).
+`code/main.py`thực hiện một sự phù hợp hậu cần của thành công công công việc vs $\log(\text{expert time})$, cho một tập kết quả tổng hợp. Nó báo cáo chân trời 50% (tựa đề của METR), chân trời 10% (tâm lý bảo thủ) và chân trời 90% (tự lạc quan).
 
 ## Chuyển nó
 

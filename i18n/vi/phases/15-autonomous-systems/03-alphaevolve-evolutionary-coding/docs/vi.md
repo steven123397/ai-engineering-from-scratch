@@ -3,7 +3,7 @@
 > Kết hợp một mô hình mã hóa biên giới với một vòng lặp tiến hóa và một nhà đánh giá có thể kiểm tra máy. Hãy để vòng lặp chạy đủ lâu. Nó phát hiện ra một quy trình nhân đếm 4x4 phức tạp sử dụng 48 nhân đếm scalar, cải tiến đầu tiên so với Strassen trong 56 năm. Nó cũng tìm thấy một hệ thống lập lịch Borg toàn bộ Google phục hồi ~ 0,7% tính toán cluster trong sản xuất. Kiến trúc này thật buồn chán. Những chiến thắng đến từ sự nghiêm ngặt của người đánh giá.
 
 **Type:** Learn
-**Languages:** Python (stdlib, evolutionary-loop toy)
+**Languages:** Python, TypeScript (stdlib, evolutionary-loop toy)
 **Prerequisites:** Phase 15 · 01 (long-horizon framing), Phase 15 · 02 (self-taught reasoning)
 **Time:** ~60 minutes
 
@@ -58,7 +58,7 @@ Sự cố trong AlphaEvolve: gửi một nhà đánh giá đã được tổ ch�
 
 LLM có thể tạo ra các thay đổi có thể biên dịch, có thể xác thực về ngữ nghĩa. GA đột biến ngẫu nhiên trên một tệp Python 2000 dòng gần như luôn tạo ra lỗi tổng hợp. LLM cũng tập trung tìm kiếm vào các khu phố có thể xác thực (hóa một hàm, không phải là các byte ngẫu nhiên) làm giảm đáng kể các cuộc gọi đánh giá lãng phí.
 
-Người đánh giá, lần lượt, nhận được những sự kết luận của LLM. LLM sẽ tự tin tuyên bố rằng một hàm "đã là O(n log n) trong giới hạn" khi nó thực sự là O(n^2); một điểm chuẩn của đồng hồ tường giải quyết câu hỏi.
+Người đánh giá, lần lượt, nhận được những sự kết luận của LLM. LLM sẽ tự tin tuyên bố rằng một chức năng "đó là$O(n \log n)$trong giới hạn" khi nó thực sự là $O(n^2)$; một điểm chuẩn của đồng hồ tường giải quyết câu hỏi.
 
 ### AlphaEvolve phù hợp với hàng rào biên giới
 

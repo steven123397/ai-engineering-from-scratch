@@ -3,7 +3,7 @@
 > Trung tâm An toàn AI (CAIS, San Francisco, được thành lập năm 2022 bởi Hendrycks và Zhang) công bố khung bốn rủi ro  sử dụng độc hại, cuộc đua AI, rủi ro tổ chức, AI gian lận  và tuyên bố tháng 5 năm 2023 về nguy cơ tuyệt chủng được ký bởi hàng trăm giáo sư và lãnh đạo công ty. Các bản phát hành năm 2026 từ CAIS: bảng điều khiển AI cho đánh giá mô hình biên giới, Chỉ số lao động từ xa (với AI quy mô), Tờ chiến lược siêu thông minh, Báo chí AI Frontiers. Một thực thể riêng biệt: Trung tâm tiêu chuẩn và đổi mới AI của NIST (CAISI)  Các thỏa thuận tình nguyện đối mặt với chính phủ Hoa Kỳ và đánh giá khả năng không được phân loại tập trung vào rủi ro vũ khí mạng, sinh học và hóa học. CAIS đánh dấu rủi ro tổ chức là một trong bốn rủi ro cấp cao nhất: văn hóa an toàn, kiểm toán nghiêm ngặt, phòng thủ đa tầng và an ninh thông tin là cơ bản nhưng thường xuyên được giao dịch so với tốc độ triển khai. California SB-53, nếu được ký kết, sẽ là quy định rủi ro thảm họa cấp tiểu bang đầu tiên của Hoa Kỳ.
 
 **Type:** Learn
-**Languages:** Python (stdlib, four-risk inventory and mitigation matcher)
+**Languages:** Python (stdlib, four-risk inventory and mitigation matcher), TypeScript
 **Prerequisites:** Phase 15 · 19 (RSP), Phase 15 · 20 (PF + FSF)
 **Time:** ~45 minutes
 
@@ -19,7 +19,7 @@ Nội dung thực tế: Quadro bốn rủi ro của CAIS là phân loại rủi 
 
 ### CAIS  Trung tâm An toàn AI
 
-- Được thành lập: 2022 tại San Francisco, bởi Dan Hendrycks và các đồng nghiệp (tên "Zhang" đề cập đến một cộng tác viên ban đầu, không phải là một đồng sáng lập hiện tại; xem trang web CAIS cho lãnh đạo hiện tại).
+- Được thành lập: 2022 tại San Francisco, bởi Dan Hendrycks và Oliver Zhang. Hendrycks là Giám đốc điều hành và nghiên cứu; Zhang là Giám đốc điều hành.
 - Tình trạng: 501 ((c) ((3) phi lợi nhuận.
 - Kết quả đáng chú ý năm 2023: tuyên bố về nguy cơ tuyệt chủng, được đồng ký bởi hàng trăm nhà nghiên cứu và CEO. Được tuyên bố: "Há giảm nguy cơ tuyệt chủng từ AI nên là ưu tiên toàn cầu cùng với các rủi ro quy mô xã hội khác như đại dịch và chiến tranh hạt nhân".
 - 2026 sản phẩm: bảng điều khiển AI cho đánh giá mô hình biên giới, Chỉ số lao động từ xa (cùng với AI quy mô), Tờ chiến lược siêu thông minh, Báo chí AI Frontiers.
