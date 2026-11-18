@@ -3,7 +3,7 @@
 > لقد بنيت أجهزة الإشارة، ووضعها، وخطوط الأنابيب RAG، وطلبات الوظائف، وطبقات التخزين الآلي، وآفاق الحراسة. بشكل منفصل في عزلة مثل ممارسة الموازين الغيتارية دون عزف أغنية هذا الدرس هو الأغنية. ستقومين بتوصيل كل مكون من الدروس 01-12 إلى خدمة واحدة جاهزة للإنتاج ليس لعبة ليس عرضًا تجريبيًا نظام يتعامل مع حركة المرور الحقيقية، يفشل بشكل رائع، يتدفق الرموز، يتتبع التكاليف، ويعيش على قيد الحياة لأول 10,000 مستخدم.
 
 **Type:** Build (Capstone)
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 Lessons 01-15
 **Time:** ~120 minutes
 **Related:**المرحلة 11 · 14 (MCP) لاستبدال مخططات الأدوات المخصصة بروتوكول مشترك؛ المرحلة 11 · 15 (التخزين السريع) لتخفيض التكاليف بنسبة 50-90% على المواعيد المسبقة المستقرة.
@@ -225,8 +225,8 @@ graph TD
 | Queries per user per day | 5 | Product analytics |
 | Avg input tokens per query | 1,500 | Measured (system + context + user) |
 | Avg output tokens per query | 400 | Measured |
-| Input price per 1M tokens | $5.00 | OpenAI GPT-5 pricing |
-| Output price per 1M tokens | $15.00 | OpenAI GPT-5 pricing |
+| Input price per 1M tokens | $2.50 | OpenAI GPT-4o pricing |
+| Output price per 1M tokens | $10.00 | OpenAI GPT-4o pricing |
 | Cache hit rate | 35% | Measured from cache metrics |
 | Effective daily queries | 32,500 | 50,000 * (1 - 0.35) |
 
