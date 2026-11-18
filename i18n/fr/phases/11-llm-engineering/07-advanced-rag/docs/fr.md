@@ -3,7 +3,7 @@
 > RAG de base récupère les plus similaires de la partie supérieure. Cela fonctionne pour les questions simples. Il se décompose pour le raisonnement multi-hop, les requêtes ambiguës et les grandes corporations. RAG avancé est la différence entre une démo qui fonctionne sur 10 documents et un système qui fonctionne sur 10 millions.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11, Lesson 06 (RAG)
 **Time:** ~90 minutes
 **Related:**La phase 5 · 23 (Strategie de déchiquetage pour RAG) couvre les six algorithmes de déchiquetage  récursif, sémantique, phrase, parent-document, déchiquetage tardif, récupération contextuelle  avec des repères Vectara/Anthropic. Cette leçon s'appuie sur le dessus: recherche hybride, réévaluation, transformation de requête.
@@ -89,7 +89,7 @@ Modèles communs de réévaluation (2026 ligne):
 - Jina-Reranker-v2 Multilingue: poids ouvert, plus de 100 langues
 - bge-renanker-v2-m3: poids ouvert, ligne de départ forte
 - cross-encoder/ms-marco-MiniLM-L-6-v2: poids ouvert, fonctionne sur CPU pour la prototypage
-- ColBERTv2 / Jina-ColBERT-v2: ré-rangers multi-vectoriels d'interaction tardive  O(tokens) pas O(docs) au moment du score
+- ColBERTv2 / Jina-ColBERT-v2: ré-rangers multivéctoriels à interaction tardive  $O(\text{tokens})$- Je ne sais pas .$O(\text{docs})$au moment de la marque
 
 ### Transformation de requête
 

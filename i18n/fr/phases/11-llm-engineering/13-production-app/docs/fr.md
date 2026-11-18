@@ -3,7 +3,7 @@
 > Vous avez construit des prompts, des emblèmes, des pipelines RAG, des appels de fonction, des couches de mise en cache et des barreaux de protection. Separément. Dans l'isolement. Comme pratiquer les balances de guitare sans jamais jouer de chanson. Cette leçon est la chanson. Vous intégreriez tous les composants des leçons 1 à 12 dans un seul service prêt à la production. Pas un jouet. Pas une démo. Un système qui gère le trafic réel, échoue avec grâce, diffuse des jetons, suit les coûts et survit à ses 10 000 premiers utilisateurs.
 
 **Type:** Build (Capstone)
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 Lessons 01-15
 **Time:** ~120 minutes
 **Related:**Phase 11 · 14 (MCP) pour remplacer les systèmes d'outils sur mesure par un protocole partagé; Phase 11 · 15 (Cachage rapide) pour une réduction des coûts de 50 à 90% sur les préfixes stables.
@@ -225,8 +225,8 @@ Avant d'expédition, évaluez votre coût mensuel.
 | Queries per user per day | 5 | Product analytics |
 | Avg input tokens per query | 1,500 | Measured (system + context + user) |
 | Avg output tokens per query | 400 | Measured |
-| Input price per 1M tokens | $5.00 | OpenAI GPT-5 pricing |
-| Output price per 1M tokens | $15.00 | OpenAI GPT-5 pricing |
+| Input price per 1M tokens | $2.50 | OpenAI GPT-4o pricing |
+| Output price per 1M tokens | $10.00 | OpenAI GPT-4o pricing |
 | Cache hit rate | 35% | Measured from cache metrics |
 | Effective daily queries | 32,500 | 50,000 * (1 - 0.35) |
 
