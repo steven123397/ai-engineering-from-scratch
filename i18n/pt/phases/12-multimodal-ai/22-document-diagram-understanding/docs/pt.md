@@ -3,7 +3,7 @@
 > Os documentos não são fotos. Um PDF, documento científico, faturamento ou formulário manuscrito tem um layout, tabelas, diagramas, notas de rodapé, cabeçalhos e estrutura semântica que a compreensão de imagens simples não pode capturar. A pilha pré-VLM era um pipeline: Tesseract OCR + LayoutLMv3 + heurísticas de extracção de tabela. A onda VLM substituiu os modelos sem OCR  Donut (2022), Nougat (2023), DocLLM (2023)  que emitem marcas estruturadas diretamente. Em 2026, a fronteira é apenas "alimentar a imagem da página para Claude Opus 4.7 em 2576px nativo", e a saída de marcação estruturada vem gratuitamente. Esta lição lê o arco de três eras da IA de documentos.
 
 **Type:** Build
-**Languages:** Python (stdlib, layout-aware document parser skeleton)
+**Languages:** Python (stdlib, layout-aware document parser skeleton), TypeScript
 **Prerequisites:** Phase 12 · 05 (LLaVA), Phase 5 (NLP)
 **Time:** ~180 minutes
 
@@ -74,7 +74,7 @@ LayoutLMv3 é o auge da compreensão de documentos baseados em OCR. Forte em for
 
 ### DocLLM (2023)
 
-DocLLM (Wang et al., arXiv:2401.00908) é o irmão gerador do LayoutLM. Gera respostas de forma livre condicionadas a tokens de layout. Melhor para QA em documentos; ainda depende da entrada de OCR.
+DocLLM (Wang et al., arXiv:2401.00908, apresentado 31 de dezembro de 2023, então o ID carrega um prefixo de janeiro de 2024) é o irmão gerativo do LayoutLM. Gera respostas de forma livre condicionadas a tokens de layout. Melhor para QA em documentos; ainda depende da entrada de OCR.
 
 ### Era 3  VLM-nativo (2024+)
 
@@ -83,7 +83,7 @@ DocLLM (Wang et al., arXiv:2401.00908) é o irmão gerador do LayoutLM. Gera res
 - LLaVA- NEXT 336-tile AnyRes funciona para pequenos documentos.
 - Qwen2.5VL de resolução dinâmica lida com 2048+ pixels nativo.
 - Claude Opus 4.7 suporta documentos de 2576px.
-- PaliGemma 2 (abril de 2025) treina especificamente para documentos + escrita à mão.
+- PaliGemma 2 (dezembro de 2024) treina especificamente para documentos + escrita à mão.
 
 A lacuna entre o VLM-nativo e o OCR-pipeline foi rapidamente encerrada.
 

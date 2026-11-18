@@ -3,14 +3,14 @@
 > Um vídeo 4K de 1 hora a 24 FPS, parcheado e incorporado, produz a ordem de 60 milhões de tokens. Um episódio de podcast de 2 horas transcrito é de 30.000 tokens. Um filme completo de Blu-ray, mesmo comprimido com agressão, é de centenas de milhares de tokens. O Gemini 1.5 do Google (março de 2024) abriu esta era com um contexto de 10 milhões de tokens, fazendo uma recall confiável de agulha em uma pilha de feno em vídeos de uma hora. LWM (Liu et al., fevereiro 2024) mostrou o caminho de escala da atenção do anel. O LongVILA e o Video- XL aumentaram ainda mais a ingestão. O VideoAgent trocou o contexto bruto por recuperação agente. Cada abordagem é uma troca diferente na composição, na recordação e na complexidade da engenharia. Esta lição lê-os lado a lado.
 
 **Type:** Build
-**Languages:** Python (stdlib, needle-in-haystack simulator + agentic-retrieval router)
+**Languages:** Python (stdlib, needle-in-haystack simulator + agentic-retrieval router), TypeScript
 **Prerequisites:** Phase 12 · 17 (video temporal tokens)
 **Time:** ~180 minutes
 
 ## Objetivos de aprendizagem
 
 - Calcule o conteúdo total de tokens visuais para vídeos de formato longo em diferentes FPS e pooling.
-- Explique os três caminhos de escalagem: contexto bruto (Gemini 1.5), atenção ao anel (LWM), compressão de tokens (LongVILA / Video-XL).
+- Explique os quatro caminhos de escalagem: contexto bruto (Gemini 1.5), atenção ao anel (LWM), compressão de tokens (LongVILA / Video-XL), recuperação agente (VideoAgent).
 - Compare VLMs de vídeo de contexto bruto vs VLMs de vídeo de recuperação de agentes (VideoAgent) em precisão e latência.
 - Desenhar um teste de agulha em um monte de feno para um vídeo de 30 minutos e medir a recall em um minuto específico.
 
@@ -20,7 +20,7 @@ Um único quadro de patches de tamanho Qwen2.5VL com 384 resoluções nativas é
 
 Um filme de 2 horas em 1 FPS é de 583k tokens. Além da maioria dos modelos abertos de 2026; requer Gemini 2.5 Pro ou agrupamento mais agressivo.
 
-Surgiram três caminhos de escala.
+Foram quatro caminhos de escalada.
 
 ## O conceito
 
@@ -36,7 +36,7 @@ Engenharia: uma implementação de atenção personalizada com hierarquia de mem
 
 A atenção em anel distribui longas sequências entre dispositivos em um "anel" onde cada dispositivo mantém um pedaço.
 
-LWM (Liu et al., 2024) treinou um modelo de contexto de 1M-token desta forma.
+LWM (Liu et al., 2024) treinou um modelo de contexto de 1M-token desta forma. Escalas de memória por dispositivo com o pedaço que cada dispositivo mantém, então adicionar dispositivos estende o contexto de forma aproximada linear.
 
 LongVILA (arXiv:2408.10188) adaptou o padrão para VLMs. Vídeos de 1400 quadros em 192 tokens por quadro = contexto de 268k, treinados com atenção de anel em paralelo de 8 vias.
 
@@ -118,7 +118,7 @@ Esta lição produz`outputs/skill-long-video-strategy-planner.md`. Dada a duraç
 
 3. Comparar o conteúdo bruto Qwen2.5-VL-72B (contexto 80k) com o VideoAgent (Claude 3.5 + recuperação) em um vídeo de 1 hora. Qual vence na recordação? Qual vence na latência?
 
-4. A escala de custo de memória da atenção do anel varia linearmente em comprimento de sequência e linearmente em número de dispositivos. Explique por que e o que falha se você deixar cair a fase de rotação do anel.
+4. As escalas de memória de atenção de anel por dispositivo com comprimento de sequência dividido pelo número de dispositivos, enquanto o cálculo total de atenção permanece quadrático. Explique por que e o que falha se você deixar cair a fase de rotação de anel.
 
 5. Leia Gemini 1.5 Secção 5 sobre agulha em um monte de feno.
 

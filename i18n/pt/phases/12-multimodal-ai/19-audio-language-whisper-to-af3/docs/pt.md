@@ -3,7 +3,7 @@
 > Whisper (Radford et al., dezembro de 2022) resolveu o reconhecimento de fala  680k horas de fala multilingue deficiente, um simples transformador de codificador-decodificador, um ponto de referência que fez com que cada versão subsequente da ASR o citasse. Mas reconhecer não é raciocínio. Perguntar "que instrumentos estão nesta gravação" ou "que emoção o orador está expressando" ou "o que aconteceu no minuto 3" requer entendimento de áudio, não transcrição. Qwen-Audio, SALMONN, LTU e o Audio Flamingo 3 da NVIDIA (AF3, julho 2025) construíram progressivamente essa pilha: manter os codificadores da classe Whisper, ligar os Q-formadores, treinar dados de instrução de texto de áudio, adicionar raciocínio de cadeia de pensamento. Esta lição vai no arco.
 
 **Type:** Build
-**Languages:** Python (stdlib, log-Mel spectrogram + audio Q-former skeleton)
+**Languages:** Python (stdlib, log-Mel spectrogram + audio Q-former skeleton), TypeScript
 **Prerequisites:** Phase 6 (Speech and Audio), Phase 12 · 03 (Q-Former)
 **Time:** ~180 minutes
 
@@ -36,7 +36,7 @@ Cada codificador de áudio começa com a mesma característica: um espectrograma
 2. Transformação Fourier de curto prazo com janelas de 25 ms, salto de 10 ms.
 3. Tomar a magnitude do resultado da FFT.
 4. Aplicar bancos de filtros Mel (normalmente 80 filtros com espaço de registro de 0-8000 Hz) para distorcer a frequência perceptiva.
-5. Compressão de log (log(1 + x)) para o intervalo dinâmico.
+5. Compressão de tronco$(\log(1 + x))$para o alcance dinâmico.
 
 Resultado: uma matriz 2D de forma (T, 80) onde T é o número de quadros de tempo. Para um clip de 30 segundos a frequência de quadros de 100 Hz: (3000, 80).
 
@@ -54,7 +54,7 @@ O Whisper foi treinado com dados dominantes da fala. É mais fraco para música 
 
 O BEATs (Chen et al., 2022) é um transformador auto-supervisionado treinado no AudioSet. Captura música e sons ambientais melhor do que o Whisper no mesmo número de parâmetros.
 
-AF-Whisper (Híbrido do Audio Flamingo 3): Whisper + BEATs concato funciona como entrada de áudio.
+AF-Whisper (encoder de Áudio Flamingo 3): comece com o encoder Whisper-large-v3 e continue treinando-o em voz, som e música juntos, de modo que um encoder carrega tanto o sinal linguístico quanto o acústico. Sistemas anteriores como SALMONN obtiveram a mesma cobertura por concatenar características de Whisper e BEAT.
 
 ### Audio Q-former
 
@@ -70,7 +70,7 @@ Qwen-Audio (Chu et al., 2023): arquitetura similar, treinada em um conjunto de d
 
 LTU  Ouça, pense, compreenda (Gong et al., 2023): dados de raciocínio explícito, foque na cadeia de pensamento em cima de clips de áudio.
 
-Audio Flamingo 3 (Goel et al., julho 2025): a atual SOTA aberta. 8B LLM backbone (Qwen2 7B), Whisper-large encoder concat BEATs, 64 query Q-former, treinamento em 1M + pares de instrução de áudio-texto. MMAU 0.72, combina fronteira proprietária em algumas sub-tarefas.
+Audio Flamingo 3 (Goel et al., julho 2025): a atual SOTA aberta. 7B LLM backbone (Qwen2.5-7B), um codificador de áudio AF-Whisper construído a partir de Whisper-large-v3, pequenas camadas de adaptador no LLM, treinamento em pares de instrução de áudio-texto 1M +. MMAU 0.72, combina com a fronteira proprietária em algumas sub-tarefas.
 
 AF3 também introduz uma cadeia de pensamento sob demanda para áudio: o modelo pode emitir tokens de pensamento opcionalmente ("deixe-me identificar os instrumentos primeiro: ...") antes da resposta final.
 

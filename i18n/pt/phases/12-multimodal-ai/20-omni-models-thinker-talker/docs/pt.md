@@ -3,7 +3,7 @@
 > A demonstração do produto do GPT-4o em maio de 2024 foi perturbadora não por causa do modelo subjacente, mas por causa da forma do produto  uma interface de voz onde você fala, o modelo vê o que a câmera vê, e fala de volta em menos de 250ms. O ecossistema aberto passou o resto de 2024 e 2025 a correr para alcançar essa superfície do produto. Qwen2.5-Omni (março 2025) é o projeto aberto de referência: um Thinker (grande transformador de geração de texto) mais um Talker (transformador paralelo de geração de voz), ligado por tokens de streaming de fala. Mini-Omni simplificou, Moshi combinou a latência, GLM-4-Voice estendeu para o chinês. Esta lição lê a arquitetura Thinker-Talker e o orçamento de latência que faz com que o diálogo em tempo real funcione.
 
 **Type:** Build
-**Languages:** Python (stdlib, streaming pipeline latency simulator + VAD loop)
+**Languages:** Python (stdlib, streaming pipeline latency simulator + VAD loop), TypeScript
 **Prerequisites:** Phase 12 · 19 (audio-LLMs), Phase 12 · 16 (any-to-any)
 **Time:** ~180 minutes
 
@@ -12,7 +12,7 @@
 - Divida o pipeline de inferência em Thinker (razão de texto) e Talker (sinteze de fala) e explique por que o streaming paralelo funciona.
 - Calcular o orçamento de tempo para primeiro byte de áudio (TTFAB) para uma interação de conversação, componente por componente.
 - Descreva a posição alinhada com o tempo do TMRoPE codificando visão, áudio e texto dentro do Pensador.
-- Nomear os três padrões de conversação em tempo real: meio duplex, turno-tomando, duplex completo.
+- Nomear os dois padrões de conversação em tempo real, meio duplex e duplex completo, e explicar como a tomada de turno VAD impulsiona a transferência de meio duplex.
 
 ## O problema
 
@@ -41,10 +41,10 @@ A separação é importante. O pensador tem que ser grande para um bom raciocín
 
 - Elas estão em paralelo.
 
-1. O pensador emite um sinal de texto.
-2. O falante consome t_i (via streaming) e emite tokens de fala s_i, s_{i+1}, ..., s_{i+k}.
+1. O pensador emite um token de texto .$t_i$- Não .
+2. O falante consome .$t_i$(via streaming) e emite tokens de fala $s_i, s_{i+1}, \ldots, s_{i+k}$- Não .
 3. O decodificador de voz consome tokens de voz à medida que eles chegam e emite amostras de áudio.
-4. Quando o Thinker está no token de texto, o Talker já transmitiu áudio para t_0..t_{i+2}.
+4. Quando o Pensador estiver no sinal de texto .$t_{i+3}$O Talker já transmitiu áudio para o$t_0, \ldots, t_{i+2}$- Não .
 
 ### Posições multimodal TMRoPE  alinhadas no tempo
 
@@ -85,7 +85,7 @@ Para uma interação de streaming típica:
 - Decodificação residual-VQ: 30 ms.
 - Decodificação de forma de onda de fala: 50-80ms.
 
-TTFAB total: 320-510ms em 7B, 600-900ms em 70B. A qualidade de fronteira geralmente significa 70B +; portanto, a diferença de latência de fronteira.
+TTFAB total: 320-490ms em 7B, 600-900ms em 70B. A qualidade de fronteira geralmente significa 70B +; portanto, a diferença de latência de fronteira.
 
 ### Matemática de taxa de tokens
 

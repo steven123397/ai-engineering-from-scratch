@@ -3,7 +3,7 @@
 > Todos os VLM que vimos até agora mantêm imagens e texto separados. Os tokens visuais vêm de um codificador de visão, fluem para um projetor, e depois encontram texto dentro do LLM. O vocabulário da visão e do texto nunca se sobrepõem. O camaleão (Meta, maio de 2024) perguntou: e se fizessem? Treinar um VQ-VAE que transforma uma imagem em uma sequência de tokens discretos de um vocabulário compartilhado. Cada documento multimodal é agora uma sequência de tokens de texto e tokens de imagem intercalados, uma única perda autoregressiva. Efeito secundário: o modelo pode gerar saídas de modalidade mista  tokens alternando texto e imagem em uma única chamada de inferência. Esta lição lê a tese da fusão inicial e constrói uma versão de brinquedo de ponta a ponta.
 
 **Type:** Build
-**Languages:** Python (stdlib, VQ-VAE tokenizer + interleaved decoder)
+**Languages:** Python, TypeScript (stdlib, VQ-VAE tokenizer + interleaved decoder)
 **Prerequisites:** Phase 12 · 05, Phase 8 (Generative AI)
 **Time:** ~180 minutes
 
@@ -39,7 +39,7 @@ O tokenizer é um autoencodeador variável quantizado por vetores.
 
 Formação: perda de reconstrução de VAE + perda de compromisso + perda de livro de códigos.
 
-Para o chameleão: uma imagem torna-se 32*32 = 1024 tokens extraídos de um vocabulário de 8192. Concatenate com tokens de texto (do vocabulário BPE do LLM, digamos 32000).
+Para Chameleon: uma imagem torna-se 32*32 = 1024 tokens extraídos de um vocabulário de 8192. Coloque esses IDs de imagem no mesmo espaço de ID que os tokens BPE de texto. O tokenizer único do Chameleon tem 65.536 entradas, e essa contagem já inclui os códigos de imagem 8192 e os tokens especiais, como os separadores de imagem. O transformador vê uma sequência, uma perda.
 
 ### O vocabulário compartilhado
 

@@ -3,7 +3,7 @@
 > A família Qwen-VL  Qwen-VL (2023), Qwen2-VL (2024), Qwen2.5-VL (2025), Qwen3-VL (2025)  é a linhagem de modelos de linguagem de visão aberta mais influente em 2026. Cada geração fez uma única aposta arquitetônica decisiva que o resto do ecossistema aberto copiou em doze meses: resolução dinâmica nativa através de M-RoPE, amostragem dinâmica-FPS com alinhamento de tempo absoluto, atenção de janela no ViT e formatos de saída de agente estruturado. Por Qwen3-VL, a receita havia se estabilizado: um codificador 2D-RoPE-ViT com entradas nativas de relação de aspecto, um projetor MLP em uma grande base de linguagem Qwen3, e estágios de treinamento que enfatizava o OCR, o enraizamento e o comportamento do agente como alvos de primeira classe. Esta lição lê a família em ordem cronológica para que compreendas por que cada botão está onde está.
 
 **Type:** Learn
-**Languages:** Python (stdlib, M-RoPE encoder + dynamic-FPS sampler)
+**Languages:** Python, TypeScript (stdlib, M-RoPE encoder + dynamic-FPS sampler)
 **Prerequisites:** Phase 12 · 06 (patch-n'-pack)
 **Time:** ~120 minutes
 
@@ -53,7 +53,7 @@ Resultado: Qwen2-VL-7B equipara GPT-4o em vários benchmarks multimodal e supero
 
 O grande passo da Qwen2.5VL foi o vídeo.
 
-- Em vez de índices de posição (quadro 0, 1, 2...), use timestamps reais. "À 0:04, o gato salta". O modelo vê`<time>0.04</time>`Tokens intercalados com tokens de quadro.
+- O eixo temporal do M-RoPE segue marcas de tempo reais, de modo que a diferença entre os dois quadros identifica os segundos entre eles. "A 0:04, o gato salta". Nenhum token de texto extra carrega o tempo, então a codificação não adiciona nenhum comprimento de sequência.
 - FPS dinâmico. Amostra a 1 FPS para imagens lentas, 4+ FPS para a ação. O usuário ou treinador escolhe; M-RoPE se adapta.
 - Atenção ao espaço é ventralhada (local dentro dos blocos) para a transmissão; atenção global a cada poucas camadas.
 - Formato de saída JSON explícito. Treinado em dados de chamada de ferramenta: "{\" ferramenta\": \"clique\", \"coordes\": [380, 220]}". Agente pronto para fora da caixa.
@@ -71,10 +71,12 @@ A linha de linhagem: até 2025, a arquitetura Qwen-VL tinha se estabilizado.
 
 O RoPE clássico gira uma consulta `q`de dimensão `d`por posição `m`utilizando coordenadas emparelhadas:
 
-```
-q_rot[2i]   = q[2i]   * cos(m * theta_i) - q[2i+1] * sin(m * theta_i)
-q_rot[2i+1] = q[2i]   * sin(m * theta_i) + q[2i+1] * cos(m * theta_i)
-theta_i     = 10000^(-2i/d)
+```math
+\begin{aligned}
+q_{\text{rot}}[2i] &= q[2i] \cos(m \theta_i) - q[2i+1] \sin(m \theta_i) \\
+q_{\text{rot}}[2i+1] &= q[2i] \sin(m \theta_i) + q[2i+1] \cos(m \theta_i) \\
+\theta_i &= 10000^{-2i/d}
+\end{aligned}
 ```
 
 O M-RoPE divide o escuro escondido em três bandas.`d = 96`. Assinar 32 dims para temporário, 32 para altura, 32 para largura. Cada faixa gira por sua própria posição de eixo. Um parche em (t=5, h=10, w=20) obtém rotações `R_t(5)`- Não .`R_h(10)`- Não .`R_w(20)`Aplicada às suas três bandas.
@@ -90,7 +92,7 @@ Dado um vídeo de duração `T`segundos e um orçamento de tokens-alvo `B`- Não
 1. Calcule o máximo de FPS que pode pagar: `fps_max = B / (T * tokens_per_frame)`- Não .
 2. Escolha um FPS alvo de `{1, 2, 4, 8}`que satisfaz .`fps <= fps_max`- Não .
 3. Se o movimento for alto (heurística de fluxo óptico ou pedido explícito do usuário), escolha FPS mais alto.
-4. Amostra uniformemente no FPS escolhido; insira `<time>t</time>`Tokens entre quadros.
+4. Escolha uniformemente no FPS escolhido; ajuste a identificação temporal M-RoPE de cada quadro a partir de sua marca de tempo em segundos.
 
 Qwen2.5-VL treina essa lógica implicitamente; na inferência o utilizador controla através de `fps`Parâmetro: Uma sequência de ação de 60 segundos em 4 FPS com 81 tokens por quadro = 19440 tokens, gerenciável em um contexto de 32k.
 
@@ -145,7 +147,7 @@ Esta lição produz`outputs/skill-qwen-vl-pipeline-designer.md`. Dada uma tarefa
 |------|-----------------|------------------------|
 | M-RoPE | "Multimodal RoPE" | 3D rotary position embedding with temporal, height, and width bands in the hidden dim |
 | Dynamic FPS | "Smart sampling" | Frame sampling rate chosen per video based on motion, duration, and token budget |
-| Absolute time token | "Timestamp token" | `<time>t</time>` interleaved in the sequence so the model sees actual seconds not frame index |
+| Absolute time encoding | "Time-aligned M-RoPE" | Temporal position IDs set from each frame's timestamp, so the model sees actual seconds, not frame index, with no extra tokens |
 | Window attention | "Local attention" | Spatial self-attention restricted to small windows for speed; global attention added periodically |
 | Structured agent output | "JSON mode" | Training data supervision teaching the VLM to emit parseable JSON with coords and tool names |
 | min_pixels / max_pixels | "Resolution bounds" | Per-request Qwen2.5-VL controls bounding total pixel count and therefore token count |
