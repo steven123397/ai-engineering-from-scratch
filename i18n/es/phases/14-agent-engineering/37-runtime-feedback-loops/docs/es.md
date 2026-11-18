@@ -3,7 +3,7 @@
 > Los agentes que no ven la salida de la orden real adivinan. Un ejecutor de retroalimentación capta stdout, stderr, código de salida y tiempo en un registro estructurado que la siguiente vuelta puede leer. Entonces el agente reacciona a los hechos en lugar de a su propia predicción de hechos.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench), Phase 14 · 35 (Init Script)
 **Time:** ~50 minutes
 
@@ -72,6 +72,7 @@ wb-feedback-loop
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado: tres registros de retroalimentación adjuntos `feedback_record.jsonl`La cola del archivo a través de las re-runs para ver el bucle se acumula.
@@ -106,7 +107,7 @@ El corredor es un envoltorio delgado que sobrevive a cada migración de marco po
 2. Añadir un`redaction`paso que tira líneas coinciden `^Bearer `o `password=`Prueba en un registro de fijación.
 3. Total de las capas`feedback_record.jsonl`tamaño de 1 MB girando a `.1`¿ Qué ?`.2`Defender la política de rotación.
 4. Añadir un`parent_command_id`Así que las cadenas de retraso son visibles: que comando produjo la entrada que el siguiente comando consumió.
-5. En el caso de las aplicaciones de la aplicación, el sistema de control de datos de la aplicación de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de datos de la aplicación de la aplicación de datos de la aplicación de datos de la aplicación de la aplicación de datos de la aplicación de la aplicación de datos de la aplicación de la aplicación de datos de la aplicación de la aplicación de la aplicación de datos de la aplicación de la aplicación de la aplicación de datos de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de datos de datos de la aplicación de la aplicación de la aplicación de la aplicación de datos de datos de la aplicación de datos de la aplicación de la aplicación de la aplicación de la aplicación de datos de datos de la aplicación de la aplicación de la aplicación de datos de la aplicación de la aplicación de datos de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de datos de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la aplicación de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de la ley de que se puede ser.
+5. Encuentra el JSONL en un pequeño TUI que resalte la última salida no cero.
 
 ## Términos clave
 

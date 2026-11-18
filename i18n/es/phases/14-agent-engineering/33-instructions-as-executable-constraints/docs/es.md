@@ -3,7 +3,7 @@
 > Las instrucciones escritas como prosa son deseos. Las instrucciones escritas como restricciones son pruebas. El banco de trabajo convierte cada regla en algo que un agente puede verificar en el tiempo de ejecución y un revisor puede verificar después del hecho.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~50 minutes
 
@@ -96,6 +96,7 @@ wb-rule-checkoff
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado: conjunto de reglas analizadas, seguimiento de ejecución, paso/fallo por regla, y un `rule_report.json`guardado junto al guión.
@@ -104,11 +105,11 @@ Resultado: conjunto de reglas analizadas, seguimiento de ejecución, paso/fallo 
 
 Tres patrones separan un conjunto de reglas que dura un cuarto de uno que se descompone en una semana.
 
-**Severity tagging at write time.**Cada regla tiene un significado .`severity`¿ Qué es esto ?`block`¿ Qué ?`warn`, o`info`El controlador informa de los tres; el tiempo de ejecución sólo se niega a`block`La mayoría de los equipos exageran la gravedad temprano y luego la debilitan silenciosamente bajo presión de fecha límite; etiquetando en el momento de escribir obliga a la calibración hacia adelante.`block`la regla en un `overrides.jsonl`registro de auditoría.
+**Severity tagging at write time.**Cada regla tiene un significado .`severity`¿ Qué es esto ?`block`¿ Qué ?`warn`, o`info`El controlador informa de los tres; el tiempo de ejecución sólo se niega a`block`La mayoría de los equipos exageran la gravedad temprano y luego la debilitan silenciosamente bajo presión de fecha límite; etiquetando en el momento de escribir obliga a la calibración hacia adelante.`block`La regla en un `overrides.jsonl`registro de auditoría.
 
 **Rule expiry as a forcing function.**Cada regla tiene un significado .`expires_at`La fecha de la fecha de la publicación (por defecto 90 días a partir de la fecha de publicación).`info`Los datos de la revisión de código de IA de Cloudflare (abril de 2026, 131.246 revisiones se ejecutan en 5.169 repos en 30 días) mostraron que los conjuntos de reglas con vencimiento explícito se mantuvieron bajo 30 reglas por repos; los conjuntos sin crecieron a 80 + con la mayoría nunca disparando.
 
-**Markdown-as-source, JSON-as-cache.** `agent-rules.md`es el archivo autor; `agent-rules.lock.json`El bloqueo se regenera por un gancho precomitado. las diferencias de marcado son revisables; el análisis JSON se mantiene fuera de cada giro. La misma forma que`package.json`- ¿ Qué ?`package-lock.json`y `Cargo.toml`- ¿ Qué ?`Cargo.lock`¿ Qué ?
+**Markdown-as-source, JSON-as-cache.** `agent-rules.md`es el archivo autor; `agent-rules.lock.json`El bloqueo se regenera por un gancho precomitado. las diferencias de marcación son revisables; el análisis de marcación se mantiene fuera de cada giro, porque el comprobador carga solo el pequeño JSON preconstruido. La misma forma que`package.json`- ¿ Qué ?`package-lock.json`y `Cargo.toml`- ¿ Qué ?`Cargo.lock`¿ Qué ?
 
 ## Usalo
 

@@ -3,7 +3,7 @@
 > El historial de chat es volátil. El repo es duradero. El banco de trabajo almacenan el estado del agente en archivos versionados para que la próxima sesión, el siguiente agente y el siguiente revisor lean todas de la misma fuente de verdad.
 
 **Type:** Build
-**Languages:** Python (stdlib + `jsonschema` optional)
+**Languages:** Python (stdlib + `jsonschema` optional), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~60 minutes
 
@@ -81,6 +81,7 @@ wb-state-persist
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 El guión dice:`workdir/agent_state.json`y `workdir/task_board.json`, los muta en dos vueltas, e imprime el estado validado en cada paso.
@@ -95,7 +96,7 @@ Cuatro patrones convierten el mínimo de la lección en algo que un monorepo mul
 
 **Separate large artifacts from state.**No almacenes CSV, transcripciones largas o archivos generados en `agent_state.json`. Guarde el artefacto como un archivo separado (o cargue al almacenamiento de objetos) y mantenga solo el camino en estado. Los puntos de control se mantienen pequeños y rápidos; los artefactos crecen de forma independiente.
 
-**Event sourcing for audit, snapshots for resume.**Aplicar a un registro de eventos (`state.events.jsonl`) en cada mutación; de forma periódica, una instantánea de `state.json`Resume lee el instantáneo, luego reproduce cualquier evento después de la timestamp de la instantánea. Esto cuesta más disco pero le permite reproducir las decisiones del agente literalmente  esencial cuando se deparan ejecuciones de horizonte largo. La misma forma que utiliza Postgres internamente para WAL.
+**Event sourcing for audit, snapshots for resume.**Aplicar a un registro de eventos (`state.events.jsonl`) en cada mutación; de forma periódica, una instantánea de `state.json`Resume lee la instantánea, luego reproduce cualquier evento después de la timestamp de la instantánea. Esto cuesta más disco pero le permite reproducir las decisiones del agente literalmente  esencial cuando se deparan las ejecuciones de largo horizonte. Postgres utiliza la misma idea de registro más punto de control en la capa de almacenamiento con su WAL, aunque a un nivel mucho menor que los eventos de aplicación.
 
 **Schema migrations or refuse to load.**El `schema_version`Cuando el administrador carga un archivo en una versión desconocida, se niega a leer. Envía un script de migración junto al golpe de esquema; `tools/migrate_state.py`funciona de forma idempotente en cada startup.
 

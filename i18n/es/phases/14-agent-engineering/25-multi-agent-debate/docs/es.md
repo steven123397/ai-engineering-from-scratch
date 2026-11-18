@@ -3,7 +3,7 @@
 > Du et al. (ICML 2024, "Sociedad de Mentes") ejecuta instâncias de modelo N que proponen respuestas independientemente, luego se critican iterativamente entre sí en rondas R para converger. Mejora la factualidad, el seguimiento de reglas, el razonamiento.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 12 (Workflow Patterns), Phase 14 · 05 (Self-Refine and CRITIC)
 **Time:** ~60 minutes
 
@@ -82,6 +82,7 @@ debate-converge
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado: exactitud y coste por protocolo; coincidencias escasas en 2/3 de las preguntas a un coste menor.
@@ -117,7 +118,7 @@ Resultado: exactitud y coste por protocolo; coincidencias escasas en 2/3 de las 
 
 ## Leer más
 
-- [Du et al., Society of Minds (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) debate canónico multi-agente
+- [Du et al., Improving Factuality and Reasoning in Language Models through Multiagent Debate (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) debate canónico multi-agente
 - [Sparse Communication Topology (arXiv:2406.11776)](https://arxiv.org/abs/2406.11776) resultados topológicos escasos
 - [Anthropic, Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) los trabajadores orquesta­doros como variante de debate
 - [Madaan et al., Self-Refine (arXiv:2303.17651)](https://arxiv.org/abs/2303.17651) contraparte de autocrítica de modelo único

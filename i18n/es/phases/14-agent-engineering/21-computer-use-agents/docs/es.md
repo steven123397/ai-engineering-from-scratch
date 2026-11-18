@@ -3,14 +3,14 @@
 > Tres modelos de uso de computadora de producción en 2026. Todos los tres están basados en la visión. Los tres tratan las capturas de pantalla, el texto DOM y las salidas de la herramienta como entradas no confiables. Sólo las instrucciones directas del usuario cuentan como permiso.
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 20 (WebArena, OSWorld), Phase 14 · 27 (Prompt Injection)
 **Time:** ~60 minutes
 
 ## Objetivos de aprendizaje
 
 - Describa el uso de computadoras de Claude: captura de pantalla en, teclado/músculo de comandos fuera, ninguna API de accesibilidad.
-- Nombre de los números de referencia de los tres modelos en OSWorld / WebArena / Online-Mind2Web.
+- Recordemos los números de referencia de lanzamiento que cita esta lección: OpenAI CUA en OSWorld / WebArena / WebVoyager, y Gemini 2.5 Uso de la computadora en Online-Mind2Web.
 - Explica el patrón de seguridad por paso de los documentos de uso de computadora Gemini 2.5.
 - Resumen el contrato de entrada no confiable que cumplen los tres modelos.
 
@@ -92,6 +92,7 @@ computer-use-cursor
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 La salida muestra que el clasificador de seguridad capta una directiva inyectada en texto DOM y bloquea una compra no confirmada.

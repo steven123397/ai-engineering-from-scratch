@@ -3,7 +3,7 @@
 > La memoria híbrida ejecuta tres almacenes en paralelo  vector para la similitud semántica, KV para la búsqueda rápida de hechos, gráfico para el razonamiento de relación entre entidades  con una capa de puntuación que las fusiona en la recuperación. Este es un patrón de producción ampliamente utilizado para la memoria externa; Mem0 (Chhikara et al., 2025) es una implementación de referencia.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 07 (MemGPT), Phase 14 · 08 (Letta Blocks)
 **Time:** ~75 minutes
 
@@ -16,7 +16,7 @@
 
 ## El problema
 
-Una tienda está mal para una de las tres clases de consultas:
+Cada tienda es adecuada para una de las tres clases de consultas:
 
 - **Semantic similarity**¿Qué hablamos sobre la deriva de agentes la semana pasada? Vector gana, KV y grafo faltan.
 - **Fact lookup** "cuál es el número de teléfono del usuario?" KV gana; vector es un desperdicio, gráfico es un exceso.
@@ -32,7 +32,7 @@ Mem0 (arXiv:2504.19413, abril 2025) en `add(text, user_id, metadata)`¿Qué es e
 
 1. Extraer datos de los candidatos del texto (un paso impulsado por el LLM).
 2. Escriba cada hecho en el almacén vectorial (embedding) para la búsqueda semántica.
-3. Escriba cada hecho en la tienda KV con teclado (user_id, fact_type, entity) para la búsqueda O(1).
+3. Escriba cada hecho en el almacén KV con teclado (user_id, fact_type, entity) para $O(1)$- ¿Qué?
 4. Escriba cada hecho en el almacén de gráficos (Mem0g) como bordes tipografados para consultas de relación.
 
 En el`search(query, user_id)`¿Qué es esto ?
@@ -106,6 +106,7 @@ ae-memory-fusion
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 La salida muestra tres vías de recuperación separadas más el top-k fusionado.`main()`y ver el cambio de clasificación.

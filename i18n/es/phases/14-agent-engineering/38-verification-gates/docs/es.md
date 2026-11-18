@@ -3,7 +3,7 @@
 > El agente no puede marcar su propio trabajo como hecho. Una puerta de verificación lee el contrato de alcance, el registro de retroalimentación, el informe de reglas y el dif, y responde a una sola pregunta: ¿está realmente completa esta tarea?
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 33 (Rules), Phase 14 · 36 (Scope), Phase 14 · 37 (Feedback)
 **Time:** ~55 minutes
 
@@ -81,13 +81,14 @@ wb-gate-sequence
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado: tres informes de veredicto, cada uno guardado junto al guión.
 
 ## Modelos de producción en la naturaleza
 
-Cuatro patrones elevan la puerta de "otro trabajo de peludo" a "el borde decisivo".
+Cinco patrones elevan la puerta de "otro trabajo de peludo" a "el borde decisivo".
 
 **Defense-in-depth, not single gate.**El gancho precomit → verificación del estado de CI → gancho pre-herramienta authz → gancho pre-merger. Cada capa es determinista por lo que un fallo en una capa es atrapado por la siguiente. el libro de juego de marzo de 2026 de microservices.io es explícito: el gancho precomit es impensable porque, a diferencia de una habilidad del lado del modelo, no depende del agente que sigue las instrucciones.
 
