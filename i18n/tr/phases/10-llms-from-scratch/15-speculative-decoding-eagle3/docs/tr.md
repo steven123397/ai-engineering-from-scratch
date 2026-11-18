@@ -3,7 +3,7 @@
 > Fase 7 · Ders 16 matematik kanıtladı: Leviathan reddetme kuralı doğrulayıcının dağılımını tam olarak korur. Bu ders 2026 üretim spekülasyonu çözme eğitim-stack görüşüdür. EAGLE-3 taslak modelini ucuz bir yaklaşımdan verifikatörün kendi gizli durumlarında eğitilmiş özel olarak inşa edilmiş küçük bir ağ haline getirmiş ve ardından tren ve sonuç dağılımlarını uyumlu hale getiren bir eğitim zamanı test döngüsü ekledi. Sonuç: 3x'ten 6.5x'e kadar hızlandırma, sohbette 0.9'dan fazla kabul edilen token oranları, dağıtımsal bir ödeme yok. 2026'da her üretim sonuç kümesi varsayılan olarak gönderir.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), Rust
 **Prerequisites:** Phase 7 · 16 (speculative decoding math), Phase 10 · 12 (inference optimization)
 **Time:** ~75 minutes
 
@@ -36,8 +36,8 @@ Yumruk .`N`Bu çağrıların bir verifikatörle geri dönüş yapılması için 
 
 - Bırak .`α`Bu, bir taslak çekilen token için beklenen kabul oranı olacaktır.`c = cost(draft) / cost(verifier)`Geçmiş doğrulayıcı başına kabul edilen tokenlerin beklenen sayısı:
 
-```
-E[accepted] = (1 - α^(N+1)) / (1 - α)
+```math
+\mathbb{E}[\text{accepted}] = \frac{1 - \alpha^{N+1}}{1 - \alpha}
 ```
 
 Kabul edilen bir token için beklenen toplam duvar süresi `(N * c + 1) / E[accepted]`- Bunu en az `N`Ve sen de tatlı noktayı alırsın.`α = 0.8, c = 0.05`: en iyi `N`5 7 civarında, hızlanma 3.2 x.`α = 0.95, c = 0.02`: en iyi `N`810 civarında, hızlanma 5×'ye doğru ilerliyor.
@@ -70,6 +70,8 @@ EAGLE-2 ağaç arayışı için, injeneri zor ama hesaplama standart bir flaş d
 | EAGLE-2 | EAGLE-1 + dynamic draft tree | 0.80-0.88 | 3-4× | ~60B tokens |
 | EAGLE-3 | Multi-layer feature fusion + TTT | 0.88-0.92 | 3.5-6.5× | ~60-200B tokens |
 | Lookahead | No draft (Jacobi iteration) | N/A | 1.3-1.6× | None |
+
+- Evet .`α`sütun, kabul edilen yol boyunca, sohbet referansları üzerinde, sohbet verilerine eşleşen bir taslakla birlikte, kabul edilen yol boyunca bir token oranıdır. Bu üst banddır. 10 · 25 aşaması farklı bir kurulumdan EAGLE-3 için 0.82 alıntı yapar ve 17 · 05 aşaması genel sohbette 0.6 ila 0.8 ile üretim dağıtımlarını planlar.`α`Seçmeden önce kendi trafikte.`N`- Evet .
 
 2026'da üretimi: vLLM ve SGLang varsayılan EAGLE-3 mevcut olduğunda, EAGLE-2 aksi takdirde. TensorRT-LLM Meta ve NVIDIA kamu modelleri için en hızlı Medusa yolu var. llama.cpp CPU dağıtımları için vanilla taslak gemileri.
 

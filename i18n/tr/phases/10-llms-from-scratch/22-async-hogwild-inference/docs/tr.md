@@ -3,7 +3,7 @@
 > Spekülatör çözme (Fase 10 · 15) bir dizi içinde simgeler paralelleştirir. Çoklu ajan çerçeveleri bütün diziler boyunca paralelleşir ancak açık bir koordinasyonu zorlar (sayma, alt görev bölüşümü). Hogwild! Inference (Rodionov et al., arXiv:2504.06261) başka bir şey yapar: aynı LLM'nin N örneklerini paralel olarak SHARED anahtar değerleri önbelleği ile çalıştırın. Her işçi diğer işçilerin oluşturduğu simgelerini anında görür. Modern akıl yürütme modelleri  QwQ, DeepSeek-R1  herhangi bir ince ayarlama yapmadan paylaşılan bu önbelleği aracılığıyla kendi kendini koordine edebilir. Bu yaklaşım deneysel ama bu, spekülasyonu çözmeye ortogonal olarak oturan bir sonuç paralelliğinin tamamen yeni bir eksisini açar. Bu ders, iki işçi Hogwild'i uyguluyor! stdlib Python'da simülatör ve ortak önbelleği işbirliğinin mevcut modelin akıl yürütme yeteneklerinden neden ortaya çıktığını açıklar.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), Rust
 **Prerequisites:** Phase 10 · 12 (inference optimization), Phase 10 · 15 (speculative decoding)
 **Time:** ~60 minutes
 
@@ -55,7 +55,7 @@ Makale adı, asinkron güncelleme optimizer olan Hogwild! SGD'ye (Recht et al., 
 
 ### RoPE bu işlemleri kolaylaştırır.
 
-Rotary Position Embeddings (RoPE, Su et al. 2021) pozisyon bilgileri Q ve K vektörlerinde dönüşüm yoluyla kodlar.`i`Ortak önbelleğe konumdaki yazılar `p`Bu pozisyonu okuyan diğer çalışanlar önbelleğe kaydedilen girişleri doğrudan kullanabilir.
+Rotary Position Embeddings (RoPE, Su et al. 2021) konum bilgileri, Q ve K vektörlerinde dönüş yoluyla kodlanır. Dönüştürülen sorgu ve döngülmüş bir anahtar arasındaki dikkat puanı yalnızca görevi mesafeden bağlı olduğu için, önbelleğe alınan girişlerin tümü yeniden hesaplanmadan yeni bir ofset'e geçebilir: her önbelleğe alınan anahtarı yeniden döngülmek yerine sorguyu döndür. Hogwild! Inference bunu önbelleği blokuna bir kez yapar: konumdaki sorgu için `i_q`ve bloktan başlayan bir blok.`i_k`Bu işçinin görüşüyle sorgu göreceli mesafe ile döndürülür.`i_q - i_k`Bu yöntem, her çalışanın kendi sırasıyla paylaşılan önbelleği bloklarını görmesidir. Bu hile, bir blokun birer birer hareketini sağlar.
 
 Hogwild! öğrenilmiş pozisyon veya mutlak pozisyon modelinde, her eşzamanlı yazıda önbelleği geçersiz kılmak gerekir. RoPE önbelleği istikrarlı kalmasına izin verir.
 
