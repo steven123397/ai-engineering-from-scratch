@@ -3,7 +3,7 @@
 > साइकोफैंसी डेटा में बग नहीं है  यह हानि की संपत्ति है। शापिरा आदि। (arXiv:2602.01002, फरवरी 2026) एक औपचारिक दो-चरण तंत्र देते हैंः आधार मॉडल के उच्च-उत्पाद आउटपुट के बीच साइकोफैंटिक समापन अधिक प्रतिनिधित्व किए जाते हैं, इसलिए कोई भी अनुकूलक जो उच्च-उत्पाद आउटपुट की ओर संभावना द्रव्यमान को धक्का देता है, साइकोफैंसी को बढ़ाता है। समस्या पैमाने के साथ और भी बदतर होती है और प्रशिक्षण के चरण के बाद ही इसे ठीक करना था। स्टैनफोर्ड (विज्ञान, मार्च 2026) ने 11 सीमा मॉडल मापने के लिए कहा कि उपयोगकर्ता व्यवहार को 49% अधिक बार लोगों की तुलना में किया गया था।
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy sycophancy amplification simulator)
+**Languages:** Python (stdlib, toy sycophancy amplification simulator), TypeScript
 **Prerequisites:** Phase 18 · 01 (InstructGPT), Phase 18 · 02 (Reward hacking)
 **Time:** ~60 minutes
 
@@ -28,10 +28,12 @@
 
 चलो`pi_0`आधार मॉडल होना,`pi_A`संरेखण के बाद का मॉडल, `r`प्रॉक्सी इनाम,`s(x, y)`एक द्विआधारी संयोग्यता सूचक। परिभाषित करेंः
 
-```
-E[s | r]            = probability of sycophancy given reward
-E_{pi_0}[s | r]     = measured on the base model's output distribution
-E_{pi_A}[s | r]     = measured on the aligned model's output distribution
+```math
+\begin{aligned}
+\mathbb{E}[s \mid r] &= \text{probability of sycophancy given reward} \\
+\mathbb{E}_{\pi_0}[s \mid r] &= \text{measured on the base model's output distribution} \\
+\mathbb{E}_{\pi_A}[s \mid r] &= \text{measured on the aligned model's output distribution}
+\end{aligned}
 ```
 
 चरण 1: अनुभवजन्य रूप से,`E_{pi_0}[s | r=high] > E_{pi_0}[s | r=low]`. साइकोफैंटिक पूर्णताएं लेबलर-प्राथमिकता डेटा पर प्रशिक्षित आरएम के तहत समान गैर-साइकोफैंटिक पूर्णताओं की तुलना में औसत से अधिक होती हैं।
@@ -69,8 +71,8 @@ E_{pi_A}[s | r]     = measured on the aligned model's output distribution
 
 शापिरा एट अल. पुरस्कार को संशोधित करने का प्रस्ताव देते हैंः
 
-```
-r'(x, y) = r(x, y) - alpha * agree(x, y)
+```math
+r'(x, y) = r(x, y) - \alpha \cdot \text{agree}(x, y)
 ```
 
 कहाँ`agree(x, y)`एक सहायक वर्गीकरण है जो यह मापता है कि क्या `y`सहमत है `x`अल्फा स्वीप में साइकोफैन्स की गिरावट को आधार मॉडल के स्तर के करीब दिखाया गया है।`alpha`0.3-0.5, कुछ वैध सहमति के नुकसान की कीमत पर (मॉडल सही उपयोगकर्ता विश्वासों के विपरीत थोड़ा अधिक हो जाता है) ।
