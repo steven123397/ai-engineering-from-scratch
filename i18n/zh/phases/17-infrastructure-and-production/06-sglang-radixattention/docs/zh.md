@@ -3,7 +3,7 @@
 > 处理KV缓存作为一个在基层树中存储的第一类,可重复使用的资源,并与它一起进行调度变化:而不是FCFS (首次来,首次服务) 作为vLLM时间表,一个缓存知性调度器优先考虑使用更长的共享前置器的请求. 轮是引擎,它围绕着这个想法构建. 在Llama 3.1 8B上,SGLang达到16,200个/秒,达到vLLM的12,500个,占比29%. 在前重的RAG工作负载上,优势达到6.4倍. 在语音克隆式工作负载上,缓存击中率已清除了86%. 在2026年将部署在xAI,LinkedIn,Cursor,Oracle,GCP,Azure,AWS等400,000+个GPU上. 序列是工程师的杆.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy radix-tree cache + cache-aware scheduler)
+**Languages:** Python, TypeScript (stdlib, toy radix-tree cache + cache-aware scheduler)
 **Prerequisites:** Phase 17 · 04 (Serving Engine Internals), Phase 14 (Agentic RAG)
 **Time:** ~75 minutes
 
@@ -93,6 +93,8 @@ roofline
 ## 用它
 
 `code/main.py`运行相同的工作负载通过两个,报告预先缓存击率和吞吐量德尔塔.然后运行一个"缩订"工作负载显示6.4x崩.
+
+其他[Inside an LLM Serving GPU](https://aiengineeringfromscratch.com/inside-an-llm-serving-gpu?workload=shared&shared=4096)机器显示了实际L4运行中的Radix缓存.四个组每个组都有自己的4,096代币系统提示.一个组的第一个请求计算了提示.当提示保持在缓存中,后来的请求只计算了128代币问题.关闭Radix缓存,以看到中位数的第一个代币从479 ms到14706 ms.
 
 ## 运送它
 

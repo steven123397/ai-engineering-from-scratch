@@ -3,7 +3,7 @@
 > 现代服务引擎的吞吐量依赖于三个合并默认, 网页关注总是开放. 连续批量将新的请求注入解码代之间. 碎片的预填片长时间提示,所以解码代码永远不会饿死. 启动三种,一个H100 SXM5上的Llama 3.3 70B FP8在128次同时下推出2,200-2,400个/秒,大约比VLLM的默认高25%, 是所有三种技术的参考引擎在一个你可以图表的水平上,并结束在玩具连续批量`code/main.py`时间表像VLLM一样预填和解码.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy continuous batching scheduler)
+**Languages:** Python, TypeScript (stdlib, toy continuous batching scheduler)
 **Prerequisites:** Phase 17 · 01 (Model Serving), Phase 11 (LLM Engineering)
 **Time:** ~75 minutes
 
@@ -11,7 +11,7 @@
 
 - 解释PagedAttention作为KV缓存分配器:区块,区块表,以及为什么在生产负载时碎片化保持在4%以下.
 - 在反复级别上进行连续批量图:完成的序列如何离开批量,而新的序列如何在没有排水的情况下加入.
-- 描述一个句子中的零碎预填,并命名它保护的延迟指标 (提示:这是TTFT尾声,而不是平均吞吐量).
+- 描述一个句子中的零件预填写,并命名它保护的延迟指标 (提示:这是同时解码的ITL尾巴,而不是平均吞吐量).
 - 在一次启用每个优化之前,请检查您的版本的vLLM功能组合与兼容性矩阵.
 
 ## 问题
@@ -44,7 +44,7 @@
 
 批量尺寸从来没有被到固定数量.在不同位置的序列在输出中共享一个前进的融合.`V1 scheduler`关键不变:调节器每次解码反复运行一次,而不是每次请求.
 
-### 碎片预填保护TTFT尾
+### 碎片预填保护ITL尾部
 
 在Llama 3.3 70B上使用32k代币提示需要在一个H100上使用800ms的纯预填.在预填运行期间,在批量等待中,对每个其他序列进行代码解码.在服务循环中,一个长时间的提示的第一代币延迟 (TTFT) 成为数十个其他用户的代币间延迟 (ITL) 漏洞.
 
@@ -130,7 +130,7 @@ tensor-parallel
 | Chunked prefill | "prefill splitting" | Break long prefill into 512-token slices interleaved with decode |
 | TTFT | "first token time" | Prefill + queue + network; dominated by prefill at long prompts |
 | ITL | "inter-token latency" | Time between consecutive decode tokens; dominated by batch size |
-| Goodput | "throughput that meets SLO" | Tokens/sec where every request still hit TTFT and ITL targets |
+| Goodput | "throughput that meets SLO" | Requests/sec that still hit TTFT and ITL targets (Phase 17 · 08 reports it as the share of requests) |
 | V1 scheduler | "the new scheduler" | vLLM's 2026 scheduler; runs continuous batching with chunked prefill |
 | `--gpu-memory-utilization` | "the memory knob" | Fraction of HBM reserved for KV blocks after weights and activations |
 
