@@ -3,7 +3,7 @@
 > DP-SGD sigue siendo la actualización estándar de gradientes inyectados por ruido  proporcionan garantías formales (epsilon, delta). El gasto general en computación, memoria y utilidad es sustancial; el ajuste fino de DP eficiente en parámetros (LoRA + DP-SGD) es la configuración común de 2025 (ACM 2025). Dos cuerpos de evidencia en tensión: la inferencia de membresía basada en canarios (Duan et al., 2024) informa de un éxito limitado contra los modelos de lenguaje; la extracción de datos de capacitación (Carlini et al., 2021; Nasr et al., 2025) recupera una memorización literal sustancial. Resolución (arXiv:2503.06808, marzo 2025): la brecha es en lo que se mide  canarios insertados vs "más extractables" datos. Los nuevos diseños de canarios permiten una MIA basada en pérdidas sin modelos de sombra y dan lugar a la primera auditoría de DP no trivial de un LLM capacitado en datos reales con garantías realistas de DP. Alternativas: PMixED (arXiv:2403.15638)  predicción privada en el tiempo de inferencia a través de una mezcla de expertos en las distribuciones de tokens siguientes; generación de datos sintéticos DP (Google Research 2024). Ataque emergente: Inversión de la privacidad diferencial a través de la retroalimentación de LLM  fuga de puntaje de confianza.
 
 **Type:** Build
-**Languages:** Python (stdlib, DP-SGD noise-injection and ε-δ accountant demonstration)
+**Languages:** Python, TypeScript (stdlib, DP-SGD noise-injection and ε-δ accountant demonstration)
 **Prerequisites:** Phase 01 · 09 (information theory), Phase 10 · 01 (large-model training)
 **Time:** ~60 minutes
 
@@ -22,8 +22,11 @@ Los LLM memorizan. Carlini et al. 2021 mostraron que los modelos de lenguaje de 
 
 ### (ε, δ) - privacidad diferencial
 
-Un algoritmo aleatorio M es (ε, δ) -DP si para cualquier dos conjuntos de datos que difieren en un ejemplo y cualquier evento S:
-P(M(D) en S) <= e^ε * P(M(D') en S) + δ.
+Un algoritmo aleatorio .$M$¿ Es verdad ?$(\varepsilon, \delta)$-DP si para cualquier conjunto de datos que difieran en un ejemplo y en cualquier evento $S$¿Qué es esto ?
+
+```math
+P(M(D) \in S) \le e^{\varepsilon} \cdot P(M(D') \in S) + \delta.
+```
 
 Interpretación: la distribución de salida es lo suficientemente cercana (parametrizada por ε) para que la contribución de un solo individuo no pueda inferirse confiablemente, excepto con probabilidad δ.
 
@@ -33,7 +36,7 @@ Abadi et al. 2016. La receta estándar:
 1. Muestre un mini lote.
 2. Calcule los gradientes por ejemplo.
 3. Clip cada gradiente por ejemplo a un umbral C.
-4. Sumar los gradientes recortados y agregar el ruido gaussiano con std σ * C.
+4. Sumar los gradientes recortados y agregar el ruido gaussiano con std $\sigma \cdot C$¿ Qué ?
 5. Utilice la suma ruidosa para actualizar los parámetros.
 
 El coste de la privacidad es rastreado por un contador (contador de Moments, contador de Rényi DP). Los valores ε reportados en la literatura de LLM varían ampliamente según el modelo de amenaza, la sensibilidad de los datos y el objetivo de utilidad; no hay un estándar universal "seguro" ε. Los ejemplos publicados abarcan aproximadamente ε ≈ 110 en algunos entornos de formación LLM, pero estos son ilustrativos  no se recomiendan los valores predeterminados. La reducción de ε generalmente requiere más ruido y puede aumentar la pérdida de utilidad.
@@ -84,9 +87,9 @@ Esta lección produce`outputs/skill-dp-audit.md`. Dado que una declaración de D
 
 ## Los ejercicios
 
-1. - ¿ Qué ?`code/main.py`. Especie σ en {0,5, 1.0, 2.0} y informe el trade-off de precisión (ε, δ).
+1. - ¿ Qué ?`code/main.py`- Específico .$\sigma \in \lbrace 0.5, 1.0, 2.0 \rbrace$Se debe indicar el punto en el que el servicio de utilidad se derrumba.
 
-2. Se realizará una inserción de canarios y una prueba de pérdida de registro.
+2. Se realizará una inserción de canarios y una prueba de pérdida de registro.$\sigma = 1.0$¿ Qué ?
 
 3. En el caso de las empresas que se encuentran en el mercado de servicios, el riesgo de que se produzcan problemas de salud y de salud es el de que se produzcan problemas de salud.
 
