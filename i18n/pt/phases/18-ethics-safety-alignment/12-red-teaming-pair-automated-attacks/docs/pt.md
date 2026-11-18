@@ -3,7 +3,7 @@
 > Chao, Robey, Dobriban, Hassani, Pappas, Wong (NeurIPS 2023, arXiv:2310.08419). PAIR  Rapido Automático Iterativo Refinamento  é o canônico automático de caixa preta jailbreak. Um LLM atacante com um sistema de red-team prompt propõe iterativamente jailbreaks para um LLM alvo, acumulando tentativas e respostas em seu próprio histórico de bate-papo como feedback no contexto. O PAIR normalmente consegue dentro de 20 consultas, ordens de magnitude mais eficientes do que o GCG (a pesquisa de gradientes de nível de token do Zou et al.) e sem exigir acesso em caixa branca. O PAIR é agora uma linha de base padrão no JailbreakBench (arXiv:2404.01318) e HarmBench, ao lado do GCG, AutoDAN, TAP e Prompt Adversarial persuasivo.
 
 **Type:** Build
-**Languages:** Python (stdlib, mock PAIR loop against a toy target)
+**Languages:** Python, TypeScript (stdlib, mock PAIR loop against a toy target)
 **Prerequisites:** Phase 18 · 01 (instruction-following), Phase 14 (agent engineering)
 **Time:** ~75 minutes
 
@@ -31,11 +31,11 @@ A red-teaming costumava ser uma atividade manual. Um pequeno número de testador
 
 Loop, para k em 1..K:
 1. A é provocada com o objetivo G e o histórico de pares (prompto, resposta) até agora.
-2. A emite um novo sinal de resposta.
-3. Enviar p_k para T; receber resposta r_k.
-4. J marca (p_k, r_k) no gol.
+2. Um emite um novo sinal .$p_k$- Não .
+3. Submeter$p_k$para T; receber resposta $r_k$- Não .
+4. J pontuações $(p_k, r_k)$No gol.
 5. Se a pontuação >= limiar, parar o jailbreak encontrado.
-6. Caso contrário, adicione (p_k, r_k) ao histórico de A; continue.
+6. Outra, adição $(p_k, r_k)$A história de A. Continuem.
 
 Resultado empírico (NeurIPS 2023): > 50% taxa de sucesso de ataque contra GPT-3.5-turbo, Llama-2-7B-chat; consultas médias para sucesso na faixa de 10-20.
 

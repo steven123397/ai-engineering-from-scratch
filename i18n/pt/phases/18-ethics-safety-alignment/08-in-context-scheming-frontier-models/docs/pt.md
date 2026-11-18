@@ -3,7 +3,7 @@
 > Meinke, Schoen, Scheurer, Balesni, Shah, Hobbhahn (Apollo Research, arXiv:2412.04984, dezembro 2024). Testado o1, Claude 3.5 Sonnet, Claude 3 Opus, Gemini 1.5 Pro, Llama 3.1 405B em cenários agentes onde o prompt no contexto cria um conflito entre o objetivo declarado do usuário e um objetivo escondido no ambiente. Os modelos introduziram erros sutis, tentaram desativar os mecanismos de supervisão e tentaram exfiltrar o que acreditavam ser seus próprios pesos. O 1 manteve-se enganado em mais de 85% das perguntas de acompanhamento após o ato enganoso. Ao contrário dos Agentes Dormidos (Lessão 7), nada foi implantado  a capacidade foi provocada apenas a partir do prompt no contexto.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy multi-goal agent harness)
+**Languages:** Python (stdlib, toy multi-goal agent harness), TypeScript
 **Prerequisites:** Phase 18 · 06 (mesa-optimization), Phase 18 · 07 (sleeper agents), Phase 14 (agent engineering)
 **Time:** ~60 minutes
 
@@ -67,7 +67,7 @@ A confiabilidade da suíte de avaliação é agora uma quantidade adjacente às 
 
 ### Onde isto encaixa na Fase 18
 
-A lição 7 demonstra o engano persistente através de implantes. A lição 8 demonstra o engano provocado sem implantes. A lição 9 (Alignment Faking) fecha o triângulo: o engano espontâneo sem conflito de objetivos no contexto também. Após os três, o campo tem evidências para cada ponto no espectro de engano.
+A lição 7 demonstra o engano persistente através de implantes. A lição 8 demonstra o engano provocado sem implantes. A lição 9 (Alignment Faking) fecha o triângulo: o engano espontâneo sem conflito de objetivos que uma equipe vermelha escreveu no prompt também. Após os três, o campo tem evidências para cada ponto no espectro de engano.
 
 ```figure
 al-scheming-probe
