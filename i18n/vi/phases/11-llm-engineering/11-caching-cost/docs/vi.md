@@ -3,7 +3,7 @@
 > Hầu hết các công ty khởi nghiệp AI không chết vì mô hình xấu. Họ chết vì nền kinh tế đơn vị xấu. Một cuộc gọi GPT-4o chỉ tốn một phần nhỏ một xu. 10 nghìn người dùng thực hiện 10 cuộc gọi mỗi ngày chỉ tốn 250 đô la chỉ bằng mã thông báo đầu vào - trước khi bạn tính phí một đô la. Những công ty sống sót là những người coi mỗi cuộc gọi API như một giao dịch tài chính, không phải là một cuộc gọi chức năng.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 Lesson 09 (Function Calling)
 **Time:** ~45 minutes
 **Related:**Giai đoạn 11 · 15 (Tạm dịch: Caching ngay lập tức)  bài học này bao gồm bộ nhớ cache lớp ứng dụng (thầm cache ngữ nghĩa, bộ nhớ cache hash chính xác, định tuyến mô hình). Bài học 15 bao gồm bộ nhớ cache cấp cấp cấp cấp cấp (Anthropic cache_control, OpenAI tự động, Gemini CachedContent). Kết hợp cả hai để giảm chi phí 50-95%.
@@ -21,7 +21,7 @@ Bạn xây dựng một chatbot RAG, nó hoạt động tuyệt vời người d
 
 Rồi hóa đơn đến.
 
-Chi phí GPT-5 $5 per million input tokens and $15/million sản lượng.$15 input / $75 đầu ra.$1.25 input / $5 đầu ra. GPT-5-mini là $0.25/$2. Giá dưới đây là minh họa; luôn luôn kiểm tra trang giá hiện tại của nhà cung cấp.
+Chi phí GPT-5 $1.25 per million input tokens and $10/million sản lượng.$5 input / $25 đầu ra. Gemini 3.1 Pro chi phí $2 input / $12 đầu ra (giải hành lên đến 200K token). GPT-5-mini là $0.25/$2. GPT-4o, mô hình trong toán học dưới đây, là $2.50/$10. Giá cả là minh họa; luôn luôn kiểm tra trang giá hiện tại của nhà cung cấp.
 
 Đây là toán học giết chết các startup:
 
@@ -863,7 +863,7 @@ Batch API cung cấp giảm 50% trên tất cả các token. Kết quả đến 
 #     return None
 ```
 
-Trong sản xuất, thay thế quét tuyến tính bằng chỉ số vector (Redis Vector Search, Pinecone, hoặc pgvector). Quét tuyến tính hoạt động cho <1,000 mục. Ngoài ra, sử dụng ANN (các hàng xóm gần nhất) cho tìm kiếm O(log n).
+Trong sản xuất, thay thế quét tuyến tính bằng chỉ số vector (Redis Vector Search, Pinecone hoặc pgvector). Quét tuyến tính hoạt động cho <1,000 mục. Ngoài ra, sử dụng ANN (người láng giềng gần nhất) cho $O(\log n)$Tìm kiếm.
 
 ## Chuyển nó
 

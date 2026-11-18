@@ -3,7 +3,7 @@
 > Hệ thống của bạn yêu cầu là 4.000 mã thông báo. ngữ cảnh RAG của bạn là 20.000 mã thông báo. Bạn gửi cả hai với mỗi yêu cầu. Bạn cũng trả cho cả hai lần. Cấp  nhanh cho phép nhà cung cấp giữ cho tiền đề ấm ở phía của họ và tính phí bạn 10% của tỷ lệ bình thường khi tái sử dụng. Được sử dụng đúng cách, nó cắt giảm chi phí suy luận bằng 5090% và độ trễ đầu tiên mã thông báo bằng 4085%.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 · 01 (Prompt Engineering), Phase 11 · 05 (Context Engineering), Phase 11 · 11 (Caching and Cost)
 **Time:** ~60 minutes
 
@@ -46,7 +46,7 @@ Vi phạm lệnh  đặt thông điệp người dùng trên lệnh hệ thống
 
 ### Việc tính toán break-even
 
-Antropic 25% viết phí nghĩa là một khối được lưu trữ trong cache phải được đọc ít nhất hai lần để tiết kiệm tiền. 1 viết + 1 đọc trung bình 0.675x chi phí mỗi yêu cầu (gài 32%); 1 viết + 10 đọc trung bình 0.205x (gài 80%). Quy tắc ngón tay: lưu trữ bất cứ điều gì bạn mong đợi sử dụng lại ít nhất 3 lần trong TTL.
+Premium viết 25% của Anthropic (5 phút TTL) trả cho chính nó khi đọc lần đầu tiên, bởi vì một bài đọc cache có giá 0.1x. 1 write + 1 read trung bình 0,675x chi phí cho mỗi yêu cầu (thất kiệm 32%); 1 write + 10 read trung bình 0,205x (thất kiệm 80%). TTL 1 giờ tính phí 2x cho việc viết, vì vậy khối cần hai đọc để xuất hiện trước. Quy tắc: lưu trữ bất cứ điều gì bạn mong đợi sử dụng lại ít nhất 3 lần trong TTL; điều đó xóa phá vỡ-chẳng trên cả hai TTL.
 
 ```figure
 prompt-cache-hit

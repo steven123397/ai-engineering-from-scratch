@@ -3,7 +3,7 @@
 > RAG cơ bản lấy các phần tương tự nhất trên k. Điều đó hoạt động cho các câu hỏi đơn giản. Nó bị phá vỡ cho lý luận đa hop, các truy vấn mơ hồ và các cơ quan lớn. RAG nâng cao là sự khác biệt giữa một bản demo hoạt động trên 10 tài liệu và một hệ thống hoạt động trên 10 triệu.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11, Lesson 06 (RAG)
 **Time:** ~90 minutes
 **Related:**Giai đoạn 5 · 23 (Chunking Strategies for RAG) bao gồm tất cả sáu thuật toán chunking  tái phát, ngữ nghĩa, câu, tài liệu cha mẹ, chunking muộn, lấy lại ngữ cảnh  với các tiêu chuẩn Vectara / Anthropic. Bài học này xây dựng trên đỉnh: tìm kiếm lai, xếp hạng lại, chuyển đổi truy vấn.
@@ -89,7 +89,7 @@ Các mô hình xếp hạng lại phổ biến (2026 lineup):
 - Jina-Reranker-v2 Nhiều ngôn ngữ: trọng lượng mở, hơn 100 ngôn ngữ
 - bge-re-ranker-v2-m3: trọng lượng mở, cơ sở mạnh
 - cross-encoder/ms-marco-MiniLM-L-6-v2: Open-weight, chạy trên CPU để tạo mẫu
-- ColBERTv2 / Jina-ColBERT-v2: Interaction Late-Multi-vector Ranger  O(tokens) không O(docs) tại thời điểm ghi điểm
+- ColBERTv2 / Jina-ColBERT-v2: các bộ phân cấp nhiều vector tương tác muộn  $O(\text{tokens})$Không .$O(\text{docs})$Khi ghi điểm
 
 ### Query Transformation
 
