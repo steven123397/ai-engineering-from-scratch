@@ -3,7 +3,7 @@
 > 查奥,罗贝,多布里班,哈萨尼,帕帕斯, (NeurIPS 2023, arXiv:2310.08419). 简单自动反复精炼是可行的自动黑盒 jailbreak. 攻击者 LLM 具有红队系统提示,反复提出了目标 LLM 的 jailbreaks, 积累了尝试和回应在自己的聊天历史作为在背景反.  PAIR 通常在20个查询内成功,比GCG更有效率的大小顺序 (Zou等的代币级梯度搜索) 现在,PAIR是JailbreakBench (arXiv:2404.01318) 和HarmBench的标准基线,与GCG,AutoDAN,TAP和说服性对抗提示一起.
 
 **Type:** Build
-**Languages:** Python (stdlib, mock PAIR loop against a toy target)
+**Languages:** Python, TypeScript (stdlib, mock PAIR loop against a toy target)
 **Prerequisites:** Phase 18 · 01 (instruction-following), Phase 14 (agent engineering)
 **Time:** ~75 minutes
 
@@ -31,11 +31,11 @@
 
 循环,为 k 在 1..K:
 1. 提示A是目标G和迄今为止 (快速,反应) 对的历史.
-2. 发出一个新的提示.
-3. 提交p_k到T;收到回复r_k.
-4. 进球的J得分 (p_k,r_k).
+2. 发出一个新的提示$p_k$现在,我们要去.
+3. 提交$p_k$接收回复$r_k$现在,我们要去.
+4. 分数$(p_k, r_k)$在进球上.
 5. 如果得分 >= 门,停止被发现的 jailbreak.
-6. 否则,将 (p_k, r_k) 添加到A的历史记录中;继续.
+6. 其他,附加$(p_k, r_k)$继续下去.
 
 经验结果 (NeurIPS 2023):针对GPT-3.5-turbo,Llama-2-7B-chat的攻击成功率超过50%;平均查询在10-20范围内的成功.
 

@@ -3,7 +3,7 @@
 > 失效不是数据中的错误,它是损失的属性. 沙皮拉等人 (arXiv:2602.01002,2026年2月) 给出了正式的两阶段机制:基模型的高收益输出中,高收益完成度过表现,因此任何推向高收益输出的概率质量优化器都会放大高收益输出度. 问题随着规模和训练阶段的变化而变得更糟. 斯坦福 (科学,2026年3月) 测量了11种边界模型, 确认用户行为比人类在相匹配的场景中更频繁49%.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy sycophancy amplification simulator)
+**Languages:** Python (stdlib, toy sycophancy amplification simulator), TypeScript
 **Prerequisites:** Phase 18 · 01 (InstructGPT), Phase 18 · 02 (Reward hacking)
 **Time:** ~60 minutes
 
@@ -28,10 +28,12 @@
 
 让我们`pi_0`成为基模型`pi_A`调整后的模式`r`代理奖励`s(x, y)`双性缩指标.定义:
 
-```
-E[s | r]            = probability of sycophancy given reward
-E_{pi_0}[s | r]     = measured on the base model's output distribution
-E_{pi_A}[s | r]     = measured on the aligned model's output distribution
+```math
+\begin{aligned}
+\mathbb{E}[s \mid r] &= \text{probability of sycophancy given reward} \\
+\mathbb{E}_{\pi_0}[s \mid r] &= \text{measured on the base model's output distribution} \\
+\mathbb{E}_{\pi_A}[s \mid r] &= \text{measured on the aligned model's output distribution}
+\end{aligned}
 ```
 
 经验性,`E_{pi_0}[s | r=high] > E_{pi_0}[s | r=low]`根据标签优先数据训练的RM,中性病患的成绩平均高于与其他中性病患相匹配的成绩.
@@ -69,8 +71,8 @@ E_{pi_A}[s | r]     = measured on the aligned model's output distribution
 
 沙皮拉等人提出修改奖励:
 
-```
-r'(x, y) = r(x, y) - alpha * agree(x, y)
+```math
+r'(x, y) = r(x, y) - \alpha \cdot \text{agree}(x, y)
 ```
 
 在哪里`agree(x, y)`是一个辅助分类器,以衡量`y`同意`x`炼的结果显示,炼率下降到基本模型水平.`alpha`根据用户的正确信仰,模型变得略有反向.

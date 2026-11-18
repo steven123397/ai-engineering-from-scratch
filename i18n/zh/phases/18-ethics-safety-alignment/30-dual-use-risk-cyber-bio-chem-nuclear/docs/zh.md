@@ -3,7 +3,7 @@
 > 双重使用的2026年图片,域名. 生物/化学:第17课涵盖WMDP;人类生物武器采购试验 (2.53倍升级) 和OpenAI的2025年4月准备框架v2警告 ("在帮助新手创造已知的生物威胁的准") 标志着转折点. 网络 (2025年11月的人类报告):与中国相关的国家行为者使用克劳德的代理编码工具自动化到90%的网络攻击活动,只需 4-6 步骤进行人类干预;OpenAI"可靠访问"试点为检查的安全组织提供了防御双重用途工作的能力. 化学/生物执行差距侵蚀:经典的防御是"仅仅获得信息是不够的".视觉驱动的边界模型 (GPT-5.2, Gemini 3 Pro,Claude Opus 4.5,Grok 4.1) 可以观察湿实验室视频并提供实时纠正. 2025年12月:OpenAI在湿实验室实验中展示了GPT-5的反复运行,通过人工智能驱动的协议优化实现了79倍的效率提高. 新手对专家模式:人工智能为新手提供了更大的相对提升,但为专家提供了更大的绝对能力.
 
 **Type:** Learn
-**Languages:** none
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 18 · 17 (WMDP), Phase 18 · 18 (safety frameworks), Phase 18 · 28 (ecosystem)
 **Time:** ~75 minutes
 
@@ -16,7 +16,7 @@
 
 ## 问题
 
-第17课是测量方法.第30课是测量2026年状态.2024年到2025年底之间情况发生了重大变化:每个领域都跨越了2024年框架未预测的门.
+第17课是测量方法. 第30课是测量2026年状态.2024年到2025年底之间情况发生了重大变化:四个领域中的三个跨越了2024年框架未预测的门.
 
 ## 概念
 
@@ -47,6 +47,8 @@
 - 机器人编码是攻击自动化原始的.之前的人工智能网络援助仅限于代码片段水平;机器人工作流程集成侦察,利用,后利用和泄密.
 - 未来的能力增长将减少这一数量.
 - 防卫双重用途:OpenAI的"可靠访问"试点提供了检查的安全组织 (建立的事件响应公司,政府) 防卫能力访问.如果试点扩展,访问不对称性有利于防卫者.
+
+通过分析编译的代码,你可以开始进行防御. 第13阶段的反向工程轨道教你自己构建的程序,只有静态分析:[Lesson 13.32](../../../13-tools-and-protocols/32-program-anatomy-elf-from-scratch/docs/en.md)拆除[Lesson 13.33](../../../13-tools-and-protocols/33-disassembly-and-control-flow/docs/en.md)转换为伪代码[Lesson 13.34](../../../13-tools-and-protocols/34-lifting-to-pseudocode/docs/en.md)根据" 证据"的数据,[Lesson 13.35](../../../13-tools-and-protocols/35-evidence-confidence-and-unknowns/docs/en.md)现在,我们要去.[Inside a Decompiler](https://aiengineeringfromscratch.com/inside-a-decompiler)机器显示一个函数的全部管道. 执行这个工作的代理需要同一个账本,因为一个自信的解译仍然可以依赖于猜测.
 
 ### 核电
 
