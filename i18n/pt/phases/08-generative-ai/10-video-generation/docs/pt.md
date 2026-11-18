@@ -3,7 +3,7 @@
 > Uma imagem é um tensor 2D. Um vídeo é um 3D. A teoria é a mesma; a computação é 10-100 vezes mais difícil. Sora da OpenAI (Feb 2024) provou que era possível. Em 2026 Veo 2, Kling 1.5, Runway Gen-3, Pika 2.0, e WAN 2.2 vídeo de produção de navio a partir de texto em 1080p  e o open-weights stack (CogVideoX, HunyuanVideo, Mochi-1, WAN 2.2) está 12 meses atrás.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 8 · 07 (Latent Diffusion), Phase 7 · 09 (ViT), Phase 8 · 06 (DDPM)
 **Time:** ~45 minutes
 
@@ -152,7 +152,7 @@ Três botões de produção, todos diretamente do capítulo de inferência da li
 - [Brooks et al. (2024). Video generation models as world simulators](https://openai.com/index/video-generation-models-as-world-simulators/) Relatório técnico da Sora.
 - [Yang et al. (2024). CogVideoX: Text-to-Video Diffusion Models with An Expert Transformer](https://arxiv.org/abs/2408.06072) CogVideoX.
 - [Kong et al. (2024). HunyuanVideo: A Systematic Framework for Large Video Generative Models](https://arxiv.org/abs/2412.03603) HunyuanVideo.
-- [Genmo (2024). Mochi-1 Technical Report](https://www.genmo.ai/blog/mochi)Mochi-1.
+- [Genmo (2024). Mochi 1 preview model card](https://huggingface.co/genmo/mochi-1-preview)Mochi-1.
 - [Alibaba (2025). WAN 2.2](https://wanvideo.io/) abertura da SOTA em meados de 2025.
 - [Ho, Salimans, Gritsenko et al. (2022). Video Diffusion Models](https://arxiv.org/abs/2204.03458) o papel de difusão de vídeo seminal.
 - [Blattmann et al. (2023). Align your Latents (Video LDM)](https://arxiv.org/abs/2304.08818) Ancestral da Difusão de Vídeo Estabilizada.
