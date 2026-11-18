@@ -3,7 +3,7 @@
 > La descifrado especulativo (fase 10 · 15) paralela a los tokens dentro de una secuencia. Los marcos multi-agentes se paralelalizan a través de secuencias enteras pero forzan una coordinación explícita (voting, subtask splitting). ¡Hogwild! Inference (Rodionov et al., arXiv:2504.06261) hace algo más: ejecuta N instancias del mismo LLM en paralelo contra una cache de valor clave SHARED. Cada trabajador ve instantáneamente los tokens generados por cada otro trabajador. Los modelos de razonamiento modernos  QwQ, DeepSeek-R1  pueden auto-coordinarse a través de ese caché compartido sin ningún ajuste fino. El enfoque es experimental pero abre un eje completamente nuevo de paralelismo de inferencia que se encuentra ortogonal a la especificación de decodificación. ¡Esta lección implementa a un Hogwild de dos trabajadores! simulador en stdlib Python y explica por qué la colaboración de caché compartido surge de las habilidades de razonamiento del modelo existente.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), Rust
 **Prerequisites:** Phase 10 · 12 (inference optimization), Phase 10 · 15 (speculative decoding)
 **Time:** ~60 minutes
 
@@ -55,7 +55,7 @@ El nombre del documento deriva de Hogwild! SGD (Recht et al., 2011), un optimiza
 
 ### RoPE hace que esto sea tratable
 
-Los embedidos de posición rotaria (RoPE, Su et al. 2021) codifican la información de posición a través de la rotación en los vectores Q y K. Debido a que las posiciones son rotación y no compensaciones de horno, la posición de un token puede cambiar sin recalcular la entrada de caché KV. Cuando el trabajador `i`escribe en el caché compartido en posición `p`, otros trabajadores que leen esa posición pueden utilizar la entrada almacenada en caché directamente  no se requiere re-rotar.
+Embedados de posición rotativa (RoPE, Su et al. 2021) codificar la información de posición a través de la rotación en los vectores Q y K. Debido a que la puntuación de atención entre una consulta rotada y una clave rotada depende solo de su distancia relativa, todo un bloque de entradas almacenadas en caché puede moverse a un nuevo desplazamiento sin recomputo: rota la consulta en lugar de volver a rotacionar cada clave almacenada en caché. ¡Hogwild! Inference hace esto una vez por bloque de caché: para una consulta en posición `i_q`y un bloque que comienza en`i_k`En la opinión de ese trabajador, la consulta se rota por la distancia relativa `i_q - i_k`Es así como cada trabajador ve los bloques de caché compartidos en su propio orden. El truco funciona para un cambio uniforme de un bloque contiguo.
 
 En un modelo de posición aprendida o posición absoluta, Hogwild! necesitaría la invalidación de caché en cada escritura simultánea.
 

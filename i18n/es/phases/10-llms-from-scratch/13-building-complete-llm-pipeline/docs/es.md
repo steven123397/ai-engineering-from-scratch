@@ -3,13 +3,13 @@
 > Todo desde las lecciones 01 a 12 es una etapa de una tubería. Esta lección es el andamio que convierte esas etapas en una sola carrera de extremo a extremo: tokenizar, pre-trein, escala, SFT, alinear, evaluar, cuantizar, servir. No entrenarás a un modelo 70B en una computadora portátil. Producirás la capa de orquestación, el manifiesto, la puerta de evaluación y el plan de retroceso que un equipo fronterizo de 2026 utiliza para decidir qué se envíe. Esta es la piedra angular.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), Rust
 **Prerequisites:** All Phase 10 lessons 01-12
 **Time:** ~120 minutes
 
 ## Objetivos de aprendizaje
 
-- Componer las once lecciones anteriores (tokenizer, datos, pre-entrenamiento, escalado, SFT, RLHF, DPO, CAI, eval, cuantización, inferencia) en una única especificación de tubería reproducible
+- Componer las doce lecciones anteriores (dos lecciones de tokenización, datos, pre-entrenamiento, escalado, SFT, RLHF, DPO, CAI, eval, cuantización, inferencia) en una única especificación de tubería reproducible
 - Definir el contrato de artefacto entre etapas: lo que consume cada etapa, lo que produce y cómo la siguiente etapa verifica la entrada
 - Construir un orquestrador que rastrear experimentos, hashes artefactos, y puertas de envío decisiones en los umbrales de evaluación
 - Diseñar el plan de retroceso: qué artefactos son baratos para volver a usar, cuáles son caros y cuánto cuesta un puesto de control corrupto
@@ -72,7 +72,7 @@ stages:
     cost_usd: 12
 ```
 
-El hash de salida de la etapa N es el hash de entrada de la etapa N+1. Cualquier desviación y la tubería se detiene. Así es como se detecta la corrupción de datos temprano. También es cómo un compañero de equipo en un continente diferente verifica que su repetición produjo el mismo artefacto que el tuyo.
+El hash de salida de la etapa N es el hash de entrada de la etapa N+1. Cualquier desviación y la tubería se detiene. Así es como se detecta la corrupción de datos temprano. También es cómo un compañero de equipo en un continente diferente verifica que su repetición de una etapa determinista produjo el mismo artefacto que el tuyo.
 
 En la práctica los equipos utilizan un pequeño esquema YAML más un verificador manifest que difiere de la ejecución exitosa anterior.
 
@@ -150,7 +150,7 @@ El costo reportado de Llama 3 fue $61M. DeepSeek-V3 reported $5.6M para la carre
 
 Estos no son los mismos. *Reproducible* significa el mismo manifiesto más el mismo código más la misma infraestructura produce un punto de control con métricas posteriores equivalentes. *Deterministic* significa salida idéntica a bits.
 
-La formación moderna en LLM es reproducible pero no determinista. El orden reducido del entrenamiento distribuido, el no-determinismo del núcleo de GPU (cuBLAS, flash-attn) y el redondeo de precisión mixta se combinan para producir flotadores que difieren en el nivel 1e-5 entre las carreras. Esto está bien para las métricas finales, que no se mueven. Es fatal si se trata de deshacerse de diferencias de nivel de bits. La cura es registrar el hash de entrada de cada etapa, el hash de salida y las métricas de título -- si coinciden, la carrera se "reproduce" incluso si los pesos no son bit-identicos.
+La formación moderna en LLM es reproducible pero no determinista. El orden reducido del entrenamiento distribuido, el no-determinismo del núcleo de GPU (cuBLAS, flash-attn) y el redondeo de precisión mixta se combinan para producir flotadores que difieren en el nivel 1e-5 entre las carreras. Esto está bien para las métricas finales, que no se mueven. Es fatal si se trata de deshacerse de diferencias de nivel de bits. La cura es registrar el hash de entrada de cada etapa, hash de salida y métricas de título. En una repetición, los hashes coinciden solo para etapas deterministas, como el procesamiento de datos y la tokenización. Una etapa de entrenamiento escribe nuevos pesos, por lo que su hash de salida cambia. Para esas etapas, la carrera se "reproduce" cuando las métricas de los titulares coinciden, aunque los pesos no sean idénticos.
 
 ```mermaid
 graph LR
@@ -216,10 +216,16 @@ El oleoducto en `main.py`Se puede usar un sistema de evaluación para mostrar c�
 
 El flujo de trabajo canónico tiene tres comandos.
 
-```
+```bash
 python code/main.py plan    # validate manifest, compute cost estimate, print DAG
 python code/main.py run     # execute stages, writing to manifest.out.yaml
 python code/main.py gate    # read manifest.out.yaml, apply eval gates, ship-or-hold
+```
+
+El puerto de Rust funciona de la misma manera .`plan`Paso:
+
+```bash
+rustc --edition 2021 -O code/main.rs -o /tmp/lesson && /tmp/lesson plan
 ```
 
 - ¿ Qué ?`plan`La mayoría de los errores de tubería aparecen a tiempo, los umbrales faltantes de puertas, hashes obsoletos, sobrepasos presupuestarios.`plan`Es libre.`run`ahorra dinero capturando insectos en el lado barato.
@@ -249,7 +255,7 @@ Esta lección produce`outputs/skill-llm-pipeline-reviewer.md`. Le proporcione un
 | Manifest | "The recipe file" | YAML or JSON describing pipeline version, seed, per-stage config, and gate thresholds — sufficient to replay a run |
 | Content-addressed | "By hash not name" | Artifacts stored by SHA-256 of their contents, so you can never confuse version A with version B |
 | Eval gate | "The ship criteria" | Numeric thresholds on benchmark metrics and safety scores that must pass before an artifact is marked shippable |
-| KL budget | "How far alignment drifted" | A cap on cumulative KL(policy || reference) across alignment stages, enforced as a gate |
+| KL budget | "How far alignment drifted" | A cap on cumulative $\mathrm{KL}(\text{policy} \Vert \text{reference})$ across alignment stages, enforced as a gate |
 | MFU | "How much of the GPU you used" | Model FLOPs Utilization — achieved FLOPs divided by theoretical peak. 40% is typical at 70B scale, 55% at 7B |
 | Rollback plan | "What we do when it breaks" | Pre-written set of actions per stage on failure: re-run, fall back, retrain with revised inputs |
 | Orchestrator | "The conductor" | The process that reads the manifest, dispatches stages, verifies hashes, halts on any contract violation |
