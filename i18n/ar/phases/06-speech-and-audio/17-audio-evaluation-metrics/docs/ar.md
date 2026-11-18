@@ -3,7 +3,7 @@
 > لا يمكنك شحن ما لا يمكنك قياسه. هذه الدروس تسمي المقاييس 2026 لكل مهمة صوتية: ASR (WER، CER، RTFx) ، TTS (MOS، UTMOS، SECS، WER-on-ASR-round-trip) ، لغة الصوت (MMAU، LongAudioBench) ، الموسيقى (FAD، CLAP) ، والمتحدث (EER). بالإضافة إلى لوحة القيادة التي يمكنك مقارنة.
 
 **Type:** Learn
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 04, 06, 07, 09, 10; Phase 2 · 09 (Model Evaluation)
 **Time:** ~60 minutes
 
@@ -45,7 +45,7 @@
 
 **SECS (Speaker Encoder Cosine Similarity).**للتنسيق الصوتي. إيكابا تضمين كوسين بين الإشارة والإنتاج المنسق. &gt; 0.75 = نسخة قابلة للتعرف.
 
-**WER-on-ASR-round-trip.**تشغيل Whisper على إصدار TTS، حساب WER ضد النص المدخل. يلتقط تراجعات التفاهم. 2026 SOTA: &lt; 2% CER.
+**WER-on-ASR-round-trip.**تشغيل Whisper على إصدار TTS ، وحساب WER ضد نص المدخل. يلتقط تراجعات التفاهم. 2026 SOTA: &lt; 2% WER على مجموعات اختبار الإنجليزية (مجموعات الماندرين تقرير CER بدلاً من ذلك).
 
 **TTFA (time-to-first-audio).**تأخير الساعة الجدارية كوكورو-82م: ~100 ms F5-TTS: ~1 ثانية
 
@@ -79,7 +79,7 @@
 
 **CLAP Score.**درجة التنظيم النصي-الصوتي باستخدام إدمجات CLAP. &gt; 0.3 = التنظيم المعقول.
 
-**Listening panel MOS.**لا يزال الكلمة الأخيرة للموسيقى المستهلكة. سونو v5 ELO 1293 على TTS Arena (من تفضيلات الإنسان المزدوجة).
+**Listening panel MOS.**لا يزال الكلمة الأخيرة للموسيقى المستهلكة. حصلت Suno v5 على ELO 1293 على مقياس التفضيلات المزدوجة الخاص بـ Suno. هذا رقم البائع؛ تحدّث TTS Arena عن الكلام، وليس الموسيقى.
 
 ### معايير اللغة الصوتية
 
