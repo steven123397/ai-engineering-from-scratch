@@ -3,7 +3,7 @@
 > Devrimsel bir döngü ve makine kontrol edilebilir bir değerlendirici ile sınır kodlama modeli eşleştirin. Çubuk yeterince uzun sürsün. Bu, 48 skalar çarpımı kullanan 4x4 kompleks-matris çarpma prosedürünü keşfeder. 56 yıl içinde Strassen'in ilk gelişimi. Ayrıca, üretimde bulunan klüster hesaplamalarının %0,7'ini geri alan Google genelinde bir Borg programlama heuristik bulur. Mimarlık kasten sıkıcı. Kazançlar değerlendirici'nin katılamasından kaynaklanmaktadır.
 
 **Type:** Learn
-**Languages:** Python (stdlib, evolutionary-loop toy)
+**Languages:** Python, TypeScript (stdlib, evolutionary-loop toy)
 **Prerequisites:** Phase 15 · 01 (long-horizon framing), Phase 15 · 02 (self-taught reasoning)
 **Time:** ~60 minutes
 
@@ -58,7 +58,7 @@ AlphaEvolve'de çözüm: LLM'nin hiç görmediği bir değerlendirmeci gönderir
 
 LLM, kompüle edilebilir, anlamsal olarak makul değişiklikler üretebilir. 2000 satırlı Python dosyasında rastgele mutasyon GA neredeyse her zaman sözcük hatası üretir. LLM ayrıca rastgele komşularda aramaları yoğunlaştırır (herhangi bir fonksiyonu değiştir, rastgele bayt değil), bu da değerlendirmeci çağrıları çarpıcı bir şekilde azaltır.
 
-Değerlendirici, LLM'nin konfabulasiyonlarını yakalar. LLM'ler, aslında O(n^2) olduğu halde bir fonksiyonun "O(n log n) sınırında olduğunu güvenle iddia eder; bir duvar saati referans sorunu çözür.
+Değerlendirici, LLM'nin konfabulatlarını yakalar. LLM'ler bir fonksiyonun "$O(n \log n)$"Sınır"da aslında.$O(n^2)$Bu soru, duvar saatinin bir referans göstergesiyle çözülmüştür.
 
 ### AlphaEvolve sınırda yer alırken
 

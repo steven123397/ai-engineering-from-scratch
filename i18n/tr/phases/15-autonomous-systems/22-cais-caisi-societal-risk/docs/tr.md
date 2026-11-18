@@ -3,7 +3,7 @@
 > San Francisco'daki AI Güvenliği Merkezi (CAIS, Hendrycks ve Zhang tarafından 2022 yılında kurulan) dört risk çerçevesini yayınlıyor  kötü amaçlı kullanım, AI yarışları, kurumsal riskler, kötü amaçlı AI  ve yüzlerce profesör ve şirket liderinin imzaladığı yok olma riskine ilişkin Mayıs 2023 açıklaması. CAIS'ten 2026'da yayınlanan yayınlar: Sınır model değerlendirmesi için AI Dashboard, Uzak İş İndeksi (Scale AI ile), Süper İstihbarat Stratejisi Kağıdı, AI Sınırları haber bülten. Ayrı bir kurum: NIST AI Standartları ve Yenilikleri Merkezi (CAISI)  ABD hükümetine yönelik gönüllü anlaşmalar ve siber, biyolojik ve kimyasal silah risklerine odaklanan sınıflandırılmamış kapasite değerlendirmeleri. CAIS, kurumsal riskleri dört üst düzey riskten biri olarak belirtiyor: Güvenlik kültürü, katı denetimler, çok katlı savunmalar ve bilgi güvenliği temel ama düzenli olarak dağıtım hızı karşılığında satılır. Eğer imzalanırsa, Kaliforniya SB-53, ABD'de ilk devlet düzeyinde felaket riski düzenlemesi olacaktır.
 
 **Type:** Learn
-**Languages:** Python (stdlib, four-risk inventory and mitigation matcher)
+**Languages:** Python (stdlib, four-risk inventory and mitigation matcher), TypeScript
 **Prerequisites:** Phase 15 · 19 (RSP), Phase 15 · 20 (PF + FSF)
 **Time:** ~45 minutes
 
@@ -19,7 +19,7 @@ Pratik içeriği: CAIS'in dört risk çerçevesinin literatürde en çok alınt�
 
 ### CAIS  AI Güvenliği Merkezi
 
-- San Francisco'da 2022 yılında Dan Hendrycks ve meslektaşları tarafından kurulmuştur ( "Zhang" adı, mevcut bir ortak kurucu değil, erken bir işbirlikçiyi ifade eder; mevcut liderlik için CAIS web sitesine bakın).
+- 2022 yılında San Francisco'da Dan Hendrycks ve Oliver Zhang tarafından kurulmuştur. Hendrycks, Yönetim ve Araştırma Direktörüdür; Zhang Yönetim Direktörüdür.
 - Durum: 501 ((c) ((3) kâr amacı gütmeyen kuruluş.
 - Görkemli 2023 sonucu: yüzlerce araştırmacı ve CEO'nun ortak imzaladığı yok olma riskiyle ilgili açıklama. "İS'ten yok olma riskini azaltmak, salgın hastalıklar ve nükleer savaş gibi diğer toplumsal risklerle birlikte küresel bir öncelik olmalıdır" dedi.
 - 2026 çıkışları: Sınır model değerlendirmesi için AI Tablosu, Uzaktan İş İndeksi (Scale AI ile birlikte), Süper zeka Stratejisi Kağıdı, AI Sınırları haber bültenleri.
