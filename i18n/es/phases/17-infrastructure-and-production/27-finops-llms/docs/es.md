@@ -3,7 +3,7 @@
 > Las operaciones de fin de curso tradicionales se rompen en el gasto de LLM. Los costos son transacciones de tokens, no tiempo de disponibilidad de recursos. Las etiquetas no mapean  una llamada de API es una transacción, no un activo. Las decisiones de ingeniería (diseño de la oportunidad, ventana de contexto, longitud de salida) son decisiones financieras.`user_id`) para el precio de los asientos y la ampliación, por tarea (`task_id`¿ Qué es eso ?`route`) para el coste y la prioridad de la superficie del producto, por inquilino (`tenant_id`) para la economía de unidad y la renovación. Cuatro capas de tokens  prompt, herramienta, memoria, respuesta  un cubo se oculta gastar. Escala de ejecución para los productos multi-arrendatarios: límites de tasas por arrendatario (2-3 veces el pico esperado, 429 + retraso después de la prueba); límite de gasto diario (1,5-3 veces el límite contraído; activa el aumento de tasas + alerta); interruptores de apagado en el gasto z-score > 4 (pausa automática + página en llamada). Modelos de atribución: etiquetado y agregado, telemetría combinadora (trace-ID → facturación; mayor precisión), muestreo y extrapolación, asignación basada en modelos, fuente de eventos, transmisión en tiempo real. Metrica unitaria: costo por consulta resuelta, costo por artefacto generado  no $/M tokens. El etiquetado retroactivo siempre falta; instrumento de creación a petición.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy cost-attribution simulator with kill switch)
+**Languages:** Python, TypeScript (stdlib, toy cost-attribution simulator with kill switch)
 **Prerequisites:** Phase 17 · 13 (Observability), Phase 17 · 14 (Caching)
 **Time:** ~60 minutes
 
@@ -130,7 +130,7 @@ Esta lección produce`outputs/skill-finops-plan.md`.Dado el producto y la escala
 1. - ¿ Qué ?`code/main.py`¿A qué punto dispara el interruptor de muerte?
 2. Diseñar un panel de costos por inquilino, por tarea. ¿Cuáles son las 5 vistas que construye primero?
 3. Su inquilino más grande es unidad-economía-negativo. Propón tres intervenciones ordenadas por impacto del cliente.
-4. Calcula el coste por boleto resuelto para un producto de soporte: 3M tokens/bilet, ~800 boletos/día, tasa almacenada en caché GPT-5.
+4. Calcule el costo por boleto resuelto para un producto de soporte: 3M tokens/ticket, ~800 boletos/día, todas las entradas a la tasa caché de GPT-5 de $0.125/M (precio de lista de lanzamiento; compruebe la tarjeta de tarifa en vivo).
 5. Discutir si el etiquetado retroactivo puede funcionar alguna vez. ¿Cuándo es aceptable?
 
 ## Términos clave

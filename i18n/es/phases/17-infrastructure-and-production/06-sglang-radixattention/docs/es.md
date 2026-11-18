@@ -3,7 +3,7 @@
 > Trata el caché KV como un recurso reutilizable de primera clase almacenado en un árbol de radix, y cambia la programación con él: en lugar de FCFS (primero en llegar, primero en servir) como horarios vLLM, un cronista consciente de caché prioriza las solicitudes con prefijos compartidos más largos  efectivamente un cruce de radix de primera profundidad para que las ramas calientes permanezcan residentes en HBM. SGLang es el motor que construyó en torno a esta idea. En Llama 3.1 8B con las instrucciones de 1K similares a ShareGPT, SGLang alcanza ~ 16.200 tok/s a ~ 12.500 de vLLM, un ~ 29% de ventaja. En las cargas de trabajo RAG con prefijos pesados la ventaja alcanza 6,4x. En las cargas de trabajo en forma de clonación de voz, la tasa de hits de caché se eliminó en un 86%. Se desplegará en más de 400.000 GPUs en 2026 en xAI, LinkedIn, Cursor, Oracle, GCP, Azure, AWS. La cuestión es que el número 6.4x se evapora cuando el ordenado prefijo es inconsistente.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy radix-tree cache + cache-aware scheduler)
+**Languages:** Python, TypeScript (stdlib, toy radix-tree cache + cache-aware scheduler)
 **Prerequisites:** Phase 17 · 04 (Serving Engine Internals), Phase 14 (Agentic RAG)
 **Time:** ~75 minutes
 
@@ -93,6 +93,8 @@ roofline
 ## Usalo
 
 `code/main.py`Implementa una caché KV de juguete radix-tree más un cronista con dos políticas: FCFS y caché-consciente. ejecuta la misma carga de trabajo a través de ambos, informa la tasa de impacto de prefijo-cache y el delta de rendimiento. Luego ejecuta una carga de trabajo "ordenando desordenado" para mostrar el colapso de 6.4x.
+
+El [Inside an LLM Serving GPU](https://aiengineeringfromscratch.com/inside-an-llm-serving-gpu?workload=shared&shared=4096)La máquina muestra la caché de radix en una ejecución real L4. Cuatro grupos tienen cada uno su propio prompt de sistema de tokens 4.096. La primera solicitud de un grupo calcula su prompt. Mientras que ese prompt se queda en la caché, las solicitudes posteriores del grupo solo computa la pregunta de 128 tokens.
 
 ## Envío
 

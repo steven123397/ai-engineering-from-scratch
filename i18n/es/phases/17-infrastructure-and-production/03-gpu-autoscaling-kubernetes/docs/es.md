@@ -3,7 +3,7 @@
 > Tres capas, no una. Los nodos de provisiones de Karpenter se ejecutan dinámicamente (menos de un minuto, un 40% más rápido que el Cluster Autoscaler). KAI Scheduler maneja la programación de pandillas, la conciencia de la topología y las colas jerárquicas  evita la trampa de asignación parcial de 7 de 8 donde siete nodos esperan y se queman en una GPU faltante. Autoscalers de nivel de aplicación (NVIDIA Dynamo Planner, llm-d Workload Variant Autoscaler) escala en señales específicas de inferencia  profundidad de cola, utilización de caché KV  no ciclo de trabajo de CPU / DCGM. La trampa clásica de la HPA es que`DCGM_FI_DEV_GPU_UTIL`es una medición del ciclo de tarea: 100% podría ser 10 solicitudes o 100. vLLM asigna previamente memoria de caché KV, por lo que la memoria nunca activa la escalada.`WhenEmptyOrUnderutilized`política que termina con la ejecución de trabajos de GPU en mitad de la inferencia.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy queue-depth autoscaler simulator)
+**Languages:** Python, TypeScript (stdlib, toy queue-depth autoscaler simulator)
 **Prerequisites:** Phase 17 · 02 (Inference Platform Economics), Phase 17 · 04 (Serving Engine Internals)
 **Time:** ~75 minutes
 
@@ -20,7 +20,7 @@ Tu equipo envía un servicio de LLM en Kubernetes.`DCGM_FI_DEV_GPU_UTIL`El HPA n
 
 Separadamente, se utiliza Cluster Autoscaler para nodos. Una solicitud de 1M-token llega a las 2 a.m.; el cluster pasa 3 minutos proporcionando un nodo, y los tiempos de solicitud fuera.
 
-Separadamente, se implementa un modelo 70B que requiere 8 GPU en 2 nodos. El grupo tiene 7 GPUs libres y 1 distribuido en 3 nodos. Cluster Autoscaler proporciona un nodo para la GPU 1 faltante. Siete nodos esperan 4 minutos quemando dinero mientras Kubernetes consigue la última GPU.
+Separadamente, se implementa un modelo 70B que requiere 8 GPU en 2 nodos. El grupo tiene 7 GPUs libres, dispersas en 3 nodos, y necesita 1 más. Cluster Autoscaler proporciona un nodo para la GPU 1 faltante.
 
 Tres capas, tres modos de falla diferentes. La autoescalación consciente de la GPU en 2026 no es "inclivar HPA". Es componer el provisioning de nodos, la programación de banda y la autoescalación de señales de aplicación.
 

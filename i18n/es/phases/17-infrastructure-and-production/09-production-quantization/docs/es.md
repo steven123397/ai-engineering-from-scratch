@@ -3,7 +3,7 @@
 > El formato de cuantización no es una opción universal  es una función del hardware, el motor de servicio y la carga de trabajo. GGUF Q4_K_M o Q5_K_M posee CPU y borde, entregados a través de llama.cpp y Ollama. GPTQ gana dentro de VLLM cuando necesitas multi-LoRA en la misma base. AWQ con kernels Marlin-AWQ ofrece ~741 tok/s en un modelo de clase 7B con el mejor Pass@1 en INT4  el 2026 por defecto para la producción de centros de datos. FP8 se mantiene en el centro de Hopper, Ada y Blackwell  casi sin pérdidas y ampliamente apoyado. NVFP4 y MXFP4 (microscalación Blackwell) son agresivos y requieren validación por bloque. Dos equipos de trampas: el conjunto de datos de calibración debe coincidir con el dominio de implementación, y la caché KV está separada de la cuantización de peso  la lección AWQ "mi modelo es de 4 GB ahora" olvida la caché KV de 10-30 GB en los tamaños de lote de producción.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy memory and throughput comparison across formats)
+**Languages:** Python, TypeScript (stdlib, toy memory and throughput comparison across formats)
 **Prerequisites:** Phase 10 · 13 (Quantization foundations), Phase 17 · 04 (Serving Engine Internals)
 **Time:** ~75 minutes
 
@@ -103,6 +103,8 @@ gpu-memory-breakdown
 ## Usalo
 
 `code/main.py`Computa la huella de memoria (pesos + KV + activaciones) y el rendimiento relativo en los seis formatos para una gama de tamaños de modelos. muestra dónde domina el caché KV, dónde paga la compresión de peso y dónde FP8 es la opción segura.
+
+El [Inside an LLM Serving GPU](https://aiengineeringfromscratch.com/inside-an-llm-serving-gpu?dtype=fp8&users=64)La máquina muestra FP8 en un NVIDIA L4. Los pesos caen de 15.28 GB a 8.81 GB, el grupo de KV crece de 24.094 a 142.369 tokens, y la salida medida en 64 usuarios va de 250.85 a 735.91 tokens por segundo.
 
 ## Envío
 

@@ -3,7 +3,7 @@
 > El rendimiento moderno del motor de servicio se basa en tres fallos de composición, no en un solo truco. PagedAttention siempre está en. El batch continuo inyecta nuevas solicitudes en el batch activo entre las iteraciones de decodificación. Las rebanadas de preempleo en pedazos hacen que los tokens nunca mueran de hambre. Enciende los tres y un Llama 3.3 70B FP8 en un H100 SXM5 empuja 2.200-2.400 tok/s a 128 simultáneos  aproximadamente 25% por encima del propio estándar de vLLM y 3-4 veces un ciclo PyTorch ingenuo. Esta lección lee el programa y el núcleo de atención de vLLM  el motor de referencia para las tres técnicas  en un nivel que puede diagramar, y termina con un juego continuo batcher en `code/main.py`que los horarios preemplen y decodan de la manera que vLLM hace.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy continuous batching scheduler)
+**Languages:** Python, TypeScript (stdlib, toy continuous batching scheduler)
 **Prerequisites:** Phase 17 · 01 (Model Serving), Phase 11 (LLM Engineering)
 **Time:** ~75 minutes
 
@@ -11,7 +11,7 @@
 
 - Explica PagedAttention como un alocador de caché KV: bloques, tablas de bloques y por qué la fragmentación se mantiene por debajo del 4% en la carga de producción.
 - Diagrama de la partición continua a nivel de iteración: cómo las secuencias terminadas salen del lote y las nuevas se unen sin drenar.
-- Describa el preempleo en pedazos en una frase y nombre qué métrica de latencia protege (indicación: es cola TTFT, no es el promedio de rendimiento).
+- Describa el preempleo en fragmentos en una frase y nombre qué métrica de latencia protege (indicación: es la cola de ITL de los decodificadores simultáneos, no el promedio de rendimiento).
 - Compruebe una combinación de funciones vLLM con la matriz de compatibilidad de su versión antes de habilitar cada optimización a la vez.
 
 ## El problema
@@ -44,7 +44,7 @@ El batch continuo se opera entre cada paso de decodificación.`RUNNING`En cada i
 
 El tamaño del lote nunca se empolga a un número fijo. Secuencias en diferentes posiciones en su salida comparten una fusionada hacia adelante.`V1 scheduler`. La invariante clave: el programador se ejecuta una vez por iteración de decodificación, no una vez por solicitud.
 
-### El preempleo en pedazos protege la cola de TTFT
+### El precarga en pedazos protege la cola del ITL
 
 Prefill es computacional. Una solicitud de 32k-token en Llama 3.3 70B toma ~800 ms de prefill puro en un H100. Mientras que la solicitud de prefill se ejecuta, decodifica las fichas para cada otra secuencia en el lote de espera. En un bucle de servicio, la latencia de primer token (TTFT) de un pedido largo se convierte en la latencia de intertoken (ITL) para docenas de otros usuarios.
 
@@ -130,7 +130,7 @@ Esta lección produce`outputs/skill-vllm-scheduler-reader.md`. Dado un formato d
 | Chunked prefill | "prefill splitting" | Break long prefill into 512-token slices interleaved with decode |
 | TTFT | "first token time" | Prefill + queue + network; dominated by prefill at long prompts |
 | ITL | "inter-token latency" | Time between consecutive decode tokens; dominated by batch size |
-| Goodput | "throughput that meets SLO" | Tokens/sec where every request still hit TTFT and ITL targets |
+| Goodput | "throughput that meets SLO" | Requests/sec that still hit TTFT and ITL targets (Phase 17 · 08 reports it as the share of requests) |
 | V1 scheduler | "the new scheduler" | vLLM's 2026 scheduler; runs continuous batching with chunked prefill |
 | `--gpu-memory-utilization` | "the memory knob" | Fraction of HBM reserved for KV blocks after weights and activations |
 

@@ -3,7 +3,7 @@
 > El equilibrio de carga de round-robin es activamente perjudicial para la inferencia LLM almacenada en caché. Una solicitud que no aterriza en el nodo que tiene su prefijo paga el costo de preempleo completo  aproximadamente 800 ms en P50 en un prompt largo versus ~ 80 ms con un caché hit. En 2026 el patrón de producción es un router consciente de la caché (vLLM Router en Rust, llm-d router) que consume eventos de caché KV y rutas en coincidencia prefijo-hash. La investigación reciente (GORGO) hace que la latencia de la red transregional sea un término explícito en el objetivo de enrutamiento. Las ofertas comerciales de "inflación transregional" (inflación transregional Bedrock, puertas de entrada multi-cluster GKE) tratan la inferencia como opaca  manejan la disponibilidad, no TTFT. JPMorgan y Mayo Clinic realizaron un fallo de la primera en noviembre de 2024 en 22 minutos. La realidad de DR: el 32% de los fracasos de LLM DR se deben a que los equipos hicieron copias de seguridad de pesos pero olvidaron archivos de tokenizer o configuraciones de cuantización.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy prefix-cache-aware router simulator)
+**Languages:** Python, TypeScript (stdlib, toy prefix-cache-aware router simulator)
 **Prerequisites:** Phase 17 · 04 (vLLM Serving), Phase 17 · 06 (SGLang RadixAttention)
 **Time:** ~60 minutes
 
@@ -30,7 +30,7 @@ El servicio de LLM multi-regional es un problema de caché, un problema de enrut
 
 El router hacha el prefijo (digamos, los primeros 512 tokens); le pregunta a cada réplica "¿tienes este prefijo almacenado en caché?". Las réplicas publican eventos de caché KV en un canal pub/sub mientras asignan y despejan bloques.
 
-**vLLM Router**(Rust, 2026 producción-estaca): suscribirse a `kv.cache.block_added`eventos, mantiene un índice de réplica prefijo-hash →, rutas con búsqueda O(1). Calla a la menor profundidad de cola cuando no se combina.
+**vLLM Router**(Rust, 2026 producción-estaca): suscribirse a `kv.cache.block_added`eventos, mantiene un índice de réplica → prefijo-hash, rutas con $O(1)$Se cae hasta la menor profundidad de cola cuando no hay coincidencia.
 
 **llm-d router**: mismo patrón, nativo de Kubernetes. Publica eventos a través de la API ControlPlane.
 
@@ -51,7 +51,7 @@ RTT interregional:
 - Estados Unidos-este-1  Europa-oeste-1: ~75 ms.
 - Estados Unidos-este-1  ap-sureste-1: ~ 220 ms.
 
-Si el enrutamiento lleva una solicitud de us-east-1 a un prefijo caliente en ap-southeast-1, el preempleo guardado (800 → 80 ms) es empequeñecido por 440 ms de ida y vuelta.`prefill_time + network_latency`A menudo la respuesta es mantener el enrutamiento regional excepto en prefijos masivos de varios MB donde prefill domina.
+Si el enrutamiento lleva una solicitud de us-est-1 a un prefijo caliente en ap-southeast-1, el prefill guardado (800 → 80 ms, por lo que 720 ms) se reduce a aproximadamente 500 ms una vez que se paga el ~220 ms RTT, y el margen desaparece si la región remota hace cola a la solicitud o ya ha desalojado el prefijo. GORGO (2026 investigación) hace que esto explícito  minimizar `prefill_time + network_latency`A menudo la respuesta es mantener el enrutamiento regional excepto en prefijos masivos de varios MB donde prefill domina.
 
 ### La "inflación transregional" comercial no ayuda aquí
 
