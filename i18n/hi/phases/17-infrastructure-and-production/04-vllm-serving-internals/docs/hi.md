@@ -3,7 +3,7 @@
 > आधुनिक सेवा इंजन की गति तीन संश्लेषण डिफ़ॉल्ट पर आधारित है, एक भी ट्रिक नहीं। पेजडएटेंशन हमेशा चालू होता है। निरंतर बैचिंग डिकोड पुनरावृत्ति के बीच सक्रिय बैच में नए अनुरोधों का इंजेक्शन देती है। टुकड़े टुकड़े प्रीफिल स्लाइस लंबे संकेतों तो डिकोड टोकन कभी भूख नहीं मरते. तीनों को चालू करें और एक H100 SXM5 पर एक Llama 3.3 70B FP8 एक समवर्ती 128 पर 2,200-2,400 टोक / सेकंड को धक्का देता है  लगभग 25% vLLM के स्वयं के डिफ़ॉल्ट और 3-4x एक भोले PyTorch लूप से ऊपर। इस पाठ में vLLM के शेड्यूलर और ध्यान कर्नेल पढ़ता है  संदर्भ इंजन के लिए सभी तीन तकनीकों  एक स्तर पर आप आरेखित कर सकते हैं, और एक खिलौना निरंतर बैचर के साथ समाप्त होता है `code/main.py`जो कार्यक्रमों को prefill और decode vLLM की तरह करता है।
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy continuous batching scheduler)
+**Languages:** Python, TypeScript (stdlib, toy continuous batching scheduler)
 **Prerequisites:** Phase 17 · 01 (Model Serving), Phase 11 (LLM Engineering)
 **Time:** ~75 minutes
 
@@ -11,7 +11,7 @@
 
 - KV कैश आवंटनकर्ता के रूप में PagedAttention को समझाएंः ब्लॉक, ब्लॉक तालिकाएं, और उत्पादन लोड पर टुकड़ाकरण 4% से नीचे क्यों रहता है।
 - पुनरावृत्ति स्तर पर निरंतर बैचिंग का आरेखः कैसे तैयार अनुक्रम बैच छोड़ते हैं और नए बिना खारिज किए जुड़ते हैं।
-- एक वाक्य में टुकड़े टुकड़े पूर्व-पूर्ति का वर्णन करें और नाम दें कि यह किस लटेंसी मीट्रिक की रक्षा करता है (संकेतः यह TTFT पूंछ है, न कि औसत आउटपुट) ।
+- एक वाक्य में टुकड़े टुकड़े पूर्व-पूर्ति का वर्णन करें और नाम दें कि यह किस लटेंसी मीट्रिक की रक्षा करता है (संकेतः यह समवर्ती डिकोड का आईटीएल पूंछ है, न कि औसत आउटपुट) ।
 - एक बार में प्रत्येक अनुकूलन सक्षम करने से पहले अपने संस्करण के लिए संगतता मैट्रिक्स के साथ vLLM सुविधा संयोजन की जांच करें।
 
 ## समस्या
@@ -44,7 +44,7 @@ vLLM एक ही समय में तीन समस्याओं को
 
 बैच आकार कभी भी एक निश्चित संख्या तक पैड नहीं किया जाता है। उनके आउटपुट में विभिन्न स्थानों पर अनुक्रम एक फ्यूज फॉरवर्ड साझा करते हैं। 2026 vLLM में इसे `V1 scheduler`. कुंजी अपरिवर्तनीयः अनुसूचक प्रति डिकोड पुनरावृत्ति एक बार चलाता है, प्रति अनुरोध नहीं।
 
-### टुकड़े टुकड़े प्रीफिल TTFT पूंछ की रक्षा करता है
+### टुकड़े टुकड़े पूर्व भरने से आईटीएल पूंछ की रक्षा होती है
 
 प्रीफिल कम्प्यूटिंग-बाउंड है। Llama 3.3 70B पर 32k-token प्रॉम्प्ट एक H100 पर ~800 ms शुद्ध प्रीफिल लेता है। प्रीफिल रन होने पर, बैच प्रतीक्षा में प्रत्येक अन्य अनुक्रम के लिए टोकन को डिकोड करें। एक सेवा लूप में, एक लंबे प्रॉम्प्ट की पहली टोकन लटेंसी (TTFT) दर्जनों अन्य उपयोगकर्ताओं के लिए इंटर-टोकन लटेंसी (ITL) ब्लिप बन जाती है।
 
@@ -130,7 +130,7 @@ tensor-parallel
 | Chunked prefill | "prefill splitting" | Break long prefill into 512-token slices interleaved with decode |
 | TTFT | "first token time" | Prefill + queue + network; dominated by prefill at long prompts |
 | ITL | "inter-token latency" | Time between consecutive decode tokens; dominated by batch size |
-| Goodput | "throughput that meets SLO" | Tokens/sec where every request still hit TTFT and ITL targets |
+| Goodput | "throughput that meets SLO" | Requests/sec that still hit TTFT and ITL targets (Phase 17 · 08 reports it as the share of requests) |
 | V1 scheduler | "the new scheduler" | vLLM's 2026 scheduler; runs continuous batching with chunked prefill |
 | `--gpu-memory-utilization` | "the memory knob" | Fraction of HBM reserved for KV blocks after weights and activations |
 
