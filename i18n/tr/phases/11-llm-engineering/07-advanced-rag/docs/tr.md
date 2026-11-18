@@ -3,7 +3,7 @@
 > Basik RAG, en benzer parçaları top-k'yi alır. Bu basit sorular için çalışır. Çoklu hop mantıklama, belirsiz sorular ve büyük korpuslar için parçalanır. Gelişmiş RAG, 10 belge üzerinde çalışan bir demo ile 10 milyon üzerinde çalışan bir sistem arasındaki fark.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11, Lesson 06 (RAG)
 **Time:** ~90 minutes
 **Related:**5 · 23 aşaması (RAG için parçalanma stratejileri) altı parçalanma algoritmasını  rekürsiv, semantik, cümle, ana belge, geç parçalanma, bağlamsal geri alım  vectara/antropik referans değerleriyle kapsar. Bu ders üstü üzerinde inşa edilir: hibrid arama, yeniden sıralama, sorgu dönüşümü.
@@ -89,7 +89,7 @@ Genel yeniden sıralama modelleri (2026 sıralaması):
 - Jina-Reranker-v2 Çok dilli: açık ağırlıklı, 100+ dil
 - bge-re-ranker-v2-m3: açık ağırlıklı, güçlü bir başlangıç çizgisi
 - çapraz kodlayıcı/ms-marco-MiniLM-L-6-v2: açık ağırlıklı, prototip oluşturmak için CPU ile çalışır
-- ColBERTv2 / Jina-ColBERT-v2: Son etkileşim çok vektör yeniden sıralamaları  O(tokens) not O(docs) not zamanında
+- ColBERTv2 / Jina-ColBERT-v2: Geç etkileşimlü çok vektörlü yeniden sıralamalar  $O(\text{tokens})$Hayır .$O(\text{docs})$Notlama zamanı
 
 ### Sorgu dönüşümü
 

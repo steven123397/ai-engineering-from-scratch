@@ -3,7 +3,7 @@
 > İndirme, yerleştirme, RAG boru hattı, fonksiyon çağrıları, önbelleğe yerleştirme katmanları ve koruma kapıları inşa ettiniz. Ayrı ayrı. - İzolasyonda. Sanki bir şarkı çalmadan gitar ölçeklerini pratik yapıyorum. Bu ders şarkıdır. Ders 01-12'den her bileşenini tek bir üretim hazır servise bağlayacaksın. Oyuncak değil. Demo değil. Gerçek trafiği yöneten, şık bir şekilde başarısız olan, token akışı yapan, maliyetleri takip eden ve ilk 10.000 kullanıcısını koruyan bir sistem.
 
 **Type:** Build (Capstone)
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 Lessons 01-15
 **Time:** ~120 minutes
 **Related:**11 · 14 aşaması (MCP) özel araç sistemlerini ortak bir protokolle değiştirmek için; 11 · 15 aşaması (Hızlı Kayıtlama) istikrarlı önlükler üzerinde maliyetlerin %50-90% azaltılması için.
@@ -225,8 +225,8 @@ Göndermeden önce, aylık maliyetinizi tahmin edin.
 | Queries per user per day | 5 | Product analytics |
 | Avg input tokens per query | 1,500 | Measured (system + context + user) |
 | Avg output tokens per query | 400 | Measured |
-| Input price per 1M tokens | $5.00 | OpenAI GPT-5 pricing |
-| Output price per 1M tokens | $15.00 | OpenAI GPT-5 pricing |
+| Input price per 1M tokens | $2.50 | OpenAI GPT-4o pricing |
+| Output price per 1M tokens | $10.00 | OpenAI GPT-4o pricing |
 | Cache hit rate | 35% | Measured from cache metrics |
 | Effective daily queries | 32,500 | 50,000 * (1 - 0.35) |
 

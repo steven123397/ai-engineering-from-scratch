@@ -3,7 +3,7 @@
 > Çoğu AI başlangıç kötü modellerden ölmez. Kötü birim ekonomisinden ölürler. Tek bir GPT-4o çağrısı bir sentin bir kısmını alır. Günde 10 000 kullanıcı 10 çağrı yaparken sadece 250 dolarlık giriş tokeni maliyetini alır. Bir dolarlık ücret almadan önce.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 Lesson 09 (Function Calling)
 **Time:** ~45 minutes
 **Related:**Fase 11 · 15 (Hızlı Kayıtlama)  bu ders uygulama katmanının önbelleğini kapsar (semantik önbelleği, tam hash önbelleği, model yönlendirme).15 ders, sağlayıcı katmanında önbelleği kapsar (Anthropic cache_control, OpenAI otomatik, Gemini CachedContent).
@@ -21,7 +21,7 @@ RAG chatbotunu inşa edersin. Harika çalışıyor. Kullanıcılar çok seviyor.
 
 Sonra fatura geliyor.
 
-GPT-5 maliyetleri $5 per million input tokens and $Milyon başına 15 adet üretim.$15 input / $Gemini 3 Pro'nun fiyatı 75 dolar.$1.25 input / $5 çıkış. GPT-5 mini $0.25/$2. Aşağıdaki fiyatlar örnek olarak gösterilmektedir; daima sağlayıcıların güncel fiyatlandırma sayfasını kontrol edin.
+GPT-5 maliyetleri $1.25 per million input tokens and $Milyon başına 10 adet üretim.$5 input / $Gemini 3.1 Pro maliyetleri.$2 input / $12 çıkış (200K tokene kadar gönderilmektedir). GPT-5-mini $0.25/$2. GPT-4o, aşağıdaki matematik modelinde, $2.50/$10. Fiyatlar örneklemelerdir; her zaman sağlayıcıların güncel fiyat sayfasını kontrol edin.
 
 İşte yeni başlayanları öldüren matematik:
 
@@ -863,7 +863,7 @@ Batch API tüm tokenlere %50 indirim sağlar. Sonuçlar 24 saat içinde gelir. G
 #     return None
 ```
 
-Yapım sırasında, doğrusal taramayi vektör endeksiyle değiştirin (Redis vektör arama, Pinecone veya pgvector).
+Yapım sırasında, doğrusal tarama vektör endeksi ile değiştirin (Redis vektör arama, Pinecone veya pgvector).$O(\log n)$- Arama.
 
 ## Gönder
 
