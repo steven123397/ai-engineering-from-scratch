@@ -3,7 +3,7 @@
 > O reconhecimento da fala é classificação de áudio em cada passo do tempo, colada por um modelo de sequência que conhece o inglês e o silêncio. CTC, RNN-T e atenção são as três maneiras de fazer isso. Escolha uma e entenda por quê.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 02 (Spectrograms & Mel), Phase 5 · 08 (CNNs & RNNs for Text), Phase 5 · 10 (Attention)
 **Time:** ~45 minutes
 
@@ -37,7 +37,7 @@ Vantagens: alta qualidade em ASR offline, fácil de treinar com ferramentas seq2
 
 ### WER: o número único
 
-**Word Error Rate**- Não .`(S + D + I) / N`, onde S=substituições, D=eliminações, I=inserções, N=conto de palavras de referência. Correspondem à distância de edição Levenshtein no nível de palavras. Baixo é melhor. Um WER acima de 20% é geralmente inutilizável; abaixo de 5% é a paridade humana para a fala de leitura. Números 2026 em benchmarks padrão:
+**Word Error Rate**- Não .$(S + D + I) / N$, onde$S$=substituições, $D$= eliminações, $I$=inserções, $N$=conto de palavras de referência. Correspondem com a distância de edição Levenshtein no nível das palavras. Mais baixo é melhor. Um WER acima de 20% é geralmente inutilizável; abaixo de 5% é a paridade humana para a fala de leitura. Números 2026 em referências padrão:
 
 | Model | LibriSpeech test-clean | LibriSpeech test-other | Size |
 |-------|------------------------|------------------------|------|

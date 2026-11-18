@@ -3,7 +3,7 @@
 > Esta lição nomeia as métricas 2026 para cada tarefa de áudio: ASR (WER, CER, RTFx), TTS (MOS, UTMOS, SECS, WER-on-ASR-round-trip), áudio-linguagem (MMAU, LongAudioBench), música (FAD, CLAP) e alto-falantes (EER).
 
 **Type:** Learn
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 04, 06, 07, 09, 10; Phase 2 · 09 (Model Evaluation)
 **Time:** ~60 minutes
 
@@ -45,7 +45,7 @@ Cada tarefa de áudio tem múltiplas métricas, cada uma medindo um eixo diferen
 
 **SECS (Speaker Encoder Cosine Similarity).**Para clonagem de voz. ECAPA incorporando cosino entre referência e saída clonada. &gt; 0,75 = clone reconhecível.
 
-**WER-on-ASR-round-trip.**Execute Whisper sobre a saída TTS, computa WER contra o texto de entrada. Capta regressões de inteligibilidade. 2026 SOTA: &lt; 2% CER.
+**WER-on-ASR-round-trip.**Execute Whisper sobre a saída TTS, computa WER contra o texto de entrada. Capta regressões de inteligibilidade. 2026 SOTA: &lt; 2% WER em conjuntos de teste em inglês (em vez disso, conjuntos mandarinos relatam CER).
 
 **TTFA (time-to-first-audio).**Latência de relógio de parede. Kokoro-82M: ~ 100 ms; F5-TTS: ~ 1 s.
 
@@ -79,7 +79,7 @@ Desbalançado: **macro F1**+ **per-class recall**. Relatório por classe  A prec
 
 **CLAP Score.**Pontuação de alinhamento de texto-áudio usando embalagens CLAP. &gt; 0,3 = alinhamento razoável.
 
-**Listening panel MOS.**Ainda a última palavra para música de nível de consumo. Suno v5 ELO 1293 no TTS Arena (de preferências humanas emparelhadas).
+**Listening panel MOS.**Ainda a palavra final para música de nível de consumo. Suno v5 marcou ELO 1293 no próprio índice de preferência em pares de Suno.
 
 ### Indicadores de referência de áudio
 

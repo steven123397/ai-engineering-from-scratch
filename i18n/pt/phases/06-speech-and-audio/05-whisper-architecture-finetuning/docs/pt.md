@@ -3,7 +3,7 @@
 > Whisper é um transformer de 30 segundos de janela encoder-decoder, treinado em 680k horas de pares de áudio-texto multilíngue deficiente supervisionado.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 04 (ASR), Phase 5 · 10 (Attention), Phase 7 · 05 (Full Transformer)
 **Time:** ~75 minutes
 
@@ -36,9 +36,9 @@ O Large-v3 tem parâmetros de 1.55B. Turbo usa um decodificador de 4 camadas (a 
 <|startoftranscript|><|en|><|transcribe|><|notimestamps|> Hello world.<|endoftext|>
 ```
 
-- `<|en|>` tag de linguagem; força o comportamento tradução versus transcrição.
-- `<|transcribe|>`ou `<|translate|>` traduzir o resultado em inglês a partir de qualquer entrada de idioma, ou literalmente.
-- `<|notimestamps|>` Salte os timestamps de nível de palavra (mais rápido).
+- `<|en|>`O Whisper detecta a língua primeiro.
+- `<|transcribe|>`ou `<|translate|>`: tag de tarefa; transcrever o discurso em sua língua de origem, ou traduzi-lo para o texto inglês.
+- `<|notimestamps|>`: saltar as marcas de tempo de nível de palavra (mais rápido).
 
 O prompt é o que permite que um modelo faça muitas tarefas.`<|en|>`- Não .`<|fr|>`E transcreve em francês.
 
