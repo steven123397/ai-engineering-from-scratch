@@ -57,8 +57,8 @@ Continuous scene                 Sensor grid                     Digital image
 (infinite detail)                (H x W detectors)               (H x W integers)
 
     ~~~~~                        +--+--+--+--+--+                 210 198 180 155 120
-   Je suis un homme qui a une grande expérience.
-  - L'équipe de la police de la ville de New York
+   ~   ~   ~                     |  |  |  |  |  |                 205 195 178 152 118
+  ~ light ~      ---->           +--+--+--+--+--+     ---->       200 190 175 150 115
    ~~~~~                         |  |  |  |  |  |                 195 185 170 148 112
                                  +--+--+--+--+--+                 188 180 165 145 108
 ```
@@ -173,8 +173,8 @@ Pour la plupart des CNN modernes, vous nourrissez RGB.
 
 L'échelle de gris de la RGB est une somme pondérée, pas une moyenne, car l'œil humain est plus sensible au vert que au rouge ou au bleu:
 
-```
-Y = 0.299 R + 0.587 G + 0.114 B       (ITU-R BT.601, the classic weights)
+```math
+Y = 0.299 R + 0.587 G + 0.114 B \qquad \text{(ITU-R BT.601, the classic weights)}
 ```
 
 ### Ratio d'aspect, redimensionnement et interpolation
