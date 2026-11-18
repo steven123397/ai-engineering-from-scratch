@@ -57,8 +57,8 @@ Continuous scene                 Sensor grid                     Digital image
 (infinite detail)                (H x W detectors)               (H x W integers)
 
     ~~~~~                        +--+--+--+--+--+                 210 198 180 155 120
-   ♪ ♪ y luego de todo, me siento como si fuera un niño ♪
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   ~   ~   ~                     |  |  |  |  |  |                 205 195 178 152 118
+  ~ light ~      ---->           +--+--+--+--+--+     ---->       200 190 175 150 115
    ~~~~~                         |  |  |  |  |  |                 195 185 170 148 112
                                  +--+--+--+--+--+                 188 180 165 145 108
 ```
@@ -173,8 +173,8 @@ Para la mayoría de las cadenas de televisión modernas se alimenta RGB.
 
 La escala de gris de RGB es una suma ponderada, no una media, porque el ojo humano es más sensible al verde que al rojo o al azul:
 
-```
-Y = 0.299 R + 0.587 G + 0.114 B       (ITU-R BT.601, the classic weights)
+```math
+Y = 0.299 R + 0.587 G + 0.114 B \qquad \text{(ITU-R BT.601, the classic weights)}
 ```
 
 ### Ratio de aspecto, redimensionamiento e interpolación
