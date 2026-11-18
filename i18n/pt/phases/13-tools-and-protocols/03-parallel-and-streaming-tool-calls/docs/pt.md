@@ -3,7 +3,7 @@
 > Três pesquisas meteorológicas independentes são três viagens de ida e volta. Execute-as em paralelo e o tempo total desabre para a chamada única mais lenta. Cada fornecedor de fronteira agora emite várias chamadas de ferramentas em uma única volta. O pagamento é real; a canalização é sutil. Esta lição percorre ambas as metades: o fan-out paralelo e a reensembleia de argumentos transmitidos, com ênfase na armadilha de correlação de id.
 
 **Type:** Build
-**Languages:** Python (stdlib, thread pool + streaming harness)
+**Languages:** Python, TypeScript (stdlib, thread pool + streaming harness)
 **Prerequisites:** Phase 13 · 02 (function calling deep dive)
 **Time:** ~75 minutes
 
@@ -66,7 +66,7 @@ Cada chamada que o modelo emite tem um`id`Cada resultado que o anfitrião retorn
 
 O host executa o executor de cada chamada em seu próprio fio, coroutine ou operador remoto.`asyncio.gather`O número de identificação é o número de identificação.
 
-Um erro comum: responder com resultados na ordem da lista de chamadas em vez de ordem de conclusão.`tool_call_id`, mas se um resultado for deixado de lado ou duplicado, a submissão fora de ordem torna o depuração mais difícil.
+Um erro comum: responder com resultados na ordem da lista de chamadas em vez de ordem de conclusão.`tool_call_id`, mas se um resultado for retirado ou duplicado, uma lista de respostas que é reordenada longe da ordem em que os resultados chegaram torna a lacuna mais difícil de encontrar nos registros.
 
 ### Chamadas de ferramentas de streaming
 

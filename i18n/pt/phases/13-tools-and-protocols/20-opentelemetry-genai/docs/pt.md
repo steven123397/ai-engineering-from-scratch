@@ -3,7 +3,7 @@
 > Um agente chama cinco ferramentas, três servidores MCP e dois sub-agentes. Precisas de um rastro em tudo. As convenções semânticas OpenTelemetry GenAI (atributos estáveis em v1.37 e acima) são o padrão 2026, nativo suportado por Datadog, Langfuse, Arize Phoenix, OpenLLMetry e AgentOps. Esta lição nomeia os atributos necessários, percorre a hierarquia de tempo (agente → LLM → ferramenta) e envia um emissor de tempo stdlib que você pode conectar a qualquer exportador OTel.
 
 **Type:** Build
-**Languages:** Python (stdlib, OTel span emitter)
+**Languages:** Python (stdlib, OTel span emitter), TypeScript
 **Prerequisites:** Phase 13 · 07 (MCP server), Phase 13 · 08 (MCP client)
 **Time:** ~75 minutes
 
@@ -150,7 +150,7 @@ Esta lição produz`outputs/skill-otel-genai-instrumentation.md`- Tendo em conta
 | Span | "Timed operation" | A unit of work with a start, end, and attributes |
 | Trace | "Cross-span ancestry" | Tree of spans sharing a trace id |
 | SpanKind | "CLIENT / SERVER / INTERNAL" | Hints about span direction |
-| OTLP | "OpenTelemetry Line Protocol" | Wire format for exporters |
+| OTLP | "OpenTelemetry Protocol" | Wire format for exporters |
 | Opt-in content | "Prompt / completion capture" | Off by default; env var to enable |
 | traceparent | "W3C header" | Propagates trace context across services |
 | Exporter | "Backend-specific shipper" | Component that sends spans to Jaeger / Datadog / etc. |

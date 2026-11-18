@@ -3,7 +3,7 @@
 > Uma ferramenta correta falha silenciosamente quando o modelo não pode dizer quando usá-la. Nomear, descrições e formas de parâmetros impulsionam os fluxos de 10 a 20 pontos percentuais na precisão da seleção de ferramentas em benchmarks como StableToolBench e MCPToolBench +. Esta lição nomeia as regras de design que separam uma ferramenta que um modelo escolhe com confiança de uma ferramenta que um modelo dispara mal.
 
 **Type:** Learn
-**Languages:** Python (stdlib, tool schema linter)
+**Languages:** Python, TypeScript (stdlib, tool schema linter)
 **Prerequisites:** Phase 13 · 01 (the tool interface), Phase 13 · 04 (structured output)
 **Time:** ~45 minutes
 
@@ -84,7 +84,7 @@ Regra geral: se o `action`O argumento tem mais de três valores, divide a ferram
 ### Design de parâmetros
 
 - **Enum every closed set.** `units: "celsius" | "fahrenheit"`Não .`units: string`Enums dizem ao modelo o universo de valores aceitáveis.
-- **Required vs optional.**Marque o mínimo necessário. Tudo o resto opcional. O modo estrito OpenAI requer todos os campos em`required`; adicionar um `is_default: true`Convenção no seu código e deixe o modelo omitê-lo.
+- **Required vs optional.**Marque o mínimo necessário. Tudo o resto opcional. O modo estrito OpenAI requer todos os campos em`required`, para que o modelo não possa omitir um. Digite um campo opcional como uma união com `null`E deixe o modelo enviar .`null`Quando não tem valor.
 - **Typed IDs.** `note_id: string`Está bem, mas adicione um.`pattern`(`^note-[0-9]{8}$`) para capturar identidades alucinadas.
 - **No overly flexible types.**Evite`type: any`O modelo vai alucinar formas.
 - **Describe the field.** `{"type": "string", "description": "ISO 8601 date in UTC, e.g. 2026-04-22"}`A descrição faz parte do modelo.
