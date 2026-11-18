@@ -3,7 +3,7 @@
 > 语 (Radford等,2022年12月) 解决了语音识别 680k小时的弱监督多语言语音,简单的编码-解码变压器,这是一个让每次ASR发布都引用的基准. 但认可不是推理. 问"录音中的乐器是什么"或者"讲者表达了什么情感"或"在第三分钟发生了什么"需要听音理解,而不是转录. 音音频,萨尔蒙,LTU和NVIDIA的Audio Flamingo 3 (AF3,2025年7月) 逐步构建了这个堆:保持Whisper类编码器,起Q-formers,训练音频文本指令数据,添加链接思维推理. 这一课是个曲.
 
 **Type:** Build
-**Languages:** Python (stdlib, log-Mel spectrogram + audio Q-former skeleton)
+**Languages:** Python (stdlib, log-Mel spectrogram + audio Q-former skeleton), TypeScript
 **Prerequisites:** Phase 6 (Speech and Audio), Phase 12 · 03 (Q-Former)
 **Time:** ~180 minutes
 
@@ -36,7 +36,7 @@
 2. 短时间的福利尔转换,25ms窗户,10ms跳转.
 3. 取出FFT结果的大小.
 4. 应用MEL过器 (通常是0-8000Hz的80个过器) 变变化到感知频率.
-5. 动态范围的日志压缩 (log(1 + x))
+5. 木压缩器$(\log(1 + x))$对于动态范围.
 
 结果:一个2D形状阵列 (T, 80) 时T是时间框架的数量.对于30秒的片段,以100Hz的频率: (3000, 80).
 
@@ -54,7 +54,7 @@
 
 贝茨 (Chen et al., 2022) 是一个在 AudioSet 上训练的自主监督变压器. 它在相同的参数数数量下捕获音乐和环境声音比Whisper更好.
 
-声 (Audio Flamingo 3的混合型): 声+BETs作为音频输入功能.声携带语言信号,BETs携带声信号.
+ AF-Whisper (Audio Flamingo 3 的编码器):从 Whisper-large-v3编码器开始,并继续训练它在语音,声音和音乐在一起,因此一个编码器携带语言和声学信号.早期的系统如 SALMONN 通过连接 Whisper 和 BEAT 功能获得了相同的覆盖.
 
 ### 音频Q-former
 
@@ -70,7 +70,7 @@
 
 听,思考,理解 (Gong et al., 2023):明确的推理数据,重点关注视频片段的链接.较小但更集中.
 
-音频弗拉明戈3 (Goel等,2025年7月):目前开放的SOTA. 8B LLM背骨 (Qwen2 7B),Whisper-大编码器 concat BEATs,64个查询 Q-former,训练1M+音频文本指令对.MMAU 0.72,在一些子任务上匹配专有边界.
+音频弗拉明戈3 (Goel等,2025年7月):目前的开放SOTA. 7B LLM背骨 (Qwen2.5-7B),由Whisper-large-v3构建的AF-Whisper音频编码器,在LLM中进行了小型适配器层,在1M+音频文本指导对进行训练.MMAU 0.72,在一些子任务上匹配了专有边界.
 
 AF3还引入了对音频的按需思考链:模型在最终答案之前可选择地发射思考代币 ("让我先确定仪器: ...").在复杂的推理任务上,精确度在启用思考时提高了3-5点.
 

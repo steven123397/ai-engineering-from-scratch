@@ -3,7 +3,7 @@
 > 2026 边界产品是一个多模式代理,它可以阅读截图,点击按,导航网络UI,填写表格,并完成端到端工作流程. 查看Click和CogAgent (2024) 证明了GUI基地化的原始. 轮UI增加了移动. 图表代理引入了图表的视觉工具. 视觉WebArena和AgentVista (2026) 是边界追逐的基准,甚至在AgentVista的艰难任务中,双子座3Pro和克劳德奥普斯4.7分数约为30% 这块结尾石将12期的每一个线程都聚集在一起:感知 (高分辨率VLM),推理 (使用工具的LLM),定位 (协调输出),长视野记忆和评估.
 
 **Type:** Capstone
-**Languages:** Python (stdlib, action schema + agent loop skeleton)
+**Languages:** Python (stdlib, action schema + agent loop skeleton), TypeScript
 **Prerequisites:** Phase 12 · 05 (LLaVA), Phase 12 · 09 (Qwen-VL JSON), Phase 14 (Agent Engineering)
 **Time:** ~240 minutes
 
@@ -128,7 +128,7 @@ mm-agent-loop
 
 `code/main.py`是石架:
 
-- 行动方案 JSON定义 (10 个行动).
+- 行动方案 JSON定义 (10 个行动:上述九项加上 `screenshot_region`通过缩工具,
 - 假设浏览器状态是指标.
 - 代理循环骨架:接收状态,发射行动,应用,循环.
 - 测量端到端成功率的10任务迷你基准 (合成页面).
@@ -140,7 +140,7 @@ mm-agent-loop
 
 ## 运动
 
-1. 扩展行动方案`screenshot_region`工具 (收获+放大).哪些任务有好处?
+1. 代码的方案添加一个`screenshot_region`它们可以通过工具 (收获+放大) 实现9个核心操作.
 
 2. 阅读 AgentVista (arXiv:2602.23166). 描述最难的任务类别,以及为什么边界模型仍然失败.
 

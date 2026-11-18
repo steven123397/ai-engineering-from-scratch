@@ -3,7 +3,7 @@
 > 文件不是照片. 文件,科学论文,账单或手写表格有布局,表格,图表,脚注,标题和语义结构, 之前VLM堆是一个管道:Tesseract OCR + LayoutLMv3 +表提取统计. 维LM波取代了无 OCR 型号的甜圈 (2022年),努加 (2023年),docllm (2023年) ,直接发射结构化标记. 到2026年,边界只是"将页面图像输送到Claude Opus 4.7的 2576px原始", 这一课讲述了文件人工智能的三代弧.
 
 **Type:** Build
-**Languages:** Python (stdlib, layout-aware document parser skeleton)
+**Languages:** Python (stdlib, layout-aware document parser skeleton), TypeScript
 **Prerequisites:** Phase 12 · 05 (LLaVA), Phase 5 (NLP)
 **Time:** ~180 minutes
 
@@ -74,7 +74,7 @@
 
 ### 文件 (2023)
 
-文件LLM (Wang et al., arXiv:2401.00908) 是LayoutLM的生成兄弟.生成基于布局代币的自由形式答案.更好用于文件的QA;仍然取决于OCR输入.
+文件LLM (Wang et al., arXiv:2401.00908,提交于2023年12月31日,因此ID带有2024年1月的前) 是LayoutLM的生成兄弟.生成基于布局代币的自由形式答案.更好用于文件的QA;仍然取决于OCR输入.
 
 ### 年代3 VLM本土人 (2024+)
 
@@ -83,7 +83,7 @@
 - 对于小型文件,LLaVA-NeXT 336-tile AnyRes 适用于.
 - 文2.5VL动态分辨率处理2048+像素本地.
 - 支持2576px的文件.
-- 帕利盖玛2 (2025年4月) 专门用于文件+手写.
+- 帕利盖玛2 (2024年12月) 专门用于文件+手写.
 
 根据VLM原生和OCR管道之间的差距,到2026年,VLM原生将获得:
 
