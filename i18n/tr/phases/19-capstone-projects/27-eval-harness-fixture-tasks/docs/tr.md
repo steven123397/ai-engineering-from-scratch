@@ -3,7 +3,7 @@
 > Bir kodlama ajanı, onu ölçtüğünüz görevler topluluğuyla aynı derecede iyidir. Bu ders, sabitleme görevlerinin bir klasörünü alan, her birini bir aday ajansı üzerinden çalıştıran, puanların bir deterministik doğrulayıcı üzerinden geçmesi veya başarısız olması ve sonuçları pass@1, pass@k, ortalama gecikme ve ortalama maliyet olarak toplayan bir değerlendirme harnesini oluşturur. Harness, bir reaktörden bir gerilemeyi anlamanıza izin veren gerçeğin kaynağıdır.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox runner), Phase 14 · 30 (eval-driven agent development), Phase 14 · 19 (SWE-bench and GAIA benchmarks)
 **Time:** ~90 minutes
 
@@ -47,7 +47,7 @@ Birincisi:`file_equals`Agent çalıştırıldıktan sonra, isimli bir dosyayı b
 
 Üçüncü de `shell_exit_zero`. Harness bir shell komutunu ( ders 26'dan kum kutusundan) çalıştırır ve görevyi yalnızca komut sıfırdan çıksa geçer. Bu "testler geçmelidir" görevlerini yakalar.
 
-Her görevi harmanla halleder .`k`- Zaman. Pass@k `1 - (1 - p)^k`Burada p, empiriel geçiş oranıdır; harness aynı zamanda çiğ sayıları rapor eder, böylece varyansiyonu tespit edebilirsiniz. Gecikme, örnek başına duvar saati. Maliyet, ajanın kendi kendine rapor ettiği her şeydir (token sayısı, USD veya her ikisi de); harness, örnekler arasında toplamını yapar ve görev başına ve toplam sayıları sunar.
+Her görevi harmanla halleder .`k`- Zaman. Pass@k `1 - (1 - p)^k`Bu, eklenmiş tahmindir: ölçülen oranı p gerçek oran gibi kullanır. Ders 72 tarafsız tahminci kullanır `1 - C(n - c, k) / C(n, k)`için`n` ile örnekler`c`- Bu, bir çok farklı bir şey.`n = k`örnekler, bu harness gibi, tarafsız tahminci herhangi bir örnek geçerken 1 ve hiç bir örnek geçerken 0'dur, bu nedenle sadece herhangi bir örnek geçerken gösterir.`n > k`Bu değerler, örneğin, bir örneğin değerini ve değerini belirlerken, örneğin, örneğin, bir örneğin değerini ve değerini belirlerken, örneğin, örneğin değerini ve değerini belirlerken, örneğin değerini belirlerken, örneğin değerini belirlerken, örneğin, örneğin değerini belirlerken, örneğin değerini belirlerken, örneğin değerini belirlerken, örneğin, örneğin değerini belirlerken ve örneğin değerini belirlerken, örneğin, örneğin değerini belirlerken, örneğin değerini belirlerken, örneğin değerini belirlerken ve örneğin değerini belirlerken, örneğin, örneğin değerini belirlerken, örneğin, örneğin, örneğin değerini ve değerini belirlerken, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, örneğin, bir örneğin, bir örneğin, bir örneğin, örneğin, bir örneğin, örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir örneğin, bir
 
 ```figure
 pass-at-k
@@ -100,6 +100,7 @@ Ders 25 kapı zinciri, Ders 26 kum kutusu üretti.`shell_exit_zero`Verifier. Der
 ```bash
 cd phases/19-capstone-projects/27-eval-harness-fixture-tasks
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

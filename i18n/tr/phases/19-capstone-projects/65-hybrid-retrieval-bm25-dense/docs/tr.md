@@ -3,7 +3,7 @@
 > Leksik ve semantik geri alım ters sorgu dağılımlarında başarısız olur. karşılıklı sıra birleşimi ile hibrit geri alım interpolat etmez, oy verir - ve oy her sorgu sınıfında kazanır.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 lessons 04 (embeddings), 06 (RAG); Phase 19 Track B foundations (lessons 20-29); Phase 19 lesson 64 (chunking strategies)
 **Time:** ~90 minutes
 
@@ -38,7 +38,7 @@ flowchart LR
 
 BM25, sorgu terimleri üzerinde uzunluk-normalleştirme düzeni içeren doymuş bir term-frequency faktörü ile çarpılmış ters bir belge frekans faktörünü toplamlayarak bir sorgu-dokument çiftini puanlar.`k1`term-frequency saturation kontrolü; varsayılan 1.5 yayınlanan öneridir ve referans göstergesi olmadan taşımak olmaz. `b`Bu sayede, daha uzun belgelere ceza verilir, ancak çizgi olarak değil.
 
-IDF formülü, Robertson ve Sparck Jones'un düzeltilmiş tanımını kullanıyor.`log((N - df + 0.5) / (df + 0.5) + 1)`Bu, küçük korpuslarda, teknik olarak nadir olan kısımlarda önemli olan bir terim olduğunda, günlük içindeki bir artı IDF'yi pozitif tutar.
+IDF formülü, Robertson ve Sparck Jones'un düzeltilmiş tanımını kullanıyor.`log((N - df + 0.5) / (df + 0.5) + 1)`. Günlük içindeki bir artı, bir terim korpusun yarısından fazlasında görünen durumlarda IDF'yi olumlu tutar. Bu, çoğu belgede bulunan durdurma kelimeleri ve bir ortak terimin yarı korpus hattını geçebileceği küçük korpuslarda önemlidir.
 
 Alan ağırlığı, BM25'e simge adındaki bir maçın vücutta bir maçtan daha fazla sayıldığını söylemenizi sağlar. Uygulama, puanlama sırasında değil, indeksleme sırasında sayılan terimin bir katıcısıdır. Bu matematikin aynı kalmasını sağlar ve her alan için ayrı bir puanı önler.
 
@@ -81,6 +81,7 @@ rrf-fusion
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Demos çıkışını yan yana okuyun. Sözcük tanımlayıcı sorusu BM25 sıra 1, yoğun sıra 4, RRF sıra 1. Parafrase sorusu BM25 sıra 6, yoğun sıra 1, RRF sıra 1. belirsiz sorgu BM25 sıra 3, yoğun sıra 3, RRF sıra 1. Füzyon bir eşleşme değildir; her sorgu sınıfında kazanan sistemdir.

@@ -3,7 +3,7 @@
 > Amazon'un MigrationBench (Java 8 ila 17) ve Google'ın App Engine Py2-to-Py3 göçörü 2026 barını belirledi. Modern'in OpenRewrite'i, belirleyici AST'lerin ölçekli olarak yeniden yazılmasını sağlar. Grit aynı sorunu kodemod tarzı DSL ile hedefliyor. Üretim örneği her ikisini birleştirir: güvenli yeniden yazılar için belirleyici bir altyapı eklemiş belirsiz durumlar için bir ajan katmanı, her dal için bir kum kutusu ve PR açılmadan önce yeşilye dönen bir test harnesini. Son taş 50 gerçek depoyu göç etmek ve başarısızlık taksonomisi ile geçiş oranını yayınlamak.
 
 **Type:** Capstone
-**Languages:** Python (agent), Java / Python (targets), TypeScript (dashboard)
+**Languages:** Python (agent), Java / Python (targets), TypeScript (dashboard, agent scaffold)
 **Prerequisites:** Phase 5 (NLP), Phase 7 (transformers), Phase 11 (LLM engineering), Phase 13 (tools), Phase 14 (agents), Phase 15 (autonomous), Phase 17 (infrastructure)
 **Phases exercised:**P5 · P7 · P11 · P13 · P14 · P15 · P17
 **Time:** 30 hours
@@ -18,7 +18,7 @@ Java 8 repo (veya Python 2 repo) alan bir ajan oluşturup yeşil-CI göçüran b
 
 Bu boru hattı iki katman içindedir.**deterministic substrate**(OpenRewrite for Java, libcst for Python) mekanik yeniden yazmaların büyük kısmını güvenli bir şekilde çalışır: ithalat, yöntem imzaları, sıfır güvenlik düzenlemeleri, kaynaklarla deneme, eski API değiştirmeleri.**agent layer**(OpenAI Agents SDK veya LangGraph over Claude Opus 4.7 ve GPT-5.4-Codex) reçetelerinin yapamadığı durumları ele alır: yapılandırma dosyası yükseltmeleri (Maven/Gradle/pyproject), geçici bağımlılık çatışmaları, test parçaları, özel notlar.
 
-Her repo, hedef çalıştırma süresi önceden kurulmuş bir Daytona kum kutusu alır. Ajan iterasyon yapar: oluşturma çalıştır, hataları sınıflandır, düzeltme uygulay, tekrar çalıştır. Zor sınırlar: 30 dakika her repo, 8 $ her repo, 20 ajan dönüş. Tüm testler geçerse ve kapsama delta olumsuz değilse, dal bir PR açar.
+Her repo, hedef çalıştırma süresi önceden kurulmuş bir Daytona kum kutusu alır. Ajan iterasyon yapar: oluşturma çalıştırın, hataları sınıflandırın, düzeltme uygulayın, tekrar çalıştırın. Zor sınırlar: 30 dakika her repo, 8 $ her repo, 20 ajan dönüşü. Tüm testler geçirse ve kapsam 2 yüzde puandan fazla düşmezse, şubesi bir PR açar.
 
 Başarısızlık taksonomisi teslim edilebilir. 50 repos'da, ne bozuldu? Depozisyonlar? Özel notlar? Kullanım sürümü oluşturun? Göçmenlikle ilgili olmayan test parçaları? Her sınıf bir sayım ve örnek farklılık elde eder. Gelecekteki tarif yazarları ilk üçü hedef alabilirler.
 
@@ -77,7 +77,7 @@ ce-migration-funnel
 
 4. **Budget caps.**30 dakika, 8 dolar, 20 ajan döner. "Budget_exhaust" altında herhangi bir ihlal durur ve dosyaları mevcut fark ile "budget_exhaust" altında durur.
 
-5. **Test + coverage gate.**Build yeşil gittiğinde test paketini çalıştırın. Kapsamı temel repo ile karşılaştırın. Kapsam 2'den fazla düşerse, "kapsam_iğneleme" altında dosya.
+5. **Test + coverage gate.**Build yeşil gittiğinde test paketini çalıştırın. Kapsama taban repo ile karşılaştırın. Kapsama 2 yüzde puandan fazla düştüyse, "kaplama_sıkıntı" altında dosya edin.
 
 6. **PR open.**Başarıya ulaştığınızda, şubenize basın, PR'yi farklılık ve hangi tariflerin uygulanıp hangi temsilcinin yazarı olduğunu özetleyerek açın.
 

@@ -3,7 +3,7 @@
 > Verifikasyon katmanı olmayan bir ajan harnası, bir trenchcoat'ta bir dileğidir. Bu ders, bir araç çağrısının ateşlenmesine izin verilmediğini, ajandanın çıkışının ne kadarını görmesine izin verildiğini ve ajandanın çok fazla okuduğu için sarmalın ne zaman durması gerektiğini belirleyen belirleyici kapı zincirini oluşturur. Zincir, küçük, isimli kapıların ve modelin gösterilen her simgesini izleyen bir gözlem defterinin bir fonksiyonudur.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 20-24 (Track A1: agent loop, tool registry, message store, prompt builder, model router), Phase 14 · 33 (instructions as constraints), Phase 14 · 36 (scope contracts), Phase 14 · 38 (verification gates)
 **Time:** ~90 minutes
 
@@ -82,7 +82,7 @@ Uygulama tek bir yöntemdir.`main.py`Ayrıca testler.
 
 ## Zincir düzeninin neden önemi var
 
-İzin vermekten daha ucuz bir inkâr.`WhitelistGate`O(1) hash arama ile çalışır. `RegexGate`O(pattern * argv) ile çalışır. `RecencyGate`Mesaj mağazasının küçük bir parçası okur.`BudgetGate`Bu yüzden, maliyeti artan bir iş yapmadan önce reddedilen arama kısa devreye girer.
+İzin vermekten daha ucuz bir inkâr.`WhitelistGate`İçeri giriyor .$O(1)$- Şarap aramak.`RegexGate`İçeri giriyor .$O(\text{pattern} \cdot \text{argv})$- Evet .`RecencyGate`Mesaj mağazasının küçük bir parçası okur.`BudgetGate`Bu yüzden, maliyeti artan bir iş yapmadan önce reddedilen arama kısa devreye girer.
 
 Bu yüzden, bu konuda bir çok şey yapmamalıyız. Bu yüzden, bu konuda bir şey yapmamalıyız. Bu yüzden, bu konuda bir şey yapmamalıyız.
 
@@ -95,6 +95,7 @@ Bu yüzden, bu konuda bir çok şey yapmamalıyız. Bu yüzden, bu konuda bir ş
 ```bash
 cd phases/19-capstone-projects/25-verification-gates-observation-budget
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

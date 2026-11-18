@@ -3,7 +3,7 @@
 > Bir görevde iyi bir performans gösteren bir model, tesadüfen iyi bir performans gösteren bir modeldir.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 19 lessons 42 to 45
 **Time:** ~90 minutes
 
@@ -20,7 +20,7 @@ Her hafta yeni bir dil modeli geliyor. Pazarlama iddiası iyi yapıyor. Dürüst
 
 Repo'da bir harness olmadan iki modeli vibes ile karşılaştırırsınız. bir harness ile sabit bir metrikle sabit bir görev kümesi üzerinde puan ile karşılaştırırsınız, bir JSON çıkışında farklılık gösterebilirsiniz. Harness dün çalışması ile bugünkü çalışması arasındaki sözleşmedir.
 
-Tuzak, kemerleri tek bir modele fazla bağlıyor. Düzeltme aynı tersine bir tuzak: harnes on beş dakika içinde okunacak kadar küçük, görevler repo'da gönderilmek için yeterince küçük, ölçümler sıfırdan yazılır böylece bir meslektaş onları denetleyebilir ve adapter model-specifik kodun yaşadığı tek yerdir. Adaptörü değiştir, lider çizelgesi hareket eder; görevleri değiştir, lider çizelgesi hareket eder. Başka hiçbir şey hareket etmesin.
+Tuzak, kemerleri tek bir modele fazla bağlıyor. Çözüm, her model-specifik seçeneği harnesten uzak tutmaktır: harnes on beş dakika içinde okunacak kadar küçüktür, görevler repo'da gönderilmek için yeterince küçüktür, ölçütler sıfırdan yazılır, böylece bir meslektaş onları denetleyebilir ve adapter model-specifik kodun yaşadığı tek yerdir. Adaptörü değiştir, lider çizelgesi hareket eder; görevleri değiştir, lider çizelgesi hareket eder. Başka hiçbir şey hareket etmesin.
 
 ## Anlaşım
 
@@ -135,6 +135,7 @@ Her metrik birim testi ile küçük bir fonksiyondur. Dersin test kümesi normal
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Senaryo ilk atışta armatürleri topuyor, oyuncak adaptörü ile puanlar veriyor (her armatürü doğru tutuyor) ve yazıyor `outputs/leaderboard.json`Oyuncak adaptörü ile toplam puan 1.0 .`test_main.py`Adaptör cevap veremediğinde aynı kemer 0.0 üretir.
