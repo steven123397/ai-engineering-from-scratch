@@ -3,7 +3,7 @@
 > هندسة الفوضى للدرجة العليا هي تخصصها الخاص في عام 2026. الشروط المسبقة قبل تشغيل التجارب في الإنتاج: تعريف SLI/SLO، قابلية مراقبة العينات+الميترات+المجلد، إعادة التدريب الآلية، كتب التشغيل، عند الاستدعاء. تمتلك الهندسة المعمارية أربعة طوابع: التحكم (مخطط التجربة) ، والهدف (الخدمات، تحت، مخازن البيانات) ، والسلامة (الحراس + الإيقاف + مرشحات حركة المرور) ، واللاحظة (المقاييس + الأثر + السجلات) ، والرد الآلي (إلى تعديلات SLO). الحراسة إلزامية: تحذيرات معدل الحرق توقف التجارب إذا كان متوقع حرق الحالة اليومية من خطوات ميزانية > 2x؛ فتحات القمع + تعابير الهوية التتبع تحذير الضجيج. الوقوف: مراجعة أسبوعية للكناري الصغير + SLO؛ يوم اللعبة الشهري + بعد الموت؛ مراجعة صمودية الفريق المتبادلة الربعية + خريطة الاعتماد. تجارب خاصة بالجامعة: عبء ذاكرة، فشل الشبكة، انقطاع المزود، إشارات غير مصممة، عواصف إخلاء مخزن KV. أدوات: هندسة تشوش التعبئة (توصيات مشتقة من LLM، وتخفيض مستوى الإشعاع المتفجرات، دمج أدوات MCP) ؛ LitmusChaos (CNCF) ؛ Chaos Mesh (CNCF Kubernetes-أصلي).
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy chaos experiment runner)
+**Languages:** Python, TypeScript (stdlib, toy chaos experiment runner)
 **Prerequisites:** Phase 17 · 23 (SRE for AI), Phase 17 · 13 (Observability)
 **Time:** ~60 minutes
 
@@ -128,7 +128,7 @@ i4-chaos-guard
 ## المزيد من القراءة
 
 - [DevSecOps School — Chaos Engineering 2026 Guide](https://devsecopsschool.com/blog/chaos-engineering/)
-- [Ankush Sharma — Observability for LLMs (book)](https://www.amazon.com/Observability-Large-Language-Models-Engineering-ebook/dp/B0DJSR65TR)
+- [Ankush Sharma — Observability for Large Language Models (Apress, 2026)](https://link.springer.com/book/10.1007/979-8-8688-2827-0)
 - [LitmusChaos (CNCF)](https://litmuschaos.io/)
 - [Chaos Mesh (CNCF)](https://chaos-mesh.org/)
 - [Harness Chaos Engineering](https://www.harness.io/products/chaos-engineering)

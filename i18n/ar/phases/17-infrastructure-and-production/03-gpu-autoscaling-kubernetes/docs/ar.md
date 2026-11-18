@@ -3,7 +3,7 @@
 > ثلاث طبقات، وليس واحدة. كربنتر إمدادات العقد الديناميكية (أقل من دقيقة واحدة، 40٪ أسرع من Cluster Autoscaler). يقوم KAI Scheduler بتنظيم المجموعات، وعلم التوبولوجيا، والصفوف الهرمية  يمنع فخ التخصيص الجزئي 7 من 8 حيث تنتظر سبعة عقدات وتحرق على GPU واحدة مفقودة. مقياسات ذاتية على مستوى التطبيق (NVIDIA Dynamo Planner ، llm-d Workload Variant Autoscaler) على إشارات محددة للإستنتاج  عمق الصف ، استخدام cache KV  ليس دورة عمل CPU / DCGM. فخ الكلاسيكي من " HPA " هو ذلك`DCGM_FI_DEV_GPU_UTIL`هو قياس دورة العمل: يمكن أن يكون 100% 10 طلبات أو 100. vLLM يخصص مسبقا ذاكرة cache KV ، لذلك لا يسبب الذاكرة أبداً التنظيم. هذه الدروس تعلمك لتكوين الطبقات الثلاث وتجنب Karpenter الافتراضي `WhenEmptyOrUnderutilized`سياسة التي تنهي تشغيل وظائف الجيبو في منتصف الإستثناء
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy queue-depth autoscaler simulator)
+**Languages:** Python, TypeScript (stdlib, toy queue-depth autoscaler simulator)
 **Prerequisites:** Phase 17 · 02 (Inference Platform Economics), Phase 17 · 04 (Serving Engine Internals)
 **Time:** ~75 minutes
 
@@ -20,7 +20,7 @@
 
 بشكل منفصل، تستخدم Cluster Autoscaler للعقدات. يصل طلب 1M-token في الساعة 2 صباحاً؛ يقضي الكluster 3 دقائق في تزويد العقدة، وتتوقف أوقات الطلب.
 
-مرة أخرى بشكل منفصل، تقوم بتنفيذ نموذج 70B يتطلب 8 GPU عبر 2 عقدات. المجموعة لديها 7 GPU مجانية و 1 متوزعة على 3 عقدات. Cluster Autoscaler يوفر عقدة لـ 1 GPU المفقودة. سبعة عقدات تنتظر 4 دقائق حرق المال بينما Kubernetes الحصول على آخر GPU.
+مرة أخرى ، تقوم بتنفيذ نموذج 70B يتطلب 8 GPU عبر 2 عقدات. المجموعة لديها 7 GPU مجانية ، متناثرة على 3 عقدات ، وتحتاج إلى 1 آخر. يقوم Cluster Autoscaler بتوفير عقدة لعاملة GPU 1 المفقودة. يجلس 7 GPU المحجوزات عديمة الفائدة لمدة 4 دقائق حرق المال بينما يصل Kubernetes إلى آخر GPU.
 
 ثلاث طبقات، ثلاثة أوضاع فشل مختلفة. التوسع الذاتي المعرف على GPU في عام 2026 ليس "تشغيل HPA". إنه يضم إمدادات العقد، وتخطيط العصابات، وتوسع إشارات التطبيق.
 
