@@ -3,7 +3,7 @@
 > GPT-4o đã trình bày sản phẩm vào tháng 5 năm 2024 không phải vì mô hình cơ bản mà vì hình dạng sản phẩm  một giao diện giọng nói nơi bạn nói, mô hình nhìn thấy những gì máy ảnh nhìn thấy, và nó nói lại trong dưới 250ms. Hệ sinh thái mở đã dành phần còn lại của năm 2024 và 2025 để chạy đua để đạt đến bề mặt sản phẩm đó. Qwen2.5-Omni (tháng 3 năm 2025) là thiết kế mở tham chiếu: một Thinker (hình biến tạo văn bản lớn) cộng với một Talker (hình biến tạo giọng nói song song), được kết nối bằng các token phát thanh trực tuyến. Mini-Omni đơn giản hóa nó, Moshi phù hợp với độ trễ của nó, GLM-4-Voice mở rộng nó cho Trung Quốc. Bài học này đọc kiến trúc Thinker-Talker và ngân sách thời gian trễ làm cho việc phát trực tuyến trong thời gian thực.
 
 **Type:** Build
-**Languages:** Python (stdlib, streaming pipeline latency simulator + VAD loop)
+**Languages:** Python (stdlib, streaming pipeline latency simulator + VAD loop), TypeScript
 **Prerequisites:** Phase 12 · 19 (audio-LLMs), Phase 12 · 16 (any-to-any)
 **Time:** ~180 minutes
 
@@ -12,7 +12,7 @@
 - Chia đường ống dẫn suy luận thành Thinker (sự lý luận văn bản) và Talker (sự tổng hợp ngôn ngữ) và giải thích tại sao streaming song song hoạt động.
 - Xét ngân sách thời gian đến đầu tiên-byte âm thanh (TTFAB) cho một tương tác trò chuyện, thành phần theo thành phần.
 - Mô tả vị trí phù hợp với thời gian của TMRoPE mã hóa qua thị giác, âm thanh và văn bản trong Thinker.
-- Hãy cho chúng ta biết tên ba kiểu trò chuyện thời gian thực: nửa kép, quay lại, và đầy đủ kép.
+- Hãy nêu tên hai mô hình trò chuyện thời gian thực, nửa duplex và đầy đủ duplex, và giải thích cách VAD chuyển đổi thúc đẩy giao dịch bán duplex.
 
 ## Vấn đề
 
@@ -41,10 +41,10 @@ Sự tách biệt quan trọng. Người suy nghĩ phải lớn để có lý lu
 
 Đi cả hai cùng nhau:
 
-1. Thinker phát hành mã thông báo văn bản t_i.
-2. Người nói tiêu thụ t_i (thông qua streaming) và phát ra các token nói s_i, s_{i+1}, ..., s_{i+k}.
+1. Thinker phát hành mã thông báo văn bản $t_i$- Tôi không biết.
+2. Người nói tiêu thụ $t_i$(via streaming) và phát ra các token nói $s_i, s_{i+1}, \ldots, s_{i+k}$- Tôi không biết.
 3. Bộ giải mã giọng nói tiêu thụ các mã thông báo giọng nói khi chúng đến và phát ra các mẫu âm thanh.
-4. Đến khi Thinker ở điểm văn bản t_{i+3}, Talker đã phát âm cho t_0..t_{i+2}.
+4. Khi Thinker có thể viết tin nhắn$t_{i+3}$, Talker đã phát âm cho $t_0, \ldots, t_{i+2}$- Tôi không biết.
 
 ### TMRoPE  Vị trí đa phương tiện phù hợp với thời gian
 
@@ -85,7 +85,7 @@ Người kế nhiệm. Qwen3-80B Thinker, lớn hơn Talker, cải thiện TMRoP
 - Tự giải mã residual-VQ: 30ms.
 - Tự giải mã dạng sóng nói: 50-80ms.
 
-Tổng TTFAB: 320-510ms tại 7B, 600-900ms tại 70B. Chất lượng biên giới thường có nghĩa là 70B +; do đó khoảng cách độ trễ biên giới.
+Tổng TTFAB: 320-490ms tại 7B, 600-900ms tại 70B. Chất lượng biên giới thường có nghĩa là 70B +; do đó khoảng cách độ trễ biên giới.
 
 ### Phương pháp toán tỷ lệ token
 

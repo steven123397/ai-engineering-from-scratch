@@ -3,7 +3,7 @@
 > Gia đình Qwen-VL  Qwen-VL (2023), Qwen2-VL (2024), Qwen2.5-VL (2025), Qwen3-VL (2025)  là dòng dõi mô hình ngôn ngữ thị giác mở có ảnh hưởng nhất vào năm 2026. Mỗi thế hệ đã đặt cược kiến trúc quyết định duy nhất mà phần còn lại của hệ sinh thái mở đã sao chép trong vòng mười hai tháng: độ phân giải động bản địa thông qua M-RoPE, lấy mẫu động-FPS với sự sắp xếp thời gian tuyệt đối, chú ý cửa sổ trong ViT và các định dạng xuất phát của đại lý có cấu trúc. Bằng Qwen3-VL, công thức đã ổn định: một bộ mã hóa 2D-RoPE-ViT với đầu vào tỷ lệ khía cạnh bản địa, một máy chiếu MLP vào cơ sở ngôn ngữ Qwen3 lớn, và các giai đoạn đào tạo nhấn mạnh OCR, hạ tầng và hành vi của đại lý như các mục tiêu hạng nhất. Bài học này đọc theo thời gian của gia đình để bạn hiểu tại sao mỗi nút ở nơi nó ở.
 
 **Type:** Learn
-**Languages:** Python (stdlib, M-RoPE encoder + dynamic-FPS sampler)
+**Languages:** Python, TypeScript (stdlib, M-RoPE encoder + dynamic-FPS sampler)
 **Prerequisites:** Phase 12 · 06 (patch-n'-pack)
 **Time:** ~120 minutes
 
@@ -53,7 +53,7 @@ Kết quả: Qwen2-VL-7B phù hợp với GPT-4o trên một số điểm chuẩ
 
 Vị trí lớn của Qwen2.5VL là video. FPS động không chỉ là "chọn mẫu nhiều khung hình hơn khi cần thiết".
 
-- Mã biểu thời gian tuyệt đối. thay vì chỉ số vị trí (trình 0, 1, 2...), sử dụng dấu thời gian thực. "À 0:04, con mèo nhảy. " Mô hình thấy `<time>0.04</time>`token được giao với token khung.
+- Thời gian tuyệt đối trong các ID vị trí. Thay vì chỉ số khung (phần 0, 1, 2...), trục thời gian của M-RoPE theo dấu thời gian thực tế, do đó khoảng cách giữa hai ID khung theo dõi các giây giữa chúng. "Ở 0:04, mèo nhảy". Không có mã văn bản bổ sung mang thời gian, vì vậy mã hóa không thêm chiều dài chuỗi.
 - FPS động. Sample ở 1 FPS cho đoạn băng chậm, 4+ FPS cho hành động. người dùng hoặc huấn luyện viên chọn; M-RoPE thích nghi.
 - Sự chú ý cửa sổ trong ViT. Sự chú ý không gian được mở cửa sổ (địa điểm trong các khối) cho thông qua; sự chú ý toàn cầu mỗi vài lớp.
 - Mô hình phát ra JSON rõ ràng. được đào tạo trên dữ liệu gọi công cụ: "{\" công cụ\": \"click\", \"coords\": [380, 220]}".
@@ -71,10 +71,12 @@ Qwen3-VL là một nâng cấp tăng lên tập hợp thay vì tái phát minh: 
 
 RoPE cổ điển xoay một truy vấn `q`kích thước `d`theo vị trí `m`sử dụng các phối hợp:
 
-```
-q_rot[2i]   = q[2i]   * cos(m * theta_i) - q[2i+1] * sin(m * theta_i)
-q_rot[2i+1] = q[2i]   * sin(m * theta_i) + q[2i+1] * cos(m * theta_i)
-theta_i     = 10000^(-2i/d)
+```math
+\begin{aligned}
+q_{\text{rot}}[2i] &= q[2i] \cos(m \theta_i) - q[2i+1] \sin(m \theta_i) \\
+q_{\text{rot}}[2i+1] &= q[2i] \sin(m \theta_i) + q[2i+1] \cos(m \theta_i) \\
+\theta_i &= 10000^{-2i/d}
+\end{aligned}
 ```
 
 M-RoPE chia mờ ẩn thành ba băng.`d = 96`. Đưa 32 điểm tối đến thời gian, 32 điểm cao, 32 điểm rộng. Mỗi băng xoay theo vị trí trục riêng của nó. Một đệm ở (t=5, h=10, w=20) có được xoay `R_t(5)`- `R_h(10)`- `R_w(20)`được áp dụng cho ba băng của nó.
@@ -90,7 +92,7 @@ Với đoạn video thời gian `T`giây và ngân sách token mục tiêu `B`- 
 1. Xét FPS tối đa mà bạn có thể đủ khả năng: `fps_max = B / (T * tokens_per_frame)`- Tôi không biết.
 2. Chọn một mục tiêu FPS từ `{1, 2, 4, 8}`Điều đó làm thỏa mãn `fps <= fps_max`- Tôi không biết.
 3. Nếu chuyển động cao (tức là quy trình quang học hoặc yêu cầu rõ ràng của người dùng), hãy chọn FPS cao hơn.
-4. Mô hình đồng nhất tại FPS được chọn; nhập `<time>t</time>`token giữa các khung.
+4. Mô hình đồng nhất tại FPS được chọn; đặt ID thời gian M-RoPE của mỗi khung từ dấu thời gian của nó trong vài giây.
 
 Qwen2.5-VL đào tạo logic này ngầm; khi suy luận người dùng kiểm soát qua `fps`Parameter: Một chuỗi hành động 60 giây ở 4 FPS với 81 token mỗi khung = 19440 token, có thể quản lý trong bối cảnh 32k.
 
@@ -145,7 +147,7 @@ Bài học này sẽ mang lại kết quả `outputs/skill-qwen-vl-pipeline-desi
 |------|-----------------|------------------------|
 | M-RoPE | "Multimodal RoPE" | 3D rotary position embedding with temporal, height, and width bands in the hidden dim |
 | Dynamic FPS | "Smart sampling" | Frame sampling rate chosen per video based on motion, duration, and token budget |
-| Absolute time token | "Timestamp token" | `<time>t</time>` interleaved in the sequence so the model sees actual seconds not frame index |
+| Absolute time encoding | "Time-aligned M-RoPE" | Temporal position IDs set from each frame's timestamp, so the model sees actual seconds, not frame index, with no extra tokens |
 | Window attention | "Local attention" | Spatial self-attention restricted to small windows for speed; global attention added periodically |
 | Structured agent output | "JSON mode" | Training data supervision teaching the VLM to emit parseable JSON with coords and tool names |
 | min_pixels / max_pixels | "Resolution bounds" | Per-request Qwen2.5-VL controls bounding total pixel count and therefore token count |

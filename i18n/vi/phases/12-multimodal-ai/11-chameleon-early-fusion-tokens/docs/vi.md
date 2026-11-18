@@ -3,7 +3,7 @@
 > Mỗi VLM mà chúng ta đã thấy cho đến nay giữ hình ảnh và văn bản riêng biệt. Các token hình ảnh đến từ một bộ mã hóa thị giác, chảy vào một máy chiếu, sau đó gặp văn bản bên trong LLM. Từ vựng của tầm nhìn và văn bản không bao giờ chồng chéo. Chameleon (Meta, tháng 5 năm 2024) hỏi: nếu họ làm thế thì sao? Trình luyện một VQ-VAE biến hình thành một chuỗi các token riêng biệt từ một từ vựng chung. Mỗi tài liệu đa phương thức hiện là một chuỗi mã thông báo văn bản và mã thông báo hình ảnh được giao nhau, một lỗ tự động. Hiệu ứng phụ: mô hình có thể tạo ra các đầu ra hỗn hợp  mã thông báo văn bản và hình ảnh thay thế trong một cuộc gọi suy luận duy nhất. Bài học này đọc luận án early-fusion và xây dựng một phiên bản đồ chơi cuối cùng.
 
 **Type:** Build
-**Languages:** Python (stdlib, VQ-VAE tokenizer + interleaved decoder)
+**Languages:** Python, TypeScript (stdlib, VQ-VAE tokenizer + interleaved decoder)
 **Prerequisites:** Phase 12 · 05, Phase 8 (Generative AI)
 **Time:** ~180 minutes
 
@@ -39,7 +39,7 @@ Tokenizer là một bộ mã hóa tự động biến thể theo phương thức
 
 Việc đào tạo: VAE tái tạo mất + mất cam kết + mất sổ sách code.
 
-Đối với Chameleon: một hình ảnh trở thành 32 * 32 = 1024 token được rút ra từ một từ vựng của 8192.
+Đối với Chameleon: một hình ảnh trở thành 32 * 32 = 1024 mã thông báo được rút ra từ một từ vựng của 8192. Đặt các ID hình ảnh đó trong cùng không gian ID với các mã thông báo văn bản BPE. Chameleon chỉ có 65,536 mục nhập, và số lượng đó đã bao gồm mã hình ảnh 8192 và các mã thông báo đặc biệt như bộ tách hình ảnh.
 
 ### Thuật ngữ chung
 
