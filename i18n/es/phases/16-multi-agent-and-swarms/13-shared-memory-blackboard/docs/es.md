@@ -3,7 +3,7 @@
 > En 2026 coexistirán dos enfoques en los sistemas multiagentes: el **message pool**(todo el mundo ve los mensajes de todos, como en AutoGen GroupChat o MetaGPT) y el **blackboard with subscription**(los agentes se suscriben a eventos relevantes, como en el MCP Context-Aware o el marco de Matrix). Ambos son la única parte de estado de un sistema multi-agente  lo que significa que ambos son donde viven los errores interesantes.**memory poisoning**El estudio de la teoría de la alucinación de un "hecho" en una serie de estudios de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la investigación de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de los resultados de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de los resultados de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de los resultados de la ciencia de la ciencia de la ciencia de la ciencia de la ciencia de la
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib, `threading`)
+**Languages:** Python (stdlib, `threading`), TypeScript
 **Prerequisites:** Phase 16 · 04 (Primitive Model), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~75 minutes
 
@@ -68,7 +68,7 @@ El problema no es el estado compartido en sí mismo  es el estado compartido **w
 
 1. **Attribute provenance on every write.**Cada entrada en los registros estatales compartidos quién la escribió, cuándo, bajo qué instante y (si corresponde) qué fuente citó el agente.
 2. **Version writes; treat them as append-only.**Una corrección es una nueva entrada que sustituye a la antigua, no una actualización en el lugar.
-3. **Keep at least one agent that cannot write to shared state.**Un agente de verificación de sólo lectura toma muestras de entradas, recoge fuentes y señala inconsistencias.
+3. **Keep at least one agent that cannot write to shared state.**Un agente de verificación de sólo lectura muestra entradas, recoge fuentes y señala inconsistencias. Todavía lee el grupo, por lo que puede ser engañado por una mala entrada, pero verifica cada entrada contra la fuente original y no puede escribir, por lo que sus veredictos nunca devuelven un hecho envenenado al estado compartido.
 
 ### Precedente de tablero negro (Hayes-Roth, 1985)
 
@@ -119,6 +119,7 @@ swarm-blackboard
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Producción esperada:

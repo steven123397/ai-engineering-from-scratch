@@ -3,7 +3,7 @@
 > Tres referencias de grado de producción para estudiar de extremo a extremo, cada una ilustrando una parte diferente de la ingeniería multi-agente. **Anthropic's Research system**(trabajador de orquesta, fichas de 15x, +90.2% sobre el agente único Opus 4, despliegues del arco iris) es el caso de supervisor canónico. **MetaGPT / ChatDev**(especialización de roles codificados en SOP para la ingeniería de software; "dehallucinación comunicativa" de ChatDev; extensión de MacNet a >1000 agentes a través de DAGs, arXiv:2406.07155) es el caso canónico de descomposición de roles. **OpenClaw / Moltbook**(originalmente Clawdbot por Peter Steinberger, noviembre de 2025; renombrado dos veces; 247k estrellas de GitHub para marzo de 2026; agentes locales de ReAct-loop; Moltbook como una red social solo para agentes con ~2.3M cuentas de agentes dentro de los días de lanzamiento, adquirido por Meta 2026-03-10) ilustra lo que sucede a escala de población: actividad económica emergente, riesgos de inyección rápida, regulación a nivel estatal (China restringía OpenClaw en computadoras gubernamentales, marzo 2026).**Framework landscape April 2026:**LangGraph y CrewAI lideran la producción; AG2 es la continuación de AutoGen de la comunidad; Microsoft AutoGen está en modo de mantenimiento (fusión en Microsoft Agent Framework, RC Feb 2026); OpenAI Agents SDK es el sucesor de producción Swarm; Google ADK (abril 2025) es el participante nativo de A2A. Cada marco principal ahora envía soporte MCP; la mayoría envía A2A. Esta lección lee cada caso de extremo a extremo y destiliza los patrones comunes para que pueda elegir la referencia correcta para su próximo sistema de producción.
 
 **Type:** Learn (capstone)
-**Languages:** —
+**Languages:** Python, TypeScript
 **Prerequisites:** all of Phase 16 (Lessons 01-24)
 **Time:** ~90 minutes
 
@@ -57,7 +57,7 @@ Este es el caso de referencia para la especialización de roles (fase 16 · 08) 
 El caso de la población de producción.
 
 - **Nov 2025:**Las naves de Clawdbot (el agente local de codificación de ReAct-loop de Peter Steinberger).
-- **Dec 2025 – Mar 2026:**cambió su nombre dos veces (Clawdbot → OpenClaw → continuó bajo OpenClaw).
+- **Jan 2026:**cambió su nombre dos veces en una semana (Clawdbot → Moltbot el 27 de enero después de quejas de marca registrada, luego Moltbot → OpenClaw tres días después).
 - **Feb 2026:**Moltbook se lanza como una red social solo para agentes en los mismos primitivos; ~ 2.3M cuentas de agentes en pocos días.
 - **Mar 2026 (2026-03-10):**Meta adquiere Moltbook.
 - **Mar 2026:**China restringe OpenClaw en los ordenadores del gobierno.

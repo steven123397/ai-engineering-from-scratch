@@ -3,7 +3,7 @@
 > Li et al. (arXiv:2310.10701) mostraron que los agentes de LLM en una exposición de juego de texto cooperativa **emergent high-order Theory of Mind**(ToM)  razonamiento sobre lo que otro agente cree sobre las creencias de un tercer agente  pero falla en la planificación de largo horizonte debido a la gestión del contexto y alucinación. Riedl (arXiv:2510.05174) midió la sinergia de mayor orden en una población y encontró que **only**La condición de ToM-prompt produce diferenciación vinculada a la identidad y complementariedad orientada a objetivos; los LLM de menor capacidad muestran sólo una aparición falsa. Es decir, la aparición de la coordinación es prematura y condicional y depende del modelo, no gratuita. Esta lección implementa un agente minimal consciente de ToM, ejecuta una tarea de cooperación con y sin Invitación de ToM, y mide el delta de coordinación en relación con el protocolo Riedl 2025.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 07 (Society of Mind and Debate), Phase 16 · 17 (Generative Agents)
 **Time:** ~75 minutes
 
@@ -120,6 +120,7 @@ sw-theory-of-mind
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultado esperado: los agentes de orden cero duplican el esfuerzo a una tasa de ~ 35% y completan ~ 60% de los ensayos en 10 vueltas.
@@ -163,5 +164,5 @@ Lista de verificación de las reclamaciones de coordinación:
 
 - [Li et al. — Theory of Mind for Multi-Agent Collaboration via Large Language Models](https://arxiv.org/abs/2310.10701) ToM emergente en juegos cooperativos; modos de fracaso de largo horizonte
 - [Riedl — Emergent Coordination in Multi-Agent Language Models](https://arxiv.org/abs/2510.05174) medición a escala de población; la incidencia de ToM es la condición de carga
-- [Premack & Woodruff — Does the chimpanzee have a theory of mind?](https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/does-the-chimpanzee-have-a-theory-of-mind/1E96B02CD9850E69AF20F81FA7EB3595) el origen del concepto de TOM en 1978
+- [Premack & Woodruff — Does the chimpanzee have a theory of mind?](https://doi.org/10.1017/S0140525X00076512) el origen del concepto de TOM en 1978
 - [Baron-Cohen, Leslie, Frith — Does the autistic child have a theory of mind?](https://doi.org/10.1016/0010-0277(85)90022-8)  el artículo Sally-Anne (1985)

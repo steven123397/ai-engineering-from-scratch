@@ -3,7 +3,7 @@
 > El patrimonio de aprendizaje reforzado de la coordinación multiagente, que todavía informa a los sistemas de LLM-agente en 2026. **MADDPG**(Lowe et al., NeurIPS 2017, arXiv:1706.02275) introdujo la Capacitación Centralizada, Ejecución Descentralizada (CTDE): cada crítico ve todos los estados y acciones de los agentes durante la capacitación; en el momento de la prueba solo ejecutan actores locales. Trabaja para entornos cooperativos, competitivos y mixtos. **QMIX**(Rashid et al., ICML 2018, arXiv:1803.11485) es la descomposición de valor con una red de mezcla monótona; por agente Qs se combinan en conjunto Q así `argmax`distribuye limpiamente  dominante en el StarCraft Multi-Agent Challenge (SMAC). **MAPPO**(Yu et al., NeurIPS 2022, arXiv:2103.01955) es PPO con una función de valor centralizada; "sorprendentemente eficaz" en el mundo de partículas, SMAC, Google Research Football, Hanabi con ajuste mínimo. Estas políticas sustentan las políticas de entrenamiento para equipos de agentes que deben actuar de manera descentralizada.**default 2026 cooperative-MARL baseline**Esta lección construye cada uno de ellos desde un pequeño juguete de la red y aterriza las tres ideas en la memoria muscular antes de tocar el entrenamiento de agente LLM.
 
 **Type:** Learn
-**Languages:** Python (stdlib, small NumPy-free implementations)
+**Languages:** Python (stdlib, small NumPy-free implementations), TypeScript
 **Prerequisites:** Phase 09 (Reinforcement Learning), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~90 minutes
 
@@ -42,10 +42,10 @@ Modo de falla: los críticos crecen con N agentes (la entrada incluye todas las 
 
 ### QMIX (2018)  Descomposición de valor
 
-La recompensa global es la suma de una función monótona de valores Q por agente:
+El valor común de acción `Q_tot`es una función de mezcla monótona de valores Q por agente:
 
-```
-Q_tot(tau, a) = f(Q_1(tau_1, a_1), ..., Q_n(tau_n, a_n)),   df/dQ_i >= 0
+```math
+Q_{\text{tot}}(\tau, a) = f\big(Q_1(\tau_1, a_1), \ldots, Q_n(\tau_n, a_n)\big), \quad \frac{\partial f}{\partial Q_i} \ge 0
 ```
 
 La monotonía garantiza `argmax_a Q_tot`puede ser calculado por cada agente que elija`argmax_{a_i} Q_i`¿Qué es lo que se dice?**exactly the decentralized execution property**En el tiempo de entrenamiento, una red de mezcla produce`Q_tot`de los Qs por agente.
@@ -117,6 +117,7 @@ Las cuatro versiones de CTDE convergen a caminos más cortos que la línea de ba
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Resultados esperados: los agentes independientes toman ~ 6 pasos en promedio; las variantes CTDE convergen hacia ~ 3.5 pasos (el óptimo para la cuadrícula 4x4 es 3). La diferencia de patrón aparece a pesar de las políticas scriptadas.
