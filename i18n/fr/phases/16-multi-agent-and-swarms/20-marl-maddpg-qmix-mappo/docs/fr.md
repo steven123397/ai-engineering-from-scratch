@@ -3,7 +3,7 @@
 > L'héritage de la coordination multi-agents, qui continue d'informer les systèmes de MLL-agents en 2026, est renforcé. **MADDPG**(Lowe et coll., NeurIPS 2017, arXiv:1706.02275) introduit la formation centralisée, exécution décentralisée (CTDE): chaque critique voit tous les états et actions des agents pendant la formation; au moment du test, seuls les acteurs locaux sont en cours de fonctionnement.**QMIX**(Rashid et coll., ICML 2018, arXiv:1803.11485) est une décomposition de valeur avec un réseau de mélange monotonique; par agent Qs se combinent en Q commun de sorte que `argmax`distribue de manière nette  dominant sur le défi multi-agents StarCraft (SMAC). **MAPPO**(Yu et al., NeurIPS 2022, arXiv:2103.01955) est un PPO avec une fonction de valeur centralisée; "surprenantement efficace" sur le monde des particules, SMAC, Google Research Football, Hanabi avec un réglage minimal.**default 2026 cooperative-MARL baseline**Cette leçon construit chacun à partir d'un petit jouet de grille-monde et atterrit les trois idées dans la mémoire musculaire avant de toucher à l'entraînement de l'agent LLM.
 
 **Type:** Learn
-**Languages:** Python (stdlib, small NumPy-free implementations)
+**Languages:** Python (stdlib, small NumPy-free implementations), TypeScript
 **Prerequisites:** Phase 09 (Reinforcement Learning), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~90 minutes
 
@@ -42,10 +42,10 @@ Mode d'échec: les critiques se développent avec N agents (l'entrée comprend t
 
 ### QMIX (2018)  décomposition de la valeur
 
-La récompense globale est la somme d'une fonction monotone des valeurs Q par agent:
+La valeur commune d'action `Q_tot`est une fonction de mélange monotone de Q-values par agent:
 
-```
-Q_tot(tau, a) = f(Q_1(tau_1, a_1), ..., Q_n(tau_n, a_n)),   df/dQ_i >= 0
+```math
+Q_{\text{tot}}(\tau, a) = f\big(Q_1(\tau_1, a_1), \ldots, Q_n(\tau_n, a_n)\big), \quad \frac{\partial f}{\partial Q_i} \ge 0
 ```
 
 La monotonie garantit `argmax_a Q_tot`peut être calculé par chaque agent choisissant `argmax_{a_i} Q_i`- Je ne suis pas d'accord.**exactly the decentralized execution property**En cours de formation, un réseau de mélange produit`Q_tot`du Qs par agent.
@@ -117,6 +117,7 @@ Je vais courir .
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Expérience attendue: les agents indépendants prennent en moyenne ~6 étapes; les variantes CTDE convergent vers ~3.5 étapes (optimale pour la grille 4x4 est 3).

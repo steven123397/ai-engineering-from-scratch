@@ -1,9 +1,9 @@
 # L'héritage des lois FIPA-ACL et du discours
 
-> Avant MCP, avant A2A, il y avait FIPA-ACL. En 2000, la Fondation IEEE pour les agents physiques intelligents a ratifié un langage de communication d'agent avec vingt performatifs, deux langages de contenu et un ensemble de protocoles d'interaction  contrat net, abonnement/notification, demande-quand. Il a disparu de l'industrie parce que les coûts généraux ontologiques étaient trop lourds pour le Web, mais le réveil LLM des systèmes multi-agents réimplemente tranquillement les mêmes idées sans la sémantique formelle: les contrats JSON représentent les performatifs, le langage naturel représente les ontologies. Cette leçon prend au sérieux la FIPA-ACL pour que vous puissiez voir quelles décisions du protocole 2026 sont réinventées, quelles sont les nouveautés, et où la vague actuelle va redécouvrir les problèmes déjà résolus dans les années 2000.
+> Avant MCP, avant A2A, il y avait FIPA-ACL. En 2000, la Fondation pour les agents physiques intelligents (FIPA, devenue un comité de normes de la Société informatique IEEE en 2005) a ratifié un langage de communication d'agent avec vingt performatifs, deux langages de contenu et un ensemble de protocoles d'interaction  contrat net, abonnement / notification, demande-quand. Il a disparu de l'industrie parce que les coûts généraux ontologiques étaient trop lourds pour le Web, mais le réveil LLM des systèmes multi-agents réimplemente tranquillement les mêmes idées sans la sémantique formelle: les contrats JSON représentent les performatifs, le langage naturel représente les ontologies. Cette leçon prend au sérieux la FIPA-ACL pour que vous puissiez voir quelles décisions du protocole 2026 sont réinventées, quelles sont les nouveautés, et où la vague actuelle va redécouvrir les problèmes déjà résolus dans les années 2000.
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 01 (Why Multi-Agent)
 **Time:** ~60 minutes
 
@@ -160,6 +160,7 @@ Je vais courir .
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 La sortie est une trace côte à côte montrant chaque message moderne dans sa forme JSON 2026 et sa forme FIPA-ACL, puis un aller-retour d'une offre de réseau de contrat.
@@ -193,7 +194,7 @@ Documentez ces cinq questions pour tout nouveau protocole avant de le mettre en 
 | Term | What people say | What it actually means |
 |------|----------------|------------------------|
 | Speech act | "An utterance that does something" | Austin/Searle: utterances as actions. The theoretical parent of ACL. |
-| FIPA | "That old XML thing" | IEEE Foundation for Intelligent Physical Agents. Standardized ACL in 2000. |
+| FIPA | "That old XML thing" | Foundation for Intelligent Physical Agents. Standardized ACL in 2000; became an IEEE Computer Society standards committee in 2005. |
 | ACL | "Agent Communication Language" | FIPA's envelope format: performative + content + metadata. |
 | Performative | "The verb" | The intent class of a message: `inform`, `request`, `propose`, `cfp`, etc. |
 | KQML | "FIPA's predecessor" | Knowledge Query and Manipulation Language (1993). Simpler, narrower. |

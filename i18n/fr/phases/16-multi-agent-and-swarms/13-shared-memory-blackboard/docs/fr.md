@@ -3,7 +3,7 @@
 > Deux approches coexistent dans les systèmes multi-agents de 2026: le **message pool**(tous voient les messages de tous, comme dans AutoGen GroupChat ou MetaGPT) et le **blackboard with subscription**Les deux sont la seule partie étatique d'un système multi-agent  ce qui signifie que les deux sont là où vivent les bugs intéressants.**memory poisoning**Un agent hallucine un " fait ", d'autres agents le traitent comme vérifié, et la précision se détériore progressivement d'une manière qui est beaucoup plus difficile à déboguer qu'un accident immédiat.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib, `threading`)
+**Languages:** Python (stdlib, `threading`), TypeScript
 **Prerequisites:** Phase 16 · 04 (Primitive Model), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~75 minutes
 
@@ -68,7 +68,7 @@ Le problème n'est pas l'état partagé en soi  c'est l'état partagé **without
 
 1. **Attribute provenance on every write.**Chaque entrée dans les dossiers d'État partagés qui l'a écrite, quand, sous quel prompt, et (le cas échéant) quelle source l'agent a cité.
 2. **Version writes; treat them as append-only.**Une correction est une nouvelle entrée qui remplace l'ancienne, pas une mise à jour en place.
-3. **Keep at least one agent that cannot write to shared state.**Un agent de vérification à lecture seule prélève des échantillons, récupère les sources et détecte les incohérences.
+3. **Keep at least one agent that cannot write to shared state.**Un agent de vérification à lecture seule prélève des échantillons d'entrées, récupère des sources et détecte les incohérences. Il lit toujours le bassin, de sorte qu'il peut être trompé par une mauvaise entrée, mais il vérifie chaque entrée contre la source originale et ne peut pas écrire, de sorte que ses verdicts ne renvoient jamais un fait empoisonné dans un état partagé.
 
 ### Précedent de plaque noire (Hayes-Roth, 1985)
 
@@ -119,6 +119,7 @@ Je vais courir .
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Résultats attendus:
