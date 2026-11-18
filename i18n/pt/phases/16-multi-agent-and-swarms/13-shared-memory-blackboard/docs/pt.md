@@ -3,7 +3,7 @@
 > Em 2026 existem duas abordagens em conjunto: o**message pool**(todos vêem as mensagens de todos, como no AutoGen GroupChat ou MetaGPT) e o **blackboard with subscription**(agentes se inscreverem em eventos relevantes, como no MCP Context-Aware ou na estrutura Matrix). Ambos são a única parte com estado de um sistema multi-agente  o que significa que ambos são onde os bugs interessantes vivem.**memory poisoning**A lição da "Study of the Fire" é uma lição de que um agente alucina um "fatto", outros agentes o tratam como verificado, e a precisão declina gradualmente de uma forma que é muito mais difícil de depurar do que um acidente imediato.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib, `threading`)
+**Languages:** Python (stdlib, `threading`), TypeScript
 **Prerequisites:** Phase 16 · 04 (Primitive Model), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~75 minutes
 
@@ -68,7 +68,7 @@ O problema não é o estado compartilhado em si.**without provenance and without
 
 1. **Attribute provenance on every write.**Cada entrada em registros estaduais compartilhados quem a escreveu, quando, sob que prompt e (se aplicável) qual a fonte citada pelo agente.
 2. **Version writes; treat them as append-only.**Uma correcção é uma nova entrada que substitui a antiga, não uma atualização no local.
-3. **Keep at least one agent that cannot write to shared state.**Um agente de verificação de somente leitura recolhe amostras de entradas, recorre a fontes e sinaliza inconsistências.
+3. **Keep at least one agent that cannot write to shared state.**Um agente de verificação de somente leitura mostra entradas, recorre fontes e sinaliza inconsistências. Ele ainda lê o pool, então pode ser enganado por uma entrada ruim, mas verifica cada entrada contra a fonte original e não pode escrever, então seus veredictos nunca alimentam um fato envenenado de volta ao estado compartilhado.
 
 ### Precedente de quadro negro (Hayes-Roth, 1985)
 
@@ -119,6 +119,7 @@ swarm-blackboard
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Produção esperada:

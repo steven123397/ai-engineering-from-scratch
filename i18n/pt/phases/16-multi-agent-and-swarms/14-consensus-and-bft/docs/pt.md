@@ -3,7 +3,7 @@
 > Sistemas distribuídos clássicos BFT atende aos LLM estocásticos. Em 2025-2026, surgiram três direcções de investigação: **CP-WBFT**(arXiv:2511.10400) pesa cada voto por uma investigação de confiança; **DecentLLMs**(arXiv:2507.14928) vai sem líder com propostas paralelas de trabalhadores e agregação geométrica-mediana; **WBFT**(arXiv:2505.05103) combina votação ponderada com Clustering de Estrutura Hierárquica para dividir os nós Core e Edge. O resultado empírico honesto de "Can AI Agents Agree?" (arXiv:2603.01213) é que mesmo o acordo escalar é frágil hoje  um único agente enganador pode comprometer uma mistura de agentes. A BFT é necessária, mas não suficiente. Esta lição constrói um protocolo BFT mínimo, injeta três ataques específicos de agentes (mentir bizantino, conformidade sicófante, monocultura de erro correlacionado) e mede como cada variante de consenso lida.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 07 (Society of Mind and Debate), Phase 16 · 13 (Shared Memory)
 **Time:** ~75 minutes
 
@@ -107,6 +107,7 @@ Padrões de ataque implementados:
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Output esperado: uma tabela de (ataque, agregador) -> resposta final, com a resposta correta destacada. Pluralidade falha no caso da monocultura. A ponderação de confiança do CPWBFT atinge a sicofania.
@@ -148,7 +149,7 @@ Antes de enviar qualquer mecanismo de consenso:
 
 ## Mais leitura
 
-- [Castro & Liskov — Practical Byzantine Fault Tolerance (OSDI 1999)](https://pmg.csail.mit.edu/papers/osdi99.pdf) a fundação
+- [Castro & Liskov — Practical Byzantine Fault Tolerance (OSDI 1999)](https://www.usenix.org/conference/osdi-99/practical-byzantine-fault-tolerance) a fundação
 - [CP-WBFT — Confidence-Probe Weighted BFT](https://arxiv.org/abs/2511.10400) Peso de votos por confiança
 - [DecentLLMs — leaderless multi-agent consensus](https://arxiv.org/abs/2507.14928) Agregação geométrica-mediana
 - [WBFT — Weighted BFT with Hierarchical Structure Clustering](https://arxiv.org/abs/2505.05103) Divisão Core/Edge para latência limitada
