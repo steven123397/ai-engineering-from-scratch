@@ -3,7 +3,7 @@
 > A descodificação especulativa (fase 10 · 15) paralela os tokens dentro de uma sequência. Os quadros multi-agentes paralelam-se em sequências inteiras, mas forçam coordenação explícita (voting, sub-task splitting). Hogwild! A Inferência (Rodionov et al., arXiv:2504.06261) faz outra coisa: executa N instâncias do mesmo LLM em paralelo contra um cache de valor de chave SHARED. Cada trabalhador vê instantaneamente os tokens gerados por cada outro trabalhador. Modelos de raciocínio modernos  QwQ, DeepSeek-R1  podem auto-coordenar através desse cache compartilhado sem qualquer ajuste fino. A abordagem é experimental, mas abre um eixo inteiramente novo de paralelismo de inferência que fica ortogonal ao descodificação de especificações. Esta lição implementa um Hogwild de dois trabalhadores! Simulador em stdlib Python e explica por que a colaboração de caché compartilhado emerge das habilidades de raciocínio do modelo existente.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), Rust
 **Prerequisites:** Phase 10 · 12 (inference optimization), Phase 10 · 15 (speculative decoding)
 **Time:** ~60 minutes
 
@@ -55,7 +55,7 @@ O nome do artigo deriva de Hogwild! SGD (Recht et al., 2011), um optimizador de 
 
 ### A RoPE torna isto tratável
 
-Os rotários embutidos em posição (RoPE, Su et al. 2021) codificam informações de posição através da rotação nos vetores Q e K. Como as posições são rotações e não compensações coladas, a posição de um token pode mudar sem recomputar a entrada do cache KV. Quando o trabalhador `i`escreve no cache compartilhado em posição `p`, outros trabalhadores que lêem essa posição podem usar a entrada em cache diretamente  não é necessária re-rotação.
+Embedamentos de posição rotativa (RoPE, Su et al. 2021) codificar informações de posição através de rotação nos vetores Q e K. Como a pontuação de atenção entre uma consulta rotada e uma chave rotada depende apenas de sua distância relativa, um bloco inteiro de entradas em cache pode mudar para um novo offset sem recomputamento: gire a consulta em vez de voltar a rotear cada chave em cache. Hogwild! Inference faz isso uma vez por bloco de cache: para uma consulta em posição `i_q`e um bloco que começa em`i_k`A questão é rotada pela distância relativa.`i_q - i_k`É assim que cada trabalhador vê os blocos de cache compartilhados em sua própria ordem. O truque funciona para uma mudança uniforme de um bloco contíguo. Movendo tokens individuais para posições diferentes mudaria suas rotações e ainda precisa de recomputada.
 
 Em um modelo de posição aprendida ou posição absoluta, Hogwild! precisaria de invalidação do cache em cada escrita simultânea.
 

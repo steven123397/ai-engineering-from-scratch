@@ -197,23 +197,23 @@ try:
     )
 except ImportError:
     GPT2_PATTERN = re.compile(
-        r"""'(?:[sdmt]|ll|ve|re)| ?[a-zA-Z]+| ?[0-9]+| ?[^\s\w]+|\s+(?!\S)|\s+"""
+        r"""'(?:[sdmt]|ll|ve|re)| ?[^\W\d_]+| ?\d+| ?(?:[^\s\w]|_)+|\s+(?!\S)|\s+"""
     )
 
 def pre_tokenize(text):
     return [match.group() for match in GPT2_PATTERN.finditer(text)]
 ```
 
-O `regex`Modulo suporta escapes de propriedade Unicode (`\p{L}`para cartas, `\p{N}`Para números).`re`O módulo não, então nós voltamos para classes de caracteres ASCII. Para a produção de tokenizers multilíngues, instalar `regex`- Não .
+O `regex`Modulo suporta escapes de propriedade Unicode (`\p{L}`para cartas, `\p{N}`Para números).`re`O módulo não, então o fallback constrói as mesmas classes de `\w`- Não .`[^\W\d_]`corresponde a qualquer letra Unicode e `\d`Qualquer dígito de Unicode. Para tokenizadores multilíngues de produção, instale `regex`- Não .
 
 Tenta:
 
 ```python
 print(pre_tokenize("Hello, world! Don't stop."))
-# [' Hello', ',', ' world', '!', " Don", "'t", ' stop', '.']
+# ['Hello', ',', ' world', '!', ' Don', "'t", ' stop', '.']
 ```
 
-O espaço principal permanece ligado à palavra. As contrações se dividem no apóstrofo. A pontuação se torna sua própria peça.
+O espaço principal permanece ligado à palavra que o segue.`Hello`As contrações se dividem no apóstrofo. A pontuação se torna sua própria peça.
 
 ### Passo 3: BPE em sequências de byte
 
