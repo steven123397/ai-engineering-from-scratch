@@ -3,7 +3,7 @@
 > La reconnaissance de la parole est une classification audio à chaque étape, collée par un modèle de séquence qui connaît l'anglais et le silence. CTC, RNN-T et l'attention sont les trois façons de le faire. Choisissez une et comprenez pourquoi.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 02 (Spectrograms & Mel), Phase 5 · 08 (CNNs & RNNs for Text), Phase 5 · 10 (Attention)
 **Time:** ~45 minutes
 
@@ -37,7 +37,7 @@ Avantage: la plus haute qualité sur ASR hors ligne, facile à entraîner avec d
 
 ### WER: le numéro unique
 
-**Word Error Rate**- Je suis là.`(S + D + I) / N`, où S = substitutions, D = suppressions, I = insertions, N = nombre de mots de référence. Correspond à la distance de modification de Levenshtein au niveau des mots. Plus bas est mieux. Un WER supérieur à 20% est généralement inutilisable; inférieur à 5% est la parité humaine pour le discours de lecture.
+**Word Error Rate**- Je suis là.$(S + D + I) / N$Où ?$S$= les remplacements, $D$= les suppressions, $I$=insert, $N$=conte de mots de référence. Correspond à la distance de modification de Levenshtein au niveau des mots. Plus bas est mieux. Un WER supérieur à 20% est généralement inutilisable; inférieur à 5% est la parité humaine pour le langage de lecture.
 
 | Model | LibriSpeech test-clean | LibriSpeech test-other | Size |
 |-------|------------------------|------------------------|------|

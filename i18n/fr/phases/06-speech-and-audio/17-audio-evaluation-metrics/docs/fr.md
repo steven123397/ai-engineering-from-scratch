@@ -3,7 +3,7 @@
 > Vous ne pouvez pas envoyer ce que vous ne pouvez pas mesurer. Cette leçon nomme les mesures 2026 pour chaque tâche audio: ASR (WER, CER, RTFx), TTS (MOS, UTMOS, SECS, WER-on-ASR-round-trip), audio-langue (MMAU, LongAudioBench), musique (FAD, CLAP), et haut-parleur (EER).
 
 **Type:** Learn
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 04, 06, 07, 09, 10; Phase 2 · 09 (Model Evaluation)
 **Time:** ~60 minutes
 
@@ -45,7 +45,7 @@ Chaque tâche audio a plusieurs mesures, chacune mesurant un axe différent. En 
 
 **SECS (Speaker Encoder Cosine Similarity).**Pour le clonage vocal. ECAPA intégrant cosine entre référence et sortie clonée. &gt; 0,75 = clone reconnaissable.
 
-**WER-on-ASR-round-trip.**Exécutez Whisper sur la sortie TTS, calculer WER contre le texte d'entrée. Capture des régressions d'intelligibilité. 2026 SOTA: &lt; 2% CER.
+**WER-on-ASR-round-trip.**Exécutez Whisper sur la sortie TTS, calculer WER contre le texte d'entrée. Capture des régressions d'intelligibilité. 2026 SOTA: &lt; 2% WER sur les ensembles de test anglais (les ensembles mandarin rapportent le CER à la place).
 
 **TTFA (time-to-first-audio).**La latence de l'horloge murale Kokoro-82M: ~100 ms; F5-TTS: ~1 seconde.
 
@@ -79,7 +79,7 @@ Exclusifs pour plusieurs classes: **top-1, top-5 accuracy**- Commande de parole 
 
 **CLAP Score.**Score d'alignement texte-audio en utilisant des emblèmes CLAP. &gt; 0,3 = alignement raisonnable.
 
-**Listening panel MOS.**Le dernier mot pour la musique de consommation.
+**Listening panel MOS.**Le dernier mot pour la musique de consommation. Suno v5 a obtenu un score ELO 1293 sur le propre benchmark de préférence parée de Suno. C'est un numéro de fournisseur; TTS Arena classe la parole, pas la musique.
 
 ### Indices de référence pour le langage audio
 
