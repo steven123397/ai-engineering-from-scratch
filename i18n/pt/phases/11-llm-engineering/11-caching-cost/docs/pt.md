@@ -3,7 +3,7 @@
 > A maioria das startups de IA não morrem de maus modelos. Morrem de má economia de unidade. Uma única chamada GPT-4o custa frações de um centavo. Dez mil usuários que fazem dez chamadas por dia custam 250 dólares em tokens de entrada sozinhos - antes de cobrar um único dólar. As empresas que sobrevivem são aquelas que tratam cada chamada de API como uma transação financeira, não uma chamada de função.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 Lesson 09 (Function Calling)
 **Time:** ~45 minutes
 **Related:**A fase 11 · 15 (Cachagem de Pronto Pronto)  esta lição abrange o cache de camada de aplicação (cache semântica, cache hash exato, roteamento de modelo). A lição 15 abrange o cache de pronto pronto de camada de fornecedor (Anthropic cache_control, OpenAI automático, Gemini CachedContent). Combine ambos para uma redução de custos de 50-95%.
@@ -21,7 +21,7 @@ Construímos um chatbot RAG, funciona muito bem, os usuários adoram.
 
 Depois chega a fatura.
 
-Custos do GPT-5 $5 per million input tokens and $15 por milhão de produção.$15 input / $75 de saída.$1.25 input / $5 de saída. GPT-5-mini é $0.25/$Os preços abaixo são ilustrativos; verifique sempre a página de preços atual do fornecedor.
+Custos do GPT-5 $1.25 per million input tokens and $10 por milhão de produção.$5 input / $25 de saída. Gêmeos 3.1 Pro custos $2 input / $12 de saída (promete até 200K tokens). GPT-5-mini é $0.25/$O modelo GPT-4o, na matemática abaixo, é $2.50/$10. Os preços são ilustrativos; verifique sempre a página de preços atual do fornecedor.
 
 Aqui está a matemática que mata startups:
 
@@ -863,7 +863,7 @@ A API de lote oferece um desconto de 50% em todos os tokens. Os resultados chega
 #     return None
 ```
 
-Em produção, substituir o scan linear com um índice vetorial (Redis Vector Search, Pinecone, ou pgvector).
+Em produção, substituir a varredura linear por um índice vetorial (Redis Vector Search, Pinecone ou pgvector).$O(\log n)$- Não.
 
 ## Envia-o
 
