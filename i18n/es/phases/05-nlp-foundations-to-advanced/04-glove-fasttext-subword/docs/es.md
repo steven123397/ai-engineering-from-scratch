@@ -3,7 +3,7 @@
 > Word2Vec entrenó una incorporación por palabra. GloVe factorizó la matriz de cooccurrencia. FastText incorporó las piezas. BPE se conectó a transformadores.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 03 (Word2Vec from Scratch)
 **Time:** ~45 minutes
 
@@ -25,7 +25,7 @@ Esta lección recorre a los tres, y luego explica cuál alcanzar para cuándo.
 
 **FastText.**Una palabra es la suma de sus caracteres n-gramos más la palabra misma. `where`Se convierte en`<wh, whe, her, ere, re>, <where>`. El vector de palabras es la suma de esos vectores componentes.`whereupon`) se componen de n-gramos conocidos.
 
-**BPE (Byte-Pair Encoding).**Comience con un vocabulario de bytes individuales (o caracteres). Cuente cada par adyacente en el corpus. Combine el par más frecuente en un nuevo token. Repita para `k`El resultado: un vocabulario de `k + 256`los tokens donde las secuencias frecuentes (`ing`¿ Qué ?`tion`¿ Qué ?`the`Las palabras raras se rompen en piezas familiares.
+**BPE (Byte-Pair Encoding).**Comience con un vocabulario de bytes individuales (o caracteres). Cuente cada par adyacente en el corpus. Combine el par más frecuente en un nuevo token. Repita para `k`Iteraciones. Resultado: un vocabulario de los símbolos base más `k`fusiones (`k + 256`tokens cuando se comienza desde bytes) donde secuencias frecuentes (`ing`¿ Qué ?`tion`¿ Qué ?`the`Las palabras raras se rompen en piezas familiares.
 
 ```figure
 n5-subword-merge

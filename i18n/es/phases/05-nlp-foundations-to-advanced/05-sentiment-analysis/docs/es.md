@@ -3,7 +3,7 @@
 > La tarea canónica de la PNL. La mayor parte de lo que necesitas saber sobre la clasificación de textos clásicos se muestra aquí.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 02 (BoW + TF-IDF), Phase 2 · 14 (Naive Bayes)
 **Time:** ~75 minutes
 
@@ -200,7 +200,7 @@ pipe.fit(X_train, y_train)
 print(pipe.score(X_test, y_test))
 ```
 
-Tres cosas que hay que notar.`stop_words=None`mantiene las negaciones. `ngram_range=(1, 2)`añade grandes gramos así `not_good`Se convierte en una característica. `sublinear_tf=True`Estas tres señales son la diferencia entre un 75% de precisión y un 85% de precisión en el SST-2.
+Tres cosas que hay que notar.`stop_words=None`mantiene las negaciones. `ngram_range=(1, 2)`añade grandes gramos así `not good`se convierte en una característica (scikit-learn une las dos palabras con un espacio). `sublinear_tf=True`Estas tres señales son la diferencia entre un 75% de precisión y un 85% de precisión en el SST-2.
 
 ### Cuando se debe buscar un transformador
 

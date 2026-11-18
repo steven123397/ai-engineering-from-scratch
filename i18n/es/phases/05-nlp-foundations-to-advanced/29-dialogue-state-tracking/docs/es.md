@@ -3,7 +3,7 @@
 > "Quiero un restaurante barato en el norte... en realidad hacer moderado... y añadir italiano". Tres vueltas, tres actualizaciones estatales.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 17 (Chatbots), Phase 5 · 20 (Structured Outputs)
 **Time:** ~75 minutes
 
@@ -147,7 +147,7 @@ En una corrección detectada, sobrescriba la ranura última actualizada en lugar
 
 ## Las trampas
 
-- **Full-history regeneration cost.**El hecho de que el LLM se regenere en cada turno cuesta O ((n2) tokens totales.
+- **Full-history regeneration cost.**Permitir que el MLL se regenere cada vez más .$O(n^2)$Los tokens totales. historial de cap o resumen de los giros más antiguos.
 - **Schema drift.**Añadir nuevas ranuras después del hoc rompe los datos de entrenamiento antiguos.
 - **Case sensitivity.**"Italiano" vs "italiano" vs "italiano"  se normalizan en todas partes.
 - **Implicit inheritance.**Si el usuario ha especificado previamente "para 4 personas", una nueva solicitud para un tiempo diferente no debe eliminar a las personas.
