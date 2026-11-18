@@ -3,7 +3,7 @@
 > 大多数人工智能初创公司不会死于糟糕的模型.它们死于糟糕的单元经济学. 一个GPT-4o电话成本是百分之几.每天10次电话的10千用户仅需250美元的输入代币 - - 在你收取一个美元之前.幸存的公司是那些把每个API电话都视为金融交易,而不是函数电话.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 Lesson 09 (Function Calling)
 **Time:** ~45 minutes
 **Related:**阶段11·15 (即时缓存) 本课涵盖应用层缓存 (语义缓存,精确哈希缓存,模型路由).课程15涵盖提供商层即时缓存 (人类缓存_控制,OpenAI自动,双胞胎缓存内容).将这两者结合,可降低50-95%的成本.
@@ -21,7 +21,7 @@
 
 然后收到账单.
 
-GPT-5成本$5 per million input tokens and $产量为每百万产量15美元.$15 input / $双子座3 Pro的成本$1.25 input / $输出5个.$0.25/$2. 下面的价格说明; 总是查看提供商的当前价格页面.
+GPT-5成本$1.25 per million input tokens and $产量为100万. 劳德奥普斯 4.7 成本$5 input / $双子座3.1Pro的成本$2 input / $输出12个输出 (高达200K代币).$0.25/$现在,我们可以看到一个模型.$2.50/$10. 价格是说明性的; 总是查看提供商的最新价格页面.
 
 这就是杀死初创公司的数学:
 
@@ -863,7 +863,7 @@ if __name__ == "__main__":
 #     return None
 ```
 
-在生产中,用向量索引 (Redis Vector Search,Pinecone,或pgvector) 取代线性扫描.线性扫描对<1,000条目工作.此外,使用ANN (近邻近) 搜索O(log n).
+在生产中,用向量指数 (Redis Vector Search,Pinecone或pgvector) 取代线性扫描.线性扫描对<1,000个输入工作.此外,使用ANN (近邻近) 来$O(\log n)$查看.
 
 ## 运送它
 
