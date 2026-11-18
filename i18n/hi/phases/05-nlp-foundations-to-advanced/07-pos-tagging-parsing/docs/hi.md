@@ -3,7 +3,7 @@
 > व्याकरण कुछ समय के लिए फैशन से बाहर था, फिर हर LLM पाइपलाइन को संरचित निष्कर्षण को मान्य करने की आवश्यकता थी, और यह वापस आया।
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 01 (Text Processing), Phase 2 · 14 (Naive Bayes)
 **Time:** ~45 minutes
 
@@ -80,8 +80,8 @@ def predict_mft(tokens, word_best, default_tag):
 
 अनुक्रम की संयुक्त संभावना का मॉडलः
 
-```
-P(tags, words) = prod P(tag_i | tag_{i-1}) * P(word_i | tag_i)
+```math
+P(\text{tags}, \text{words}) = \prod_i P(\text{tag}_i \mid \text{tag}_{i-1}) \cdot P(\text{word}_i \mid \text{tag}_i)
 ```
 
 दो तालिकाएंः संक्रमण संभावनाएं (पूर्ववर्ती टैग दिए गए टैग) , उत्सर्जन संभावनाएं (शब्द दिए गए टैग) । लैपलेस चिकनाई के साथ गणना से दोनों का अनुमान लगाएं। विटरबी (टैग जाली पर गतिशील प्रोग्रामिंग) के साथ डिकोड करें।

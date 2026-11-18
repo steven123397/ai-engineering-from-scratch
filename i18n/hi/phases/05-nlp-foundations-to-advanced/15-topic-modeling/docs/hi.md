@@ -3,7 +3,7 @@
 > LDA: दस्तावेज विषयों का मिश्रण हैं, विषय शब्दों पर वितरण हैं। BERTopic: दस्तावेज क्लस्टर एम्बेडिंग स्पेस में, क्लस्टर विषय हैं। एक ही लक्ष्य, अलग-अलग विघटन।
 
 **Type:** Learn
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 02 (BoW + TF-IDF), Phase 5 · 03 (Word2Vec)
 **Time:** ~45 minutes
 
@@ -174,7 +174,7 @@ Refuse BERTopic on documents longer than the embedding model's context window wi
 | Mixed membership | Doc is multiple topics | LDA assigns each document a distribution over all topics. |
 | UMAP | Dimensionality reduction | Manifold learning that preserves local structure; used in BERTopic. |
 | HDBSCAN | Density clustering | Finds variable-size clusters; produces "noise" label (-1) for outliers. |
-| c_v coherence | Topic quality metric | Average pointwise mutual information of top topic words within sliding windows. |
+| c_v coherence | Topic quality metric | NPMI of top topic words over sliding windows, turned into context vectors and compared with cosine similarity. |
 
 ## आगे पढ़ना
 
