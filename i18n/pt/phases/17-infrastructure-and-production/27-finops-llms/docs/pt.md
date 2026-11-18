@@ -3,7 +3,7 @@
 > As FinOps tradicionais rompem com os gastos de LLM. Os custos são transações de token, não recursos de uptime. Tags não mapeam  uma chamada de API é uma transação, não um ativo. As decisões de engenharia (design de urgência, janela de contexto, comprimento de saída) são decisões financeiras. O playbook de 2026 tem três dimensões de atribuição ao instrumento no primeiro dia: por usuário (`user_id`) para o preço dos assentos e a expansão, por tarefa (`task_id`+ `route`) para o custo e a prioridade da superfície do produto, per tenente (`tenant_id`) para a economia unitária e a renovação. Quatro camadas de tokens  prompt, ferramenta, memória, resposta  um balde de esconderijos gastam. Escala de execução para produtos multi-arrendatários: limites de taxas por arrendatário (2-3x o pico esperado, limpo 429 + retest-after); limite de gastos diários (1,5-3x o limite contratado; desencadeia aperto de taxas + alerta); interruptores de apagão no gasto z-score > 4 (pausa automática + página em chamada). Padrões de atribuição: tag-and-aggregate, telemetria-joiner (trace-ID → faturamento; maior precisão), amostragem e extrapolação, alocação baseada em modelo, streaming em tempo real. Metrica unitária: custo por consulta resolvida, custo por artefato gerado  não tokens $/M. A etiquetação retroativa sempre falha; instrumento de criação a pedido.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy cost-attribution simulator with kill switch)
+**Languages:** Python, TypeScript (stdlib, toy cost-attribution simulator with kill switch)
 **Prerequisites:** Phase 17 · 13 (Observability), Phase 17 · 14 (Caching)
 **Time:** ~60 minutes
 
@@ -130,7 +130,7 @@ Esta lição produz`outputs/skill-finops-plan.md`- Tendo em conta o produto e a 
 1. Corra .`code/main.py`Em que ponto do "s" o interruptor de morte dispara?
 2. Desenhe um painel de custos por inquilino, por tarefa.
 3. O teu maior inquilino é negativo por unidade econômica, e propõe três intervenções por impacto do cliente.
-4. Calcula o custo por bilhete resolvido para um produto de suporte: 3M tokens/bilhete, ~800 bilhetes/dia, taxa em cache GPT-5.
+4. Calcule o custo por bilhete resolvido para um produto de suporte: 3M tokens/ticket, ~ 800 bilhetes/dia, todas as entradas na taxa caché GPT-5 de $0,125/M (preço da lista de lançamento; verifique o cartão de taxa ao vivo).
 5. Argumentem se a etiquetação retroativa pode funcionar.
 
 ## Termos-chave

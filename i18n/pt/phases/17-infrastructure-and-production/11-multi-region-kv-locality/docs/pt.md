@@ -3,7 +3,7 @@
 > O equilíbrio de carga de round-robin é ativamente prejudicial para a inferência LLM em cache. Uma solicitação que não aterrissa no nó que mantém seu prefixo paga preenchimento total  aproximadamente 800 ms em P50 em um prompt longo versus ~ 80 ms com um cache hit. Em 2026, o padrão de produção é um roteador consciente de cache (vLLM Router in Rust, llm-d router) que consome eventos de cache KV e rotas em prefixo-hash match. A pesquisa recente (GORGO) torna a latência de rede transregional um termo explícito no objetivo de roteamento. As ofertas comerciais de "infereção transregional" (infereção transregional Bedrock, gateways multi-cluster GKE) tratam a inferência como opaca  eles lidam com a disponibilidade, não com a TTFT. A JPMorgan e a Clínica Mayo fizeram um falha-over no leste em Novembro de 2024 em 22 minutos. A realidade do DR: 32% das falhas do LLM DR são porque as equipes fizeram backup de pesos, mas esqueceram arquivos de tokenizer ou configurações de quantização.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy prefix-cache-aware router simulator)
+**Languages:** Python, TypeScript (stdlib, toy prefix-cache-aware router simulator)
 **Prerequisites:** Phase 17 · 04 (vLLM Serving), Phase 17 · 06 (SGLang RadixAttention)
 **Time:** ~60 minutes
 
@@ -30,7 +30,7 @@ O serviço de LLM multi-regional é um problema de cache, um problema de roteame
 
 O roteador seleciona o replicador com a correspondência, fazendo com que o seu dispositivo seja usado para fazer a correção de dados.
 
-**vLLM Router**(Rust, 2026 production stack): subscribe a `kv.cache.block_added`eventos, mantém um índice de réplica prefixo-hash →, rotas com O(1) busca.
+**vLLM Router**(Rust, 2026 production stack): subscribe a `kv.cache.block_added`eventos, mantém um índice de prefixo-hash → réplica, rotas com $O(1)$Caem até à menor profundidade da fila quando não há correspondência.
 
 **llm-d router**O mesmo padrão, Kubernetes nativo. Publica eventos através da API ControlPlane.
 
@@ -51,7 +51,7 @@ RTT interregional:
 - EUA-Leste-1  Eu-Oeste-1: ~75 ms.
 - US-East-1  ap-southeast-1: ~ 220 ms.
 
-Se o roteamento leva uma solicitação de us-east-1 para um prefixo quente em ap-southeast-1, o prefill guardado (800 → 80 ms) é envenenado por 440 ms viagem de ida e volta.`prefill_time + network_latency`A resposta é manter o roteamento regional, exceto em prefixos massivos de vários MB onde prefill domina.
+Se o roteamento leva uma solicitação de us-east-1 para um prefixo quente em ap-southeast-1, o prefill salvado (800 → 80 ms, portanto 720 ms) reduz para cerca de 500 ms uma vez que o ~ 220 ms RTT é pago, e a margem desaparece se a região remota faz fila a solicitação ou já despejou o prefixo. GORGO (2026 pesquisa) faz isso explícito  minimizar `prefill_time + network_latency`A resposta é manter o roteamento regional, exceto em prefixos massivos de vários MB onde prefill domina.
 
 ### A "infereção transregional" comercial não ajuda aqui
 

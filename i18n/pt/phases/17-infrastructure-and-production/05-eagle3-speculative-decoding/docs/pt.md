@@ -3,7 +3,7 @@
 > A descodificação especulativa combina um modelo de projeto rápido com o modelo alvo. O projecto propõe tokens K; o alvo verifica-se em um único prazo; tokens aceitos são gratuitos. Em 2026, o EAGLE-3 é a variante de nível de produção  ele treina um projeto de cabeça nos estados ocultos do modelo alvo em vez de em tokens brutos, empurrando a taxa de aceitação alfa para a faixa de 0,6-0,8 no bate-papo geral. A pergunta certa não é "quão rápido é o projeto", mas "o que é o alfa no meu tráfego?" Se o alfa cair abaixo de ~0.55, a descodificação especulativa é negativa líquida em alta concurência porque cada projeto rejeitado custa uma segunda passagem de destino para a frente. Esta lição ensina-te a medir o alfa primeiro e a virar a bandeira em segundo lugar.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy acceptance-rate simulator)
+**Languages:** Python, TypeScript (stdlib, toy acceptance-rate simulator)
 **Prerequisites:** Phase 17 · 04 (Serving Engine Internals), Phase 10 · 18 (Multi-Token Prediction)
 **Time:** ~60 minutes
 
@@ -16,7 +16,7 @@
 
 ## O problema
 
-O decodificador é limitado à memória. Em um H100 executando Llama 3.3 70B FP8, cada token decodificado lê ~ 140 GB / s de pesos e emite um token. O computador da GPU é quase ocioso durante o decodificação.
+O decodificador é ligado à memória. Em um H100 executando Llama 3.3 70B FP8, cada passo de decodificação lê todos os ~ 70 GB de pesos do HBM e emite um token por sequência. O computador da GPU é quase ocioso durante o decodificação.
 
 A descodificação especulativa explora a lacuna. Gerencie tokens candidatos K com um modelo de projeto barato, em seguida, peça ao modelo alvo para verificar todos os K em uma única passagem para a frente. Cada token verificado é efetivamente livre (amortizado em um lote de K para a frente o alvo teria que fazer de qualquer maneira).
 
@@ -34,7 +34,7 @@ Sem descodificação de especificações, o custo por token é um objetivo avan�
 
 Os tokens rejeitados não desaparecem  eles forçam um segundo alvo para a primeira token rejeitada. Em uma carga de trabalho onde o alfa cai para 0,4, pagas despesas gerais de projeto mais verificação mais re-roll. Em alta simultânea (digamos 256 simultâneos), o lote de decodificação já é grande o suficiente para que a diferença de largura de banda de memória entre "alvo sozinho" e "alvo com verificação" diminua. Abaixo do alfa 0,55 na maioria dos hardware de 2026, o código de especificações é negativo.
 
-O programa de treinamento de um projeto de trabalho em um grupo de dados de um grupo de trabalho, que é um grupo de treinamento de um grupo de trabalho, é um projeto de treinamento de um grupo de trabalho.
+O Alpha varia de acordo com a carga de trabalho. No chat geral de estilo ShareGPT, a EAGLE-3 treinada no ShareGPT atinge 0,6-0,8. No que diz respeito ao tráfego específico de domínio (código, médico, legal), o projeto de direcção formado em dados gerais cai para 0,4-0,6. Treinar um projeto específico de domínio cabeçalhos recupera alfa  é um trabalho de treinamento leve e rápido em comparação com o objetivo de finalização. As fases 7 · 16 e 10 · 15 apresentam valores mais elevados (0,85 e superior). São taxas por token em parâmetros de chat que correspondem aos dados de treinamento do projecto. Planeje com as bandas desta página e mede o alpha pelo seu próprio tráfego.
 
 ### GERAÇÕES de águia num olhar
 

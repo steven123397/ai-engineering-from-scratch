@@ -3,7 +3,7 @@
 > Três hiperescaladores, três estratégias distintas. AWS Bedrock é um mercado modelo  Claude, Llama, Titan, Estabilidade, Cohere por trás de uma API. O Azure OpenAI é uma parceria exclusiva com o OpenAI, além de unidades de transferência de dados (PTUs) para capacidade dedicada. A IA Vertex é a primeira Gemini com a melhor história de longo contexto e multimodal. Em 2026, a Análise Artificial mede o Azure OpenAI em ~ 50 ms de mediana e o Bedrock em ~ 75 ms em equivalentes Llama 3.1 405B  PTUs explicam a lacuna porque a capacidade dedicada supera a capacidade compartilhada sob demanda. A regra da decisão não é "o que é mais rápido", mas "o que catálogo de modelos e a superfície FinOps coincide com o meu produto". Esta lição ensina a escolher com as compensações escritas, não com vibrações.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy cost-and-latency comparator)
+**Languages:** Python, TypeScript (stdlib, toy cost-and-latency comparator)
 **Prerequisites:** Phase 11 (LLM Engineering), Phase 13 (Tools & Protocols)
 **Time:** ~60 minutes
 
@@ -34,7 +34,7 @@ Esta lição mapeia as três apostas, a lacuna de latência, a lacuna de FinOps 
 
 ### Diferença de latência na escala
 
-A Análise Artificial apresenta valores de referência contínuos. Em implementações equivalentes Llama 3.1 405B (compartilhadas sob demanda), a latença média do primeiro token do Azure OpenAI é de cerca de 50 ms; Bedrock é de cerca de 75 ms. A diferença não é uma falha da AWS  é uma diferença de modelo de capacidade. O Azure vende PTUs (Provisioned Throughput Units), que reservam capacidade de GPU para o seu inquilino. O equivalente do Bedrock (Provisioned Throughput) existe, mas começa em torno de US$ 21/hora por unidade, e a maioria dos clientes permanece em compartilhamento sob demanda.
+A Análise Artificial apresenta valores de referência contínuos. Em implementações equivalentes Llama 3.1 405B, a latença média do primeiro token do Azure é de cerca de 50 ms com PTUs; Bedrock em distribuição on demand é de cerca de 75 ms. A diferença não é uma falha da AWS  é uma diferença de modelo de capacidade. O Azure vende PTUs (Provisioned Throughput Units), que reservam capacidade de GPU para o seu inquilino. O equivalente do Bedrock (Provisioned Throughput) existe, mas começa em torno de US$ 21/hora por unidade, e a maioria dos clientes permanece em compartilhamento sob demanda.
 
 Capacidade compartilhada sob demanda compete com o tráfego de todos os outros clientes. Capacidade dedicada não. Se o seu produto SLA é TTFT < 100 ms em P99, você compra PTUs no Azure, compra Bedrock Provisioned Throughput ou aceita a variância padrão.
 
@@ -96,7 +96,7 @@ Esta lição produz`outputs/skill-managed-platform-picker.md`. Tendo em conta o 
 2. O seu produto precisa de Claude 3.7 Sonnet e GPT-4o. Desenhar uma implantação de dois fornecedores que vai para qual hiperescalador, qual gateway fica na frente, qual é a política de falhaover?
 3. Um cliente de saúde regulado requer BAAs, residência de dados do leste dos EUA e sub-100ms P99 TTFT. Escolha uma plataforma e justifique com três características específicas.
 4. Descobres que a tua conta da Bedrock aumentou 4 vezes neste mês sem mudanças de tráfego.
-5. Leia as páginas de preços do Azure OpenAI e Bedrock. Para uma carga de trabalho Claude de 100 milhões de tokens / mês, que é mais barato  API Antropic direta, Bedrock on-demand ou Bedrock Provisioned Throughput?
+5. Leia as páginas de preços da API Anthropic e Bedrock. Para uma carga de trabalho Claude de 100 milhões de tokens / mês, que é mais barato  API Anthropic direta, Bedrock on-demand ou Bedrock Provisioned Throughput?
 
 ## Termos-chave
 
