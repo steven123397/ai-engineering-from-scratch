@@ -3,7 +3,7 @@
 > أريد مطعم رخيص في الشمال... في الواقع جعله معتدلا... وأضيف الإيطالي.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 17 (Chatbots), Phase 5 · 20 (Structured Outputs)
 **Time:** ~75 minutes
 
@@ -147,7 +147,7 @@ def is_correction(utterance):
 
 ## الفخاخ
 
-- **Full-history regeneration cost.**السماح لـ LLM بتجديد الدولة كل دورة تكلف O ((n2) مجموع الرموز. تاريخ القيادة أو تلخيص دورات سابقة.
+- **Full-history regeneration cost.**السماح لـ " ماجستير في إدارة الأعمال " بتحديث كل دور من التكاليف$O(n^2)$إحصائيات الإجمالية. تاريخ السقف أو تلخيص المداولات القديمة.
 - **Schema drift.**إضافة فتحات جديدة بعد التدريب يكسر بيانات التدريب القديمة
 - **Case sensitivity.**"إيطالي" ضد "إيطالي" ضد "إيطالي"  تتعايش في كل مكان.
 - **Implicit inheritance.**إذا كان المستخدم قد حدد "لـ 4 أشخاص" في السابق، لا ينبغي أن يزيل طلب جديد لفترة مختلفة الأشخاص.

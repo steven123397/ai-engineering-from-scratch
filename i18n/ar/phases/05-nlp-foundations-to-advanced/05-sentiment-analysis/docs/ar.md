@@ -3,7 +3,7 @@
 > مهمة النمط النووي القنوني. معظم ما تحتاج إلى معرفته عن تصنيف النص الكلاسيكي يظهر هنا.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 02 (BoW + TF-IDF), Phase 2 · 14 (Naive Bayes)
 **Time:** ~75 minutes
 
@@ -200,7 +200,7 @@ pipe.fit(X_train, y_train)
 print(pipe.score(X_test, y_test))
 ```
 
-ثلاثة أشياء يجب ملاحظتها`stop_words=None`يحتفظ بالنساء`ngram_range=(1, 2)`يضيف الكلمات الكبيرة لذلك`not_good`يصبح ميزة`sublinear_tf=True`هذه العلامات الثلاثة هي الفرق بين خط أساسي دقيق بنسبة 75% و 85٪ دقيق في SST-2.
+ثلاثة أشياء يجب ملاحظتها`stop_words=None`يحتفظ بالنساء`ngram_range=(1, 2)`يضيف الكلمات الكبيرة لذلك`not good`يصبح ميزة (تجمع الكلمات مع مساحة). `sublinear_tf=True`هذه العلامات الثلاثة هي الفرق بين خط أساسي دقيق بنسبة 75% و 85٪ دقيق في SST-2.
 
 ### متى يجب الوصول إلى محول
 

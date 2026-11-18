@@ -3,7 +3,7 @@
 > اطلب من ماجستير في التدريس JSON. الحصول على JSON في معظم الأحيان. في الإنتاج، "أكثر" هي المشكلة. تحويل التشفير المحدود "أكثر" إلى "أبدا" عن طريق تحرير اللوجيت قبل أخذ العينات.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 17 (Chatbots), Phase 5 · 19 (Subword Tokenization)
 **Time:** ~60 minutes
 
@@ -29,7 +29,7 @@
 
 تنفيذات عام 2026:
 
-- **Outlines.**يقوم بتجميع مخطط JSON أو regex إلى آلة الحالة المحدودة. كل رمز يحصل على O(1) صالحة التوقيت التالي البحث. على أساس FSM، لذلك تحتاج مخططات استرجاعية التسطح.
+- **Outlines.**يجمع نظام JSON أو regex إلى آلة الحالة المحدودة. كل رمز يحصل على $O(1)$البحث عن الوسائل القادمة القادمة، لذا يجب أن يتم تسطيح النظم الترددية.
 - **XGrammar / llguidance.**محركات اللغة الخالية من السياق. معالجة مخطط JSON التكراري. تكلفة تشفير القليل تقريباً. منح OpenAI إرشادًا في تنفيذها المهيكلي للخروج في عام 2025.
 - **vLLM guided decoding.**متكامل`guided_json`،`guided_regex`،`guided_choice`،`guided_grammar`عبر الخطوط المخططة، XGrammar، أو إم-صيغة-مطبق الخلفية.
 - **Instructor.**غلاف على أساس Pydantic على أي LLM. تستعيد فشل التحقق. مزود متعدد، ولكن لا يعدل التسجيلات  يعتمد على التجربات المُعدّلة + الإشارات المُهيّنة المُدركة للإنتاج.
@@ -210,7 +210,7 @@ Refuse any design that puts `answer` or `decision` before reasoning fields. Refu
 |------|-----------------|-----------------------|
 | Constrained decoding | Force valid output | Mask invalid-token logits at every generation step. |
 | Logit processor | The thing that constrains | Function: `(logits, state) -> masked_logits`. |
-| FSM | Finite-state machine | Compiled grammar representation; O(1) valid-next-token lookup. |
+| FSM | Finite-state machine | Compiled grammar representation; $O(1)$ valid-next-token lookup. |
 | CFG | Context-free grammar | Grammar that handles recursion; slower but more expressive than FSM. |
 | Schema field order | Does it matter? | Yes — first field commits; always put reasoning before answer. |
 | Guided decoding | vLLM's name for it | Same concept, integrated into the inference server. |
