@@ -3,7 +3,7 @@
 > Bir görüntü 2 boyutlu bir tensördür. Bir video 3 boyutlu bir tenzordur. Teorisi aynıdır; hesaplama 10-100 kat daha zordur. OpenAI'nin Sora (Feb 2024) bunun mümkün olduğunu kanıtladı. 2026 yılına kadar Veo 2, Kling 1.5, Runway Gen-3, Pika 2.0, ve WAN 2.2 gemisi üretim videoları 1080p 'de metin ve açık ağırlıklı yığın (CogVideoX, HunyuanVideo, Mochi-1, WAN 2.2) 12 ay geri.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 8 · 07 (Latent Diffusion), Phase 7 · 09 (ViT), Phase 8 · 06 (DDPM)
 **Time:** ~45 minutes
 
@@ -152,7 +152,7 @@ Kalite eşitliği ile videoların saniyede maliyeti 2024 ile 2026 arasında 20 k
 - [Brooks et al. (2024). Video generation models as world simulators](https://openai.com/index/video-generation-models-as-world-simulators/) Sora teknik raporu.
 - [Yang et al. (2024). CogVideoX: Text-to-Video Diffusion Models with An Expert Transformer](https://arxiv.org/abs/2408.06072) CogVideoX.
 - [Kong et al. (2024). HunyuanVideo: A Systematic Framework for Large Video Generative Models](https://arxiv.org/abs/2412.03603) HunyuanVideo.
-- [Genmo (2024). Mochi-1 Technical Report](https://www.genmo.ai/blog/mochi)Mochi-1.
+- [Genmo (2024). Mochi 1 preview model card](https://huggingface.co/genmo/mochi-1-preview)Mochi-1.
 - [Alibaba (2025). WAN 2.2](https://wanvideo.io/) SOTA'yı 2025'in ortalarında açmak.
 - [Ho, Salimans, Gritsenko et al. (2022). Video Diffusion Models](https://arxiv.org/abs/2204.03458) video yayım kağıdı.
 - [Blattmann et al. (2023). Align your Latents (Video LDM)](https://arxiv.org/abs/2304.08818) Stable Video Diffusion'un ataları.
