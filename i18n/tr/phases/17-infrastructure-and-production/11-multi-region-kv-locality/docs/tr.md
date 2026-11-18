@@ -3,7 +3,7 @@
 > Round-robin yük dengeleme, önbelleğe alınmış LLM sonuçları için aktif olarak zararlıdır. Önceden belirtilmiş düğmeye yerleşmeyen bir istek, uzun bir istekle, önbellekle ~80 ms karşılaştırıldığında P50'de yaklaşık 800 ms'lik tam önceden doldurma maliyetini öder. 2026 yılında üretim modeli, KV-cache olaylarını ve prefix-hash eşleşmesi üzerinde rotaları tüketen bir önbelleğe farkındalıklı yönlendirici (vLLM Router in Rust, llm-d yönlendirici) olacaktır. Son araştırmalar (GORGO) yönlendirme hedefi için bölge çapındaki ağ gecikmesini açık bir terim haline getirmiştir. Ticari "bölge çapındaki sonuçlandırma" teklifleri (Bedrock bölge çapındaki sonuçlandırma, GKE çoklu küme geçitleri) sonuçlandırmayı net olmayan bir şekilde değerlendirir  TTFT değil, mevcutluğu ele alırlar. JPMorgan ve Mayo Klinik'i, Kasım 2024'te yaklaşık 22 dakika boyunca, bizim doğu 1'ün başarısızlığını gerçekleştirdi. DR gerçekliği: LLM DR başarısızlıklarının %32'si takımların ağırlıkları yedeklediği ama tokenizer dosyalarını veya kuantitasyon yapılandırmalarını unuttuğu için.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy prefix-cache-aware router simulator)
+**Languages:** Python, TypeScript (stdlib, toy prefix-cache-aware router simulator)
 **Prerequisites:** Phase 17 · 04 (vLLM Serving), Phase 17 · 06 (SGLang RadixAttention)
 **Time:** ~60 minutes
 
@@ -30,7 +30,7 @@ Round-robin, devletsiz hizmetler için optimaldir. LLM sonucu tasarımı ile dev
 
 İstek bir istekle gelir. Router öntanımlıyı (örneğin ilk 512 jetonu) hash eder; her replikadan "bu öntanımlıyı önbelleğe kaydetmiş misiniz?" sorar. Replikler blokları tahsis ederken ve çıkarırken bir pub / alt kanalda KV-cache olaylarını yayınlar. Router replikayı eşleşme ile seçer, kimse yapmazsa GPU-util tabanlı bir bağ kırıcıya düşer.
 
-**vLLM Router**(Rust, 2026 üretim aşaması):`kv.cache.block_added`O'll) 1 araması ile yollar. Hiç bir eşleşme olmadığı zaman en az sırada derinliklere düşer.
+**vLLM Router**(Rust, 2026 üretim aşaması):`kv.cache.block_added`Events, prefix-hash → replika indeksini sürdürür,  ile yollar$O(1)$- Hiç eşleşmediğinde en az sırada kalır.
 
 **llm-d router**: aynı desen, Kubernetes-dev. ControlPlane API üzerinden etkinlikleri yayınlar.
 
@@ -51,7 +51,7 @@ Bölgelerarası RTT:
 - US-East-1  eu-West-1: ~ 75 ms.
 - US-East-1  ap-southeast-1: ~ 220 ms.
 
-Eğer yönlendirme bir istek için us-east-1'den bir sıcak önü işaretine alındığında, kaydedilen ön doldurma (800 → 80 ms) 440 ms geri dönüş yolculuğu ile küçültülür. GORGO (2026 araştırması) bunu açıkça  en aza indirir.`prefill_time + network_latency`Genellikle cevap, prefill'in üstün olduğu büyük çok MB önleme dışında bölgesel yönlendirmeyi sürdürmektir.
+Eğer yönlendirme bir istek için US-East-1'den bir sıcak öncü olarak ap-southeast-1'e götürürse, kaydedilen ön doldurma (800 → 80 ms, bu nedenle 720 ms) ~ 220 ms RTT ödedikten sonra yaklaşık 500 ms'e kadar küçülür ve uzak bölge istek için kuyruklar çizerse veya öncüyi zaten çıkarırsa kenarlık ortadan kaybolur. GORGO (2026 araştırması) bunu açıkça  en aza indirir.`prefill_time + network_latency`Genellikle cevap, prefill'in üstün olduğu büyük çok MB önleme dışında bölgesel yönlendirmeyi sürdürmektir.
 
 ### Ticari "bölge çapındaki sonuçlar" burada yardımcı olmaz
 

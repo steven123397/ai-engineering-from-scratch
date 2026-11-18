@@ -3,7 +3,7 @@
 > Tahmin edici çözme, hızlı bir taslak modeli hedefli modelle eşleştirir. Özet K tokenleri önerir; hedef tek bir ilerileme ile doğrulanır; kabul edilen tokenler ücretsizdir. 2026 yılında EAGLE-3 üretim derecesi varyasyonudur. Genel sohbette kabul oranı alfa'yı 0.6-0.8 bantına itip, ham toponlar yerine hedef modelin gizli durumlarında bir taslak başını eğitir. Doğru soru "Taplama ne kadar hızlı" değil "Trafikimde alfa nedir?" Eğer alfa ~ 0.55'in altına düşerse, spekülatör çözme yüksek eşzamanlılıkta net negatif olur çünkü reddedilen her taslama ikinci hedef ileri geçiş maliyetini öder. Bu ders önce alfa ölçmeyi ve ikinci olarak bayrağı çevirmeyi öğretir.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy acceptance-rate simulator)
+**Languages:** Python, TypeScript (stdlib, toy acceptance-rate simulator)
 **Prerequisites:** Phase 17 · 04 (Serving Engine Internals), Phase 10 · 18 (Multi-Token Prediction)
 **Time:** ~60 minutes
 
@@ -16,7 +16,7 @@
 
 ## Sorun
 
-Dekode hafıza bağlıdır. Llama 3.3 70B FP8 çalışan bir H100'de, her dekode edilmiş token ~ 140 GB / s ağırlık okuyor ve bir token yayar. GPU hesaplama dekode sırasında neredeyse boştur.
+H100'de Llama 3.3 70B FP8 çalıştırılan bir H100'de, her dekode adımı HBM'den tüm ~70 GB ağırlıkları okur ve her diziye bir token gönderir. GPU hesaplama dekode sırasında neredeyse boştur.
 
 Speküel dekodlama boşluğu kullanır. K aday tokenlerini ucuz bir taslak modeli ile oluşturun, sonra hedef modelden tüm K'yi tek bir ileri geçitle doğrulamalarını isteyin. Her doğrulanmış token etkin olarak ücretsizdir (hedef her şekilde yapmalıydı).
 
@@ -34,7 +34,7 @@ Spec kodlaması olmadan, bir token maliyeti bir hedef ileri.`1 + K * alpha`Hızl
 
 reddedilen tokenler kaybolmaz  ilk reddedilen token için ikinci bir hedef zorlar. Alfa'nın 0.4'e düştüğü bir iş yükünde, çekim ödemesi artı doğrulama artı yeniden çalıştırma ödenir. Yüksek eşzamanlılık (deyelim 256 eşzamanlı), dekodlama parti zaten "tek hedef" ve "target verify" arasındaki hafıza-bandwidth boşluğu küçülmeye yeterlidir. 2026 donanımlarının çoğunda alfa 0.55'in altında, spesifikasyon çözümü net negatif.
 
-Alpha iş yüküne göre değişir. ShareGPT tarzındaki genel sohbette, ShareGPT'de eğitilmiş EAGLE-3 0.6-0.8'e ulaşır. Alan-özel trafiğe (kod, tıbbi, yasal) genel veri üzerine eğitilmiş taslak başı 0.4-0.6'a düşer.
+Alfa iş yüküne göre değişir. ShareGPT tarzındaki genel sohbette, ShareGPT'de eğitilmiş EAGLE-3 0.6-0.8'e ulaştı. Alan-specifik trafik (kod, tıbbi, hukuki) genel veri eğitimi alanı başkanının sayısı 0.4-0.6'a düşüyor. Alan-specifik bir taslak başını eğitmek, hedef inceleme ile karşılaştırıldığında hafif ve hızlı bir eğitim işidir. 7 · 16 ve 10 · 15 aşamaları daha yüksek değerlere (0,85 ve üstü) değerdir. Bu, çekimdeki eğitim verilerine uyan sohbet referansları için bir token oranları. Bu sayfadaki bantlarla plan yapın ve Alpha'yı kendi trafiğinizle ölçün.
 
 ### KİÇİN nesilleri bir bakışta
 

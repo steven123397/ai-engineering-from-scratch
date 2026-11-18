@@ -3,7 +3,7 @@
 > Geleneksel FinOps LLM harcamalarında kesimler. Maliyetler kaynak zaman değil, token işlemler. Etiketler haritalamıyor  bir API çağrısı bir işlemdir, bir varlık değil. Mühendislik kararları (sürekli tasarım, bağlam penceresi, çıkış uzunluğu) finansal kararlardır. 2026 oyun kitabı bir gün önce enstrüman için üç atribut boyutuna sahiptir: kullanıcı başına (`user_id`) yer fiyatlandırması ve genişlemesi için görev başına (`task_id`+ `route`) ürün yüzey maliyetleri ve öncelikleri için, kiracılık (`tenant_id`) için birim ekonomisi ve yenilenme. Dört token katmanı  prompt, araç, bellek, cevap  bir kova saklar harcamak. Çoklu kiracı ürünler için uygulanma merdivi: kiracı başına oran sınırı (2-3x beklenen zirve, net 429 + tekrar deneme sonrası); günlük harcama limiti (1.5-3x sözleşmiş tavan; hız sıkıştırmayı tetikler + uyarı); harcama z puanı > 4'te (otomatik ara + çağrı açılan sayfa) kesintiler. Atribusiyon kalıpları: etiketleme ve toplamlama, telemetri-birleştirme (izleme-ID → faturalama; en yüksek doğruluk), örnekleme ve ekstrapolasyon, model tabanlı tahsis, olay kaynaklı, gerçek zamanlı akış. Birim metrik: çözülen sorgu başına maliyet, üretilen eser başına maliyet  $/M tokens değil. Geriye dönük etiketleme her zaman eksik; istek üzerine oluşturma aracı.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy cost-attribution simulator with kill switch)
+**Languages:** Python, TypeScript (stdlib, toy cost-attribution simulator with kill switch)
 **Prerequisites:** Phase 17 · 13 (Observability), Phase 17 · 14 (Caching)
 **Time:** ~60 minutes
 
@@ -130,7 +130,7 @@ Bu ders bize çok yararlı .`outputs/skill-finops-plan.md`. Ürün ve ölçek g�
 1. Çık .`code/main.py`- Öldürücü ne zaman ateş eder?
 2. Bir kiracı başına, görev başına maliyetle bir tablo tasarlayın.
 3. En büyük kiracı ünite ekonomisi negatif.
-4. Destek ürünü için çözülmüş bir bilet başına maliyet hesaplama: 3M token/biletin, ~800 bilet/gün, GPT-5 önbelleğe alınan oran.
+4. Destek ürünü için çözülmüş bir bilet başına maliyet hesaplayın: 3M token/biletin, ~800 bilet/gün, tüm girişler GPT-5 önbelleğe kaydedilen oranla $0.125/M (başlatma listesi fiyatı; canlı oran kartını kontrol edin).
 5. Geriye dönük etiketlemeyi ne zaman kabul edilebilir?
 
 ## Anahtar Terimler

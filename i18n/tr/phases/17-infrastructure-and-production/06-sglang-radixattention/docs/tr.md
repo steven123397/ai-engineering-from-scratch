@@ -3,7 +3,7 @@
 > KV önbelleğini bir kök ağacında saklanan birinci sınıf, tekrar kullanılabilir bir kaynak olarak ele alın ve programlama değişiklikleri onunla birlikte yapın: FCFS (birincil gelen, ilk hizmet verilen) yerine vLLM programları olarak, bir önbelleğe uyan bir planlamacı daha uzun paylaşılmış önlüklerle yapılan istekleri öncelikli hale getirir  etkili bir derinlik-birincil kök geçiş böylece sıcak dallar HBM'de oturuyor kalır. SGLang, bu fikri destekleyen motor. ShareGPT gibi 1K istekleri ile Llama 3.1 8B'de, SGLang ~ 16.200 tok/s'e ~ 12.500 vLLM'ye ulaşır, %29 bir kenar. Önceden ağır RAG iş yüklerinde avantaj 6.4x'e ulaşır. Ses klonlama şeklinde iş yükleri üzerinde cache trafiği oranı %86 arttı. 2026 yılında xAI, LinkedIn, Cursor, Oracle, GCP, Azure, AWS'de 400.000+ GPU'da dağıtıldı. 6.4x numarası, ön işaret siparişleri tutarlı olmadığı zaman buharlaşır.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy radix-tree cache + cache-aware scheduler)
+**Languages:** Python, TypeScript (stdlib, toy radix-tree cache + cache-aware scheduler)
 **Prerequisites:** Phase 17 · 04 (Serving Engine Internals), Phase 14 (Agentic RAG)
 **Time:** ~75 minutes
 
@@ -93,6 +93,8 @@ roofline
 ## Kullan
 
 `code/main.py`Oyuncak bir radix-tree KV önbelleği ek olarak iki politika ile bir programlayıcı: FCFS ve önbelleği farkındadır. Her ikisinden de aynı iş yükünü çalışır, önbelleği önbelleği isabet oranı ve özet delta raporları.
+
+- Evet .[Inside an LLM Serving GPU](https://aiengineeringfromscratch.com/inside-an-llm-serving-gpu?workload=shared&shared=4096)makine gerçek bir L4 çalışmasında radix önbelleğini gösterir. Dört grubun her birinin kendi 4.096 jeton sistem sorgulaması vardır. Bir grubun ilk istekleri onun sorgulamasını hesaplar. Bu sorgulama önbellekte kalırken, grubun sonraki istekleri sadece 128- jeton sorgulamasını hesaplar.
 
 ## Gönder
 

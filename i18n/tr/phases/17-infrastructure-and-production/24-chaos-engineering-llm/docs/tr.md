@@ -3,7 +3,7 @@
 > LLM için kaos mühendisliği 2026 yılında kendi disiplinidir. Üretim deneylerini yürütmeden önce ön koşullar: tanımlanmış SLI/SLO, izleme+metrik+log gözlemliliği, otomatik geri dönüş, çalıştırma defterleri, çağrıda bulunma. Mimarlık dört düzlemde bulunur: kontrol (deney programcısı), hedef (hizmetler, alt, veri depoları), güvenlik (kuvarlar + iptal + trafik filtreleri), gözlemsellik (metrikler + izler + günlükler), geri bildirim (SLO ayarlarına). Koruma rayları zorunludur: yanma oranı uyarıları, günlük hata bütçesi yanma> 2 katı beklenirse deneyleri durdurur; bastırma pencereleri + izleme kimliği ilişkisi alarmı gürültüsü çıkarır. Cadence: haftalık küçük kanarya + SLO inceleme; aylık oyun günü + ölüm sonrası; çeyreklik takım arası dayanıklılık denetimi + bağımlılık haritası. LLM'ye özel deneyler: hafıza aşırı yükü, ağ arızası, sunucu kesintileri, yanlış biçimlendirilmiş istekler, KV önbelleği tahrip fırtınaları. Araçlama: Harness Chaos Engineering (LLM'den kaynaklanan öneriler, patlama radyüsünün azaltılması, MCP araç entegrasyonu); LitmusChaos (CNCF); Chaos Mesh (CNCF Kubernetes-native).
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy chaos experiment runner)
+**Languages:** Python, TypeScript (stdlib, toy chaos experiment runner)
 **Prerequisites:** Phase 17 · 23 (SRE for AI), Phase 17 · 13 (Observability)
 **Time:** ~60 minutes
 
@@ -128,7 +128,7 @@ Bu ders bize çok yararlı .`outputs/skill-chaos-plan.md`- Dolu ve olgunluğu g�
 ## Daha Fazla Okumak
 
 - [DevSecOps School — Chaos Engineering 2026 Guide](https://devsecopsschool.com/blog/chaos-engineering/)
-- [Ankush Sharma — Observability for LLMs (book)](https://www.amazon.com/Observability-Large-Language-Models-Engineering-ebook/dp/B0DJSR65TR)
+- [Ankush Sharma — Observability for Large Language Models (Apress, 2026)](https://link.springer.com/book/10.1007/979-8-8688-2827-0)
 - [LitmusChaos (CNCF)](https://litmuschaos.io/)
 - [Chaos Mesh (CNCF)](https://chaos-mesh.org/)
 - [Harness Chaos Engineering](https://www.harness.io/products/chaos-engineering)

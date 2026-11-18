@@ -3,7 +3,7 @@
 > Modern servis motorlarının üretimi üç komplo etkisiyle yapılır, tek bir numara değil. PagedAttention her zaman açık. Sürekli serileme, yeni istekleri çözme iterasyonları arasında aktif seriye enjekte eder. Parça dolandırıcılık parçaları uzun ipuçları böylece kodlama tokenleri asla açlıktan ölmez. Üçünü de açarsanız, bir H100 SXM5'de Llama 3.3 70B FP8'in 128 eşzamanlı 'de 2.200-2.400 tok/s'i harekete geçiriyor. Bu ders, vLLM'nin programlayıcı ve dikkat çekirdeğini okuyor  üç tekniğin referans motorunu  bir düzeyde çizim yapabileceğiniz bir seviyede ve bir oyuncak sürekli batcher ile sona erer `code/main.py`Programlar vLLM'nin yaptığı gibi önceden doldurulur ve çözülür.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy continuous batching scheduler)
+**Languages:** Python, TypeScript (stdlib, toy continuous batching scheduler)
 **Prerequisites:** Phase 17 · 01 (Model Serving), Phase 11 (LLM Engineering)
 **Time:** ~75 minutes
 
@@ -11,7 +11,7 @@
 
 - PagedAttention'u KV önbelleği tahsiscisi olarak açıklayın: bloklar, blok tabloları ve neden parçalanma üretim yükünde% 4'ten düşük kalır.
 - İterasyon düzeyinde sürekli serileme diyalogu: bitmiş dizilerin seriyi nasıl terk ettiğini ve yeni dizilerin boşaltılmadan nasıl birleştiğini gösterir.
-- Bir cümlede parçalanmış prefill'i tanımlayın ve hangi gecikme metrikini koruduğunu belirtin (söyleme: TTFT kuyruk, geçiş anlamına gelmez).
+- Bir cümle ve isimde parçalanmış prefill'i tanımlayın ve hangi gecikme metrikini korur (söyleyin: aynı anda decode edilenlerin ITL kuyrukudur, geçiş anlamına gelmez).
 - Her optimizasyonu bir anda etkinleştirmeden önce, vLLM özellik kombinasyonunu sürümünüz için uyumluluk matrisine karşı kontrol edin.
 
 ## Sorun
@@ -44,7 +44,7 @@ Her dekodlama aşamasında sürekli seri çalışması yürütülür.`RUNNING`li
 
 İsteğe bağlı olarak, bir seri seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, bir seri olarak, 2026 vLLM olarak, bir dizi olarak, bir dizi olarak, bir dizi olarak, bir dizi olarak, bir dizi olarak, bir dizi olarak, bir dizi olarak, bir dizi olarak, bir dizi olarak, bir dizi olarak, bir olarak, bir olarak, bir olarak,`V1 scheduler`Anahtar değişmezliği: programlayıcı, her dekodlama iterasyonunda bir kez çalıştırılır, istek için değil.
 
-### Parçalama prefill TTFT kuyruğunu korur
+### Parçalama prefill, ITL kuyrukunu korur.
 
 Prefill hesaplama bağlıdır. Llama 3.3 70B'de 32k-token istek bir H100'de ~800 ms saf prefill alır. Prefill çalışırken, seri bekleyen diğer her dizi için tokenleri çözün. Bir servis döngüsünde, bir uzun istek için ilk token gecikmesi (TTFT) onlarca diğer kullanıcı için inter-token gecikme (ITL) blip olur.
 
@@ -130,7 +130,7 @@ Bu ders bize çok yararlı .`outputs/skill-vllm-scheduler-reader.md`. Bir servis
 | Chunked prefill | "prefill splitting" | Break long prefill into 512-token slices interleaved with decode |
 | TTFT | "first token time" | Prefill + queue + network; dominated by prefill at long prompts |
 | ITL | "inter-token latency" | Time between consecutive decode tokens; dominated by batch size |
-| Goodput | "throughput that meets SLO" | Tokens/sec where every request still hit TTFT and ITL targets |
+| Goodput | "throughput that meets SLO" | Requests/sec that still hit TTFT and ITL targets (Phase 17 · 08 reports it as the share of requests) |
 | V1 scheduler | "the new scheduler" | vLLM's 2026 scheduler; runs continuous batching with chunked prefill |
 | `--gpu-memory-utilization` | "the memory knob" | Fraction of HBM reserved for KV blocks after weights and activations |
 
