@@ -3,7 +3,7 @@
 > Li et al. (arXiv:2310.10701) cho thấy rằng các đại lý LLM trong một triển lãm trò chơi văn bản hợp tác **emergent high-order Theory of Mind**(ToM)  lý luận về những gì một đại lý khác tin về niềm tin của một đại lý thứ ba  nhưng thất bại trong lập kế hoạch chân trời dài do quản lý bối cảnh và ảo giác. Riedl (arXiv:2510.05174) đo lường sự hợp tác thứ tự cao hơn trên một quần thể và phát hiện ra rằng **only**Điều kiện ToM-prompt tạo ra sự phân biệt liên quan đến danh tính và sự bổ sung hướng đến mục tiêu; LLM có khả năng thấp chỉ cho thấy sự xuất hiện giả mạo. Đó là sự xuất hiện của sự phối hợp là điều kiện ngay lập tức và phụ thuộc vào mô hình, không phải miễn phí. Bài học này thực hiện một nhân viên biết đến ToM tối thiểu, thực hiện một nhiệm vụ hợp tác với và mà không có sự thúc đẩy ToM, và đo lường delta phối hợp so với giao thức Riedl 2025.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 07 (Society of Mind and Debate), Phase 16 · 17 (Generative Agents)
 **Time:** ~75 minutes
 
@@ -120,6 +120,7 @@ sw-theory-of-mind
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Tạo ra dự kiến: các đại lý thứ tự không lặp lại nỗ lực với tỷ lệ ~ 35% và hoàn thành ~ 60% các thử nghiệm trong 10 lượt.
@@ -163,5 +164,5 @@ Danh sách kiểm tra yêu cầu phối hợp:
 
 - [Li et al. — Theory of Mind for Multi-Agent Collaboration via Large Language Models](https://arxiv.org/abs/2310.10701) ToM mới nổi trong các trò chơi hợp tác; các chế độ thất bại theo đường chân trời dài
 - [Riedl — Emergent Coordination in Multi-Agent Language Models](https://arxiv.org/abs/2510.05174) đo lường quy mô dân số; ToM prompt là điều kiện chịu tải
-- [Premack & Woodruff — Does the chimpanzee have a theory of mind?](https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/does-the-chimpanzee-have-a-theory-of-mind/1E96B02CD9850E69AF20F81FA7EB3595) nguồn gốc năm 1978 của khái niệm ToM
+- [Premack & Woodruff — Does the chimpanzee have a theory of mind?](https://doi.org/10.1017/S0140525X00076512) nguồn gốc năm 1978 của khái niệm ToM
 - [Baron-Cohen, Leslie, Frith — Does the autistic child have a theory of mind?](https://doi.org/10.1016/0010-0277(85)90022-8)  bài báo Sally-Anne (1985)

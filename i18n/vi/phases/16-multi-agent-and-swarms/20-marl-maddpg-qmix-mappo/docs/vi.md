@@ -3,7 +3,7 @@
 > Di sản tăng cường học tập của phối hợp đa đại lý, vẫn còn thông báo cho các hệ thống LLM-agent vào năm 2026. **MADDPG**(Lowe et al., NeurIPS 2017, arXiv:1706.02275) giới thiệu Căn bộ tập trung, Thực hiện phi tập trung (CTDE): mỗi nhà phê bình nhìn thấy tất cả các trạng thái và hành động của các đại lý trong quá trình đào tạo; vào thời gian thử nghiệm chỉ có các diễn viên địa phương chạy.**QMIX**(Rashid et al., ICML 2018, arXiv:1803.11485) là sự phân hủy giá trị với một mạng hỗn hợp đơn giản; mỗi chất phản ứng Qs kết hợp thành chung Q so `argmax`phân phối sạch  thống trị trên StarCraft Multi-Agent Challenge (SMAC). **MAPPO**(Yu et al., NeurIPS 2022, arXiv:2103.01955) là PPO với chức năng giá trị tập trung; "sự hiệu quả đáng ngạc nhiên" trên thế giới hạt, SMAC, Google Research Football, Hanabi với điều chỉnh tối thiểu.**default 2026 cooperative-MARL baseline**Bài học này xây dựng mỗi từ một đồ chơi nhỏ của thế giới lưới và hạ cánh ba ý tưởng trong trí nhớ cơ trước khi chạm vào đào tạo đại lý LLM.
 
 **Type:** Learn
-**Languages:** Python (stdlib, small NumPy-free implementations)
+**Languages:** Python (stdlib, small NumPy-free implementations), TypeScript
 **Prerequisites:** Phase 09 (Reinforcement Learning), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~90 minutes
 
@@ -42,10 +42,10 @@ Chế độ thất bại: các nhà phê bình phát triển với các đại l
 
 ### QMIX (2018)  phân hủy giá trị
 
-Chỉ hợp tác. Giải thưởng toàn cầu là tổng của một hàm đơn giản của các giá trị Q mỗi đại lý:
+Chỉ có hợp tác.`Q_tot`là một hàm pha trộn đơn giản của các giá trị Q mỗi đại lý:
 
-```
-Q_tot(tau, a) = f(Q_1(tau_1, a_1), ..., Q_n(tau_n, a_n)),   df/dQ_i >= 0
+```math
+Q_{\text{tot}}(\tau, a) = f\big(Q_1(\tau_1, a_1), \ldots, Q_n(\tau_n, a_n)\big), \quad \frac{\partial f}{\partial Q_i} \ge 0
 ```
 
 Sự đơn thuần đảm bảo `argmax_a Q_tot`có thể được tính toán bởi mỗi đại lý chọn `argmax_{a_i} Q_i`độc lập.**exactly the decentralized execution property**Khi tập luyện, một mạng hỗn hợp tạo ra`Q_tot`từ các chất lượng Qs mỗi đại lý.
@@ -117,6 +117,7 @@ Cả bốn tập đều chạy cùng một tập và báo cáo trung bình các 
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Khả năng đầu ra dự kiến: các đại lý độc lập trung bình mất ~ 6 bước; các biến thể CTDE hội tụ đến ~ 3.5 bước (tối ưu cho lưới 4x4 là 3). Sự khác biệt mô hình xuất hiện mặc dù các chính sách kịch bản.

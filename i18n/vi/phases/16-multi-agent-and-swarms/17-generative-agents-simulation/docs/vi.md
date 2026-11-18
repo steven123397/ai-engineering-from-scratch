@@ -3,7 +3,7 @@
 > Park et al. 2023 (UIST '23, arXiv:2304.03442) dân cư **Smallville**, một hộp cát gồm 25 đại lý, với cấu trúc ba phần: **memory stream**(Lập nhật ngôn ngữ tự nhiên),**reflection**(sự tổng hợp cấp cao hơn mà chất gây ra về dòng chảy của nó) và**plan**(các hành vi ở mức độ ngày, sau đó là kế hoạch phụ). Kết quả là sự xuất hiện của bữa tiệc Ngày Valentine: một đại lý đã gieo giống với "cần tổ chức một bữa tiệc Ngày Valentine", mà không cần viết kịch bản thêm, sản xuất các lời mời lan rộng khắp dân số, ngày phối hợp, và bữa tiệc xảy ra từ 24 đại lý không biết gì về nó. Các Ablation cho thấy cả ba thành phần đều cần thiết để có thể tin tưởng. Các lỗi được ghi nhận là lỗi về quy tắc không gian (trong cửa hàng đóng cửa, chia sẻ phòng tắm một người). Đây là kiến trúc tham chiếu cho mô phỏng đại lý và đánh giá xã hội đa đại lý vào năm 2026.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 04 (Primitive Model), Phase 16 · 13 (Shared Memory)
 **Time:** ~75 minutes
 
@@ -103,6 +103,7 @@ a5-memory-reflection
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Kết quả dự kiến: dấu vết tick-by-tick. Khi tick cuối cùng, ít nhất 3 trong số 5 đại lý cho thấy đảng trong kế hoạch của họ, và họ hội tụ tại địa điểm của đảng.
@@ -117,7 +118,7 @@ Quy tắc đối với mô phỏng sản xuất:
 
 - **Memory is the database.**Chọn một cửa hàng thực sự (vector DB, Postgres) trên quy mô.
 - **Log the retrieval trace.**Với mỗi hành động, ghi lại những ký ức dẫn đến nó.
-- **Budget per-agent tokens.**Các đại lý lấy + phản xạ + kế hoạch mỗi tick là O(k) LLM cuộc gọi. N đại lý × T ticks × cuộc gọi-per-tick có thể làm nhỏ bé ngân sách của bạn.
+- **Budget per-agent tokens.**Các đại lý lấy + phản xạ + kế hoạch cho mỗi tick là $O(k)$N đại lý x T ticks x gọi-per-tick có thể làm nhỏ hơn ngân sách của bạn.
 - **Compact memory periodically.**Kết luận và cắt giảm các mục có tầm quan trọng thấp. Chính sách giữ lại là một quyết định thiết kế, không phải là chi tiết.
 - **Detect spatial / social norm violations**kiến trúc không học được chúng.
 

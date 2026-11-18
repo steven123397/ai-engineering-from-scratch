@@ -3,7 +3,7 @@
 > Hai phương pháp tiếp cận tồn tại cùng nhau trong hệ thống đa tác nhân năm 2026:**message pool**(mọi người thấy tin nhắn của mọi người, như trong AutoGen GroupChat hoặc MetaGPT) và **blackboard with subscription**(các đại lý đăng ký các sự kiện liên quan, như trong MCP Context-Aware hoặc khung Matrix). Cả hai là phần trạng thái duy nhất của một hệ thống đa đại lý  nghĩa là cả hai đều là nơi các lỗi thú vị sống.**memory poisoning**Một đại lý ảo giác một "thực tế", các đại lý khác đối xử với nó như xác minh, và độ chính xác suy giảm dần theo cách khó khăn hơn nhiều để gỡ lỗi hơn một vụ tai nạn ngay lập tức. Bài học này xây dựng cả hai cấu trúc từ stdlib, tiêm một cuộc tấn công độc hại, và cho thấy ba giảm thiểu thực sự hoạt động trong sản xuất.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib, `threading`)
+**Languages:** Python (stdlib, `threading`), TypeScript
 **Prerequisites:** Phase 16 · 04 (Primitive Model), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~75 minutes
 
@@ -68,7 +68,7 @@ Vấn đề không phải là quốc gia chia sẻ bản thân nó là quốc gi
 
 1. **Attribute provenance on every write.**Mỗi mục trong hồ sơ nhà nước được chia sẻ là ai đã viết nó, khi nào, dưới thời nào, và (nếu có) nguồn nào mà đại lý trích dẫn.
 2. **Version writes; treat them as append-only.**Một sửa đổi là một mục mới thay thế cho mục cũ, không phải là một bản cập nhật tại chỗ.
-3. **Keep at least one agent that cannot write to shared state.**Một đại lý xác minh chỉ đọc lấy mẫu các mục nhập, lấy lại nguồn và đánh dấu sự không phù hợp. Bởi vì nó không thể viết cho hồ bơi, nó không thể bị nhiễm độc bởi hồ bơi.
+3. **Keep at least one agent that cannot write to shared state.**Một đại lý xác minh chỉ đọc lấy mẫu các mục nhập, lấy lại các nguồn và đánh dấu những bất đồng. Nó vẫn đọc hồ bơi, vì vậy nó có thể bị lừa bởi một mục nhập xấu, nhưng nó kiểm tra mỗi mục nhập so với nguồn gốc và không thể viết, vì vậy phán quyết của nó không bao giờ đưa một sự kiện độc vào trạng thái chia sẻ.
 
 ### Tỷ lệ tiền lệ của bảng đen (Hayes-Roth, 1985)
 
@@ -119,6 +119,7 @@ swarm-blackboard
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Tạo sản lượng dự kiến:
