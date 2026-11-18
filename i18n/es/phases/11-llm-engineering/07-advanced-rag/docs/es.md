@@ -3,7 +3,7 @@
 > RAG básico recupera los trozos más similares. Eso funciona para preguntas simples. Se desmorona para el razonamiento multi-hop, consultas ambigüas y corpora grandes. RAG avanzado es la diferencia entre una demostración que funciona en 10 documentos y un sistema que funciona en 10 millones.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11, Lesson 06 (RAG)
 **Time:** ~90 minutes
 **Related:**La fase 5 · 23 (Estrategias de descomposición para RAG) cubre los seis algoritmos de descomposición  recursiva, semántica, oración, documento padre, descomposición tardía, recuperación contextual  con puntos de referencia Vectara/antrópicos. Esta lección se basa en la parte superior: búsqueda híbrida, re-ranqueo, transformación de consultas.
@@ -89,7 +89,7 @@ Modelos comunes de re-ranqueamiento (2026 lineup):
 - Jina-Reranker-v2 Multilingüe: peso abierto, más de 100 idiomas
 - bge-re-ranquer-v2-m3: peso abierto, línea de base fuerte
 - código cruzado/ms-marco-MiniLM-L-6-v2: peso abierto, se ejecuta con CPU para la creación de prototipos
-- ColBERTv2 / Jina-ColBERT-v2: retrasos de interacción re-ranqueadores multi-vector  O(tokens) no O(docs) en el momento de marcar
+- ColBERTv2 / Jina-ColBERT-v2: re-ranqueadores multi-vectoriales de interacción tardía  $O(\text{tokens})$No lo he hecho .$O(\text{docs})$en el tiempo de puntuación
 
 ### Transformación de la consulta
 

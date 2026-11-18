@@ -3,7 +3,7 @@
 > Has construido las instrucciones, los embebidos, las tuberías RAG, llamadas de funciones, capas de almacenamiento en caché y barandillas. Por separado. En aislamiento. Como practicar las escalas de la guitarra sin tocar una canción. Esta lección es la canción. Enviarás todos los componentes de las lecciones 01-12 en un solo servicio listo para la producción. No es un juguete. No es una demostración. Un sistema que maneja el tráfico real, falla con gracia, transmite tokens, rastrea los costos y sobrevive a sus primeros 10.000 usuarios.
 
 **Type:** Build (Capstone)
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 Lessons 01-15
 **Time:** ~120 minutes
 **Related:**Fase 11 · 14 (MCP) para reemplazar esquemas de herramientas a medida con un protocolo compartido; Fase 11 · 15 (Caching de Prontitud) para una reducción de costes del 50-90% en prefijos estables.
@@ -225,8 +225,8 @@ Antes de enviar, estima tu coste mensual.
 | Queries per user per day | 5 | Product analytics |
 | Avg input tokens per query | 1,500 | Measured (system + context + user) |
 | Avg output tokens per query | 400 | Measured |
-| Input price per 1M tokens | $5.00 | OpenAI GPT-5 pricing |
-| Output price per 1M tokens | $15.00 | OpenAI GPT-5 pricing |
+| Input price per 1M tokens | $2.50 | OpenAI GPT-4o pricing |
+| Output price per 1M tokens | $10.00 | OpenAI GPT-4o pricing |
 | Cache hit rate | 35% | Measured from cache metrics |
 | Effective daily queries | 32,500 | 50,000 * (1 - 0.35) |
 
