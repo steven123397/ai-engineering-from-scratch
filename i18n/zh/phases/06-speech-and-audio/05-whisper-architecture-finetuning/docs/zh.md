@@ -3,7 +3,7 @@
 > 语是30秒钟的窗口变压器编码解码器,训练在多语言弱监督的音频文本对数的68万小时.一个架构,多任务,强大的99种语言.2026年参考ASR.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 04 (ASR), Phase 5 · 10 (Attention), Phase 7 · 05 (Full Transformer)
 **Time:** ~75 minutes
 
@@ -36,9 +36,9 @@
 <|startoftranscript|><|en|><|transcribe|><|notimestamps|> Hello world.<|endoftext|>
 ```
 
-- `<|en|>`语言标签;强迫翻译对转录行为.
-- `<|transcribe|>`或`<|translate|>`从任何语言输入中翻译英语输出,或字面上翻译.
-- `<|notimestamps|>` 跳过字面级时间标签 (更快).
+- `<|en|>`语文标签;在音频中所说的语言名称. 放弃它,然后Whisper先检测到语言.
+- `<|transcribe|>`或`<|translate|>`:任务标签;将演讲转载到原始语言,或将其转换为英语文本.
+- `<|notimestamps|>`: 跳过字面级时间标签 (更快).
 
 提示是让一个模型完成多项任务的.`<|en|>`为了`<|fr|>`它们写成法语.
 

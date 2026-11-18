@@ -3,7 +3,7 @@
 > 语音识别是每个时间步骤上的音频分类,由一个知道英语和沉默的序列模型粘在一起.CTC,RNN-T和注意力是这三个方法.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 02 (Spectrograms & Mel), Phase 5 · 08 (CNNs & RNNs for Text), Phase 5 · 10 (Attention)
 **Time:** ~45 minutes
 
@@ -37,7 +37,7 @@
 
 ### 单个号码
 
-**Word Error Rate**`(S + D + I) / N`根据Levenstein的数据,在Levenstein的数据中,S=替代,D=删除,I=插入,N=引用词数.
+**Word Error Rate**$(S + D + I) / N$在哪里$S$其他地方$D$除$I$入$N$字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数: 字数:
 
 | Model | LibriSpeech test-clean | LibriSpeech test-other | Size |
 |-------|------------------------|------------------------|------|

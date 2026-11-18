@@ -3,7 +3,7 @@
 > 网络不用好使用原始波形.它们用光谱.它们用光谱更好. 2026年每一个ASR,TTS和音频分类器都会因这个单一的预处理选择而活着或死亡.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 6 · 01 (Audio Fundamentals)
 **Time:** ~45 minutes
 
@@ -23,7 +23,7 @@
 
 **Log-magnitude.**度范围为5至6个级别.`log(|X| + 1e-6)`或`20 * log10(|X|)`每个生产管道都使用日志大小,而不是原始大小.
 
-**Mel scale.**频率`f`在Hz地图中到MEL`m`通过`m = 2595 * log10(1 + f / 700)`图表大致是线性低于1kHz,大致是高于高数. 80 melbin覆盖08kHz是标准ASR输入.
+**Mel scale.**频率`f`在Hz地图中到MEL`m`通过$m = 2595 \cdot \log_{10}(1 + f / 700)$图表大致是线性低于1kHz,大致是高于高数. 80 melbin覆盖08kHz是标准ASR输入.
 
 **Mel filterbank.**单个选器是单个选器,一个选器是单个选器,一个选器是单个选器.一个选器的选器是单个选器.一个选器的选器是单个选器.一个选器的选器是单个选器.一个选器是单个选器.一个选器是单个选器.一个选器是单个选器.一个选器是单个选器.一个选器是单个选器.一个选器是单个选器.一个选器是单个选器.一个选器是单个选器.
 
