@@ -3,7 +3,7 @@
 > 编写代码的代理人不能评级代码. 审核器是一个第二循环,其系统提示不同,目标不同,并且只能读取构建者制作的所有内容.构建者和审核器之间的差距是最可靠的地方.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 38 (Verification Gate)
 **Time:** ~55 minutes
 
@@ -43,7 +43,7 @@ flowchart LR
 | Verification quality | Does the acceptance command actually prove the goal, or did it prove a weaker version? |
 | Handoff readiness | Could the next session pick up cleanly from the current state? |
 
-总数是10个. 7以下的运行是软失败; 5以下的运行是硬失败.
+总数为10个. 7以下的运行是软失败; 5以下的运行或 0 级的任何维度都是硬失败.
 
 ### 评审员是一个独立的角色,而不是一个独立的模型
 
@@ -74,6 +74,7 @@ wb-builder-marker
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 输出:两个写到磁盘上的审查报告和一个控制台的维度分数表.

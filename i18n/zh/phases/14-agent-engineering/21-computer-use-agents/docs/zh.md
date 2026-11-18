@@ -3,14 +3,14 @@
 > 2026年生产的三种计算机使用模型.所有三种都是基于视觉的.所有三种都将屏幕截图,DOM文本和工具输出视为不可信赖的输入.只有直接用户说明才会被视为许可.每步安全服务是标准.
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 20 (WebArena, OSWorld), Phase 14 · 27 (Prompt Injection)
 **Time:** ~60 minutes
 
 ## 学习目标
 
 - 描述克劳德的计算机使用:屏幕截图进入,键盘/鼠标命令输出,没有可访问性API.
-- 在OSWorld/WebArena/Online-Mind2Web上列出三个模型的基准号码.
+- 记住本课程引用的发射基准号码:OSWorld/WebArena/WebVoyager上的OpenAI CUA,以及在Online-Mind2Web上的Gemini 2.5计算机使用.
 - 解释每一步的安全模式 双子座 2.5 计算机使用文件.
 - 总结所有三种模型都执行的不信任输入合同.
 
@@ -92,6 +92,7 @@ computer-use-cursor
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 输出显示安全分类器在DOM文本中捕获注射指令并阻止未确认的购买.

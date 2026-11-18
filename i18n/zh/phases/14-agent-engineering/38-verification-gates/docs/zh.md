@@ -3,7 +3,7 @@
 > 经纪人不能标记自己的工作做完了.验证门阅读范围合同,反日志,规则报告和差异,并回答一个问题:这个任务是否真的完成了?如果门说不,任务没有完成,无论聊天说什么.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 33 (Rules), Phase 14 · 36 (Scope), Phase 14 · 37 (Feedback)
 **Time:** ~55 minutes
 
@@ -81,13 +81,14 @@ wb-gate-sequence
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 输出:三份判决报告,每个报告都保存在脚本旁边.
 
 ## 野生生产模式
 
-现在,我们已经开始了四个模式,
+五种模式将门从"另一个子工作"升至"决定性边缘".
 
 **Defense-in-depth, not single gate.**预约 → CI状态检查 →预工具 authz →预合组门.每个层都是确定性的,因此一个层中的故障被下一个层捕获.microservices.io的2026年3月的游戏簿明确:预约是不可绕过的,因为与模型侧技能不同,它不依赖于遵循指令的代理.验证门位于CI / pre-merge层.
 

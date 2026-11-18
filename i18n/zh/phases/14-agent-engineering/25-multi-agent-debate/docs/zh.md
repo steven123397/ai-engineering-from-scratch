@@ -3,7 +3,7 @@
 > 杜等人 (ICML 2024,"思想社会") 运行了N模型实例,独立提出答案,然后在R轮中反复批评彼此,以融合.改善事实性,遵循规则,推理.节省拓学在代币成本上击败了全网网.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 12 (Workflow Patterns), Phase 14 · 05 (Self-Refine and CRITIC)
 **Time:** ~60 minutes
 
@@ -82,6 +82,7 @@ debate-converge
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 产量:每项协议的准确性和成本;少量匹配的 2/3 问题以更低的成本.
@@ -117,7 +118,7 @@ python3 code/main.py
 
 ## 进一步阅读
 
-- [Du et al., Society of Minds (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325)多代理论坛
+- [Du et al., Improving Factuality and Reasoning in Language Models through Multiagent Debate (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325)多代理论坛
 - [Sparse Communication Topology (arXiv:2406.11776)](https://arxiv.org/abs/2406.11776)稀有的拓结果
 - [Anthropic, Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) 作为辩论变体的管弦乐员工
 - [Madaan et al., Self-Refine (arXiv:2303.17651)](https://arxiv.org/abs/2303.17651)单个模型的自我批判对手

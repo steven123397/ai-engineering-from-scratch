@@ -3,7 +3,7 @@
 > 后者可以读取一个结构化记录中,然后代理会反事实而不是对事实的预测.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench), Phase 14 · 35 (Init Script)
 **Time:** ~50 minutes
 
@@ -72,6 +72,7 @@ wb-feedback-loop
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 输出:附加了三个反记录`feedback_record.jsonl`随着文件的重复运行,循环积累.
@@ -106,7 +107,7 @@ python3 code/main.py
 2. 添加一个`redaction`步骤,将相匹配的线条划分`^Bearer `或`password=`测试一个固定记录.
 3. 总额`feedback_record.jsonl`转向 转向 转向 转向 转向 转向 转向 转向 转向 转向 转向 转向 转向 转向 转向 转向 转移`.1`现在`.2`保护轮换政策.
 4. 添加一个`parent_command_id`后一个命令输入了输入的输入.
-5. 输入JSONL到一个小的TUI中,突出了最新的非零出口.
+5. 输入JSONL到一个小的TUI中,突出了最新的非零出口.列出TUI必须显示的八个关键特性,以便在审查中有用.
 
 ## 关键词
 

@@ -1,9 +1,9 @@
 # 工作台在一个真正的商店
 
-> 对于一个小样本应用程序,这个课程两次执行相同的任务:仅需提示与工作台指导. 数字是辩论的.
+> 工作桌面表面的11个课程如果没有与真正的代码库接触,就毫无价值.这个课程在小型样本应用程序上执行了两次相同的任务:仅提示与工作桌面指导. 数字是辩论的.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phases 14 · 32 to 14 · 40
 **Time:** ~60 minutes
 
@@ -85,6 +85,7 @@ wb-ab-runs
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 输出:每个管道的结果表,脚本旁边保存的标记报告,以及任何想要图表的JSON.

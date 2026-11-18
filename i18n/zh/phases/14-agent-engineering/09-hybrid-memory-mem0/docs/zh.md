@@ -3,7 +3,7 @@
 > 混合存储器在并行中运行三个存储器 向量用于语义相似性,KV用于快速的事实搜索,图为实体关系推理,并具有在检索时合并它们的分数层.这是外部存储器的广泛使用的生产模式;Mem0 (Chhikara等,2025) 是一个参考实现.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 07 (MemGPT), Phase 14 · 08 (Letta Blocks)
 **Time:** ~75 minutes
 
@@ -16,7 +16,7 @@
 
 ## 问题
 
-对于三个查询类别之一,一个商店是错误的:
+每个商店只适合三个查询类别之一:
 
 - **Semantic similarity**"我们上周讨论了什么关于代理漂移?" 矢量获胜;KV和图表失败.
 - **Fact lookup**"用户的电话号码是什么?"KV获胜;向量是浪费的,图表是过度的.
@@ -32,7 +32,7 @@
 
 1. 从文本中提取候选事实 (基于LLM的步骤).
 2. 写每一个事实到向量存储 (嵌入) 中进行语义搜索.
-3. 写出每个事实到按键 (user_id, fact_type, entity) 键入的 KV存储中,用于O(1) 搜索.
+3. 写每个事实到按键 (user_id, fact_type, entity) 的 KV存储中.$O(1)$查看.
 4. 写每一个事实到图库 (Mem0g) 作为键入边缘关系查询.
 
 现在`search(query, user_id)`其他:
@@ -106,6 +106,7 @@ ae-memory-fusion
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 输出显示了三个独立的召回路径加上合并的顶-k.`main()`看到排名变化.

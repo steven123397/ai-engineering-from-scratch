@@ -3,7 +3,7 @@
 > 只有当它证明了重要的事情时,一个小的构建才会改变下一个决定,只是不完整.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 lesson 49
 **Time:** ~65 minutes
 
@@ -49,7 +49,7 @@ flowchart TD
   C2 --> G
   C3 --> G
   G -->|No| X[Reject]
-  G -->|Yes| S[Compare evidence per effort and risk]
+  G -->|Yes| S[Compare each candidate slice: evidence gained per unit of effort and risk]
   S --> B[Build one slice]
 ```
 
@@ -79,6 +79,7 @@ flowchart TD
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m unittest discover code/tests -v
 ```
 
