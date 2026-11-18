@@ -3,7 +3,7 @@
 > Şimdiye kadar gördüğümüz her VLM'de görüntü ve metin ayrı kalıyor. Görsel tokenler bir görme kodlayıcısından gelir, bir projektorun içine akıyor, sonra LLM içinde metin buluyorlar. Görme ve metin sözlükleri asla üst üste geçmez. Chameleon (Meta, Mayıs 2024) sordu: Ya yaparlarsa? Bir resmini paylaşılmış bir kelime kaynağından ayrı bir token dizisine dönüştüren bir VQ-VAE eğit. Her multimodal belge şimdi tek bir dizi  metin işaretleri ve görüntü işaretleri birbirine karışmış, tek bir autoregressive kaybı. Yan etkisi: model, tek bir sonuç çağrısında değişen metin ve görüntü belirtilerini  karışık modalite çıkışları oluşturabilir. Bu ders erken bir birleşme tezini okuyor ve bir oyuncak versiyonu sonuna kadar inşa ediyor.
 
 **Type:** Build
-**Languages:** Python (stdlib, VQ-VAE tokenizer + interleaved decoder)
+**Languages:** Python, TypeScript (stdlib, VQ-VAE tokenizer + interleaved decoder)
 **Prerequisites:** Phase 12 · 05, Phase 8 (Generative AI)
 **Time:** ~180 minutes
 
@@ -39,7 +39,7 @@ Tokenizer, vektörlü kuantitasyonlu bir otomatik kodlayıcıdır.
 
 Eğitim: VAE yeniden yapılandırma kaybı + bağlılık kaybı + kod defteri kaybı.
 
-Şameleon için: bir görüntü 32*32 = 1024 token oluşturuyor. 8192 kelimeden alınmıştır. Metin tokenleriyle (LLM'nin BPE kelimelerinden, 32000 diyoruz) birleştirilmiştir. Son kelime: 40192. Transformatör bir dizi, bir kayıp görür.
+Chameleon için: bir görüntü 32*32 = 1024 simge olur. Bu simge kimliklerini metin BPE simgelerinin aynı kimlik alanına koyun. Chameleon'un tek simgeci 65,536 giriş vardır ve bu sayıya zaten 8192 görüntü kodları ve görüntü ayırıcıları gibi özel simgeler dahil. Transformatör bir dizi, bir kaybı görür.
 
 ### Paylaşılan kelime birikimi
 
