@@ -3,7 +3,7 @@
 > Word2Vec a formé un intégration par mot. GloVe a factorisé la matrice de co-occurrence. FastText a intégré les pièces. BPE a relié aux transformateurs.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 03 (Word2Vec from Scratch)
 **Time:** ~45 minutes
 
@@ -25,7 +25,7 @@ Cette leçon traverse les trois, puis explique lequel pour quand.
 
 **FastText.**Un mot est la somme de ses caractères n-grammes plus le mot lui-même. `where`devient `<wh, whe, her, ere, re>, <where>`Le vecteur de mot est la somme de ces vecteurs composants.`whereupon`) sont composés de n-grammes connus.
 
-**BPE (Byte-Pair Encoding).**Commencez par un vocabulaire de caractères (ou octets) individuels. Comptez chaque paire adjacente dans le corpus. Fusez la paire la plus fréquente dans un nouveau jeton. Répétez pour `k`Les résultats: un vocabulaire de `k + 256`les jetons où des séquences fréquentes (`ing`- Je suis là .`tion`- Je suis là .`the`Les mots rares sont divisés en morceaux familiers.
+**BPE (Byte-Pair Encoding).**Commencez par un vocabulaire de caractères (ou octets) individuels. Comptez chaque paire adjacente dans le corpus. Fusez la paire la plus fréquente dans un nouveau jeton. Répétez pour `k`Les résultats: un vocabulaire des symboles de base plus `k`fusion (`k + 256`les jetons lorsque vous démarrez à partir de octets) où les séquences fréquentes (`ing`- Je suis là .`tion`- Je suis là .`the`Les mots rares sont divisés en morceaux familiers.
 
 ```figure
 n5-subword-merge
