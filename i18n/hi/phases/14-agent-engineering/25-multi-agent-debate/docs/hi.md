@@ -3,7 +3,7 @@
 > Du et al. (ICML 2024, "सामाजिक ऑफ माइंड्स") N मॉडल उदाहरण चलाते हैं जो स्वतंत्र रूप से उत्तर प्रस्तावित करते हैं, फिर आर राउंड पर अभिसरण करने के लिए पुनरावृत्त रूप से एक दूसरे की आलोचना करते हैं। तथ्य, नियम का पालन, तर्क में सुधार करता है। स्पार्स टोपोलॉजी टोकन लागत पर पूर्ण जाल को हराती है।
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 12 (Workflow Patterns), Phase 14 · 05 (Self-Refine and CRITIC)
 **Time:** ~60 minutes
 
@@ -82,6 +82,7 @@ debate-converge
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 आउटपुटः प्रति प्रोटोकॉल सटीकता और लागत; कम लागत पर 2/3 प्रश्नों पर पूर्ण जाल के साथ दुर्लभ मैच।
@@ -117,7 +118,7 @@ python3 code/main.py
 
 ## आगे पढ़ना
 
-- [Du et al., Society of Minds (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) बहु-एजेंट बहस
+- [Du et al., Improving Factuality and Reasoning in Language Models through Multiagent Debate (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) बहु-एजेंट बहस
 - [Sparse Communication Topology (arXiv:2406.11776)](https://arxiv.org/abs/2406.11776) दुर्लभ टॉपॉलजी परिणाम
 - [Anthropic, Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) बहस के रूप में संगीतकार-कर्मियों
 - [Madaan et al., Self-Refine (arXiv:2303.17651)](https://arxiv.org/abs/2303.17651) एकल मॉडल स्व-आलोचना प्रतिद्वंद्वी

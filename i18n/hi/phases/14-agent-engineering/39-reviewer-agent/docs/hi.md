@@ -3,7 +3,7 @@
 > एक रिव्यूर एक अलग सिस्टम प्रॉम्प्ट, एक अलग लक्ष्य और बिल्डर द्वारा उत्पादित सभी चीजों तक केवल पढ़ने के लिए पहुंच के साथ एक दूसरा लूप है। बिल्डर और रिव्यूर के बीच अंतर वह जगह है जहां सबसे अधिक विश्वसनीयता रहती है।
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 38 (Verification Gate)
 **Time:** ~55 minutes
 
@@ -43,7 +43,7 @@ flowchart LR
 | Verification quality | Does the acceptance command actually prove the goal, or did it prove a weaker version? |
 | Handoff readiness | Could the next session pick up cleanly from the current state? |
 
-कुल 10 में से एक 7 से नीचे की दौड़ एक नरम विफलता है; 5 से नीचे की दौड़ एक कठिन विफलता है।
+10 में से कुल। 7 से नीचे की दौड़ एक नरम विफलता है; 5 से नीचे की दौड़ या 0 पर कोई भी आयाम एक कठिन विफलता है।
 
 ### समीक्षक एक अलग भूमिका है, एक अलग मॉडल नहीं
 
@@ -74,6 +74,7 @@ wb-builder-marker
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 आउटपुटः डिस्क पर लिखे गए दो समीक्षा रिपोर्ट और आयामी स्कोर की एक कंसोल तालिका।
