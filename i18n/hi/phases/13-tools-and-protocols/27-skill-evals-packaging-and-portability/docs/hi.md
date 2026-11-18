@@ -3,7 +3,7 @@
 > एक कौशल समाप्त हो जाता है जब उसका पैकेज लैंटिंग से बचता है, सही अनुरोधों पर मार्ग बनाता है, एक मापा कार्य में सुधार करता है, नीति के भीतर रहता है, और ईमानदारी से दूसरे मेजबान पर गिरावट आता है।
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 13 · 22, 24, 25, and 26
 **Time:** ~150 minutes
 
@@ -137,10 +137,12 @@ skill-eval-layers
 
 द्विआधारी कॉल के लिएः
 
-```text
-precision = true_positives / (true_positives + false_positives)
-recall = true_positives / (true_positives + false_negatives)
-f1 = 2 * precision * recall / (precision + recall)
+```math
+\begin{aligned}
+\text{precision} &= \frac{\text{true\_positives}}{\text{true\_positives} + \text{false\_positives}} \\[4pt]
+\text{recall} &= \frac{\text{true\_positives}}{\text{true\_positives} + \text{false\_negatives}} \\[4pt]
+\text{f1} &= \frac{2 \cdot \text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+\end{aligned}
 ```
 
 10 में से 10 और 100 में से 100 दोनों 100 प्रतिशत हैं लेकिन अलग-अलग सबूत देते हैं।
@@ -423,6 +425,7 @@ package:
 cd "$(git rev-parse --show-toplevel)"
 cd phases/13-tools-and-protocols/27-skill-evals-packaging-and-portability
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m unittest discover -s code/tests -v
 ```
 

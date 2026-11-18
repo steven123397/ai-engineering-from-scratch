@@ -3,7 +3,7 @@
 > एक एजेंट पांच उपकरण, तीन MCP सर्वर और दो उप एजेंटों को बुलाता है। आपको एक निशान की जरूरत है। ओपनटेलीमेट्री जेएनएआई सेमेटिक कन्वेंशन (v1.37 और ऊपर में स्थिर विशेषताएं) 2026 मानक हैं, मूल रूप से डेटाडॉग, लैंगफ्यूज, एरिज़ फीनिक्स, ओपनएलएलएमटीरी और एजेंटओप्स द्वारा समर्थित हैं। इस पाठ में आवश्यक गुणों का नाम दिया गया है, स्पैन पदानुक्रम (एजेंट → एलएलएम → उपकरण) चलाया गया है, और एक stdlib स्पैन उत्सर्जक जहाज आप किसी भी ओटीएल निर्यातक में प्लग कर सकते हैं।
 
 **Type:** Build
-**Languages:** Python (stdlib, OTel span emitter)
+**Languages:** Python (stdlib, OTel span emitter), TypeScript
 **Prerequisites:** Phase 13 · 07 (MCP server), Phase 13 · 08 (MCP client)
 **Time:** ~75 minutes
 
@@ -150,7 +150,7 @@ t3-span-waterfall
 | Span | "Timed operation" | A unit of work with a start, end, and attributes |
 | Trace | "Cross-span ancestry" | Tree of spans sharing a trace id |
 | SpanKind | "CLIENT / SERVER / INTERNAL" | Hints about span direction |
-| OTLP | "OpenTelemetry Line Protocol" | Wire format for exporters |
+| OTLP | "OpenTelemetry Protocol" | Wire format for exporters |
 | Opt-in content | "Prompt / completion capture" | Off by default; env var to enable |
 | traceparent | "W3C header" | Propagates trace context across services |
 | Exporter | "Backend-specific shipper" | Component that sends spans to Jaeger / Datadog / etc. |

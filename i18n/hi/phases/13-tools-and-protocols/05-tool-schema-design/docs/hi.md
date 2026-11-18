@@ -3,7 +3,7 @@
 > एक सही उपकरण चुपचाप विफल रहता है जब मॉडल यह नहीं बता सकता कि इसका उपयोग कब करना है। नामकरण, विवरण और पैरामीटर आकार एक मॉडल द्वारा विश्वसनीय रूप से चुने गए उपकरण को एक मॉडल द्वारा गलत तरीके से फायर किए गए उपकरण से अलग करने वाले डिजाइन नियमों का नाम देते हैं।
 
 **Type:** Learn
-**Languages:** Python (stdlib, tool schema linter)
+**Languages:** Python, TypeScript (stdlib, tool schema linter)
 **Prerequisites:** Phase 13 · 01 (the tool interface), Phase 13 · 04 (structured output)
 **Time:** ~45 minutes
 
@@ -84,7 +84,7 @@ notes_search(query)
 ### पैरामीटर डिजाइन
 
 - **Enum every closed set.** `units: "celsius" | "fahrenheit"`नहीं`units: string`. एनम मॉडल को स्वीकार्य मानों के ब्रह्मांड को बताते हैं।
-- **Required vs optional.**आवश्यक न्यूनतम अंकन करें. बाकी सब वैकल्पिक है. ओपनएआई सख्त मोड में सभी क्षेत्रों की आवश्यकता होती है`required`; एक जोड़ें `is_default: true`अपनी कोड में सम्मेलन और मॉडल इसे छोड़ने दें।
+- **Required vs optional.**आवश्यक न्यूनतम अंकन करें. बाकी सब वैकल्पिक है. ओपनएआई सख्त मोड में सभी क्षेत्रों की आवश्यकता होती है`required`, तो मॉडल एक छोड़ नहीं सकता है. एक वैकल्पिक क्षेत्र के रूप में एक संघ के रूप में टाइप करें`null`और मॉडल भेजने दें `null`जब इसका कोई मूल्य नहीं है।
 - **Typed IDs.** `note_id: string`ठीक है लेकिन एक जोड़ें `pattern`(`^note-[0-9]{8}$`) हलक में आईडी पकड़ने के लिए।
 - **No overly flexible types.**`type: any`मॉडल आकृति का भ्रम पैदा करेगा।
 - **Describe the field.** `{"type": "string", "description": "ISO 8601 date in UTC, e.g. 2026-04-22"}`. विवरण मॉडल के संकेत का हिस्सा है.
