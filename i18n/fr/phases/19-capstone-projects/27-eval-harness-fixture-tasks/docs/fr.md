@@ -3,7 +3,7 @@
 > Un agent de codage n'est que aussi bon que la suite de tâches que vous mesurez. Cette leçon construit un harnais d'évaluation qui prend un dossier de tâches fixes, exécute chacune à travers un agent candidat, les scores passent ou échouent à travers un vérificateur déterministe, et agrégent les résultats en pass@1, pass@k, latence moyenne et coût moyen. Le harnais est la source de vérité qui vous permet de voir une régression d'un réfacteur.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox runner), Phase 14 · 30 (eval-driven agent development), Phase 14 · 19 (SWE-bench and GAIA benchmarks)
 **Time:** ~90 minutes
 
@@ -47,7 +47,7 @@ La deuxième est `regex_match`. Le contenu du fichier nommé est associé à un 
 
 Le troisième est `shell_exit_zero`. Le harnais exécute une commande de coque (à travers la boîte à sable de la leçon 26) et passe la tâche uniquement si la commande sort de zéro.
 
-Le harnais réalise chaque tâche .`k`Les temps passent.`1 - (1 - p)^k`où p est le taux de réussite empirique; le harnais rapporte également des nombres bruts afin que vous puissiez repérer la variance. La latence est le mur-horloge par échantillon. Le coût est ce que l'agent rapporte lui-même (compte de jetons, USD ou les deux); le harnais le résume sur les échantillons et présente les nombres par tâche et agrégés.
+Le harnais réalise chaque tâche .`k`Les temps passent.`1 - (1 - p)^k`où p est le taux de réussite empirique; le harnais rapporte également des nombres bruts afin que vous puissiez repérer la variance. C'est l'estimation en plug-in: il utilise le taux mesuré p comme s'il s'agissait du taux vrai.`1 - C(n - c, k) / C(n, k)`pour `n`échantillons avec `c`Les estimations sont faibles.`n = k`Les échantillons, comme dans ce harnais, sont estimés par un estimateur impartial de 1 lorsque l'échantillon passe et de 0 lorsqu'aucun échantillon ne passe, ce qui ne montre que si un échantillon a passé.`n > k`Le coût est quel que soit le rapport de l'agent (conte de jetons, USD ou les deux); le harnais le résume à travers les échantillons et présente les nombres par tâche et agrégés.
 
 ```figure
 pass-at-k
@@ -100,6 +100,7 @@ La leçon 25 a produit la chaîne de portes, la leçon 26 a produit la boîte à
 ```bash
 cd phases/19-capstone-projects/27-eval-harness-fixture-tasks
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

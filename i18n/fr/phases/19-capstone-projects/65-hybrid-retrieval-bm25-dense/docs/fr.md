@@ -3,7 +3,7 @@
 > La récupération léxicale et sémantique échouent sur les distributions de requêtes opposées. La récupération hybride avec fusion de rang réciproque n'interpelle pas, elle vote - et le vote gagne sur chaque classe de requête.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 lessons 04 (embeddings), 06 (RAG); Phase 19 Track B foundations (lessons 20-29); Phase 19 lesson 64 (chunking strategies)
 **Time:** ~90 minutes
 
@@ -38,7 +38,7 @@ flowchart LR
 
 BM25 marque une paire requête-document en sumant, sur les termes de requête, un facteur de fréquence document inverse multiplié par un facteur de fréquence terme saturant qui comprend une correction de normalisation de longueur.`k1`Il est recommandé de ne pas déplacer la fréquence de saturation par terme sans référence. `b`La longueur du document est contrôlée par la norme par défaut 0,75 et les documents plus longs sont pénalisés, mais pas linéairement.
 
-La formule des FDI utilise la définition de Robertson et Sparck Jones, qui est `log((N - df + 0.5) / (df + 0.5) + 1)`Le plus-un dans le journal maintient les IDF positifs quand un terme apparaît dans plus de la moitié du corpus.
+La formule des FDI utilise la définition de Robertson et Sparck Jones, qui est `log((N - df + 0.5) / (df + 0.5) + 1)`. Le plus-un à l'intérieur du journal maintient l'armée israélienne positive lorsqu'un terme apparaît dans plus de la moitié du corpus.
 
 La pondération des champs permet de dire à BM25 qu'un match sur le nom du symbole compte plus qu'un match dans le corps. L'implémentation est un multiplicateur sur le nombre de termes pendant l'indexation, et non au moment du score. Cela maintient les mathématiques identiques et évite un score séparé par champ.
 
@@ -81,6 +81,7 @@ rrf-fusion
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Lisez la sortie de démo côte à côte. La requête d'identifiant littérale se trouve au rang BM25 1, rang dense 4, rang RRF 1. La requête paraphrase se trouve au rang BM25 6, rang dense 1, rang RRF 1. La requête ambiguë se trouve au rang BM25 3, rang dense 3, rang RRF 1. La fusion n'est pas un tie-breaker; c'est le système qui gagne sur chaque classe de requête.

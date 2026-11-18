@@ -3,7 +3,7 @@
 > Le salaire de la piste A. Cette leçon suture la chaîne de passerelle, la boîte à sable, le harnais d'évaluation et l'OTel s'étend en un agent de codage qui répare un bug réel (petit, à l'échelle fixe) dans un projet Python multi-fichiers. L'agent est une politique déterministe, pas un LLM; la substitution rend la leçon reproduisable et montre que le harnais a été la partie intéressante tout le temps. Le contrat est identique: un modèle réel s'insère dans la couture de la politique.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox), Phase 19 · 27 (eval harness), Phase 19 · 28 (observability), Phase 14 · 38 (verification gates), Phase 14 · 41 (workbench for real repos), Phase 14 · 42 (agent workbench capstone)
 **Time:** ~90 minutes
 
@@ -21,7 +21,7 @@ La plupart des démonstrations d'agents fonctionnent en isolement: une boîte à
 
 La chaîne de portes dit "AUTHED", mais la boîte à sable refuse pour une raison que la chaîne n'a pas anticipée. L'appareil d'évaluation enregistre un passage mais les spans OTel disent que la passerelle a refusé un outil que l'agent prétend avoir utilisé. Le compteur Prometheus est augmenté deux fois lorsqu'il doit être augmenté une fois. Le budget de l'observation est dépassé mais l'agent a continué parce que le budget était suivi dans la chaîne et la boîte à sable ne savait pas.
 
-Cette leçon est le test d'intégration pour toute la piste. L'agent doit faire quatre choses pour l'ordre: lire le projet, exécuter les tests, identifier le bug de l'échec du test, écrire la correction, réexécuter les tests, et arrêter. Chaque opération passe par la chaîne de passerelle. Chaque exécution d'outil passe par la boîte à sable. Chaque étape est enveloppée dans une période. Le harnais d'évaluation marque tout à la fin.
+Cette leçon est le test d'intégration pour toute la piste. L'agent doit faire six choses pour l'ordre: lire le projet, exécuter les tests, identifier le bug de l'échec du test, écrire la correction, réexécuter les tests, et arrêter. Chaque opération passe par la chaîne de passerelle. Chaque exécution d'outil passe par la boîte à sable. Chaque étape est enveloppée dans une période. Le harnais d'évaluation marque tout à la fin.
 
 ## Le concept
 
@@ -113,6 +113,7 @@ Cette leçon est l'intégration. La leçon 25 a écrit la chaîne de passerelle.
 ```bash
 cd phases/19-capstone-projects/29-end-to-end-coding-task-demo
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 
