@@ -3,7 +3,7 @@
 > 2026'da hala LLM-agent sistemlerini bilgilendiren çoklu ajan koordinasyonunun güçlendirme-öğrenme mirası. **MADDPG**(Lowe et al., NeurIPS 2017, arXiv:1706.02275) Merkezi Eğitim, Merkezi İşlem (CTDE) başlattı: her eleştirmen eğitim sırasında tüm ajanların durumlarını ve eylemlerini görür; test zamanında sadece yerel aktörler çalışır. İşbirliği, rekabetçi ve karışık ortamlar için çalışır. **QMIX**(Rashid et al., ICML 2018, arXiv:1803.11485) bir monotonik karıştırma ağı ile değer-karıştırma; ajan başına Qs birleşik Q'lar böylece `argmax` StarCraft Multi-Agent Challenge (SMAC) üzerinde baskın bir şekilde dağıtılır. **MAPPO**(Yu et al., NeurIPS 2022, arXiv:2103.01955) merkezi bir değer fonksiyonu olan PPO'dur; parçacık dünyasında, SMAC, Google Araştırma Futbolu, Hanabi'de en az ayarlama ile "içik etkili".**default 2026 cooperative-MARL baseline**Bu ders, küçük bir çubuğuz dünyası oyuncağından her birini inşa eder ve üç fikri kas hafızasına yerleştirir.
 
 **Type:** Learn
-**Languages:** Python (stdlib, small NumPy-free implementations)
+**Languages:** Python (stdlib, small NumPy-free implementations), TypeScript
 **Prerequisites:** Phase 09 (Reinforcement Learning), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~90 minutes
 
@@ -42,10 +42,10 @@ Başarısızlık modu: eleştirmenler N ajanlarla büyür (gönüllülük tüm e
 
 ### QMIX (2018)  değer parçalanması
 
-Toplam ödül, bir ajan başına Q değerlerinin monoton fonksiyonunun toplamıdır:
+Sadece kooperatif.`Q_tot`bir ajan başına Q değerlerinin monoton karıştırma fonksiyonu:
 
-```
-Q_tot(tau, a) = f(Q_1(tau_1, a_1), ..., Q_n(tau_n, a_n)),   df/dQ_i >= 0
+```math
+Q_{\text{tot}}(\tau, a) = f\big(Q_1(\tau_1, a_1), \ldots, Q_n(\tau_n, a_n)\big), \quad \frac{\partial f}{\partial Q_i} \ge 0
 ```
 
 Tek kelimelilik garanti eder `argmax_a Q_tot`Her seçen ajan tarafından hesaplanabilir.`argmax_{a_i} Q_i`- Bağımsız olarak.**exactly the decentralized execution property**Eğitim sırasında, bir karıştırma ağı üretir.`Q_tot`- Bir ajan için Qs'ten.
@@ -117,6 +117,7 @@ Dörtü de aynı bölümleri yürütür ve ortalama adımlar ile hedefe rapor ed
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Beklenen çıkış: bağımsız ajanlar ortalama ~ 6 adım atarlar; CTDE varyantları ~ 3.5 adımlara doğru birleşti (optimal 4x4 şebekesi için 3'dir).

@@ -3,7 +3,7 @@
 > 2026'da çoklu ajan sistemlerinde iki yaklaşım bir arada var:**message pool**(Herkes herkesin mesajlarını görür, AutoGen GroupChat veya MetaGPT gibi) ve **blackboard with subscription**(Ajanslar Kontext-Aware MCP veya Matrix çerçevesinde olduğu gibi ilgili olaylara abone olurlar). Her ikisi de çoklu ajanlı bir sistemin tek durumlu parçası  yani ikisi de ilginç hataların yaşadığı yerdir. İpucu hata modusu **memory poisoning**Bu ders, her iki yapıyı stdlib'den inşa eder, zehirleme saldırısı enjekte eder ve üretimde gerçekten çalışan üç hafiflemeyi gösterir.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib, `threading`)
+**Languages:** Python (stdlib, `threading`), TypeScript
 **Prerequisites:** Phase 16 · 04 (Primitive Model), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~75 minutes
 
@@ -68,7 +68,7 @@ Sorun ortak devlet değildir.**without provenance and without an independent ver
 
 1. **Attribute provenance on every write.**Paylaşılan devlet kayıtlarında bulunan her giriş, kim yazdı, ne zaman, hangi çağrı altında ve (mümkünse) ajanın hangi kaynağı belirtti.
 2. **Version writes; treat them as append-only.**Düzeltme, eski bir giriş yerine yeni bir girişdir, yerleşik bir güncelleştirme değil.
-3. **Keep at least one agent that cannot write to shared state.**Sadece okuyabilen bir doğrulama aracı girişleri örnekler, kaynakları yeniden alır ve tutarlılıkları işaretler.
+3. **Keep at least one agent that cannot write to shared state.**Sadece okuyabilen bir doğrulama ajanı girişleri örnekler, kaynakları yeniden alır ve tutarlılıkları işaretler. Hala havuzu okuyor, bu yüzden kötü bir girişle kandırılabilir, ancak her girişini orijinal kaynağa karşı kontrol eder ve yazamaz, bu nedenle hükümleri asla zehirli bir gerçeği paylaşılmış bir duruma geri getirmez.
 
 ### Blackboard precedeni (Hayes-Roth, 1985)
 
@@ -119,6 +119,7 @@ swarm-blackboard
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Beklenen üretim:

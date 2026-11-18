@@ -3,7 +3,7 @@
 > Li et al. (arXiv:2310.10701) ortak bir metin oyun sergisinde LLM ajanlarının **emergent high-order Theory of Mind**(ToM)  bir üçüncü ajanın inançları hakkında başka bir ajanın ne düşündüğünü düşünmek  ancak bağlam yönetimi ve halüsinasyon nedeniyle uzun vadede planlamayı başarısız etmek. Riedl (arXiv:2510.05174) bir popülasyonda daha yüksek sıralama sinerjisi ölçtü ve buldu ki **only**ToM-prompt koşulı kimlik bağlantılı farklılık ve hedef odaklı tamamlayıcılık üretir; düşük kapasiteli LLM'ler sadece sahte ortaya çıkış gösterir. Yani, koordinasyon ortaya çıkışı, serbest değil, derhal koşullu ve model bağımlıdır. Bu ders, minimal bir ToM-a karşı bilinçli ajan uyguluyor, ToM'nin teşvik edilmesiyle ve olmadan işbirliği görevini yürütüyor ve Riedl 2025 protokolüne karşı koordinasyon delta ölçüyor.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 07 (Society of Mind and Debate), Phase 16 · 17 (Generative Agents)
 **Time:** ~75 minutes
 
@@ -120,6 +120,7 @@ sw-theory-of-mind
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Beklenen çıkış: sıfır sıra ajanları %35 oranında çabaları ikiye katlar ve 10 dönüşte denemelerin %60'ını tamamlar.
@@ -163,5 +164,5 @@ Koordinasyon taleplerinin kontrol listesini:
 
 - [Li et al. — Theory of Mind for Multi-Agent Collaboration via Large Language Models](https://arxiv.org/abs/2310.10701) Kooperatif oyunlarda yeni gelişen ToM; uzun uzayda başarısızlık modları
 - [Riedl — Emergent Coordination in Multi-Agent Language Models](https://arxiv.org/abs/2510.05174) Popülasyon ölçeğinde ölçüm; ToM uyarı yük taşıma koşuludur
-- [Premack & Woodruff — Does the chimpanzee have a theory of mind?](https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/does-the-chimpanzee-have-a-theory-of-mind/1E96B02CD9850E69AF20F81FA7EB3595) ToM kavramının 1978'deki kökeni
+- [Premack & Woodruff — Does the chimpanzee have a theory of mind?](https://doi.org/10.1017/S0140525X00076512) ToM kavramının 1978'deki kökeni
 - [Baron-Cohen, Leslie, Frith — Does the autistic child have a theory of mind?](https://doi.org/10.1016/0010-0277(85)90022-8)  Sally-Anne makalesi (1985)

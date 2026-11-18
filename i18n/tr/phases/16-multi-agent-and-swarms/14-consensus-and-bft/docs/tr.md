@@ -3,7 +3,7 @@
 > Klasik dağıtılmış sistemler BFT, stokastik LLM'lere ulaşıyor. 2025-2026 yıllarında üç araştırma yönü ortaya çıktı: **CP-WBFT**(arXiv:2511.10400) her oyı bir güven sorgulaması ile tartar.**DecentLLMs**(arXiv:2507.14928) paralel işçi önerileri ve geometrik-medyen birleştirme ile lidersiz kalıyor. **WBFT**(arXiv:2505.05103) ağırlıklı oylama ile Hiyerarşik Yapı Gruplama'yı birleştirerek Core ve Edge düğümlerini ayırır. "AI Ajanları Anlaşabilir mi?" (arXiv:2603.01213)'nin dürüst bir empiriyel sonucu, bugün ölçekli anlaşmanın bile kırılgan olmasıdır. BFT gereklidir ama yeterli değildir. Bu ders minimal bir BFT protokolü oluşturur, üç ajan-spesifik saldırıyı enjekte eder (Bizans yalanı, sikofant uyumluluk, ilişkili hata monoculture) ve her konsensüs varianti nasıl başa çıktığını ölçer.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 07 (Society of Mind and Debate), Phase 16 · 13 (Shared Memory)
 **Time:** ~75 minutes
 
@@ -107,6 +107,7 @@ Uygulama şekilleri:
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Beklenen çıkış: bir tablo (saldırı, toplayıcı) -> son cevap, doğru cevap belirtildi. Plurality monoculture durumunu başarısız. CPWBFT'nin güven ağırlığı sikofansayı azaltır. DecentLLMs'in geometrik-medyanı monoculture nüfusun yarısından daha az olduğu zaman dürüst kümelere doğru çekilir.
@@ -148,7 +149,7 @@ Bir konsensüse sahip olmak için herhangi bir mekanizma göndermeden önce:
 
 ## Daha Fazla Okumak
 
-- [Castro & Liskov — Practical Byzantine Fault Tolerance (OSDI 1999)](https://pmg.csail.mit.edu/papers/osdi99.pdf) Temel
+- [Castro & Liskov — Practical Byzantine Fault Tolerance (OSDI 1999)](https://www.usenix.org/conference/osdi-99/practical-byzantine-fault-tolerance) Temel
 - [CP-WBFT — Confidence-Probe Weighted BFT](https://arxiv.org/abs/2511.10400) Güvenle oy ağırlığı
 - [DecentLLMs — leaderless multi-agent consensus](https://arxiv.org/abs/2507.14928) Geometri-medyen birleştirme
 - [WBFT — Weighted BFT with Hierarchical Structure Clustering](https://arxiv.org/abs/2505.05103) Sınırlı gecikme için çekirdek/kırık bölünmesi
