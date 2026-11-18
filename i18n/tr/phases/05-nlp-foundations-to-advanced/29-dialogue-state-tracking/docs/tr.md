@@ -3,7 +3,7 @@
 > "Şimalde ucuz bir restoran istiyorum... aslında onu moderat yapıp İtalyanca ekle". Üç dönüş, üç devlet güncelleme.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 17 (Chatbots), Phase 5 · 20 (Structured Outputs)
 **Time:** ~75 minutes
 
@@ -147,7 +147,7 @@ Bir tespit edilen düzeltme üzerine, eklemek yerine son güncellenmiş boşluğ
 
 ## Tuzaklar
 
-- **Full-history regeneration cost.**LLM'nin her turda yeniden çalışmasına izin vermek, toplam tokenlerin O ((n2) değerini artırır.
+- **Full-history regeneration cost.**LLM ' nin her dönüşte yeniden kurulmasına izin vermek , maliyetleri artırır .$O(n^2)$Toplam tokenler. Kap geçmişi veya eski dönümleri özetlemek.
 - **Schema drift.**Post hoc yeni yuvalar eklemek eski eğitim verilerini kırır.
 - **Case sensitivity.**"İtalyan" vs. "İtalyan" vs. "İtalyan"  her yerde normalleşir.
 - **Implicit inheritance.**Kullanıcı daha önce "4 kişi için" belirlediyse, farklı bir zaman için yeni bir talebin insanları temizlemesi gerekmez.

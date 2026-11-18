@@ -3,7 +3,7 @@
 > Bir süre için dilbilgi modası yoktu, sonra her LLM boru hattı yapılandırılmış çıkarımı doğrulamalıydı ve geri döndü.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 5 · 01 (Text Processing), Phase 2 · 14 (Naive Bayes)
 **Time:** ~45 minutes
 
@@ -80,8 +80,8 @@ Brown'un korpusunda, bu temel çizgi %85 doğruluğa ulaştı.
 
 Düzeneğin ortak olasılığını modelleyin:
 
-```
-P(tags, words) = prod P(tag_i | tag_{i-1}) * P(word_i | tag_i)
+```math
+P(\text{tags}, \text{words}) = \prod_i P(\text{tag}_i \mid \text{tag}_{i-1}) \cdot P(\text{word}_i \mid \text{tag}_i)
 ```
 
 İki tablo: geçiş olasılığı (önceki etiket verilen etiket), emisyon olasılığı (söz verilen etiket).
