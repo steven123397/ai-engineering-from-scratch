@@ -3,7 +3,7 @@
 > एक छवि एक 2-डी टेंसर है। एक वीडियो एक 3-डी है। सिद्धांत एक ही है; गणना 10-100 गुना कठिन है। ओपनएआई के सोरा (फरवरी 2024) ने यह संभव साबित किया। 2026 तक वीओ 2, क्लिंग 1.5, रनवे जेन-3, पिका 2.0 और वाइन 2.2 जहाज उत्पादन वीडियो 1080 पी पर पाठ से है।
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 8 · 07 (Latent Diffusion), Phase 7 · 09 (ViT), Phase 8 · 06 (DDPM)
 **Time:** ~45 minutes
 
@@ -152,7 +152,7 @@ def pos_embed(t, dim):
 - [Brooks et al. (2024). Video generation models as world simulators](https://openai.com/index/video-generation-models-as-world-simulators/) सोरा तकनीकी रिपोर्ट।
 - [Yang et al. (2024). CogVideoX: Text-to-Video Diffusion Models with An Expert Transformer](https://arxiv.org/abs/2408.06072) CogVideoX।
 - [Kong et al. (2024). HunyuanVideo: A Systematic Framework for Large Video Generative Models](https://arxiv.org/abs/2412.03603) हनुयुआनवीडियो.
-- [Genmo (2024). Mochi-1 Technical Report](https://www.genmo.ai/blog/mochi) मोची-1।
+- [Genmo (2024). Mochi 1 preview model card](https://huggingface.co/genmo/mochi-1-preview) मोची-1।
 - [Alibaba (2025). WAN 2.2](https://wanvideo.io/) SOTA को मध्य 2025 में खोलना।
 - [Ho, Salimans, Gritsenko et al. (2022). Video Diffusion Models](https://arxiv.org/abs/2204.03458) वीडियो प्रसारण पेपर।
 - [Blattmann et al. (2023). Align your Latents (Video LDM)](https://arxiv.org/abs/2304.08818) स्थिर वीडियो विसारण का पूर्वज।
