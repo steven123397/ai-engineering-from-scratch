@@ -3,7 +3,7 @@
 > Un transformateur dense 70B active tous les paramètres pour chaque jeton. Un MoE 671B active seulement 37B par jeton et le bat sur chaque référence.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, Rust
 **Prerequisites:** Phase 7 · 05 (Full Transformer), Phase 7 · 07 (GPT)
 **Time:** ~45 minutes
 
@@ -11,7 +11,7 @@
 
 Les FLOP d'un transformateur dense sont à l'inférence égaux au nombre de paramètres (deux fois pour le passage à l'avant).
 
-Le mélange d'experts rompt ce lien.`E`experts indépendants + un routeur qui choisit `k`Parmi les paramètres de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur,`E × FFN_size`. Paramètres actifs par jeton = `k × FFN_size`. Configuration typique pour 2026: `E=256`- Je suis là .`k=8`- Balances de stockage avec`E`, calculer des échelles avec `k`- Je suis désolé .
+Le mélange d'experts rompt ce lien.$E$experts indépendants + un routeur qui choisit $k$Parmi les paramètres de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de la valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur de cette valeur,$E \times \text{FFN size}$. Paramètres actifs par jeton = $k \times \text{FFN size}$. Configuration typique pour 2026: $E=256$- Je suis là .$k=8$- Balances de stockage avec$E$, calculer des échelles avec $k$- Je suis désolé .
 
 La frontière 2026 est presque entièrement MoE: DeepSeek-V3 (671B total / 37B actif), Mixtral 8×22B, Qwen2.5-MoE, Llama 4, Kimi K2, gpt-oss.
 
@@ -46,7 +46,7 @@ Chaque expert est un FFN indépendant (typiquement SwiGLU). le routeur est une s
 Si le routeur passe 90% des jetons par l'expert 3, les autres experts meurent de faim.
 
 1. **Auxiliary load-balancing loss**(Switch Transformer, Mixtral). Ajouter une pénalité proportionnelle à la variance dans l'utilisation des experts. Fonctionne, mais ajoute un hyperparamètre et un deuxième signal de gradient.
-2. **Expert capacity + token dropping**(début de la mise en place).`C × N/E`Les jetons de débordement sautent la couche.
+2. **Expert capacity + token dropping**(début de la mise en place).$C \times N/E$Les jetons de débordement sautent la couche.
 3. **Auxiliary-loss-free balancing**(DeepSeek-V3). Ajouter un biais appris par expert qui change la sélection top-k du routeur.
 
 Approche de DeepSeek-V3: après chaque étape de formation, chaque expert vérifie si son utilisation est supérieure ou inférieure à l'objectif.`±γ`. Utilisation de sélection `scores + bias`Les probabilités d' expertise utilisées pour le dépistage sont les premières`scores`Découpe le routage de l'expression.
@@ -59,7 +59,7 @@ DeepSeek-V2/V3 divise également les experts en *shared* et *routed*. Chaque jet
 
 MoE classique (GShard, Switch): chaque expert est aussi large qu'un FFN complet. `E`est petite (864), `k`est petite (12).
 
-MoE moderne à grains fins (DeepSeek-V3, Qwen-MoE): chaque expert est plus étroit (1/8 FFN de taille). `E`est grand (256+), `k`Les paramètres totaux sont les mêmes, mais les combinaisons évoluent beaucoup plus rapidement. `C(256, 8) = 400 trillion`La qualité augmente, la latence reste stable.
+MoE moderne à grains fins (DeepSeek-V3, Qwen-MoE): chaque expert est plus étroit (1/8 FFN de taille). $E$est grand (256+), $k$Les paramètres totaux sont les mêmes, mais les combinaisons évoluent beaucoup plus rapidement. $\binom{256}{8} \approx 400$La qualité augmente, la latence reste stable.
 
 ### Le profil des coûts
 
@@ -90,6 +90,13 @@ Regardez !`code/main.py`- une couche compacte de MoE en stdlib pur avec:
 - en route de haut-k=2
 - poids de fermeture normalisé à la hauteur de la douceur maximale
 - équilibrage sans perte auxiliaire par biais de biais par expert
+
+`code/main.rs`Le nombre aléatoire diffère de celui de Python, mais les conclusions imprimées sont les mêmes.
+
+```bash
+python3 code/main.py
+rustc --edition 2021 -O code/main.rs -o /tmp/lesson && /tmp/lesson
+```
 
 ### Étape 1: le routeur
 
@@ -159,7 +166,7 @@ Regardez !`outputs/skill-moe-configurator.md`. La compétence choisit E, k et la
 | Auxiliary-loss-free | "DeepSeek-V3's trick" | Balance via per-expert bias on the router's selection only; no extra gradient. |
 | Shared expert | "Always on" | Extra expert through which every token passes; captures common knowledge. |
 | Expert parallelism | "Shard by expert" | Distribute different experts to different GPUs; route tokens across the network. |
-| Sparsity | "Active params < total params" | The ratio `k × expert_size / (E × expert_size)`; 37/671 ≈ 5.5% for DeepSeek-V3. |
+| Sparsity | "Active params < total params" | The ratio $k \times \text{expert size} / (E \times \text{expert size})$; 37/671 ≈ 5.5% for DeepSeek-V3. |
 
 ## Pour en savoir plus
 
