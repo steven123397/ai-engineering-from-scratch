@@ -3,7 +3,7 @@
 > 传统分布式系统BFT与 Stochastic LLM相遇.在2025-2026年,出现了三个研究方向: **CP-WBFT**根据信任调查,每一个投票都被权衡.**DecentLLMs**随着同步的工人提案和几何中位数聚合, **WBFT**通过"重量投票"和"层次结构集群"来分开核心和边缘节点. 根据"人工智能代理商是否可以同意?" (arXiv:2603.01213) 的实验结果,即使是规模协议也很脆弱. 利率是必要的,但不足的. 这一课构建了最小的BFT协议,注入了三个特征特定攻击 (拜占庭谎言,同情性合规性,相关错误单文化),并测量了每个共识变体如何应对.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 07 (Society of Mind and Debate), Phase 16 · 13 (Shared Memory)
 **Time:** ~75 minutes
 
@@ -107,6 +107,7 @@ swarm-consensus-wave
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 预期产量:一个表 (攻击,聚合器) ->最终答案,正确答案突出.多元化失败了单种类案例.CPWBFT的信心权重减轻了缩.单种类人口不到一半时,DecentLLMs的几何中位拉向诚实集群.
@@ -148,7 +149,7 @@ python3 code/main.py
 
 ## 进一步阅读
 
-- [Castro & Liskov — Practical Byzantine Fault Tolerance (OSDI 1999)](https://pmg.csail.mit.edu/papers/osdi99.pdf)基础
+- [Castro & Liskov — Practical Byzantine Fault Tolerance (OSDI 1999)](https://www.usenix.org/conference/osdi-99/practical-byzantine-fault-tolerance)基础
 - [CP-WBFT — Confidence-Probe Weighted BFT](https://arxiv.org/abs/2511.10400)投票权重依靠信心
 - [DecentLLMs — leaderless multi-agent consensus](https://arxiv.org/abs/2507.14928)几何中位数聚合
 - [WBFT — Weighted BFT with Hierarchical Structure Clustering](https://arxiv.org/abs/2505.05103) 限度延迟的核心/边缘分区
