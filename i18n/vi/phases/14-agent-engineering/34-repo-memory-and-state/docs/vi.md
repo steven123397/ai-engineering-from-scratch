@@ -3,7 +3,7 @@
 > Lịch sử trò chuyện không ổn định, repo là lâu dài, đại lý của cửa hàng trên bàn làm việc được ghi trong các tệp phiên bản để phiên bản tiếp theo, đại lý tiếp theo và người xem tiếp theo đều đọc từ cùng một nguồn sự thật.
 
 **Type:** Build
-**Languages:** Python (stdlib + `jsonschema` optional)
+**Languages:** Python (stdlib + `jsonschema` optional), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~60 minutes
 
@@ -81,6 +81,7 @@ wb-state-persist
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Bản kịch bản viết `workdir/agent_state.json`và `workdir/task_board.json`, biến đổi chúng qua hai vòng, và in trạng thái xác nhận tại mỗi bước.
@@ -95,7 +96,7 @@ Bốn mô hình biến tối thiểu của bài học thành thứ mà một đ�
 
 **Separate large artifacts from state.**Đừng lưu trữ CSV, bản sao dài, hoặc các tệp được tạo trong `agent_state.json`. lưu đồ tạo vật như một tệp riêng biệt (hoặc tải lên lưu trữ đối tượng) và chỉ giữ đường đi trong trạng thái. Các điểm kiểm tra vẫn nhỏ và nhanh chóng; các đồ tạo vật phát triển độc lập.
 
-**Event sourcing for audit, snapshots for resume.**Thêm vào nhật ký sự kiện (`state.events.jsonl`) trên mỗi đột biến; định kỳ chụp ảnh nhanh cho `state.json`. Resume đọc snapshot, sau đó tái tạo bất kỳ sự kiện nào sau dấu thời gian của snapshot. Điều này chi phí nhiều đĩa hơn nhưng cho phép bạn tái phát quyết định của đại lý theo nghĩa đen  cần thiết khi gỡ lỗi các chạy đường chân trời dài. cùng một hình dạng Postgres sử dụng bên trong cho WAL.
+**Event sourcing for audit, snapshots for resume.**Thêm vào nhật ký sự kiện (`state.events.jsonl`) trên mỗi đột biến; định kỳ chụp ảnh nhanh cho `state.json`. Resume đọc snapshot, sau đó tái phát bất kỳ sự kiện nào sau dấu thời gian của snapshot. Điều này chi phí nhiều đĩa hơn nhưng cho phép bạn tái phát các quyết định của đại lý theo nghĩa đen  cần thiết khi gỡ lỗi các chạy đường chân trời dài. Postgres sử dụng cùng một ý tưởng log cộng điểm kiểm tra tại lớp lưu trữ với WAL của nó, mặc dù ở mức thấp hơn nhiều so với các sự kiện ứng dụng.
 
 **Schema migrations or refuse to load.**- `schema_version`integer là hợp đồng. Khi người quản lý tải một tập tin ở một phiên bản không rõ, nó từ chối đọc. Sending a migration script next to the schema bump; `tools/migrate_state.py`chạy vô hiệu trên mọi startup.
 

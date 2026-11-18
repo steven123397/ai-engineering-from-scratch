@@ -3,7 +3,7 @@
 > Người đại lý không được đánh dấu công việc của mình như đã hoàn thành. Một cổng xác minh đọc hợp đồng phạm vi, nhật ký phản hồi, báo cáo quy tắc và sự khác biệt, và trả lời một câu hỏi duy nhất: liệu nhiệm vụ này thực sự hoàn thành không? Nếu cổng nói không, nhiệm vụ không hoàn thành, bất kể trò chuyện nói gì.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 33 (Rules), Phase 14 · 36 (Scope), Phase 14 · 37 (Feedback)
 **Time:** ~55 minutes
 
@@ -81,13 +81,14 @@ wb-gate-sequence
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Kết quả: ba bản báo cáo phán quyết, mỗi bản lưu bên cạnh kịch bản.
 
 ## Các mô hình sản xuất trong tự nhiên
 
-Bốn mô hình nâng cổng từ "một công việc lông khác" lên "về quyết định".
+Năm mô hình nâng cổng từ "một công việc lông khác" lên "về quyết định".
 
 **Defense-in-depth, not single gate.**Hook trước giao dịch → kiểm tra tình trạng CI → hook trước công cụ authz → cổng trước hợp nhất. Mỗi lớp là xác định, do đó một thất bại trong một lớp được bắt bởi lớp tiếp theo. sổ chơi tháng 3 năm 2026 của microservices.io là rõ ràng: hook trước giao dịch không thể vượt qua bởi vì, không giống như một kỹ năng bên mô hình, nó không phụ thuộc vào đại lý theo hướng dẫn. Cổng xác minh nằm ở lớp CI / pre-merge.
 

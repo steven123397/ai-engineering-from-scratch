@@ -3,7 +3,7 @@
 > Các hướng dẫn được viết dưới dạng văn bản là những mong muốn. Các hướng dẫn được viết dưới dạng hạn chế là các bài kiểm tra. Bàn làm việc biến mỗi quy tắc thành thứ mà một đại lý có thể kiểm tra vào thời gian chạy và một nhà phê bình có thể xác minh sau sự kiện.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~50 minutes
 
@@ -96,6 +96,7 @@ wb-rule-checkoff
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Kết quả: bộ quy tắc phân tích, chạy theo dõi, vượt qua/không thành công cho mỗi quy tắc, và một `rule_report.json`được lưu bên cạnh kịch bản.
@@ -108,7 +109,7 @@ Ba mô hình tách ra một quy tắc kéo dài một phần tư từ một quy 
 
 **Rule expiry as a forcing function.**Mỗi quy tắc đều có một điều kiện`expires_at`ngày (tạm dịch: 90 ngày từ khi lập ra).`info`Dữ liệu đánh giá mã AI sản xuất của Cloudflare (ngày 4 năm 2026, 131.246 đánh giá chạy trên 5.169 repos trong 30 ngày) cho thấy các bộ quy tắc với thời hạn hết hạn rõ ràng vẫn nằm dưới 30 quy tắc mỗi repo; các bộ không tăng lên 80 + với hầu hết không bao giờ bắn.
 
-**Markdown-as-source, JSON-as-cache.** `agent-rules.md`là hồ sơ được viết bởi tác giả; `agent-rules.lock.json`là một bộ nhớ cache mà người kiểm tra đọc trong đường dẫn nóng. khóa được tái tạo bằng một cái nát trước khi thực hiện. Markdown khác biệt có thể xem xét; phân tích JSON vẫn không ở trong mọi lượt.`package.json`- `package-lock.json`và `Cargo.toml`- `Cargo.lock`- Tôi không biết.
+**Markdown-as-source, JSON-as-cache.** `agent-rules.md`là hồ sơ được viết bởi tác giả; `agent-rules.lock.json`là một bộ nhớ cache mà trình kiểm tra đọc trong đường dẫn nóng. khóa được tái tạo bằng một cái nát trước khi thực hiện. Markdown khác biệt có thể xem xét; Markdown phân tích không được làm trong mọi lượt, bởi vì trình kiểm tra chỉ tải các JSON nhỏ được xây dựng trước. cùng hình dạng như `package.json`- `package-lock.json`và `Cargo.toml`- `Cargo.lock`- Tôi không biết.
 
 ## Sử dụng nó
 

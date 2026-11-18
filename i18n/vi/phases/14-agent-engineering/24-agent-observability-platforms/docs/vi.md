@@ -1,15 +1,15 @@
 # Cảnh sát Langfuse, Phoenix, Opik
 
-> Ba nền tảng quan sát đối tượng nguồn mở thống trị năm 2026. Langfuse (MIT)  6M+ cài đặt / tháng, theo dõi + quản lý nhanh chóng + đánh giá + lặp lại phiên. Arize Phoenix (Elastic 2.0)  đánh giá sâu cụ thể đối với các đối tượng, sự liên quan RAG, OpenInference tự động dụng cụ. Comet Opik (Apache 2.0)  tối ưu hóa nhanh chóng tự động, guardrails, phát hiện ảo giác của thẩm phán LLM.
+> Ba nền tảng quan sát nhân vật tự lưu trữ thống trị năm 2026. Langfuse (MIT)  6M+ cài đặt / tháng, theo dõi + quản lý nhanh chóng + đánh giá + phiên bản lặp lại. Arize Phoenix (Elastic 2.0)  đánh giá chuyên sâu cụ thể đối với nhân vật, sự liên quan RAG, OpenInference tự động dụng cụ. Comet Opik (Apache 2.0)  tối ưu hóa nhanh chóng tự động, guardrails, phát hiện ảo giác của thẩm phán LLM.
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 23 (OTel GenAI)
 **Time:** ~45 minutes
 
 ## Mục tiêu học tập
 
-- Hãy cho tên ba nền tảng quan sát các đại lý nguồn mở hàng đầu và giấy phép của họ.
+- Hãy cho tên ba nền tảng quan sát được thực hiện tự chủ và giấy phép của họ, và nói giấy phép nào không phải là nguồn mở OSI.
 - Nhận ra những gì mỗi người là mạnh nhất: Langfuse (giữa họp mgmt + nhanh), Phoenix (RAG + tự động dụng cụ), Opik (tích cực + guardrails).
 - Giải thích tại sao 89% các tổ chức báo cáo có khả năng quan sát các chất tác nhân vào năm 2026.
 - Thực hiện một đường ống dẫn trace-to-dashboard với đánh giá của thẩm phán LLM.
@@ -80,6 +80,7 @@ wb-trace-ingest
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Kết quả: điểm đánh giá mỗi phiên và phân loại thất bại phù hợp với những gì Langfuse / Phoenix / Opik sẽ hiển thị.

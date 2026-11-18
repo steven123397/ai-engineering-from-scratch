@@ -3,14 +3,14 @@
 > Ba mô hình sử dụng máy tính sản xuất vào năm 2026. Cả ba đều dựa trên tầm nhìn. Cả ba đều coi ảnh chụp màn hình, văn bản DOM và đầu ra công cụ như đầu vào không đáng tin cậy. Chỉ có hướng dẫn trực tiếp của người dùng được tính là quyền phép. Dịch vụ an toàn từng bước là tiêu chuẩn.
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 20 (WebArena, OSWorld), Phase 14 · 27 (Prompt Injection)
 **Time:** ~60 minutes
 
 ## Mục tiêu học tập
 
 - Mô tả sử dụng máy tính của Claude: chụp màn hình vào, lệnh phím / chuột ra, không có API truy cập.
-- Tên gọi số điểm chuẩn của ba mô hình trên OSWorld / WebArena / Online-Mind2Web.
+- Hãy nhớ các số chuẩn khởi chạy bài học này đề cập: OpenAI CUA trên OSWorld / WebArena / WebVoyager, và Gemini 2.5 Computer Use trên Online-Mind2Web.
 - Giải thích mô hình an toàn mỗi bước của tài liệu sử dụng máy tính Gemini 2.5.
 - Tóm lại hợp đồng nhập không tin cậy được thực thi bởi cả ba mô hình.
 
@@ -92,6 +92,7 @@ computer-use-cursor
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Kết quả phát xuất cho thấy phân loại an toàn bắt được một chỉ thị tiêm trong văn bản DOM và chặn một mua hàng không xác nhận.
