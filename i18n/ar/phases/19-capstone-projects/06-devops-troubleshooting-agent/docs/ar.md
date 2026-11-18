@@ -3,7 +3,7 @@
 > وكيل ديفوبس في AWS ذهب إلى GA، وشركت Resolve AI كتابات تشغيل K8s، واكتشف NeuBird مراقبة معنوية، وربط Metoro AI SRE إلى SLOs لكل خدمة. يتم تحديد شكل الإنتاج: تنبيه ويب هوك يطلق، وكيل يقرأ التلفاز، يمر على الرسم البياني للكائنات K8s، يصنف فرضيات السبب الجذري، و ينشر قصر Slack مع أزرار الموافقة. القراءة فقط حسب الاختيار كل علاج يُعاقبه إنسان هذه الحجر النهائي هو ذلك العميل، تم تقييمها على 20 حوادث اصطناعية ومقارنة مع وكيل AWS على ثلاث حالات مشتركة.
 
 **Type:** Capstone
-**Languages:** Python (agent), TypeScript (Slack integration)
+**Languages:** Python (agent), TypeScript (Slack integration, agent scaffold)
 **Prerequisites:** Phase 11 (LLM engineering), Phase 13 (tools and MCP), Phase 14 (agents), Phase 15 (autonomous), Phase 17 (infrastructure), Phase 18 (safety)
 **Phases exercised:**P11 · P13 · P14 · P15 · P17 · P18
 **Time:** 30 hours
@@ -141,7 +141,7 @@ webhook: alert.pagerduty.com -> checkout-api SLO breach, error rate 14%
 
 ## المزيد من القراءة
 
-- [AWS DevOps Agent GA](https://aws.amazon.com/blogs/aws/aws-devops-agent-helps-you-accelerate-incident-response-and-improve-system-reliability-preview/) الإشارة الكانونية 2026
+- [AWS DevOps Agent GA](https://aws.amazon.com/blogs/mt/announcing-general-availability-of-aws-devops-agent/): المرجع الكانوني لعام 2026
 - [Resolve AI K8s troubleshooting](https://resolve.ai/blog/kubernetes-troubleshooting-in-resolve-ai) مرجع المنافس
 - [NeuBird semantic monitoring](https://www.neubird.ai) مقاربة الرسم البياني
 - [Metoro AI SRE](https://metoro.io) إطار الإنتاج الأول من SLO
