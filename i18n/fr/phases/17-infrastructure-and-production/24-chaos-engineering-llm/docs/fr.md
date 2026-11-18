@@ -3,7 +3,7 @@
 > L'ingénierie du chaos pour les LLM est sa propre discipline en 2026. Pré-requis avant la réalisation d'expériences en production: SLI/SLO définie, trace+metric+log observabilité, retour automatique, runbooks, en appel. L'architecture a quatre plans: contrôle (programateur d'expérience), cible (services, infra, stockage de données), sécurité (gardiens + interruption + filtres de trafic), observabilité (métres + traces + journaux), rétroaction (dans les ajustements SLO). Les barreaux de protection sont obligatoires: les alertes de taux de brûlure arrêtent les expériences si la brûlure quotidienne d'erreur-budget est prévue > 2 fois; fenêtres de suppression + correlation de trace-ID déduction de bruit d'alerte. Cadence: révision hebdomadaire des petits canaris + SLO; jour de jeu mensuel + post mortem; audit trimestriel de la résilience entre équipes + cartographie de la dépendance. Experiments spécifiques à la LLM: surcharge de mémoire, défaillances réseau, coupures de fournisseurs, messages malformés, tempêtes d'évacuation de cache KV. Les outils: Harness Chaos Engineering (récommandations dérivées du LLM, réduction du rayon d'explosion, intégration des outils MCP); LitmusChaos (CNCF); Chaos Mesh (CNCF Kubernetes-native).
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy chaos experiment runner)
+**Languages:** Python, TypeScript (stdlib, toy chaos experiment runner)
 **Prerequisites:** Phase 17 · 23 (SRE for AI), Phase 17 · 13 (Observability)
 **Time:** ~60 minutes
 
@@ -128,7 +128,7 @@ Cette leçon produit `outputs/skill-chaos-plan.md`- Compte tenu de sa taille et 
 ## Pour en savoir plus
 
 - [DevSecOps School — Chaos Engineering 2026 Guide](https://devsecopsschool.com/blog/chaos-engineering/)
-- [Ankush Sharma — Observability for LLMs (book)](https://www.amazon.com/Observability-Large-Language-Models-Engineering-ebook/dp/B0DJSR65TR)
+- [Ankush Sharma — Observability for Large Language Models (Apress, 2026)](https://link.springer.com/book/10.1007/979-8-8688-2827-0)
 - [LitmusChaos (CNCF)](https://litmuschaos.io/)
 - [Chaos Mesh (CNCF)](https://chaos-mesh.org/)
 - [Harness Chaos Engineering](https://www.harness.io/products/chaos-engineering)

@@ -3,7 +3,7 @@
 > Trois couches, pas une. Les nœuds de fournitures Karpenter sont dynamiques (moins d'une minute, 40% plus rapide que Cluster Autoscaler). KAI Scheduler gère la planification de gang, la prise de conscience de la topologie et les files d'attente hiérarchiques. Il empêche le piège d'allocation partielle 7 sur 8 où sept nœuds attendent et brûlent sur un GPU manquant. Autoscalers au niveau de l'application (NVIDIA Dynamo Planner, llm-d Workload Variant Autoscaler) à l'échelle des signaux spécifiques à l'inférence  profondeur de file d'attente, utilisation du cache KV  pas cycle de travail du processeur / DCGM. Le classique piège de l' HPA est que`DCGM_FI_DEV_GPU_UTIL`est une mesure du cycle de tâche: 100% pourrait être 10 demandes ou 100. vLLM alloue préalablement la mémoire cache KV, de sorte que la mémoire ne déclenche jamais la mise à l'échelle.`WhenEmptyOrUnderutilized`une politique qui met fin à l'exécution de GPU en milieu d'inférence.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy queue-depth autoscaler simulator)
+**Languages:** Python, TypeScript (stdlib, toy queue-depth autoscaler simulator)
 **Prerequisites:** Phase 17 · 02 (Inference Platform Economics), Phase 17 · 04 (Serving Engine Internals)
 **Time:** ~75 minutes
 
@@ -20,7 +20,7 @@ Votre équipe envoie un service de maîtrise de la loi sur Kubernetes.`DCGM_FI_D
 
 Vous utilisez le Cluster Autoscaler pour les nœuds. Une requête de jeton 1M arrive à 2 heures du matin; le cluster passe 3 minutes à fournir un nœud, et les temps de demande sont terminés.
 
-Vous déployez un modèle 70B qui nécessite 8 GPU sur 2 nœuds. Le cluster dispose de 7 GPU gratuits et 1 réparti sur 3 nœuds. Cluster Autoscaler fournit un nœud pour le 1 GPU manquant.
+Vous déployez un modèle 70B qui nécessite 8 GPU sur 2 nœuds. Le cluster a 7 GPU gratuits, dispersés sur 3 nœuds, et a besoin d'un autre. Cluster Autoscaler fournit un nœud pour le 1 GPU manquant. Les 7 GPU réservés restent inactifs pendant 4 minutes en train de brûler de l'argent pendant que Kubernetes reçoit le dernier GPU.
 
 Trois couches, trois modes d'échec différents. L'autoscalage conscient de la GPU en 2026 n'est pas "allumé à HPA". Il compose le provisionnement de nœuds, la planification de gangs et l'autoscalage des signaux d'application.
 
