@@ -3,7 +3,7 @@
 > Le produit frontier 2026 est un agent multimodal qui lit des captures d'écran, clique sur des boutons, navigue sur les interfaces Web, remplit des formulaires et complète des flux de travail de bout en bout. SeeClick et CogAgent (2024) ont prouvé que la première étape de l'interface graphique était la mise en terre. Ferret-UI a ajouté mobile. ChartAgent a introduit l'utilisation d'outils visuels pour les graphiques. VisualWebArena et AgentVista (2026) sont les points de référence de la poursuite frontalière  et même Gemini 3 Pro et Claude Opus 4.7 score ~30% sur les tâches difficiles d'AgentVista. Cette pierre angulaire regroupe tous les fils de la phase 12: la perception (VLM haute résolution), le raisonnement (LLM avec utilisation d'outils), la mise à terre (sortie de coordonnées), la mémoire à long horizon et l'évaluation.
 
 **Type:** Capstone
-**Languages:** Python (stdlib, action schema + agent loop skeleton)
+**Languages:** Python (stdlib, action schema + agent loop skeleton), TypeScript
 **Prerequisites:** Phase 12 · 05 (LLaVA), Phase 12 · 09 (Qwen-VL JSON), Phase 14 (Agent Engineering)
 **Time:** ~240 minutes
 
@@ -128,7 +128,7 @@ mm-agent-loop
 
 `code/main.py`est l'échafaudage en pierre de taille:
 
-- Définition JSON du schéma d'action (10 actions).
+- Définition JSON du schéma d' action (10 actions: les neuf énumérées ci-dessus plus `screenshot_region`, un outil de culture + zoom).
 - Faux état de navigateur comme dicté.
 - Le squelette de boucle d'agent: état de réception, émission d'action, application, boucle.
 - Un mini-benchmark de 10 tâches (pages synthétiques) pour mesurer le taux de réussite de bout en bout.
@@ -140,7 +140,7 @@ Cette leçon produit `outputs/skill-multimodal-agent-designer.md`. Compte tenu d
 
 ## Exercices
 
-1. Élargir le schéma d' action avec un `screenshot_region`outil (crop + zoom). Quelles tâches sont utiles ?
+1. Le schéma du code ajoute un `screenshot_region`Les actions principales sont les 9 actions principales.
 
 2. Lisez AgentVista (arXiv:2602.23166). Décrivez la catégorie de tâches la plus difficile et pourquoi les modèles frontaliers échouent toujours.
 
