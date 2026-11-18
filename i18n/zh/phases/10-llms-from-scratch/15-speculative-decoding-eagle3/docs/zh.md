@@ -3,7 +3,7 @@
 > 阶段 7 · 第16课证明了数学:利维亚坦拒绝规则确切保存验证器的分布. 这一课是2026年生产投机解码的训练视角. -3将草案模型从廉价近似转化为一个专门构建的小型网络,训练在验证器自己的隐藏状态,然后添加了一个训练时间测试循环, 结果: 3×到 6.5×端到端加快,在聊天中接受的每代币率高于0.9,没有分配权衡. 根据2026年的每一个生产推断堆,
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), Rust
 **Prerequisites:** Phase 7 · 16 (speculative decoding math), Phase 10 · 12 (inference optimization)
 **Time:** ~75 minutes
 
@@ -36,8 +36,8 @@
 
 让我们`α`预期的每项预订代币的接受率.`c = cost(draft) / cost(verifier)`预期的每向验证器接受的代币数量为:
 
-```
-E[accepted] = (1 - α^(N+1)) / (1 - α)
+```math
+\mathbb{E}[\text{accepted}] = \frac{1 - \alpha^{N+1}}{1 - \alpha}
 ```
 
 预期的每个接受的代币的 Wall Time `(N * c + 1) / E[accepted]`减少对`N`你会得到一个好处.`α = 0.8, c = 0.05`优质`N`速度是3.2x.`α = 0.95, c = 0.02`优质`N`速度增长速度是5x.
@@ -70,6 +70,8 @@ E[accepted] = (1 - α^(N+1)) / (1 - α)
 | EAGLE-2 | EAGLE-1 + dynamic draft tree | 0.80-0.88 | 3-4× | ~60B tokens |
 | EAGLE-3 | Multi-layer feature fusion + TTT | 0.88-0.92 | 3.5-6.5× | ~60-200B tokens |
 | Lookahead | No draft (Jacobi iteration) | N/A | 1.3-1.6× | None |
+
+其他`α`列是通过聊天基准的路径,每个代币的接受率,一个草案训练在匹配聊天数据.这是上方频段. 10 · 25 阶段引用了 EAGLE-3 的0.82 个不同的设置, 17 · 05 阶段计划在一般聊天中推出产品,0.6 到0.8 个. 测量`α`在选择之前,你自己使用交通.`N`现在,我们要去.
 
 在2026年生产:vLLM和SGLang默认为EAGLE-3,如果有,则EAGLE-2.TensorRT-LLM为Meta和NVIDIA公共模型提供了最快的Medusa路径. llama.cpp为CPU部署提供了草草稿.
 
