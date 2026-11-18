@@ -3,7 +3,7 @@
 > 根据该报告,该公司的资产在该地区的总额为1%. 他们的时间视野1.1基准 (2026年1月) 符合任务成功概率与专家人类完成时间的物流曲线;50%概率的交叉定义了模型的时间视野. 20252026的参与集包括GPT-5.1,GPT-5.1-Codex-Max和原型监测评估 (监测器可以捕获侧任务;可以逃避代理). 基准套件:HCAST (180+ML,网络,SWE,推理任务; 1分钟到8+小时),RE-Bench (71ML的研究工程任务与专家基线),SWAA. 诚实的说明:METR测量是理想化的,没有人,没有实际的后果, 时间视野是上限,而不是部署预测.
 
 **Type:** Learn
-**Languages:** Python (stdlib, logistic-fit horizon estimator)
+**Languages:** Python (stdlib, logistic-fit horizon estimator), TypeScript
 **Prerequisites:** Phase 15 · 01 (Long-horizon agents), Phase 15 · 19 (RSP)
 **Time:** ~60 minutes
 
@@ -30,7 +30,7 @@
 
 1. 收集一个分钟到小时的专家完成时间的任务套件. 目前的套件:HCAST (180多项任务),RE-Bench (71项任务),SWAA.
 2. 运行模型在每个任务;记录成功或失败.
-3. 按物流曲线:P(成功) 作为专家完成时间的函数.
+3. 适应物流曲线:$P(\text{success})$作为一个函数$\log(\text{expert completion time})$现在,我们要去.
 4. 视界是专家时间,P成功=0.5.
 
 逻辑适应的形状是正确的,因为能力通常与任务难度的关系越来越高,接近平原.50%点是选择 (10%,90%);METR在详细的论文中报告多个门值,但以50%领先,因为它是最直观的.
@@ -79,7 +79,7 @@ a5-horizon-fit
 
 ## 用它
 
-`code/main.py`根据合成结果集,执行任务成功与专家时间的物流性适应.报告50%的视界 (METR的标题),10%的视界 (保守),90%的视界 (乐观).还展示了评估环境游戏人工膨胀时成功率发生什么变化.
+`code/main.py`实现任务成功与任务成功的物流适应$\log(\text{expert time})$报告50%的水平 (METR的标题),10%的水平 (保守),90%的水平 (乐观).
 
 ## 运送它
 

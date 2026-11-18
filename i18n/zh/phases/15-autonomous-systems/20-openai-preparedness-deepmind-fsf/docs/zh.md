@@ -3,7 +3,7 @@
 > 开放AI准备框架v2 (2025年4月) 引入了与跟踪类别不同的研究类别:长距离自治,沙包,自主复制和适应,破坏保障. 追踪类别引发能力报告以及安全咨询小组审查的保障报告. 深思维的FSF v3 (9月2025年,随着追踪能力水平的增加2026年4月17日) 将自主性折叠成ML研发和网络领域 (ML研发自主性级别1 =以竞争成本对抗人工+AI工具完全自动化AI研发管道). 通过自动监测仪器推理滥用,FSF v3明确解决欺骗性调整. 诚实的注意: PF v2 (包括长距离自主) 中的研究类别不会自动触发减轻;政策语言是"潜在的".
 
 **Type:** Learn
-**Languages:** Python (stdlib, three-framework decision-table diff tool)
+**Languages:** Python (stdlib, three-framework decision-table diff tool), TypeScript
 **Prerequisites:** Phase 15 · 19 (Anthropic RSP)
 **Time:** ~45 minutes
 
@@ -30,7 +30,7 @@
 
 结构:
 
-- **Critical Capability Levels (CCLs)**网络,生物,ML研发,CBRN,自主化 (分为ML研发和网络).
+- **Critical Capability Levels (CCLs)**技术能力门分为三组:滥用 (CBRN,网络,有害操纵),ML研发和勘探错误排列轨道.自主化不是自己的领域;它被折叠成ML研发和网络.
 - **Tracked Capability Levels**具体例子:ML研发自主化级别1 = 完全自动化人工智能研发管道以竞争性成本对比的人工+人工智能工具.
 - **Deceptive alignment monitoring**:明确承诺对仪器推理滥用的自动监测.
 
@@ -94,7 +94,7 @@ a5-tracked-vs-research
 | Tracked Category | "Mandatory mitigation" | Triggers Capabilities + Safeguards Reports; SAG review |
 | Research Category | "Monitored only" | Tracked but no automatic mitigation; includes Long-range Autonomy |
 | Frontier Safety Framework | "DeepMind's scaling policy" | FSF v3 (Sept 2025) + Tracked Capability Levels (Apr 2026) |
-| CCL | "Critical Capability Level" | DeepMind threshold per domain (Cyber, Bio, ML R&D, CBRN) |
+| CCL | "Critical Capability Level" | DeepMind threshold per domain (CBRN, Cyber, Harmful Manipulation, ML R&D) |
 | ML R&D autonomy level 1 | "R&D automation" | Fully automate AI R&D pipeline at competitive cost |
 | Sandbagging | "Strategic underperformance" | Model underperforms on evals; in OpenAI Research Categories |
 | Instrumental reasoning | "Means-ends reasoning" | Reasoning about how to achieve goals; target of DeepMind monitoring |

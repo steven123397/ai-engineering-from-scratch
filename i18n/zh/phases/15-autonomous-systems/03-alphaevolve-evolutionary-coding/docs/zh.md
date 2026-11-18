@@ -3,7 +3,7 @@
 > 结合一个边界编码模型,一个进化循环和一个可机器检查的评估器. 让循环足够长. 它发现了4x4复杂矩阵乘法程序,使用48个 skalar乘法,这是在56年来第一次改善Strassen. 它还发现了谷歌范围内的Borg计划测量, 建筑是故意无聊的. 获胜来自评审员的严谨性.
 
 **Type:** Learn
-**Languages:** Python (stdlib, evolutionary-loop toy)
+**Languages:** Python, TypeScript (stdlib, evolutionary-loop toy)
 **Prerequisites:** Phase 15 · 01 (long-horizon framing), Phase 15 · 02 (self-taught reasoning)
 **Time:** ~60 minutes
 
@@ -58,7 +58,7 @@
 
 专业知识学士可以产生可编译,语义上可行的修改.在2000行Python文件上的随机突变GA几乎总是产生语法错误.专业知识学士还集中在可行的邻居 (改变一个函数,而不是随机字节) 上搜索,这大大减少了浪费的评估者调用.
 
-评价者反过来会发现LLM的论.LLM会自信地声称函数"在限度中是O(n log n") 当它实际上是O ((n ^ 2);一个墙钟基准使问题解决.
+评价者反过来会发现LLM的论.LLM将自信地声称一个功能"是$O(n \log n)$实际上,$O(n^2)$墙钟的基准使问题得到解决.
 
 ### 在边境堆中,AlphaEvolve可以适合
 
