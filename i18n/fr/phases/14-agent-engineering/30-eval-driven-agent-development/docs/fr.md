@@ -3,7 +3,7 @@
 > L'évaluation n'est pas la dernière étape, c'est la boucle extérieure qui motive tous les autres choix de la phase 14.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** All of Phase 14.
 **Time:** ~60 minutes
 
@@ -54,7 +54,7 @@ Tout flux d'agent qui vous intéresse peut être intégré à un évaluateur-opt
 
 ### Lier la phase 14 ensemble
 
-Chaque leçon de la phase 14 génère des cas d'évaluation:
+La plupart des leçons de la phase 14 génèrent des cas d'évaluation.
 
 | Lesson | Eval case it generates |
 |--------|------------------------|
@@ -77,7 +77,7 @@ Chaque leçon de la phase 14 génère des cas d'évaluation:
 | 28 Orchestration | Supervisor routes to the right specialist |
 | 29 Runtime Shapes | DLQ handles N% failure |
 
-Si votre suite d'évaluation contient des cas pour chacun, vous avez couvert la phase 14.
+Si votre suite d'évaluation a un cas pour chaque rangée, vous avez couvert le noyau de la phase 14.
 
 ### Lorsque le développement axé sur l'évaluation échoue
 
@@ -103,6 +103,7 @@ ae-eval-three-layers
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Résultats: par cas, défaillance, flag de régression, verdict de la porte CI.

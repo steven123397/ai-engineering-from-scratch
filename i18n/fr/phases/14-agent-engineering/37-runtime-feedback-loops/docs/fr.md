@@ -3,7 +3,7 @@
 > Les agents qui ne voient pas de commande réelle de sortie deviner. Un coureur de rétroaction capture stdout, stderr, code de sortie et le timing dans un enregistrement structuré le tour suivant peut lire.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench), Phase 14 · 35 (Init Script)
 **Time:** ~50 minutes
 
@@ -72,6 +72,7 @@ wb-feedback-loop
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Résultats: trois enregistrements de rétroaction sont ajoutés `feedback_record.jsonl`La file est en train de se répéter pour voir la boucle s'accumuler.
@@ -106,7 +107,7 @@ Le coureur est un épais enveloppeur qui survit à chaque migration de cadre par
 2. Ajouter un `redaction`étape qui délimite les lignes correspondantes `^Bearer `ou `password=`- Test sur un enregistrement de fixation.
 3. Cap total `feedback_record.jsonl`taille à 1 MB en tournant à `.1`- Je suis là .`.2`défendre la politique de rotation.
 4. Ajouter un `parent_command_id`Alors les chaînes de retest sont visibles: quelle commande a produit l'entrée que la commande suivante a consommée.
-5. En cas de problème de sécurité, il est nécessaire de mettre en évidence les caractéristiques principales de l'UTI.
+5. Envoyez le JSONL dans un petit TUI qui met en évidence la dernière sortie non zéro.
 
 ## Les termes clés
 

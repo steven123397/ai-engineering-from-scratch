@@ -3,7 +3,7 @@
 > L'agent qui a écrit le code ne peut pas le classer. Un réviseur est une deuxième boucle avec un prompt système différent, un objectif différent et un accès à la lecture uniquement à tout ce que le constructeur a produit. L'écart entre le constructeur et le réviseur est où la plus grande fiabilité vit.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 38 (Verification Gate)
 **Time:** ~55 minutes
 
@@ -43,7 +43,7 @@ Cinq dimensions, chacun avec un score de 0 à 2.
 | Verification quality | Does the acceptance command actually prove the goal, or did it prove a weaker version? |
 | Handoff readiness | Could the next session pick up cleanly from the current state? |
 
-Un échec inférieur à 7 est un échec doux; un échec inférieur à 5 est un échec dur.
+Un dépassement inférieur à 7 est un défaut doux; un dépassement inférieur à 5, ou toute dimension à 0, est un défaut dur.
 
 ### Le réviseur est un rôle distinct, pas un modèle distinct
 
@@ -74,6 +74,7 @@ wb-builder-marker
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Résultats: deux rapports d'examen écrits sur disque et une table de la console de scores dimensionnels.

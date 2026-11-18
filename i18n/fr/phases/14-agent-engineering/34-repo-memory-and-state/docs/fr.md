@@ -3,7 +3,7 @@
 > L'historique du chat est volatil, le repo est durable, l'agent du bureau de travail stocks l'état dans les fichiers versionnés, de sorte que la prochaine session, l'agent suivant et le réviseur suivant sont tous lus à partir de la même source de vérité.
 
 **Type:** Build
-**Languages:** Python (stdlib + `jsonschema` optional)
+**Languages:** Python (stdlib + `jsonschema` optional), TypeScript
 **Prerequisites:** Phase 14 · 32 (Minimal Workbench)
 **Time:** ~60 minutes
 
@@ -81,6 +81,7 @@ wb-state-persist
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Le scénario écrit:`workdir/agent_state.json`et `workdir/task_board.json`, les mutent à deux tours, et imprime l'état validé à chaque étape.
@@ -95,7 +96,7 @@ Quatre modèles transforment le minimum de la leçon en quelque chose qu'un mono
 
 **Separate large artifacts from state.**Ne stockez pas de CSV, de longues transcriptions ou de fichiers générés dans `agent_state.json`.Répartez l'artefact comme un fichier séparé (ou téléchargez-le dans le stockage d'objets) et gardez uniquement le chemin en état.
 
-**Event sourcing for audit, snapshots for resume.**Appliquer à un journal d'événements (`state.events.jsonl`) sur chaque mutation;`state.json`. Resume lit l'instantané, puis reproduit tous les événements après le timestamp de l'instantané. Cela coûte plus de disque mais vous permet de reproduire les décisions de l'agent littéralement  essentielles lors du débogage des exécutions à long horizon. La même forme que Postgres utilise en interne pour WAL.
+**Event sourcing for audit, snapshots for resume.**Appliquer à un journal d'événements (`state.events.jsonl`) sur chaque mutation;`state.json`. Resume lit l'instantané, puis reproduit tous les événements après le timestamp de l'instantané. Cela coûte plus de disque mais vous permet de reproduire les décisions de l'agent littéralement  essentielles lors du débogage des exécutions à long horizon. Postgres utilise la même idée de journaux plus point de contrôle à la couche de stockage avec son WAL, bien qu'à un niveau beaucoup plus bas que les événements d'application.
 
 **Schema migrations or refuse to load.**Le `schema_version`Le gestionnaire charge un fichier à une version inconnue, il refuse de lire. Envoyez un script de migration à côté de l'écho de schéma; `tools/migrate_state.py`fonctionne idempotemment sur chaque démarrage.
 

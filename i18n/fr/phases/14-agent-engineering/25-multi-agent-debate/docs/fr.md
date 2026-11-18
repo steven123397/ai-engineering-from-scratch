@@ -3,7 +3,7 @@
 > Du et al. (ICML 2024, "Société des esprits") exécutent des instances de modèle N qui proposent indépendamment des réponses, puis se critiquent périodiquement sur des tours R pour converger. Améliore la factualité, le respect des règles, le raisonnement.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 12 (Workflow Patterns), Phase 14 · 05 (Self-Refine and CRITIC)
 **Time:** ~60 minutes
 
@@ -82,6 +82,7 @@ debate-converge
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Résultats: précision et coût par protocole; correspondances rares en pleine maillage sur 2/3 des questions à moindre coût.
@@ -117,7 +118,7 @@ Résultats: précision et coût par protocole; correspondances rares en pleine m
 
 ## Pour en savoir plus
 
-- [Du et al., Society of Minds (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) débat canonique multi-agent
+- [Du et al., Improving Factuality and Reasoning in Language Models through Multiagent Debate (arXiv:2305.14325)](https://arxiv.org/abs/2305.14325) débat canonique multi-agent
 - [Sparse Communication Topology (arXiv:2406.11776)](https://arxiv.org/abs/2406.11776) résultats de topologie rares
 - [Anthropic, Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) les travailleurs-orchestre en tant que variante de débat
 - [Madaan et al., Self-Refine (arXiv:2303.17651)](https://arxiv.org/abs/2303.17651) contrepartie autocritique de modèle unique

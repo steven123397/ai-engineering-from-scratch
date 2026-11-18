@@ -3,7 +3,7 @@
 > Un modèle capable ne suffit pas. Les agents fiables ont besoin d'un tableau de travail: instructions, état, portée, rétroaction, vérification, examen et remise en main.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 01 (Agent Loop), Phase 14 · 26 (Failure Modes)
 **Time:** ~45 minutes
 
@@ -124,7 +124,7 @@ Le résultat n'est pas " le harnais gagne pour toujours. " Les modèles absorben
 
 C'est là que tu n'as pas besoin d'être poli.
 
-- LangChain * Anatomy of an Agent Harness* énumère onze composants  des instructions, des outils, des crochets, des boîtes à sable, de l'orchestration, de la mémoire, des compétences, des sous-composants et une " boucle stupide " de temps d'exécution.
+- LangChain * Anatomy of an Agent Harness* traverse les composants de l'harness principal: les instructions, les outils, les crochets, les boîtes à sable, l'orchestration, la mémoire, les compétences, les sous-gents et une " boucle stupide " en temps de course. Il traite le harnais comme un objet que vous configurez, pas comme un système que vous déployez.
 - L'ingénierie de l'agent de harnais d'Addy Osmani a fait tomber le cadre.`Agent = Model + Harness`et le modèle de la ciseau, mais ne dit pas de quoi est construit un harnais.
 - Anthropic et OpenAI vont plus profondément sur les surfaces mais restent à l'intérieur de leurs propres temps d'exécution. L'annonce de "séparation de harnais-computation" dans le SDK d'Avril 2026 Agents est la première pièce de fournisseur qui approuve explicitement la séparation contrôle-plan / données-plan. C'est une idée primitive, pas une nouvelle.
 - Le livre agent_harness traite le harnais comme un objet de configuration (Jaymin West's *Agentic Engineering*, chapitre 6) et la ligne la plus forte est "le harnais est la principale limite de sécurité dans un système agent".
@@ -148,6 +148,7 @@ La tâche de repo est petite à propos: ajouter la validation de l'entrée à un
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Résultats: un journal côte à côte des deux courses, un `failure_modes.json`résumant la course rapide et un verdict à une seule ligne pour la course de travail.
@@ -193,7 +194,7 @@ Les concepts sont tous des éléments de la taxonomie partielle, et doivent êtr
 Les cadres du fournisseur:
 
 - [Addy Osmani, Agent Harness Engineering](https://addyosmani.com/blog/agent-harness-engineering/) `Agent = Model + Harness`et le motif de la cage; mince sur l'infrastructure
-- [LangChain, The Anatomy of an Agent Harness](https://blog.langchain.com/the-anatomy-of-an-agent-harness/) onze composants: les instructions, les outils, les crochets, l'orchestration, les sablettes, la mémoire, les compétences, les sous-gents, le temps d'exécution; omet les files d'attente, le déploiement, l'authz
+- [LangChain, The Anatomy of an Agent Harness](https://blog.langchain.com/the-anatomy-of-an-agent-harness/) composants de l'arsenal principal: commandes, outils, crochets, orchestration, boîtes à sable, mémoire, compétences, sous-accessoires, temps d'exécution; omet les files d'attente, déploiement, authz
 - [OpenAI, Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/) La vue de l'équipe Codex sur les surfaces autour de leur temps d'exécution
 - [OpenAI, Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/) la boucle d'agent réduite à un `while`sur les appels à fonction
 - [Anthropic, Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) surfaces à long horizon dans un temps de fonctionnement spécifique

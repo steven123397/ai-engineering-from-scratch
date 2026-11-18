@@ -3,7 +3,7 @@
 > La mémoire hybride exploite trois magasins en parallèle  vecteur pour la similitude sémantique, KV pour la recherche rapide de faits, graphique pour le raisonnement entité-relation  avec une couche de notation qui les fusionne lors de la récupération.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 07 (MemGPT), Phase 14 · 08 (Letta Blocks)
 **Time:** ~75 minutes
 
@@ -16,7 +16,7 @@
 
 ## Le problème
 
-Un magasin est faux pour l'une des trois classes de requêtes:
+Chaque magasin est adapté à une seule des trois classes de requêtes:
 
 - **Semantic similarity**"Qu'est-ce que nous avons discuté de la dérive d'agent la semaine dernière?" Vector gagne, KV et la défaite graphique.
 - **Fact lookup** "Quel est le numéro de téléphone de l'utilisateur?" KV gagne; vecteur est gaspillé, graphe est exagéré.
@@ -32,7 +32,7 @@ Mem0 (arXiv:2504.19413, avril 2025) sur `add(text, user_id, metadata)`- Le numé
 
 1. Extraire des faits candidats du texte (étape axée sur le LLM).
 2. Écrivez chaque fait dans le vecteur de stockage (embedding) pour la recherche sémantique.
-3. Écrivez chaque fait dans le magasin KV sur lequel vous avez mis la touche (user_id, fact_type, entité) pour la recherche O(1).
+3. Écrire chaque fait dans le magasin KV à clé (user_id, fact_type, entité) pour $O(1)$Je suis en train de chercher.
 4. Écrivez chaque fait dans le graph store (Mem0g) comme des bords taillés pour les requêtes de relation.
 
 Je suis en train de`search(query, user_id)`- Le numéro de la liste:
@@ -106,6 +106,7 @@ ae-memory-fusion
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 La sortie montre trois voies de rappel distinctes plus le top-k fusionné.`main()`et regarder le changement de classement.

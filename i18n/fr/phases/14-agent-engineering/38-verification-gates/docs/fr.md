@@ -3,7 +3,7 @@
 > L'agent ne peut pas marquer son propre travail comme fait. Une passerelle de vérification lit le contrat de portée, le journal de rétroaction, le rapport de règles et le diff, et répond à une seule question: cette tâche est-elle réellement terminée?
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 33 (Rules), Phase 14 · 36 (Scope), Phase 14 · 37 (Feedback)
 **Time:** ~55 minutes
 
@@ -81,13 +81,14 @@ wb-gate-sequence
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Résultat: trois rapports de verdict, chacun enregistré à côté du script.
 
 ## Modèles de production dans la nature
 
-Quatre modèles élèvent la porte d'un "autre travail de laine" à "le bord décisif".
+Cinq modèles élèvent la porte d'un "autre travail de laine" à "le bord décisif".
 
 **Defense-in-depth, not single gate.**Chaque couche est déterministe, de sorte qu'une défaillance dans une couche est prise par la suivante. Le manuel de jeu de mars 2026 de microservices.io est explicite: le crochet pré-commit est non-passageable parce que, contrairement à une compétence côté modèle, il ne dépend pas de l'agent suivant les instructions.
 

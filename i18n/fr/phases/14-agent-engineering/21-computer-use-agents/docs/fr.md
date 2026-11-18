@@ -3,14 +3,14 @@
 > Trois modèles d'utilisation informatique de production en 2026. Tous les trois sont basés sur la vision. Tous les trois traitent les captures d'écran, le texte DOM et les sorties d'outil comme des entrées non fiables. Seules les instructions directes de l'utilisateur comptent comme autorisation. Les services de sécurité par étape sont la norme.
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 14 · 20 (WebArena, OSWorld), Phase 14 · 27 (Prompt Injection)
 **Time:** ~60 minutes
 
 ## Objectifs d'apprentissage
 
 - Décrivez l'utilisation de l'ordinateur Claude: capture d'écran en, commandes clavier/souris hors, aucune API d'accessibilité.
-- Nombre de référence des trois modèles sur OSWorld / WebArena / Online-Mind2Web.
+- Rappelez-vous les chiffres de référence de lancement que cette leçon cite: OpenAI CUA sur OSWorld / WebArena / WebVoyager, et Gemini 2.5 Utilisation de l'ordinateur sur Online-Mind2Web.
 - Expliquez le modèle de sécurité par étape des documents d'utilisation de l'ordinateur Gemini 2.5.
 - Résumez le contrat d'entrée non fiable que les trois modèles appliquent.
 
@@ -92,6 +92,7 @@ computer-use-cursor
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 La sortie montre que le classifiant de sécurité capture une directive injectée dans le texte DOM et bloque un achat non confirmé.
