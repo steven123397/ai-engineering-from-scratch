@@ -3,7 +3,7 @@
 > A recompensa da pista A. Esta lição sutura a cadeia de portas, a caixa de areia, o arnês de eval e o OTel se estende em um agente de codificação que corrige um bug real (pequeno, em escala fixa) em um projeto Python de vários arquivos. O agente é uma política determinista, não um LLM; a substituição torna a lição reprodutiva e mostra que o arnés foi a parte interessante durante todo o tempo. O contrato é idêntico: um modelo real se conecta à costura da política.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox), Phase 19 · 27 (eval harness), Phase 19 · 28 (observability), Phase 14 · 38 (verification gates), Phase 14 · 41 (workbench for real repos), Phase 14 · 42 (agent workbench capstone)
 **Time:** ~90 minutes
 
@@ -21,7 +21,7 @@ A maioria das demonstrações de agentes trabalham isoladamente: uma caixa de ar
 
 A cadeia de portas diz PERMISSO, mas a caixa de areia recusa por uma razão que a cadeia não antecipou. O arnés de avaliação registra uma passagem, mas os portões do OTel dizem que o portal recusou uma ferramenta que o agente diz que usou. O contador Prometheus é incrementado duas vezes quando deve ser incrementado uma vez. O orçamento da observação foi excedido, mas o agente continuou porque o orçamento estava localizado na cadeia e a caixa de areia não sabia.
 
-Esta lição é o teste de integração para toda a faixa. O agente tem que fazer quatro coisas para o fim: ler o projeto, executar os testes, identificar o bug da falha do teste, escrever a correção, reiniciar os testes e parar. Cada operação passa pela cadeia de portas. Cada execução de ferramenta passa pela caixa de areia. Cada passo é envolto em um espaço. O arame de avaliação marca a coisa toda no final.
+Esta lição é o teste de integração para toda a faixa. O agente tem que fazer seis coisas para o fim: ler o projeto, executar os testes, identificar o bug da falha do teste, escrever a correção, reiniciar os testes e parar. Cada operação passa pela cadeia de portas. Cada execução de ferramenta passa pela caixa de areia. Cada passo é envolto em um espaço. O arame de avaliação marca a coisa toda no final.
 
 ## O conceito
 
@@ -113,6 +113,7 @@ A lição 25 escreveu a cadeia de portas. A lição 26 escreveu a caixa de areia
 ```bash
 cd phases/19-capstone-projects/29-end-to-end-coding-task-demo
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

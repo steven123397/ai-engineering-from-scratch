@@ -3,7 +3,7 @@
 > Um agente de voz que se sente bem tem latência de ponta a ponta inferior a 800ms, sabe quando você parou de falar, lida com o barge-in e pode chamar uma ferramenta sem atrasos. Retell, Vapi, LiveKit Agents e Pipecat, todos chegaram a este bar em 2026. Fazem-no com a mesma forma: um ASR de streaming, um detector de viradas, um LLM de streaming e um TTS de streaming, todos conectados através do WebRTC com orçamentos agressivos de latência a cada salto. Construir um, medir WER e MOS e taxa de corte falso, e executá-lo sob perda de pacote.
 
 **Type:** Capstone
-**Languages:** Python (agent + pipeline), TypeScript (web client)
+**Languages:** Python (agent + pipeline), TypeScript (web client, scheduler scaffold)
 **Prerequisites:** Phase 6 (speech and audio), Phase 7 (transformers), Phase 11 (LLM engineering), Phase 13 (tools), Phase 14 (agents), Phase 17 (infrastructure)
 **Phases exercised:**P6 · P7 · P11 · P13 · P14 · P17
 **Time:** 30 hours
@@ -100,8 +100,9 @@ caller: "what is the weather in tokyo tomorrow"
 [asr  ] partial @280ms: "what is the"
 [asr  ] partial @540ms: "what is the weather"
 [turn ] completion score 0.82 at @820ms; commit
-[llm  ] first token @960ms
-[tool ] weather.tokyo tomorrow -> 68/52 partly cloudy @1140ms
+[llm  ] tool call emitted @880ms
+[tool ] weather.tokyo tomorrow -> 68/52 partly cloudy @940ms
+[llm  ] first token @990ms
 [tts  ] first audio-out @1040ms: "Tokyo tomorrow will be partly cloudy..."
 turn latency: 1040ms user-stop -> audio-out
 ```

@@ -3,13 +3,13 @@
 > Três pontos de controlo, um veredicto, uma pista de auditoria por pedido.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 18 safety lessons, Phase 19 Track A lessons 25-29
 **Time:** ~90 min
 
 ## Problemas
 
-As lições 82-86 nesta faixa enviaram cada uma uma peça: uma taxonomia, um detector de entrada, uma estrutura de avaliação, um classificador de saída, um motor de regras.
+As lições 82-86 nesta faixa cada um enviou uma única peça: uma taxonomia, um detector de entrada, um quadro de avaliação, um classificador de saída, um motor de regras. Um verdadeiro portal de segurança tem de compor as peças de tempo de execução (o detector de lição 83, o classificador de lição 85 e o motor de regras de lição 86) executá-las no momento certo do ciclo de vida do pedido, decidir quais medidas tomar quando não concordam e produzir um rastro que um revisor possa ler na manhã de segunda-feira. A composição é a lição.
 
 O portão fica em três pontos de controlo. A pré-gênero corre antes que o modelo seja chamado: o detector da lição 83 olha para o prompt e o passa, bloqueia-o diretamente (ataque de alta confiança), ou anexa uma bandeira para as camadas a jusante pesarem. Durante a geração executa-se quando o modelo emite tokens: um filtro de streaming amortece pedaços e termina o fluxo cedo se uma frase proibida aparecer (a injeção de prefixo sobrevive a isso se o gate só parecer post-hoc). O pós-gen corre depois que o modelo termina: o roteador classificador da lição 85 e o motor de regras da lição 86 inspecionam a saída completa, o gate agrega seus veredictos com o sinal pré-gen, e o gate aplica uma ação final.
 
@@ -35,11 +35,11 @@ O agregador combina quatro sinais de gravidade: confiança do detector (leção 
 
 | Signal state | Action |
 |---|---|
+| detector confidence >= 0.85 on a non-benign category | block before generation |
 | any high severity | block |
-| any medium severity | redact |
-| any low severity | warn |
-| all none + detector confidence < 0.5 | allow |
-| detector confidence 0.5-0.85, no other signal | warn |
+| any medium severity (detector confidence 0.5 to 0.85, or early stream termination) | redact |
+| any low severity (detector confidence below 0.5 on a non-benign category) | warn |
+| detector says benign and no other signal | allow |
 
 Bloque retorna uma recusa. Redact envia o texto editado pelo classificador e aplica o fixador de regras do motor. Avisa envia o original com um aviso macio. Permita que envia o original. Cada solicitação emite um `RequestTrace`com`request_id`- Não .`prompt`- Não .`pre_gen`(veredicto do detector),`during_gen`(Trigger de filtro de tokens), `post_gen`(ação de classificação + relatório de regras), `final_action`- Não .`final_output`, e `latency_ms`- Não .
 
@@ -59,7 +59,7 @@ A demonstração apresenta todas as 50 fixas de taxonomia mais 10 pedidos benign
 
 ## Usá-lo
 
-`python3 main.py`A demonstração carrega tudo, corre de ponta a ponta, imprime a tabela de resumo e escreve o artefato de rastreamento. O código de saída é zero. A demonstração é autotermino no sentido literal: cada solicitação é executada até a conclusão ou terminação antecipada e o portal se move para o próximo.
+`python3 main.py`ou `npx tsx main.ts`A demonstração carrega tudo, corre de ponta a ponta, imprime a tabela de resumo e escreve o artefato de rastreamento. O código de saída é zero. A demonstração é autotermino no sentido literal: cada solicitação é executada até a conclusão ou terminação antecipada e o portal se move para o próximo.
 
 ## Envia-o
 

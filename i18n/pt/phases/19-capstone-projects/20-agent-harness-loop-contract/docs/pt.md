@@ -3,7 +3,7 @@
 > O arnes é o agente, o modelo é um coprocessor, esta lição congela o contrato de circuito que pode ser incorporado a qualquer modelo.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 13 lessons 01-07, Phase 14 lesson 01
 **Time:** ~90 minutes
 
@@ -43,7 +43,7 @@ stateDiagram-v2
     DONE --> [*]
 ```
 
-`IDLE`É o único ponto de entrada legal. `DONE`É a única saída legal.`AWAITING_TOOL`É o único estado que produz um ponto de atração.
+`IDLE`É o único ponto de entrada legal. `DONE`É a única saída legal.`AWAITING_TOOL`É o único estado que produz um ponto de atracção por si só.`on_pause`O Conselho Europeu de Ministros dos Negócios Estrangeiros, em nome da Comissão dos Negócios Estrangeiros, não é um Estado: é um Estado activo que dispara quando o orçamento acaba ou um gancho pede revisão.
 
 A máquina de estado é determinista. Dado o mesmo registro de eventos, o arnes re-entrar no mesmo estado. Essa propriedade é o que permite que você reproduzir sessões para depurar sem re-chamando o modelo.
 

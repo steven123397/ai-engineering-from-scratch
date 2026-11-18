@@ -3,7 +3,7 @@
 > A recuperação léxica e semântica falham em distribuições opostas de consultas. A recuperação híbrida com fusão de rango recíproca não interpola, ele vota - e o voto vence em cada classe de consulta.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 lessons 04 (embeddings), 06 (RAG); Phase 19 Track B foundations (lessons 20-29); Phase 19 lesson 64 (chunking strategies)
 **Time:** ~90 minutes
 
@@ -38,7 +38,7 @@ flowchart LR
 
 BM25 marca um par de consulta-documento somando, sobre os termos de consulta, um fator de frequência de documento inverso multiplicado por um fator de frequência de termo-saturador que inclui uma correção de normalização de comprimento.`k1`controlos de saturação de frequência termônica; a recomendação de referência de 1, 5 é a publicada e não deve ser movida sem um índice de referência. `b`O valor padrão de 0,75 diz que os documentos mais longos são penalizados, mas não linearmente.
 
-A fórmula das Forças de Defesa do Israel usa a definição suavizada de Robertson e Sparck Jones, que é `log((N - df + 0.5) / (df + 0.5) + 1)`O "plus-one" dentro do registro mantém o IDF positivo quando um termo aparece em mais da metade do corpo.
+A fórmula das Forças de Defesa do Israel usa a definição suavizada de Robertson e Sparck Jones, que é `log((N - df + 0.5) / (df + 0.5) + 1)`O "plus-one" dentro do registro mantém o IDF positivo quando um termo aparece em mais da metade do corpus.
 
 A ponderação de campo permite que você diga ao BM25 que uma correspondência no nome do símbolo conta mais do que uma correspondência no corpo. A implementação é um multiplicador da quantidade do termo durante a indexação, não no tempo de pontuação. Isso mantém a matemática idêntica e evita uma pontuação separada por campo.
 
@@ -81,6 +81,7 @@ rrf-fusion
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Leia a saída de demonstração lado a lado. A consulta de identificador literal atinge o BM25 rank 1, rank denso 4, rank RRF 1. A consulta parafraseada atinge o BM25 rank 6, rank denso 1, rank RRF 1. A consulta ambígua atinge o BM25 rank 3, rank denso 3, rank RRF 1. A fusão não é um empate; é o sistema que vence em cada classe de consulta.

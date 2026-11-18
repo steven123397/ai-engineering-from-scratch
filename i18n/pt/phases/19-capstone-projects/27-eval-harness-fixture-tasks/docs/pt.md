@@ -3,7 +3,7 @@
 > Um agente de codificação é tão bom quanto o conjunto de tarefas contra as quais o medes. Esta lição constrói um arame de avaliação que toma uma pasta de tarefas de fixação, executa cada uma através de um agente candidato, as pontuações passam ou falham através de um verificador determinístico, e agrega os resultados em pass@1, pass@k, latência média e custo médio. O arame é a fonte da verdade que permite dizer uma regressão de um refator.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox runner), Phase 14 · 30 (eval-driven agent development), Phase 14 · 19 (SWE-bench and GAIA benchmarks)
 **Time:** ~90 minutes
 
@@ -47,7 +47,7 @@ O segundo é:`regex_match`O conteúdo do arquivo nomeado é combinado com um reg
 
 O terceiro é:`shell_exit_zero`O arnes executa um comando de shell (através da caixa de areia da lição 26) e passa a tarefa somente se o comando sair de zero.
 
-O arame executa todas as tarefas .`k`Pass@k é `1 - (1 - p)^k`onde p é a taxa de passagem empírica; o arnes também relata contagens brutas para que você possa detectar a variância. A latência é o relógio de parede por amostra. O custo é o que o agente auto-reporte (contagem de tokens, USD ou ambos); o arnes soma-o entre as amostras e apresenta os números por tarefa e agregados.
+O arame executa todas as tarefas .`k`Pass@k é `1 - (1 - p)^k`onde p é a taxa de passagem empírica; o arnes também relata contagens brutas para que você possa detectar a variância. Esta é a estimativa plug-in: usa a taxa medida p como se fosse a taxa verdadeira.`1 - C(n - c, k) / C(n, k)`Para`n`amostras com `c`A estimativa do plug-in é parcialmente baixa.`n = k`As amostras, como neste arnes, são estimadas de modo imparcial com 1 quando qualquer amostra passa e 0 quando nenhuma passa, mostrando assim apenas se qualquer amostra passa.`n > k`A latência é o relógio de parede por amostra. O custo é o que o agente auto-reporta (conto de tokens, USD, ou ambos); o arneso soma-o entre as amostras e apresenta os números por tarefa e agregados.
 
 ```figure
 pass-at-k
@@ -100,6 +100,7 @@ A lição 25 produziu a cadeia de portas. A lição 26 produziu a caixa de areia
 ```bash
 cd phases/19-capstone-projects/27-eval-harness-fixture-tasks
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

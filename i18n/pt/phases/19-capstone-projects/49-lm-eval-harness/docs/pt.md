@@ -3,7 +3,7 @@
 > Um modelo que faz bem uma tarefa que não pode ser definida é um modelo que faz bem por acaso.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 19 lessons 42 to 45
 **Time:** ~90 minutes
 
@@ -20,7 +20,7 @@ Um novo modelo de linguagem chega todas as semanas. A afirmação de marketing �
 
 Sem um arnes no seu repo você compara dois modelos por vibrações. Com um arnes você compara-los por pontuação em um conjunto de tarefas fixo com uma métrica fixa, em uma saída JSON você pode diferir. O arnes é o contrato entre a execução de ontem e a execução de hoje. Sem ele, regressões nave.
 
-A armadilha é o excesso de montagem do arame para um único modelo. A solução é a mesma armadilha ao contrário: o arnes é pequeno o suficiente para ler em quinze minutos, as tarefas são pequenas o suficiente para enviar no repo, as métricas são escritas a partir do zero para que um colega possa auditá-las, e o adaptador é o único lugar onde o código específico do modelo vive. Troca o adaptador, o quadro de liderança muda; troca as tarefas, o quadro de liderança muda. Nada mais deve se mover.
+A armadilha é o excesso de montagem do arame para um único modelo. A solução é manter todas as escolhas específicas do modelo fora do arnes: o arnes é pequeno o suficiente para ser lido em quinze minutos, as tarefas são pequenas o suficiente para ser enviadas no repo, as métricas são escritas a partir do zero para que um colega possa auditá-las, e o adaptador é o único lugar onde o código específico do modelo vive. Troca o adaptador, o quadro de liderança muda; troca as tarefas, o quadro de liderança muda. Nada mais deve se mover.
 
 ## O conceito
 
@@ -135,6 +135,7 @@ Cada métrica é uma pequena função com um teste unitário. A série de testes
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 O roteiro semeia os aparelhos na primeira corrida, os marca com o adaptador de brinquedos (que dá cada aparelho direito), e escreve `outputs/leaderboard.json`. A pontuação geral é de 1,0 com o adaptador de brinquedo; o teste de adaptador de estúdio em `test_main.py`mostra o mesmo arame produz 0,0 quando o adaptador não pode responder.

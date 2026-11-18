@@ -3,7 +3,7 @@
 > Um arame de agente sem uma camada de verificação é um desejo num casaco de trincheira. Esta lição constrói a cadeia de portas determinista que decide se uma chamada de ferramenta é permitida disparar, quanto de sua saída o agente é permitido ver, e quando o loop tem que parar porque o agente leu demais. A cadeia é uma função de pequenos portões nomeados mais um livro de observação que rastreia cada token que o modelo foi mostrado.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 20-24 (Track A1: agent loop, tool registry, message store, prompt builder, model router), Phase 14 · 33 (instructions as constraints), Phase 14 · 36 (scope contracts), Phase 14 · 38 (verification gates)
 **Time:** ~90 minutes
 
@@ -82,7 +82,7 @@ O contador de símbolos é intencionalmente um estúpido .`len(text) // 4`O pont
 
 ## Por que a ordem da cadeia importa
 
-Uma negação é mais barata do que uma autorização.`WhitelistGate`corre em O(1) hash search. `RegexGate`corre em O(patrão * argv). `RecencyGate`lê uma pequena fatia da loja de mensagens. `BudgetGate`O que é que você faz com que o preço suba, para que uma chamada recusada seja cortada antes de fazer o trabalho caro.
+Uma negação é mais barata do que uma autorização.`WhitelistGate`- É um bom momento .$O(1)$- Uma busca de hash.`RegexGate`- É um bom momento .$O(\text{pattern} \cdot \text{argv})$- Não .`RecencyGate`lê uma pequena fatia da loja de mensagens. `BudgetGate`O que é que você faz com que o preço suba, para que uma chamada recusada seja cortada antes de fazer o trabalho caro.
 
 O que é mais importante é que o sistema de controlo de dados seja um sistema de controlo de dados que, em qualquer caso, seja o mais eficaz e eficaz possível, e que seja o mais eficaz.
 
@@ -95,6 +95,7 @@ As lições anteriores deram-lhe o loop, o registro de ferramentas, o armazém d
 ```bash
 cd phases/19-capstone-projects/25-verification-gates-observation-budget
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 
