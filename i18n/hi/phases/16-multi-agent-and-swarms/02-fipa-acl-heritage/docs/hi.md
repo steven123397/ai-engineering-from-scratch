@@ -1,9 +1,9 @@
 # FIPA-ACL और भाषण अधिनियमों की विरासत
 
-> एमसीपी से पहले, ए2ए से पहले, एफआईपीए-एसीएल था। 2000 में, आईईईई फाउंडेशन फॉर इंटेलिजेंट फिजिकल एजेंट्स ने बीस प्रदर्शनियों, दो सामग्री भाषाओं और एक सेट इंटरैक्शन प्रोटोकॉल के साथ एक एजेंट संचार भाषा को अनुमोदित किया। यह उद्योग से फीका पड़ा क्योंकि ओंटोलॉजी ओवरहेड वेब के लिए बहुत भारी था, लेकिन मल्टी-एजेंट सिस्टम का एलएलएम पुनरुद्धार औपचारिक अर्थशास्त्र के बिना चुपचाप समान विचारों को फिर से लागू कर रहा हैः जेएसओएन अनुबंध प्रदर्शनियों के लिए खड़े हैं, प्राकृतिक भाषा ओंटोलॉजी के लिए खड़ा है। इस पाठ में FIPA-ACL को गंभीरता से पढ़ा जाता है ताकि आप देख सकें कि 2026 प्रोटोकॉल निर्णय कौन से पुनर्विचार हैं, जो नवीनता हैं, और जहां वर्तमान लहर 2000 की दशक में पहले से ही हल की गई समस्याओं को फिर से खोजने जा रही है।
+> एमसीपी से पहले, ए2ए से पहले, एफआईपीए-एसीएल था। 2000 में इंटेलिजेंट फिजिकल एजेंट्स के लिए फाउंडेशन (FIPA, जो 2005 में IEEE कंप्यूटर सोसाइटी स्टैंडर्ड समिति बन गया) ने बीस प्रदर्शनियों, दो सामग्री भाषाओं और एक सेट इंटरैक्शन प्रोटोकॉल के साथ एक एजेंट संचार भाषा को प्रमाणित किया। यह उद्योग से फीका पड़ा क्योंकि ओंटोलॉजी ओवरहेड वेब के लिए बहुत भारी था, लेकिन मल्टी-एजेंट सिस्टम का एलएलएम पुनरुद्धार औपचारिक अर्थशास्त्र के बिना चुपचाप समान विचारों को फिर से लागू कर रहा हैः जेएसओएन अनुबंध प्रदर्शनियों के लिए खड़े हैं, प्राकृतिक भाषा ओंटोलॉजी के लिए खड़ा है। इस पाठ में FIPA-ACL को गंभीरता से पढ़ा जाता है ताकि आप देख सकें कि 2026 प्रोटोकॉल निर्णय कौन से पुनर्विचार हैं, जो नवीनता हैं, और जहां वर्तमान लहर 2000 की दशक में पहले से ही हल की गई समस्याओं को फिर से खोजने जा रही है।
 
 **Type:** Learn
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 01 (Why Multi-Agent)
 **Time:** ~60 minutes
 
@@ -160,6 +160,7 @@ sw-contract-net
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 आउटपुट एक साइड-बाय-साइड ट्रैक है जो प्रत्येक आधुनिक संदेश को उसके 2026 JSON रूप और उसके FIPA-ACL रूप दोनों में दिखाता है, फिर एक कॉन्ट्रैक्ट-नेट बोली का एक राउंड-ट्रिप। वही प्रोटोकॉल आदिम यात्रा को जीवित रखते हैं; केवल वाक्यविन्यास अलग है।
@@ -193,7 +194,7 @@ FIPA-ACL वापस मत लाओ। उसकी चेकलिस्ट 
 | Term | What people say | What it actually means |
 |------|----------------|------------------------|
 | Speech act | "An utterance that does something" | Austin/Searle: utterances as actions. The theoretical parent of ACL. |
-| FIPA | "That old XML thing" | IEEE Foundation for Intelligent Physical Agents. Standardized ACL in 2000. |
+| FIPA | "That old XML thing" | Foundation for Intelligent Physical Agents. Standardized ACL in 2000; became an IEEE Computer Society standards committee in 2005. |
 | ACL | "Agent Communication Language" | FIPA's envelope format: performative + content + metadata. |
 | Performative | "The verb" | The intent class of a message: `inform`, `request`, `propose`, `cfp`, etc. |
 | KQML | "FIPA's predecessor" | Knowledge Query and Manipulation Language (1993). Simpler, narrower. |
