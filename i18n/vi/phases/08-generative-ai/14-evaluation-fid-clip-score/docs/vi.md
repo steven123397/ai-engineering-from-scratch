@@ -3,7 +3,7 @@
 > Mỗi bảng xếp hạng mô hình tạo ra chỉ trích FID, điểm CLIP và tỷ lệ thắng từ một lĩnh vực ưu tiên của con người. Mỗi số có chế độ thất bại mà một nhà nghiên cứu xác định có thể chơi. Nếu bạn không biết các chế độ thất bại, bạn không thể thấy sự cải thiện thực sự từ một cuộc chơi.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 8 · 01 (Taxonomy), Phase 2 · 04 (Evaluation Metrics)
 **Time:** ~45 minutes
 
@@ -26,13 +26,13 @@ Bạn cũng sẽ thấy: IS (điểm khởi điểm, phần lớn nghỉ hưu), 
 Heusel et al. (2017).
 
 1. Tạo các tính năng Inception-v3 (2048-D) cho N hình ảnh thực và N tạo.
-2. Đưa một Gaussian vào mỗi hồ bơi: tính trung bình`μ_r, μ_g`và sự đồng hóa`Σ_r, Σ_g`- Tôi không biết.
-3. FID = `||μ_r - μ_g||² + Tr(Σ_r + Σ_g - 2 · (Σ_r · Σ_g)^0.5)`- Tôi không biết.
+2. Đưa một Gaussian vào mỗi hồ bơi: tính trung bình$\mu_r, \mu_g$và sự đồng hóa$\Sigma_r, \Sigma_g$- Tôi không biết.
+3. $\text{FID} = \lVert \mu_r - \mu_g \rVert^2 + \mathop{\mathrm{Tr}}\left(\Sigma_r + \Sigma_g - 2 \cdot (\Sigma_r \cdot \Sigma_g)^{0.5}\right)$- Tôi không biết.
 
 Giải thích: Khoảng cách Fréchet giữa hai Gaussia đa biến trong không gian tính năng.
 
 Các chế độ thất bại:
-- **Biased on small N.**FID là trung bình vuông trên phân phối tính năng  N nhỏ đánh giá thấp sự khác nhau, cho FID thấp sai.
+- **Biased on small N.**FID là trung bình vuông trên phân phối tính năng  nhỏ N đánh giá thấp sự khác nhau, cho FID thấp sai.$N \ge 10{,}000$- Tôi không biết.
 - **Inception-dependent.**Inception-v3 được đào tạo trên ImageNet. Các miền xa khỏi ImageNet (những khuôn mặt, nghệ thuật, hình ảnh văn bản) tạo ra FID vô nghĩa. Sử dụng một bộ trích xuất tính năng cụ thể cho miền.
 - **Gaming.**Việc trang bị quá mức cho Inception trước tạo ra FID thấp mà không cải thiện chất lượng thị giác.
 

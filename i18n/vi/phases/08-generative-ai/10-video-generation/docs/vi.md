@@ -3,7 +3,7 @@
 > Một hình ảnh là một tensor 2D. Một video là một tensor 3D. Lý thuyết là tương tự; tính toán là 10-100x khó hơn. Sora của OpenAI (tháng 2 năm 2024) chứng minh rằng điều đó có thể. Đến năm 2026 Veo 2, Kling 1.5, Runway Gen-3, Pika 2.0, và WAN 2.2 video sản xuất tàu từ văn bản ở 1080p  và khối lượng mở (CogVideoX, HunyuanVideo, Mochi-1, WAN 2.2) là 12 tháng sau.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 8 · 07 (Latent Diffusion), Phase 7 · 09 (ViT), Phase 8 · 06 (DDPM)
 **Time:** ~45 minutes
 
@@ -152,7 +152,7 @@ Ba nút sản xuất, tất cả đều trực tiếp từ chương luận án v
 - [Brooks et al. (2024). Video generation models as world simulators](https://openai.com/index/video-generation-models-as-world-simulators/) Báo cáo kỹ thuật của Sora.
 - [Yang et al. (2024). CogVideoX: Text-to-Video Diffusion Models with An Expert Transformer](https://arxiv.org/abs/2408.06072) CogVideoX.
 - [Kong et al. (2024). HunyuanVideo: A Systematic Framework for Large Video Generative Models](https://arxiv.org/abs/2412.03603) HunyuanVideo.
-- [Genmo (2024). Mochi-1 Technical Report](https://www.genmo.ai/blog/mochi) Mochi-1.
+- [Genmo (2024). Mochi 1 preview model card](https://huggingface.co/genmo/mochi-1-preview) Mochi-1.
 - [Alibaba (2025). WAN 2.2](https://wanvideo.io/) SOTA mở vào giữa năm 2025.
 - [Ho, Salimans, Gritsenko et al. (2022). Video Diffusion Models](https://arxiv.org/abs/2204.03458) giấy truyền hình video.
 - [Blattmann et al. (2023). Align your Latents (Video LDM)](https://arxiv.org/abs/2304.08818) Tổ tiên của Stable Video Diffusion.
