@@ -3,7 +3,7 @@
 > Một nhân viên lập trình chỉ tốt như bộ nhiệm vụ mà bạn đo lường nó. Bài học này xây dựng một vòng đánh giá lấy một thư mục các nhiệm vụ cố định, chạy mỗi trong một đại lý ứng cử viên, điểm vượt qua hoặc thất bại thông qua một xác minh xác định, và tổng hợp kết quả thành pass@1, pass@k, độ trễ trung bình và chi phí trung bình. Lớp dây là nguồn sự thật cho phép bạn biết sự lùi từ một bộ phản ứng.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox runner), Phase 14 · 30 (eval-driven agent development), Phase 14 · 19 (SWE-bench and GAIA benchmarks)
 **Time:** ~90 minutes
 
@@ -47,7 +47,7 @@ Thứ hai là`regex_match`. Nội dung của tệp được đặt tên được
 
 Thứ ba là`shell_exit_zero`. Bộ đinh chạy lệnh shell (thông qua hộp cát từ bài học 26) và chỉ vượt qua nhiệm vụ nếu lệnh thoát khỏi 0. Điều này bắt được các nhiệm vụ "các thử nghiệm phải vượt qua".
 
-Lăng găng này làm mọi việc.`k`Pass@k là `1 - (1 - p)^k`nơi p là tỷ lệ vượt qua thực nghiệm; vòng xoài cũng báo cáo số liệu thô để bạn có thể phát hiện sự khác biệt. Trễ là đồng hồ tường cho mỗi mẫu. Chi phí là bất cứ gì đại lý tự báo cáo (tốc số, USD, hoặc cả hai); vòng xoài tổng hợp nó trên các mẫu và trình bày các số mỗi nhiệm vụ và tổng hợp.
+Lăng găng này làm mọi việc.`k`Pass@k là `1 - (1 - p)^k`nơi p là tỷ lệ vượt qua thực nghiệm; vòng xoay cũng báo cáo số liệu thô để bạn có thể phát hiện sự khác biệt. Đây là ước tính plug-in: nó sử dụng tỷ lệ đo p như thể đó là tỷ lệ thực. Bài học 72 sử dụng ước tính không thiên vị `1 - C(n - c, k) / C(n, k)`cho `n`mẫu với `c`- Phân tích của plug-in là thiên vị thấp.`n = k`mẫu, như trong vòng đeo này, ước tính không thiên vị là 1 khi bất kỳ mẫu nào đi qua và 0 khi không có mẫu nào đi qua, vì vậy nó chỉ cho thấy liệu có mẫu nào đi qua hay không. Để xuất bản một số pass@k, vẽ `n > k`Các mẫu và sử dụng ước tính từ bài học 72. độ trễ là đồng hồ tường cho mỗi mẫu. Chi phí là bất cứ gì đại lý tự báo cáo (tương hiệu số, USD, hoặc cả hai); vòng đeo tổng nó trên các mẫu và trình bày các số mỗi nhiệm vụ và tổng cộng.
 
 ```figure
 pass-at-k
@@ -100,6 +100,7 @@ Bài học 25 tạo ra chuỗi cổng, bài học 26 tạo ra hộp cát.`shell_
 ```bash
 cd phases/19-capstone-projects/27-eval-harness-fixture-tasks
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

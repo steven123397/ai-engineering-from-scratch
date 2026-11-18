@@ -3,7 +3,7 @@
 > MigrationBench của Amazon (Java 8 đến 17) và bộ di chuyển Py2-to-Py3 của Google đặt bar 2026 . OpenRewrite của Moderne thực hiện các bản viết lại AST xác định ở quy mô. Grit nhắm đến cùng một vấn đề với kiểu codemod DSL. Mô hình sản xuất kết hợp cả hai: một nền xác định cho các bản viết lại an toàn cộng với một lớp chất đối tác cho các trường hợp mơ hồ, một hộp cát cho mỗi ngành xây dựng, và một vòng thử nghiệm biến màu xanh lá cây trước khi PR mở. Điểm cuối là di chuyển 50 repos thực và công bố tỷ lệ vượt qua với phân loại thất bại.
 
 **Type:** Capstone
-**Languages:** Python (agent), Java / Python (targets), TypeScript (dashboard)
+**Languages:** Python (agent), Java / Python (targets), TypeScript (dashboard, agent scaffold)
 **Prerequisites:** Phase 5 (NLP), Phase 7 (transformers), Phase 11 (LLM engineering), Phase 13 (tools), Phase 14 (agents), Phase 15 (autonomous), Phase 17 (infrastructure)
 **Phases exercised:**P5 · P7 · P11 · P13 · P14 · P15 · P17
 **Time:** 30 hours
@@ -18,7 +18,7 @@ Bạn sẽ xây dựng một đại lý lấy một Java 8 repo (hoặc Python 2
 
 Hãng đường ống có hai lớp.**deterministic substrate**(OpenRewrite cho Java, libcst cho Python) chạy phần lớn các bản viết lại cơ học một cách an toàn: nhập khẩu, chữ ký phương pháp, chỉnh sửa an toàn không, thử với các nguồn lực, thay thế API lỗi thời. Nó nhanh chóng và tạo ra sự khác biệt có thể kiểm toán.**agent layer**(OpenAI Agents SDK hoặc LangGraph trên Claude Opus 4.7 và GPT-5.4-Codex) xử lý các trường hợp các công thức không thể: nâng cấp tập tin xây dựng (Maven / Gradle / pyproject), xung đột phụ thuộc chuyển tiếp, vỏ thử nghiệm, ghi chú tùy chỉnh.
 
-Mỗi repo nhận được một hộp cát Daytona với thời gian chạy mục tiêu được cài đặt trước. Đại lý lặp lại: chạy xây dựng, phân loại lỗi, áp dụng sửa chữa, chạy lại. Giới hạn cứng: 30 phút mỗi repo, 8 đô la mỗi repo, 20 lượt đại lý. Nếu tất cả các thử nghiệm vượt qua và delta bảo hiểm không âm tính, chi nhánh mở PR. Nếu không, repo được nộp dưới lớp thất bại với bằng chứng.
+Mỗi repo nhận được một hộp cát Daytona với thời gian chạy mục tiêu được cài đặt trước. Đại lý lặp lại: chạy xây dựng, phân loại lỗi, áp dụng sửa chữa, chạy lại. Giới hạn cứng: 30 phút mỗi repo, 8 đô la mỗi repo, 20 lượt đại lý. Nếu tất cả các thử nghiệm vượt qua và bảo hiểm giảm không hơn 2 điểm phần trăm, chi nhánh mở PR. Nếu không, repo được nộp dưới lớp thất bại với bằng chứng.
 
 Các phân loại thất bại là có thể cung cấp. Trong 50 repos, những gì đã bị hỏng? Transitive deps? thông chú tùy chỉnh? xây dựng phiên bản công cụ? thử các vỏ không liên quan đến di cư? Mỗi lớp nhận được một con số và một sự khác biệt ví dụ. Các tác giả công thức trong tương lai có thể nhắm mục tiêu vào ba người hàng đầu.
 
@@ -77,7 +77,7 @@ ce-migration-funnel
 
 4. **Budget caps.**30 phút đồng hồ tường mỗi repo, chi phí 8 đô la, 20 lượt đại lý. bất kỳ sự phá vỡ nào dừng lại và các tập tin dưới "budget_exhausted" với sự khác biệt hiện tại.
 
-5. **Test + coverage gate.**Sau khi xây dựng được làm xanh, chạy bộ thử nghiệm. So sánh bảo hiểm với repo cơ sở. Nếu bảo hiểm giảm hơn 2%, tập tin dưới "cụ thể_đưa chuộng".
+5. **Test + coverage gate.**Sau khi xây dựng được làm xanh, chạy bộ thử nghiệm. So sánh bảo hiểm với repo cơ sở. Nếu bảo hiểm giảm hơn 2 điểm phần trăm, hãy tập tin dưới "cụ thể_đưa chuộng".
 
 6. **PR open.**Khi thành công, đẩy chi nhánh, mở PR với sự khác biệt và một bản tóm tắt của các công thức được áp dụng và những gì cam kết của đại lý tác giả.
 

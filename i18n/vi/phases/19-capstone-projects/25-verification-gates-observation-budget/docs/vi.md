@@ -3,7 +3,7 @@
 > Một vòng xoáy không có lớp xác minh là một ước muốn trong một áo khoác. Bài học này xây dựng chuỗi cổng xác định được quyết định liệu một cuộc gọi công cụ có được phép bắn, bao nhiêu đầu ra của nó mà đại lý được phép xem, và khi nào vòng lặp phải dừng lại vì đại lý đã đọc quá nhiều. Dòng là một chức năng của các cổng nhỏ, tên cộng với một sổ cái quan sát theo dõi mọi biểu tượng mô hình đã được hiển thị.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 20-24 (Track A1: agent loop, tool registry, message store, prompt builder, model router), Phase 14 · 33 (instructions as constraints), Phase 14 · 36 (scope contracts), Phase 14 · 38 (verification gates)
 **Time:** ~90 minutes
 
@@ -82,7 +82,7 @@ Máy tính biểu tượng này cố ý là một kẻ ngu ngốc`len(text) // 4
 
 ## Tại sao sự sắp xếp chuỗi quan trọng
 
-Một lời phủ nhận rẻ hơn một lời cho phép.`WhitelistGate`chạy trong O(1) tìm kiếm hash. `RegexGate`chạy trong O(phát hình * argv). `RecencyGate`đọc một mảnh nhỏ của cửa hàng tin nhắn. `BudgetGate`Bạn đặt hàng chúng bằng cách tăng chi phí để một cuộc gọi từ chối chuyển mạch ngắn trước khi làm công việc đắt tiền.
+Một lời phủ nhận rẻ hơn một lời cho phép.`WhitelistGate`chạy vào $O(1)$Tìm kiếm.`RegexGate`chạy vào $O(\text{pattern} \cdot \text{argv})$- `RecencyGate`đọc một mảnh nhỏ của cửa hàng tin nhắn. `BudgetGate`Bạn đặt hàng chúng bằng cách tăng chi phí để một cuộc gọi từ chối chuyển mạch ngắn trước khi làm công việc đắt tiền.
 
 Bạn cũng đặt hàng theo vòng bán kính blast. Whitelist là tuyên bố mạnh nhất: công cụ này không có trong hợp đồng. Cổng regex là tiếp theo: lập luận này không có trong hợp đồng.
 
@@ -95,6 +95,7 @@ Những bài học trước đây đã cho bạn vòng lặp, sổ đăng ký c�
 ```bash
 cd phases/19-capstone-projects/25-verification-gates-observation-budget
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

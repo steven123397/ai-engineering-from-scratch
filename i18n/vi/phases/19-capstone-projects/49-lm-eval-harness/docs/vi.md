@@ -3,7 +3,7 @@
 > Một mô hình làm tốt trong một nhiệm vụ mà bạn không thể xác định là một mô hình làm tốt trong một tình huống.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 19 lessons 42 to 45
 **Time:** ~90 minutes
 
@@ -20,7 +20,7 @@ Một mô hình ngôn ngữ mới xuất hiện mỗi tuần. Người ta tuyên
 
 Nếu không có một vòng xoáy trong repo của bạn bạn so sánh hai mô hình theo vibes. Với một vòng xoáy bạn so sánh chúng theo điểm số trên một bộ nhiệm vụ cố định với một métric cố định, trên một đầu ra JSON bạn có thể khác biệt.
 
-Cái bẫy là quá phù hợp với một mô hình. Việc sửa chữa là cùng một cái bẫy ngược lại: vòng xoáy đủ nhỏ để đọc trong mười lăm phút, các nhiệm vụ đủ nhỏ để gửi vào repo, các số liệu được viết từ đầu để một đồng nghiệp có thể kiểm tra chúng, và bộ điều chỉnh là nơi duy nhất mã cụ thể mô hình sống. Thay đổi bộ điều chỉnh, bảng xếp hạng di chuyển; thay đổi các nhiệm vụ, bảng xếp hạng di chuyển. Không gì khác nên di chuyển.
+Cái bẫy là quá phù hợp với một mô hình. Việc khắc phục là giữ mọi lựa chọn cụ thể cho mô hình ra khỏi vòng xoáy: vòng xoáy đủ nhỏ để đọc trong mười lăm phút, các nhiệm vụ đủ nhỏ để gửi vào repo, các số liệu được viết từ đầu để một đồng nghiệp có thể kiểm tra chúng, và bộ điều chỉnh là nơi duy nhất mã cụ thể cho mô hình sống. Thay đổi bộ điều chỉnh, bảng xếp hạng di chuyển; thay đổi các nhiệm vụ, bảng xếp hạng di chuyển. Không gì khác nên di chuyển.
 
 ## Khái niệm
 
@@ -135,6 +135,7 @@ Mỗi thước đo là một hàm nhỏ với một unit test. Suite thử nghi�
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Các kịch bản gieo hạt các thiết bị trên lần đầu tiên chạy, ghi điểm chúng với bộ điều chỉnh đồ chơi (được nhận được mọi thiết bị đúng), và viết `outputs/leaderboard.json`. Điểm tổng thể là 1.0 với bộ điều chỉnh đồ chơi; thử nghiệm bộ điều chỉnh vật liệu trong `test_main.py`cho thấy cùng một vòng xoáy tạo ra 0.0 khi bộ điều chỉnh không thể trả lời.

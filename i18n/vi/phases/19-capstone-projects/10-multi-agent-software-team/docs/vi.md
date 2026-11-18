@@ -3,7 +3,7 @@
 > Hình dạng năm 2026 của một nhóm kỹ thuật đa đại lý đã hội tụ: một kiến trúc sư kế hoạch, N codeers làm việc trong cây làm việc song song, một cửa kiểm tra, một tester xác minh. Kiến trúc nhà máy của SWE-AF, sự thúc đẩy dựa trên vai trò của MetaGPT, biểu đồ diễn viên được đánh máy của AutoGen 0.4, Devin của Cognition và Droids của Factory đều hạ cánh trên nó độc lập. Các cây làm việc song song chuyển đổi đồng hồ tường thành dung lượng. Các giao thức chia sẻ trạng thái và giao tiếp trở thành bề mặt thất bại. Điểm cuối là xây dựng đội ngũ, đánh giá trên SWE-bench Pro, và báo cáo những giao hàng nào bị phá vỡ và bao nhiêu lần.
 
 **Type:** Capstone
-**Languages:** Python / TypeScript (agents), Shell (worktree scripts)
+**Languages:** Python / TypeScript (agents, task board scaffold), Shell (worktree scripts)
 **Prerequisites:** Phase 11 (LLM engineering), Phase 13 (tools), Phase 14 (agents), Phase 15 (autonomous), Phase 16 (multi-agent), Phase 17 (infrastructure)
 **Phases exercised:**P11 · P13 · P14 · P15 · P16 · P17
 **Time:** 40 hours
@@ -123,7 +123,7 @@ $ team run --issue https://github.com/acme/widget/issues/842
 
 1. Nhổ một lỗi rõ ràng vào một diff mid- run (extra `return None`Chỉ số số số lượng thông qua sai của nhà phê duyệt.
 
-2. Giảm xuống hai bộ lập trình (đầu thủ + bộ lập trình + kiểm tra + kiểm tra, bộ lập trình chạy hai nhiệm vụ phụ theo trình tự). So sánh đồng hồ tường và tốc độ vượt qua.
+2. Giảm xuống hai bộ lập trình (đầu thủ + hai bộ lập trình + kiểm tra + kiểm tra, mỗi bộ lập trình chạy hai nhiệm vụ phụ theo trình tự). So sánh đồng hồ tường và tốc độ vượt qua.
 
 3. Thay thế điều phối viên kết hợp bằng một hạn chế viết đơn (các nhiệm vụ phụ chạm vào tập tin không liên kết).
 

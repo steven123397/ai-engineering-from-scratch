@@ -3,7 +3,7 @@
 > Việc tìm kiếm từ ngữ và ngữ nghĩa thất bại trên phân phối truy vấn đối lập. Việc tìm kiếm lai với sự hợp nhất cấp bậc tương đối không liên quan, nó bỏ phiếu - và phiếu bầu thắng trên mọi lớp truy vấn.
 
 **Type:** Build
-**Languages:** Python
+**Languages:** Python, TypeScript
 **Prerequisites:** Phase 11 lessons 04 (embeddings), 06 (RAG); Phase 19 Track B foundations (lessons 20-29); Phase 19 lesson 64 (chunking strategies)
 **Time:** ~90 minutes
 
@@ -38,7 +38,7 @@ flowchart LR
 
 BM25 ghi một cặp truy vấn-tài liệu bằng cách tổng hợp, trên các thuật ngữ truy vấn, một nhân tố tần suất tài liệu ngược nhân bằng một nhân tố tần suất định nghĩa bão hòa bao gồm một sự điều chỉnh bình thường hóa chiều dài. Hai nút. `k1`điều khiển độ bão hòa tần số thuật ngữ; mặc định 1.5 là khuyến nghị được công bố và bạn không nên di chuyển nó mà không có một điểm tham chiếu. `b`kiểm soát bao nhiêu dài tài liệu quan trọng; mặc định 0.75 nói tài liệu dài hơn được phạt, nhưng không phải theo đường thẳng.
 
-Công thức IDF sử dụng định nghĩa Robertson và Sparck Jones trơn tru, đó là `log((N - df + 0.5) / (df + 0.5) + 1)`+ 1 bên trong nhật ký giữ cho IDF tích cực khi một thuật ngữ xuất hiện trong hơn một nửa các corpus.
+Công thức IDF sử dụng định nghĩa Robertson và Sparck Jones trơn tru, đó là `log((N - df + 0.5) / (df + 0.5) + 1)`. + 1 bên trong nhật ký giữ cho IDF tích cực khi một thuật ngữ xuất hiện trong hơn một nửa corpus. Điều này quan trọng đối với các từ dừng, xuất hiện trong hầu hết các tài liệu, và trong các corpora nhỏ nơi một thuật ngữ chung có thể vượt qua đường nửa corpus.
 
 Tỷ lệ trọng lượng trường cho phép bạn nói với BM25 rằng một trận đấu trên tên biểu tượng có nhiều điểm hơn một trận đấu trong cơ thể. Thực hiện là một nhân số trên các thuật ngữ đếm trong quá trình lập chỉ mục, chứ không phải tại thời điểm ghi điểm. Điều này giữ cho toán học giống nhau và tránh một điểm riêng biệt cho mỗi trường.
 
@@ -81,6 +81,7 @@ rrf-fusion
 
 ```bash
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 Đọc các kết quả demo bên cạnh. truy vấn nhận dạng theo nghĩa đen hạ cánh tại BM25 hạng 1, mật hạng 4, RRF hạng 1. truy vấn được diễn tả hạ cánh tại BM25 hạng 6, mật hạng 1, RRF hạng 1. truy vấn mơ hồ hạ cánh tại BM25 hạng 3, mật hạng 3, RRF hạng 1. Sự hợp nhất không phải là một tie-breaker; nó là hệ thống chiến thắng trên mỗi lớp truy vấn.

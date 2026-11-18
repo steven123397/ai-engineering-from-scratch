@@ -3,7 +3,7 @@
 > - Đường A trả tiền. Bài học này đan chuỗi cổng, hộp cát, vòng đánh giá và OTel mở rộng thành một đại lý mã hóa hoạt động khắc phục một lỗi thực tế (tín, quy mô cố định) trong một dự án Python đa tập tin. Các đại lý là một chính sách xác định, không phải là một LLM; sự thay thế làm cho bài học có thể tái tạo và cho thấy rằng vòng xoáy là phần thú vị trong suốt thời gian. Hợp đồng giống nhau: một mô hình thực sự kết nối vào các chính sách.
 
 **Type:** Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 19 · 25 (verification gates), Phase 19 · 26 (sandbox), Phase 19 · 27 (eval harness), Phase 19 · 28 (observability), Phase 14 · 38 (verification gates), Phase 14 · 41 (workbench for real repos), Phase 14 · 42 (agent workbench capstone)
 **Time:** ~90 minutes
 
@@ -21,7 +21,7 @@ Hầu hết các trình diễn đại lý hoạt động một cách riêng bi�
 
 Mạng cổng nói "HỌNG" nhưng hộp cát từ chối vì lý do mà chuỗi không dự đoán. Vị kiểm tra ghi lại một thông qua nhưng các thông tin của OTel nói rằng cổng đã từ chối một công cụ mà nhân viên cho rằng nó đã sử dụng. Máy đếm Prometheus được tăng gấp đôi khi nó nên được tăng một lần. Ngân sách quan sát đã vượt quá nhưng đại lý vẫn tiếp tục vì ngân sách đã được theo dõi trong chuỗi và hộp cát không biết.
 
-Bài học này là thử nghiệm tích hợp cho toàn bộ đường đua. Đại lý phải làm bốn điều để: đọc dự án, chạy các thử nghiệm, xác định lỗi từ sự thất bại của thử nghiệm, viết sửa chữa, chạy lại các thử nghiệm và dừng. Mỗi hoạt động đi qua chuỗi cổng. Mỗi hành động thực hiện công cụ đi qua hộp cát. Mỗi bước được gói trong một khoảng thời gian. Vỏ đánh giá ghi điểm toàn bộ ở cuối.
+Bài học này là thử nghiệm tích hợp cho toàn bộ đường đua. Đại lý phải làm sáu điều để: đọc dự án, chạy các thử nghiệm, xác định lỗi từ sự thất bại của thử nghiệm, viết sửa chữa, chạy lại các thử nghiệm và dừng. Mỗi hoạt động đi qua chuỗi cổng. Mỗi hành động thực hiện công cụ đi qua hộp cát. Mỗi bước được gói trong một khoảng thời gian. Vỏ đánh giá ghi điểm toàn bộ ở cuối.
 
 ## Khái niệm
 
@@ -113,6 +113,7 @@ Bài học 25 viết chuỗi cổng. Bài học 26 viết hộp cát. Bài học
 ```bash
 cd phases/19-capstone-projects/29-end-to-end-coding-task-demo
 python3 code/main.py
+npx tsx code/main.ts
 python3 -m pytest code/tests/ -v
 ```
 

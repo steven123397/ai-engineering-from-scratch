@@ -3,7 +3,7 @@
 > Trưởng DevOps của AWS đã đi GA, Resolve AI đã xuất bản sách chơi game K8s của mình, NeuBird đã thử nghiệm giám sát ngữ pháp, và Metoro đã gắn AI SRE với các SLO mỗi dịch vụ. Hình thức sản xuất đã được thiết lập: một máy báo động webhook phát nổ, một đại lý đọc đo lường từ xa, đi qua một biểu đồ của các vật thể K8, xếp hạng giả thuyết nguyên nhân gốc, và đăng một thư ngắn Slack với nút chấp thuận. Đọc chỉ theo mặc định. Mọi phương pháp chữa bệnh được một con người kiểm soát. Ngọc đá này là đại lý, được đánh giá trên 20 vụ việc tổng hợp và so sánh với đại lý của AWS trên ba vụ chia sẻ.
 
 **Type:** Capstone
-**Languages:** Python (agent), TypeScript (Slack integration)
+**Languages:** Python (agent), TypeScript (Slack integration, agent scaffold)
 **Prerequisites:** Phase 11 (LLM engineering), Phase 13 (tools and MCP), Phase 14 (agents), Phase 15 (autonomous), Phase 17 (infrastructure), Phase 18 (safety)
 **Phases exercised:**P11 · P13 · P14 · P15 · P17 · P18
 **Time:** 30 hours
@@ -141,7 +141,7 @@ webhook: alert.pagerduty.com -> checkout-api SLO breach, error rate 14%
 
 ## Đọc thêm
 
-- [AWS DevOps Agent GA](https://aws.amazon.com/blogs/aws/aws-devops-agent-helps-you-accelerate-incident-response-and-improve-system-reliability-preview/) tài liệu tham chiếu của năm 2026
+- [AWS DevOps Agent GA](https://aws.amazon.com/blogs/mt/announcing-general-availability-of-aws-devops-agent/): tài liệu tham chiếu của năm 2026
 - [Resolve AI K8s troubleshooting](https://resolve.ai/blog/kubernetes-troubleshooting-in-resolve-ai) tham chiếu đối thủ cạnh tranh
 - [NeuBird semantic monitoring](https://www.neubird.ai) Phương pháp biểu đồ ngữ nghĩa
 - [Metoro AI SRE](https://metoro.io) SLO- đầu tiên khung sản xuất
