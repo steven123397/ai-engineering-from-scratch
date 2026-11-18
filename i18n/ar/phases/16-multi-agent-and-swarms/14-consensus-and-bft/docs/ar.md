@@ -3,7 +3,7 @@
 > النظم الموزعة الكلاسيكية BFT تلبي LLM الاستوكاستية في 2025-2026 ظهرت ثلاثة اتجاهات بحثية: **CP-WBFT**(arXiv:2511.10400) يزن كل صوت بواسطة تحقيق ثقة**DecentLLMs**(arXiv:2507.14928) يذهب دون قائد مع مقترحات العمال المتوازية والجمع الهندسي-الوسطي. **WBFT**(arXiv:2505.05103) يجمع بين التصويت الموزن مع التجميع الهيئريكي لتمييز العقدة الأساسية والجوار. النتيجة التجريبية الصادقة من "هل يمكن للوكلاء الذكاء الاصطناعي الاتفاق؟" (arXiv:2603.01213) هي أن الاتفاقية المتوسطة هشة اليوم  وكيل خدع واحد يمكن أن يفسد خليط من الوكلاء. إن إمكانية إعادة التأمين الضروري ضرورية ولكنها ليست كافية. هذه الدروس تبني بروتوكول BFT الحد الأدنى، وتحقن ثلاث هجمات محددة للعوامل (الكذبة البيزنطية، التوافق السيكوفانتي، وحالة الحذف المتصلة بالخطأ) ، وتقييم كيفية التعامل مع كل فاريانت توافق.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 07 (Society of Mind and Debate), Phase 16 · 13 (Shared Memory)
 **Time:** ~75 minutes
 
@@ -107,6 +107,7 @@ swarm-consensus-wave
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 الناتج المتوقع: جدول من (الهجوم، المجمع) -> الإجابة النهائية، مع تسليط الضوء على الإجابة الصحيحة. تفشل التعددية في حالة الزراعة الواحدة. يقلل وزن الثقة من CPWBFT من التخفيف. يسحب المتوسط الهندسي لـ DecentLLMs نحو الكلاستر النزيه عندما تكون الزراعة الواحدة أقل من نصف السكان.
@@ -148,7 +149,7 @@ python3 code/main.py
 
 ## المزيد من القراءة
 
-- [Castro & Liskov — Practical Byzantine Fault Tolerance (OSDI 1999)](https://pmg.csail.mit.edu/papers/osdi99.pdf) الأساس
+- [Castro & Liskov — Practical Byzantine Fault Tolerance (OSDI 1999)](https://www.usenix.org/conference/osdi-99/practical-byzantine-fault-tolerance) الأساس
 - [CP-WBFT — Confidence-Probe Weighted BFT](https://arxiv.org/abs/2511.10400) وزن الأصوات حسب الثقة
 - [DecentLLMs — leaderless multi-agent consensus](https://arxiv.org/abs/2507.14928) جمع الوسط الهندسي
 - [WBFT — Weighted BFT with Hierarchical Structure Clustering](https://arxiv.org/abs/2505.05103) تمزيق القاعدة/الجوار لخفض التأخير المحدد

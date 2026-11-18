@@ -3,7 +3,7 @@
 > لي وغيره (arXiv:2310.10701) أظهر أن وكلاء ماجستير في الدراسة العليا في معرض تعاونية لعبة نصية **emergent high-order Theory of Mind**(ToM)  التفكير حول ما يعتقده وكيل آخر حول معتقدات وكيل ثالث  ولكن يفشل في التخطيط على الأفق الطويل بسبب إدارة السياق والوهلوسة. قياس ريدل (arXiv:2510.05174) التآزر في ترتيب أعلى في جميع أنحاء السكان ووجد أن **only**حالة ToM-prompt تنتج التمييز المرتبط بالهوية والتكميلية المستهدفة؛ لا تظهر LLM ذات القدرة المنخفضة إلا ظهورًا مزيفًا. وهذا يعني أن ظهور التنسيق هو سريع مشروط ويعتمد على النموذج، وليس مجانا. هذا الدروس يطبق عاملًا أدنى من ذوي الوعي بالتعاون، ويقوم بمهمة تعاونية مع أو بدون طلب من التعاون، ويقاس دلتا التنسيق ضد بروتوكول Riedl 2025.
 
 **Type:** Learn + Build
-**Languages:** Python (stdlib)
+**Languages:** Python (stdlib), TypeScript
 **Prerequisites:** Phase 16 · 07 (Society of Mind and Debate), Phase 16 · 17 (Generative Agents)
 **Time:** ~75 minutes
 
@@ -120,6 +120,7 @@ sw-theory-of-mind
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 الناتج المتوقع: عوامل النظام الصفر تضاعف الجهد بمعدل ~ 35% وتكمل ~ 60% من التجارب في 10 دورات. عوامل ToM النظام الأول تضاعف عند ~ 5% وتكمل ~ 95%. النخاع هو تأثير التنسيق القابل للقياس.
@@ -163,5 +164,5 @@ python3 code/main.py
 
 - [Li et al. — Theory of Mind for Multi-Agent Collaboration via Large Language Models](https://arxiv.org/abs/2310.10701) التنمية الناشئة في الألعاب التعاونية؛ أساليب الفشل على الأفق الطويل
 - [Riedl — Emergent Coordination in Multi-Agent Language Models](https://arxiv.org/abs/2510.05174) قياس على نطاق السكان؛ تحفيز ToM هو حالة تحمل
-- [Premack & Woodruff — Does the chimpanzee have a theory of mind?](https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/does-the-chimpanzee-have-a-theory-of-mind/1E96B02CD9850E69AF20F81FA7EB3595) أصل مفهوم التنمية العامة لعام 1978
+- [Premack & Woodruff — Does the chimpanzee have a theory of mind?](https://doi.org/10.1017/S0140525X00076512) أصل مفهوم التنمية العامة لعام 1978
 - [Baron-Cohen, Leslie, Frith — Does the autistic child have a theory of mind?](https://doi.org/10.1016/0010-0277(85)90022-8)  ورقة سالي-آني (1985)

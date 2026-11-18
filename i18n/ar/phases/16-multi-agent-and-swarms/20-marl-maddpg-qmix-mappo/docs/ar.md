@@ -3,7 +3,7 @@
 > التراث التعلمي للتعزيز لتنسيق متعدد الوكلاء، الذي لا يزال يبلغ أنظمة الوكلاء في القانون في عام 2026 **MADDPG**(لو وآخرون ، نيوريبس 2017 ، arXiv: 1706.02275) قدم التدريب المركزي ، التنفيذ اللامركزي (CTDE): يرى كل نقدي جميع حالات وكلاء وأفعالهم أثناء التدريب. في وقت الاختبار لا يعمل سوى الجهات الفاعلة المحلية. يعمل في إعدادات تعاونية وتنافسية ومختلطة. **QMIX**(Rashid et al., ICML 2018, arXiv:1803.11485) هو التفكك القيم مع شبكة خلط واحدة؛ كل عامل Qs يجمع في Q so `argmax`يوزع بسهولة  المهيمن على تحدي StarCraft Multi-Agent Challenge (SMAC). **MAPPO**(يو وآخرون ، نيوريبس 2022 ، arXiv: 2103.01955) هو PPO مع وظيفة قيمة مركزية ؛ "فعالة بشكل مفاجئ" على عالم الجسيمات ، SMAC ، كرة القدم البحثية جوجل ، حنابي مع تحديد الحد الأدنى. هذه تدعم سياسات التدريب لفرق الوكلاء التي يجب أن تتصرف بشكل لامركزي.**default 2026 cooperative-MARL baseline**هذه الدروس تبني كل منها من لعبة صغيرة في عالم الشبكة وتحوط الأفكار الثلاثة في الذاكرة العضلية قبل أن تلمس تدريب الوكيل LLM.
 
 **Type:** Learn
-**Languages:** Python (stdlib, small NumPy-free implementations)
+**Languages:** Python (stdlib, small NumPy-free implementations), TypeScript
 **Prerequisites:** Phase 09 (Reinforcement Learning), Phase 16 · 09 (Parallel Swarm Networks)
 **Time:** ~90 minutes
 
@@ -42,10 +42,10 @@ critic update:   TD on Q_i(x, a_1..n) given next-state joint estimate
 
 ### QMIX (2018)  تحلل القيمة
 
-التعاون فقط. الجائزة العالمية هي جمع وظيفة واحدة من قيم Q لكل عامل:
+التعاون فقط القيمة المشتركة للعمل`Q_tot`هو وظيفة مزيج متوحدة من قيم Q لكل عامل:
 
-```
-Q_tot(tau, a) = f(Q_1(tau_1, a_1), ..., Q_n(tau_n, a_n)),   df/dQ_i >= 0
+```math
+Q_{\text{tot}}(\tau, a) = f\big(Q_1(\tau_1, a_1), \ldots, Q_n(\tau_n, a_n)\big), \quad \frac{\partial f}{\partial Q_i} \ge 0
 ```
 
 الاحتمالات الموحدة تضمن`argmax_a Q_tot`يمكن حسابها من قبل كل وكيل يختار`argmax_{a_i} Q_i`بشكل مستقل، هذا هو**exactly the decentralized execution property**في وقت التدريب، شبكة الاختلاط تنتج`Q_tot`من كل عامل
@@ -117,6 +117,7 @@ sw-ctde
 
 ```
 python3 code/main.py
+npx tsx code/main.ts
 ```
 
 الناتج المتوقع: يأخذ العملاء المستقلون ~ 6 خطوات في المتوسط؛ تتقارب فاريان CTDE نحو ~ 3.5 خطوة (المتحسن لشبكة 4x4 هو 3). يظهر الفرق في النمط على الرغم من السياسات المخطوطة.
