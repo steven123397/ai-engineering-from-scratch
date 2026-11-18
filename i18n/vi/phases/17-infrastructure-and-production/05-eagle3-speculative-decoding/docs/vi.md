@@ -3,7 +3,7 @@
 > Việc giải mã giả định kết hợp mô hình dự thảo nhanh với mô hình mục tiêu. Dự thảo đề xuất các token K; mục tiêu xác minh bằng một forward duy nhất; các token được chấp nhận là miễn phí. Năm 2026, EAGLE-3 là biến thể cấp sản xuất  nó đào tạo một đầu dự thảo trên các trạng thái ẩn của mô hình mục tiêu thay vì trên mã thông báo thô, đẩy tỷ lệ chấp nhận alpha vào băng thông 0.6-0.8 trên trò chuyện chung. Câu hỏi đúng không phải là "mặt hước nhanh như thế nào" mà là " alpha là gì trên lưu lượng truy cập của tôi?" Nếu alpha giảm xuống dưới ~ 0.55, việc giải mã giả định là âm tính tại đồng thời cao bởi vì mỗi dự thảo bị từ chối chi phí một mục tiêu tiếp theo thứ hai. Bài học này dạy bạn phải đo alpha trước và xoay cờ sau.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy acceptance-rate simulator)
+**Languages:** Python, TypeScript (stdlib, toy acceptance-rate simulator)
 **Prerequisites:** Phase 17 · 04 (Serving Engine Internals), Phase 10 · 18 (Multi-Token Prediction)
 **Time:** ~60 minutes
 
@@ -16,7 +16,7 @@
 
 ## Vấn đề
 
-Decode là kết nối bộ nhớ. trên một H100 chạy Llama 3.3 70B FP8, mỗi token được giải mã đọc ~ 140 GB / s trọng lượng và phát ra một token.
+Decode là kết nối bộ nhớ. trên một H100 chạy Llama 3.3 70B FP8, mỗi bước decode đọc tất cả ~ 70 GB trọng lượng từ HBM và phát ra một token mỗi chuỗi.
 
 Việc giải mã giả định khai thác khoảng cách. Tạo các mã thông báo ứng cử viên K với mô hình dự thảo rẻ tiền, sau đó yêu cầu mô hình mục tiêu xác minh tất cả K trong một lần đi trước. Mỗi mã thông báo được xác minh thực sự miễn phí (được rút tiền thành một loạt các mã thông báo K mà mục tiêu đã phải làm bất cứ lúc nào).
 
@@ -34,7 +34,7 @@ Nếu không có mã hóa đặc điểm, chi phí mỗi token là một mục t
 
 Các token bị từ chối không biến mất  họ buộc một mục tiêu thứ hai đi về phía trước cho token bị từ chối đầu tiên. Với khối lượng làm việc mà alpha giảm xuống 0,4, bạn phải trả chi phí tổng hợp cộng với xác minh cộng với việc tái đóng. Ở đồng thời cao (chẳng hạn 256 đồng thời), lô decode đã đủ lớn để khoảng cách băng thông bộ nhớ giữa "chỉ mục tiêu" và "chỉ mục tiêu với xác minh" giảm đi. Dưới alpha 0.55 trên hầu hết phần cứng 2026, mã giải mã đặc điểm là âm tính.
 
-Alpha thay đổi theo khối lượng công việc. Trong cuộc trò chuyện chung kiểu ShareGPT, EAGLE-3 được đào tạo trên ShareGPT đạt 0,6-0,8. Trên lưu lượng truy cập cụ thể về miền (điều mã, y tế, pháp lý) đầu dự thảo được đào tạo về dữ liệu chung giảm xuống 0,4-0,6.
+Alpha khác nhau theo khối lượng công việc. Trong cuộc trò chuyện chung kiểu ShareGPT, EAGLE-3 được đào tạo trên ShareGPT đạt 0,6-0,8. Đối với giao thông cụ thể về lĩnh vực (điều lệ, y tế, pháp lý) người dự thảo được đào tạo về dữ liệu chung giảm xuống 0,4-0,6. Trình luyện một bộ phận cụ thể về đầu dự thảo phục hồi alpha  nó là một công việc đào tạo nhẹ, nhanh chóng so với mục tiêu fine tuning. Giai đoạn 7 · 16 và Giai đoạn 10 · 15 trích dẫn các giá trị cao hơn (0,85 và trên). Đó là tỷ lệ cho mỗi token trên các tiêu chuẩn trò chuyện phù hợp với dữ liệu đào tạo dự thảo. Hãy lập kế hoạch với các băng nhóm trên trang này và đo alpha theo lưu lượng truy cập của riêng bạn.
 
 ### Những thế hệ của đại bàng một lần
 

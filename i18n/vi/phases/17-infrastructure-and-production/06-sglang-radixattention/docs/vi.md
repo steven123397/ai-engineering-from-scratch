@@ -3,7 +3,7 @@
 > Chế độ dự trữ KV như một tài nguyên có thể sử dụng lại được lưu trữ trong một cây gốc, và thay đổi lịch trình với nó: thay vì FCFS (lần đầu tiên đến, lần đầu tiên phục vụ) như các lịch trình vLLM, một lập trình viên có ý thức về cache ưu tiên các yêu cầu với các phụ đề chia sẻ dài hơn  hiệu quả là một chiều sâu đầu tiên xuyên qua gốc để các nhánh nóng vẫn ở trong HBM. SGLang là động cơ đã xây dựng phục vụ cho ý tưởng này. Trên Llama 3.1 8B với các lời nhắc 1K giống như ShareGPT, SGLang đạt ~ 16.200 tok/s đến ~ 12.500 vLLM, một cạnh ~ 29%. Với khối lượng công việc RAG nặng tiền tố, lợi thế đạt 6,4x. Trên các khối lượng công việc hình dạng nhượng bộ giọng nói, tỷ lệ truy cập cache đã được xóa 86%. Được triển khai trên 400.000+ GPU vào năm 2026 trên xAI, LinkedIn, Cursor, Oracle, GCP, Azure, AWS. Vấn đề là số 6.4x bị biến mất khi lệnh tiền tố không phù hợp.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy radix-tree cache + cache-aware scheduler)
+**Languages:** Python, TypeScript (stdlib, toy radix-tree cache + cache-aware scheduler)
 **Prerequisites:** Phase 17 · 04 (Serving Engine Internals), Phase 14 (Agentic RAG)
 **Time:** ~75 minutes
 
@@ -93,6 +93,8 @@ roofline
 ## Sử dụng nó
 
 `code/main.py`thực hiện một bộ nhớ cache KV toy radix-tree cộng với một trình lập lịch với hai chính sách: FCFS và cache-aware. chạy tải trọng công việc tương tự qua cả hai, báo cáo tỷ lệ hit prefix-cache và thông suất delta. Sau đó chạy một tải trọng công việc "scrambled ordering" để hiển thị sự sụp đổ 6.4x.
+
+- [Inside an LLM Serving GPU](https://aiengineeringfromscratch.com/inside-an-llm-serving-gpu?workload=shared&shared=4096)máy hiển thị bộ nhớ cache radix trên một chạy thực tế L4. Bốn nhóm mỗi có hệ thống nhắc 4.096 token riêng của họ. yêu cầu đầu tiên của một nhóm tính toán lời nhắc của mình. Trong khi lời nhắc đó vẫn ở trong bộ nhớ cache, yêu cầu sau đó của nhóm tính toán chỉ câu hỏi 128 token. tắt bộ nhớ cache radix để xem trung bình token đầu tiên đi từ 479 ms đến 14.706 ms.
 
 ## Chuyển nó
 

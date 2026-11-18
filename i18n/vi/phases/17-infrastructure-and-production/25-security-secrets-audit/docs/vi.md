@@ -3,7 +3,7 @@
 > Phục tiêu sự mở rộng bí mật thông qua kho trung tâm (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault). Đừng bao giờ lưu trữ thông tin vào các tập tin cấu hình, tập tin env trong VCS, bảng tính. Sử dụng vai trò IAM thay vì khóa tĩnh; OIDC cho CI / CD. Mô hình AI-gateway là giải pháp 2026: ứng dụng → cửa hàng → nhà cung cấp mô hình, với cửa hàng kéo các thông tin tín dụng từ kho trong thời gian chạy. Chuyển vào kho và tất cả các ứng dụng sẽ nhận được trong vài phút không có redeploys, không Slack "người có chìa khóa mới" tin nhắn. Chính sách quay ≤ 90 ngày; quét với TruffleHog / GitGuardian / Gitleaks trên mỗi commit. Zero-trust: MFA, SSO, RBAC/ABAC, token ngắn hạn, tư thế thiết bị. Việc xóa PII sử dụng nhận dạng thực thể để che giấu PHI/PII trước khi chuyển tiếp; token hóa nhất quán (chương trình Mesh) lập bản đồ các giá trị nhạy cảm cho người nắm giữ vị trí ổn định để LLM duy trì ngữ nghĩa mã / mối quan hệ. Tác dụng của mạng: Dịch vụ LLM chỉ trong danh sách trắng của các mạng phụ VPC/VNet`api.openai.com`- `api.anthropic.com`Các vụ tấn công chuỗi cung ứng Vercel thông qua các thông tin tín dụng CI / CD bị xâm phạm đã xâm nhập vào môi trường trên hàng ngàn triển khai khách hàng.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy PII-scrubber + audit-log writer)
+**Languages:** Python, TypeScript (stdlib, toy PII-scrubber + audit-log writer)
 **Prerequisites:** Phase 17 · 19 (AI Gateways), Phase 17 · 13 (Observability)
 **Time:** ~60 minutes
 
@@ -22,7 +22,7 @@ Các thông tin liên quan đến người dùng bao gồm "SSN của tôi là 1
 
 Một cách riêng biệt, các chương trình của nhóm EKS của bạn có thể tiếp cận bất kỳ máy chủ internet nào. ai đó lưu trữ dữ liệu qua DNS tìm kiếm đến một miền được kiểm soát bởi kẻ tấn công. Không gì chặn nó.
 
-Bảo mật cho các dịch vụ LLM phải giải quyết tất cả ba phương tiện: chứng chỉ được hỗ trợ bởi kho tàng, xóa thông tin cá nhân, lọc các nguồn thoát mạng, nhật ký kiểm toán.
+Bảo mật cho các dịch vụ LLM phải giải quyết tất cả ba phương tiện và chứng minh sau đó.
 
 ## Khái niệm
 

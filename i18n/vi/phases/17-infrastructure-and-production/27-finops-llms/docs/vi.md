@@ -3,7 +3,7 @@
 > FinOps truyền thống phá vỡ chi tiêu LLM. Chi phí là giao dịch mã thông báo, không phải thời gian sử dụng nguồn lực. Tags không lập bản đồ  một cuộc gọi API là một giao dịch, không phải là tài sản. Các quyết định kỹ thuật (phác thảo nhanh, cửa sổ ngữ cảnh, chiều dài đầu ra) là quyết định tài chính.`user_id`) cho giá ghế và mở rộng, mỗi nhiệm vụ (`task_id`+ `route`) cho chi phí bề mặt sản phẩm và ưu tiên, cho người thuê (`tenant_id`) về kinh tế đơn vị và tái tạo. Bốn lớp token  prompt, công cụ, bộ nhớ, phản ứng  một cái thùng ẩn chi tiêu. Đường thang thực thi cho các sản phẩm đa thuê nhân: giới hạn tỷ lệ cho mỗi thuê nhân (2-3x mức cao nhất dự kiến, vượt qua 429 + thử lại sau); giới hạn chi tiêu hàng ngày (1.5-3x mức trần hợp đồng; kích hoạt tăng tốc + cảnh báo); tắt các chuyển đổi khi chi tiêu điểm z > 4 (tự động tạm dừng + trang khi gọi). Các mô hình phân loại: Tag-and-aggregate, telemetry-joiner (trace-ID → thanh toán; độ chính xác cao nhất), lấy mẫu và kéo dài, phân bổ dựa trên mô hình, nguồn gốc sự kiện, phát trực tuyến thời gian thực. Đoạn số: chi phí cho mỗi truy vấn được giải quyết, chi phí cho mỗi vật tạo ra không phải mã thông báo $/M. Việc gắn thẻ ngược luôn bị bỏ qua; công cụ tạo theo yêu cầu.
 
 **Type:** Learn
-**Languages:** Python (stdlib, toy cost-attribution simulator with kill switch)
+**Languages:** Python, TypeScript (stdlib, toy cost-attribution simulator with kill switch)
 **Prerequisites:** Phase 17 · 13 (Observability), Phase 17 · 14 (Caching)
 **Time:** ~60 minutes
 
@@ -130,7 +130,7 @@ Bài học này sẽ mang lại kết quả `outputs/skill-finops-plan.md`Với 
 1. Đi chạy`code/main.py`- Đường độ x của cái chuyển đổi bắn ở mức nào?
 2. Thiết kế bảng điều khiển chi phí cho mỗi người thuê, mỗi nhiệm vụ.
 3. Người thuê nhà lớn nhất của bạn là đơn vị kinh tế tiêu cực.
-4. Xét chi phí cho mỗi vé được giải quyết cho một sản phẩm hỗ trợ: 3M token/ticket, ~800 vé/ngày, tỷ lệ lưu trữ GPT-5.
+4. Xét chi phí cho mỗi vé được giải quyết cho một sản phẩm hỗ trợ: 3M token/ticket, ~ 800 vé/ngày, tất cả các đầu vào với tỷ lệ ghi nhớ GPT-5 là $0,125/M (giá danh sách khởi động; kiểm tra thẻ tỷ lệ sống).
 5. Hãy tranh luận liệu việc gắn thẻ ngược lại có thể hoạt động được không.
 
 ## Các điều khoản chính
